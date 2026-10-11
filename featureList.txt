@@ -1,0 +1,31 @@
+General: C++17, standard library only; builds with make (source/Makefile) to output/CGR26_renderer with no warnings
+General: pbrt-v4 scene parser (tokenizer, parameter lists, graphics state, Include/Import, ObjectBegin/ObjectInstance, named materials, coordinate systems)
+General: integrator chosen by the scene file: Integrator "whitted" (WSRT) or "distributed" (DRT); pbrt "path"/"volpath" mapped to distributed with a warning
+General: .log file written next to every output image, with errors and warnings as file:line:column messages
+General: graceful handling of syntax errors and unsupported features: recoverable problems fall back to defaults, fatal ones are logged without a crash
+General: profiling in the log: parse/load, render, tone-map/write times; camera/secondary/shadow ray counts, ray-primitive tests, Mrays/s
+General: multithreaded tile renderer (std::thread) with deterministic per-pixel random streams (PCG32)
+General: output as 8-bit PNG (own encoder) and linear HDR PFM, plus optional PPM
+Camera: perspective camera matching pbrt-v4 conventions (fov on the shorter image axis, LookAt)
+WSRT: ideal specular reflection, recursive up to maxdepth
+WSRT: specular refraction with Snell's law, exact dielectric Fresnel equations and total internal reflection
+WSRT: Blinn-Phong shading (ambient, diffuse, specular) with Kd (or Kd texture), Ks, Ka, shininess per material
+WSRT: point lights with configurable position and radiant intensity (also spot and distant lights)
+WSRT: hard shadows with shadow rays and a normal-offset ray origin against self-shadowing
+WSRT: UV-mapped textures for diffuse colour from PPM files (bilinear filtering, repeat/clamp/black wrap), plus procedural checkerboard, scale and mix textures
+WSRT: geometry: planes (infinite, extension), spheres (including partial), triangles, disks, with ray intersection and UV generation for each
+WSRT: area lights approximated as point lights at their centroid (hard shadows)
+DRT: triangle meshes from OBJ (v/vt/vn, polygons, negative indices) and PLY (ascii, binary) files and inline trianglemesh/bilinearmesh, with per-vertex normals (smooth shading) and UVs
+DRT: textures on meshes through interpolated UVs
+DRT: area lights (emissive triangles/quads, disks, spheres; one- or two-sided) with soft shadows from shadow rays to uniformly random points on the light; number of shadow rays configurable (lightsamples, or per-light samples)
+DRT: energy-conserving modified Phong BRDF (kd/pi + ks (n+2)/(2pi) cos^n); kd clamped so that kd+ks+kr <= 1
+DRT: indirect light with one uniform-hemisphere ray per bounce up to maxdepth; emission skipped after diffuse bounces (no double counting)
+DRT: dielectrics and mirrors (Fresnel-weighted stochastic reflect/refract choice)
+DRT: thin-lens depth of field (lensradius, focaldistance) with rays jittered over the aperture
+DRT: Reinhard tone mapping on luminance (default) or per channel, configurable white point, optional key and exposure
+Sampling: random (jittered) camera rays per pixel, configurable with Sampler "independent" "integer pixelsamples"; 1 sample = pixel centre
+Lights: blackbody and spectral inputs converted to RGB with an analytic CIE 1931 fit (approximation; rendering itself is RGB)
+Partial: rough conductors and dielectrics rendered as smooth; coateddiffuse and named metal spectra approximated
+Partial: infinite lights support constant radiance only (no environment maps)
+Not implemented: acceleration structure (every ray is tested against every primitive)
+Not implemented: participating media, alpha masks, displacement and normal mapping, PNG/EXR texture input

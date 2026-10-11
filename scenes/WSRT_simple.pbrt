@@ -1,0 +1,79 @@
+# WSRT_simple: every Whitted-style feature in one scene.
+#  - mirror sphere (left)          : recursive ideal reflection
+#  - glass sphere (centre front)   : refraction + Fresnel + total internal reflection
+#  - red Blinn-Phong sphere (right): ambient + diffuse + specular highlight
+#  - uv-grid sphere (back)         : UV-mapped PPM texture on a sphere
+#  - checker floor plane           : UV-mapped PPM texture on a plane, hard shadows
+#  - brick wall (two triangles)    : UV-mapped PPM texture on triangles
+#  - orange triangle (left back)   : single triangle primitive
+#  - two point lights              : configurable position + radiant intensity
+LookAt 0 2.6 -7.5   0 1 0   0 1 0
+Camera "perspective" "float fov" [ 40 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "WSRT_simple.png" ]
+Sampler "independent" "integer pixelsamples" [ 4 ]
+Integrator "whitted" "integer maxdepth" [ 8 ] "rgb ambient" [ 1 1 1 ]
+
+WorldBegin
+
+LightSource "point" "point3 from" [ 4 7 -4 ] "rgb I" [ 45 45 42 ]
+LightSource "point" "point3 from" [ -5 5 -3 ] "rgb I" [ 12 13 16 ]
+
+Texture "checks" "spectrum" "imagemap" "string filename" "textures/checker.ppm"
+    "float uscale" [ 0.25 ] "float vscale" [ 0.25 ]
+Texture "uv" "spectrum" "imagemap" "string filename" "textures/uvgrid.ppm"
+Texture "bricks" "spectrum" "imagemap" "string filename" "textures/bricks.ppm"
+    "float uscale" [ 3 ] "float vscale" [ 2 ]
+
+# Floor: infinite plane y = 0
+AttributeBegin
+  Material "blinnphong" "texture Kd" "checks" "rgb Ks" [ 0.1 0.1 0.1 ] "float shininess" [ 20 ]
+      "rgb Ka" [ 0.12 0.12 0.12 ]
+  Shape "plane" "point3 p" [ 0 0 0 ] "normal n" [ 0 1 0 ]
+AttributeEnd
+
+# Back wall: textured quad from two triangles
+AttributeBegin
+  Material "blinnphong" "texture Kd" "bricks" "rgb Ka" [ 0.12 0.12 0.12 ]
+  Shape "trianglemesh"
+      "point3 P" [ -6 0 5   6 0 5   6 5 5   -6 5 5 ]
+      "point2 uv" [ 0 0  1 0  1 1  0 1 ]
+      "integer indices" [ 0 1 2  0 2 3 ]
+AttributeEnd
+
+# Mirror sphere
+AttributeBegin
+  Translate -1.7 1 0.8
+  Material "mirror" "rgb Kr" [ 0.9 0.9 0.9 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+
+# Glass sphere
+AttributeBegin
+  Translate 0.3 0.75 -1.6
+  Material "dielectric" "float eta" [ 1.5 ]
+  Shape "sphere" "float radius" [ 0.75 ]
+AttributeEnd
+
+# Shiny red Blinn-Phong sphere
+AttributeBegin
+  Translate 2.1 0.7 0.2
+  Material "blinnphong" "rgb Kd" [ 0.7 0.08 0.06 ] "rgb Ks" [ 0.5 0.5 0.5 ] "float shininess" [ 80 ]
+      "rgb Ka" [ 0.12 0.12 0.12 ]
+  Shape "sphere" "float radius" [ 0.7 ]
+AttributeEnd
+
+# Texture-mapped sphere (pole along +y)
+AttributeBegin
+  Translate 0.6 1.0 2.6
+  Rotate -90 1 0 0
+  Material "blinnphong" "texture Kd" "uv" "rgb Ks" [ 0.2 0.2 0.2 ] "float shininess" [ 30 ]
+      "rgb Ka" [ 0.12 0.12 0.12 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+
+# A single triangle
+AttributeBegin
+  Material "blinnphong" "rgb Kd" [ 0.9 0.45 0.05 ] "rgb Ka" [ 0.12 0.12 0.12 ]
+  Shape "trianglemesh" "point3 P" [ -4.2 0 2.5   -2.2 0 3.2   -3.3 2.6 2.8 ]
+AttributeEnd
