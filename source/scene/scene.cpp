@@ -34,7 +34,7 @@ bool Scene::intersect(const Ray& r, Hit* hit) const {
         if (!hitBox(o.box, r, tMax)) continue;
         for (size_t i = o.first; i < o.last; ++i) {
             ++st.primTests;
-            if (shapes[i]->intersect(r, tMax, hit)) {
+            if (shapes[i]->intersectA(r, tMax, hit)) {
                 found = true;
                 tMax = hit->t;
             }
@@ -42,7 +42,7 @@ bool Scene::intersect(const Ray& r, Hit* hit) const {
     }
     for (const auto& s : unbounded) {
         ++st.primTests;
-        if (s->intersect(r, tMax, hit)) {
+        if (s->intersectA(r, tMax, hit)) {
             found = true;
             tMax = hit->t;
         }
@@ -55,13 +55,13 @@ bool Scene::occluded(const Ray& r, double tMax) const {
     ++st.shadowRays;
     for (const auto& s : unbounded) {
         ++st.primTests;
-        if (s->intersectP(r, tMax)) return true;
+        if (s->intersectPA(r, tMax)) return true;
     }
     for (const auto& o : objects) {
         if (!hitBox(o.box, r, tMax)) continue;
         for (size_t i = o.first; i < o.last; ++i) {
             ++st.primTests;
-            if (shapes[i]->intersectP(r, tMax)) return true;
+            if (shapes[i]->intersectPA(r, tMax)) return true;
         }
     }
     return false;

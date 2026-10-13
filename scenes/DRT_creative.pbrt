@@ -1,38 +1,37 @@
 # DRT_creative: the pool-hall photograph (Module 1 report) recreated with the distributed ray tracer.
-# Geometry and materials: include/poolroom_world.pbrt (shared with WSRT_creative.pbrt), so the
-# two renderers can be compared on exactly the same scene.
+# Same calibrated camera and the same geometry as WSRT_creative (include/poolhall_geometry.pbrt),
+# so the two integrators can be compared directly; materials: energy-conserving Phong BRDF.
 #
-# Features to point out in the report:
-#  - triangle meshes (OBJ)        : glass + water (smooth lathe meshes with vertex normals), grater,
-#                                   cue (OBJ with normals and UVs)
-#  - textures on meshes           : grater holes and cue wood follow the mesh UVs
-#  - area lights + soft shadows   : the key light is a disc of radius 5 (16 random shadow rays per
-#                                   shading point); compare the penumbrae with WSRT_creative's
-#                                   hard shadows. Windows, TV and ceiling spots are area lights too.
-#  - Phong BRDF                   : glossy balls/frame/cue (kd + ks + kr <= 1, energy conserving)
-#  - depth of field (thin lens)   : focused on the glass of water (18.9 units); the hall, the other
-#                                   tables and the windows are blurred, like the photograph
-#  - Reinhard tone mapping        : on luminance, exposure 2.5, white point 3.0 (bright windows and spots compress
-#                                   smoothly instead of clipping)
-LookAt -3.5 8.5 -18   1.2 0.8 4   0 1 0
-Camera "perspective" "float fov" [ 46 ] "float lensradius" [ 0.35 ] "float focaldistance" [ 18.9 ]
+# Effects to point out in the report:
+#  - triangle meshes (OBJ)        : glass + water (lathe meshes with vertex normals), faceted crystal
+#                                   cap, grater sleeve, four-part cue; normals and UVs from the files
+#  - textures on meshes           : cue wood grain follows the mesh UVs; felt weave; speckled rail
+#  - area light + soft shadows    : the key light is a disc of radius 3 (16 random shadow rays per
+#                                   shading point): penumbrae instead of WSRT_creative's hard edges
+#  - Phong BRDF                   : glossy balls, cue and rack (kd + ks + kr <= 1)
+#  - depth of field (thin lens)   : focused on the glass of water (23.4 units); the far end of the
+#                                   table and the hall blur, like the photograph
+#  - Reinhard tone mapping        : on luminance, exposure 1.6, white point 4
+LookAt 0 9.2 0   0 6.027 9.4832   0 1 0
+Camera "perspective" "float fov" [ 46.2 ] "float lensradius" [ 0.25 ] "float focaldistance" [ 23.4 ]
 Film "rgb" "integer xresolution" [ 600 ] "integer yresolution" [ 800 ]
     "string filename" [ "DRT_creative.png" ]
-    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float exposure" [ 2.5 ] "float whitepoint" [ 3.0 ]
-Sampler "independent" "integer pixelsamples" [ 128 ]
+    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float exposure" [ 1.6 ] "float whitepoint" [ 4.0 ]
+Sampler "independent" "integer pixelsamples" [ 64 ]
 Integrator "distributed" "integer maxdepth" [ 6 ] "integer lightsamples" [ 16 ]
 
 WorldBegin
 
-LightSource "infinite" "rgb L" [ 0.03 0.03 0.035 ]
-# Key light: a large disc behind-right of the objects, facing the table
-# (same position and total irradiance as the WSRT key point light).
+# Key light: a disc of radius 3 high above the far side of the table, facing it
+# (same position and intensity as the WSRT key point light: L * area = 24000).
 AttributeBegin
-  Translate 16 30 32  Rotate 129.472 0.88235 -0.47059 0
-  AreaLightSource "diffuse" "rgb L" [ 85 82 77 ] "integer samples" [ 16 ]
-  Shape "disk" "float radius" [ 5 ]
+  Translate 6 45 72  Rotate 135.454 0.99388 -0.11043 0
+  AreaLightSource "diffuse" "rgb L" [ 849 849 849 ] "integer samples" [ 16 ]
+  Shape "disk" "float radius" [ 3 ]
 AttributeEnd
-# Fill light from the front left (camera side)
-LightSource "point" "point3 from" [ -22 14 -26 ] "rgb I" [ 250 255 270 ]
+# Fill light: weaker, warm (3000 K), from the right.
+LightSource "point" "point3 from" [ 55 14 30 ] "blackbody I" [ 3000 ] "float scale" [ 2600 ]
 
-Include "include/poolroom_world.pbrt"
+Include "include/poolhall_materials_drt.pbrt"
+Include "include/poolhall_spots_drt.pbrt"
+Include "include/poolhall_geometry.pbrt"

@@ -1,32 +1,35 @@
 # WSRT_creative: the pool-hall photograph (Module 1 report) recreated with the Whitted ray tracer.
-# Geometry and materials: include/poolroom_world.pbrt (shared with DRT_creative.pbrt).
+# Camera calibrated to the photograph (fov, height and pitch fitted to the eight ball sizes);
+# all object positions back-projected from the photograph (see scenes/tools/make_poolroom.py).
 #
-# Features to point out in the report:
-#  - recursive mirror reflection : steel grater (Kr 0.5) reflects the perfume bottle and balls;
-#                                  small clear-coat reflections on every ball
-#  - refraction + Fresnel + TIR  : glass of water (inverts the yellow/black balls behind it),
-#                                  perfume bottle (crystal cap + amber liquid, tinted Kt)
-#  - Blinn-Phong                 : highlights on the balls, cue and frame; ambient fill in shadows
-#  - point lights                : key light behind-right (shadows fall towards the camera, as in
-#                                  the photo) + front-left fill; emitters (windows, TV, spots)
-#                                  act as point lights at their centre in the WSRT
-#  - shadows                     : hard shadows of balls, glass, bottle and grater on the felt
-#  - textures (UV)               : spotted cue ball (sphere), felt (triangles), floor (plane),
-#                                  grater holes, perfume label, sparkly frame, cue wood
-#  - geometry                    : planes (floor), spheres (balls), triangles (everything else)
-LookAt -3.5 8.5 -18   1.2 0.8 4   0 1 0
-Camera "perspective" "float fov" [ 46 ]
+# Effects to point out in the report:
+#  - mirror reflection (recursive)  : steel grater reflects the felt, balls and perfume bottle
+#  - refraction, Fresnel, TIR       : water glass (eta 1.5 / water 1.33): the yellow and black balls
+#                                     behind it appear magnified and swapped left-to-right; crystal cap
+#                                     (eta 1.55) with diagonal cut facets; bright edges/waterline (TIR)
+#  - coloured transparent shadow    : amber bottle (filtered shadow rays: Fresnel x Kt per interface)
+#  - light through the grater holes : alpha cut-outs, dots of light inside the grater's shadow
+#  - hard shadows, two lights       : cool-white key (behind, high) and warm 3000 K fill (right)
+#  - Blinn-Phong                    : small, strong highlights on every ball and on the metal
+#  - textures                       : felt weave and speckled rail (triangles), wooden floor (plane),
+#                                     cue wood, label
+#  - geometry                       : plane (floor), spheres (balls), triangles (everything else);
+#                                     the rack is three instances of one bar (ObjectInstance)
+LookAt 0 9.2 0   0 6.027 9.4832   0 1 0
+Camera "perspective" "float fov" [ 46.2 ]
 Film "rgb" "integer xresolution" [ 600 ] "integer yresolution" [ 800 ]
     "string filename" [ "WSRT_creative.png" ]
 Sampler "independent" "integer pixelsamples" [ 16 ]
-Integrator "whitted" "integer maxdepth" [ 12 ] "rgb ambient" [ 1 1 1 ]
+Integrator "whitted" "integer maxdepth" [ 12 ] "rgb ambient" [ 1 1 1 ] "bool transparentshadows" true
 
 WorldBegin
 
-LightSource "infinite" "rgb L" [ 0.03 0.03 0.035 ]
-# Key light: bright, behind and to the right of the objects (windows side of the hall)
-LightSource "point" "point3 from" [ 16 30 32 ] "rgb I" [ 2600 2500 2350 ]
-# Fill light from the front left (camera side)
-LightSource "point" "point3 from" [ -22 14 -26 ] "rgb I" [ 250 255 270 ]
+# Key light: bright neutral white, high above the far side of the table (top-middle of the frame);
+# its shadows fall towards the camera and slightly left.
+LightSource "point" "point3 from" [ 6 45 72 ] "rgb I" [ 24000 24000 24000 ]
+# Fill light: weaker, warm (3000 K), from the right; second, fainter shadows fall to the left.
+LightSource "point" "point3 from" [ 55 14 30 ] "blackbody I" [ 3000 ] "float scale" [ 2600 ]
 
-Include "include/poolroom_world.pbrt"
+Include "include/poolhall_materials_wsrt.pbrt"
+Include "include/poolhall_spots_wsrt.pbrt"
+Include "include/poolhall_geometry.pbrt"

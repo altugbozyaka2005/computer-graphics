@@ -79,7 +79,7 @@ Texture tools use only the Python 3 standard library:
 
 ```sh
 python3 scenes/tools/make_textures.py                                    # regenerates scenes/textures/*.ppm
-python3 scenes/tools/make_poolroom.py    # creative scenes: textures, glass/water/cue/grater meshes, include/poolroom_world.pbrt
+python3 scenes/tools/make_poolroom.py    # creative scenes: textures, meshes, include/poolhall_*.pbrt
 python3 scenes/tools/png2ppm.py photo.png scenes/textures/photo.ppm 512  # use a photo as a texture
 ```
 
@@ -102,7 +102,7 @@ python3 scenes/tools/png2ppm.py photo.png scenes/textures/photo.ppm 512  # use a
 | Kind | Supported |
 |---|---|
 | Camera | `perspective` (`fov`, `lensradius`, `focaldistance`, `screenwindow`, `frameaspectratio`) |
-| Shapes | `sphere` (partial spheres too), `disk`, `trianglemesh`, `bilinearmesh` (triangulated), `plymesh` (ascii and binary), plus the extensions `objmesh` and `plane` |
+| Shapes | `sphere` (partial spheres too), `disk`, `trianglemesh`, `bilinearmesh` (triangulated), `plymesh` (ascii and binary), plus the extensions `objmesh` and `plane`. Any shape can take an alpha cut-out mask (`"float alpha"` or `"texture alpha"`, threshold 0.5) that applies to camera and shadow rays |
 | Lights | `point`, `spot`, `distant`, `infinite` (constant `L` only), and `AreaLightSource "diffuse"` on any finite shape |
 | Materials | `diffuse`, `dielectric`, `conductor`, `interface`, an approximation of `coateddiffuse`, plus the extensions `phong`, `blinnphong` and `mirror` |
 | Textures | `imagemap` (PPM/PFM), `checkerboard` (2D), `constant`, `scale`, `mix` |
@@ -113,7 +113,8 @@ python3 scenes/tools/png2ppm.py photo.png scenes/textures/photo.ppm 512  # use a
 These are not in pbrt-v4, so scenes that use them only work with this renderer.
 
 - `Integrator "whitted"` and `Integrator "distributed"`.
-  - `whitted`: `integer maxdepth`, `rgb ambient`.
+  - `whitted`: `integer maxdepth`, `rgb ambient`, `bool transparentshadows` (default false: filtered
+    shadow rays that pass through dielectrics, attenuated by Fresnel transmission and `Kt`).
   - `distributed`: `integer maxdepth`, `integer lightsamples` (shadow rays per area light).
 - `Material "blinnphong"` / `"phong"`:
   - `rgb Kd` or `texture Kd`
@@ -138,8 +139,10 @@ These are not in pbrt-v4, so scenes that use them only work with this renderer.
 - Rendering is in RGB, not spectrally. Spectra (blackbody, named spectra, sampled spectra)
   are converted to RGB with an analytic CIE fit.
 - Rough conductors and dielectrics are rendered as smooth ones. `coateddiffuse` and named
-  metals are approximations (all logged). Media, alpha cut-outs, displacement and normal maps,
+  metals are approximations (all logged). Media, displacement and normal maps,
   environment maps, and image area lights are not supported.
 - Image textures must be PPM (P2/P3/P5/P6) or PFM. PNG and EXR are not read.
-- In the WSRT, area lights act as point lights at their centroid (hard shadows), and
-  dielectrics cast opaque shadows (classic Whitted behaviour).
+- In the WSRT, area lights act as point lights at their centroid (hard shadows). Dielectrics cast
+  opaque shadows unless `transparentshadows` is on; even then the shadow rays travel in straight
+  lines, so refraction caustics (focused light) are not produced.
+- Alpha masks: only a shape's nearest hit is tested against the mask (exact for triangles).

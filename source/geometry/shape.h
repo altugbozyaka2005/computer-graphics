@@ -6,6 +6,7 @@
 
 #include "../core/math.h"
 #include "../core/transform.h"
+#include "../render/texture.h"
 
 struct Ray {
     Vec3 o, d;
@@ -77,6 +78,25 @@ public:
 
     int materialId = 0;
     const AreaLight* areaLight = nullptr;
+    // Optional alpha (cut-out) mask, pbrt "alpha" parameter: where alpha < 0.5 the
+    // surface does not exist, for camera and shadow rays alike.
+    TexturePtr alpha;
+
+    bool alphaCut(const Hit& h) const { return alpha && alpha->eval(h.uv).average() < 0.5; }
+    // Closest hit / any hit honouring the alpha mask. Only the nearest hit of a
+    // shape is tested against the mask (exact for triangles, the usual masked shape).
+    bool intersectA(const Ray& r, double tMax, Hit* hit) const {
+        if (!alpha) return intersect(r, tMax, hit);
+        Hit tmp;
+        if (!intersect(r, tMax, &tmp) || alphaCut(tmp)) return false;
+        *hit = tmp;
+        return true;
+    }
+    bool intersectPA(const Ray& r, double tMax) const {
+        if (!alpha) return intersectP(r, tMax);
+        Hit tmp;
+        return intersect(r, tMax, &tmp) && !alphaCut(tmp);
+    }
 };
 
 class Sphere : public Shape {

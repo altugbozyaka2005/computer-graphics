@@ -212,9 +212,15 @@ void SceneBuilder::shape(const std::string& type, const ParamSet& ps, const Tran
         for (const auto& p : ps.params) p.used = true;
         return;
     }
-    if (const Param* p = ps.find("alpha")) {
-        p->used = true;
-        LOG().warning("shape 'alpha' (cut-outs) not supported; shape is opaque", loc);
+    if (ps.has("alpha")) {
+        TexturePtr alphaTex = spectrumTexture(ps, "alpha", Color(1), SpectrumKind::Unbounded);
+        Color c;
+        bool opaque = alphaTex->constantValue(&c) && c.average() >= 0.5;
+        if (!opaque) {
+            for (Shape* s : created) s->alpha = alphaTex;
+            if (std::string(created.empty() ? "" : created[0]->typeName()) == "sphere")
+                LOG().warning("alpha on a sphere tests only the nearest hit against the mask", loc);
+        }
     }
     ps.reportUnused("Shape \"" + type + "\"");
 

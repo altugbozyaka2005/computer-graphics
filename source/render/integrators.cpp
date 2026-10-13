@@ -17,6 +17,33 @@ bool Integrator::occludedDir(const Vec3& p, const Vec3& ng, const Vec3& dir) con
 }
 
 // ======================================================================= WSRT
+Color WhittedIntegrator::visibility(const Vec3& p, const Vec3& ng, const Vec3& wi, bool toInfinity,
+                                    const Vec3& target) const {
+    if (!scene_.integrator.transparentShadows) {
+        bool blocked = toInfinity ? occludedDir(p, ng, wi) : occludedTo(p, ng, target);
+        return blocked ? Color(0) : Color(1);
+    }
+    Color T(1);
+    Vec3 o = offsetRayOrigin(p, ng, wi);
+    for (int i = 0; i < 64; ++i) {
+        double tMax = toInfinity ? Infinity : length(target - o) * (1 - 1e-6);
+        Hit h;
+        ++tlsStats.shadowRays;
+        if (!scene_.intersect(Ray(o, wi), &h) || h.t >= tMax) return T;
+        const Material& m = scene_.materials[h.shape->materialId];
+        if (m.type == MaterialType::Dielectric) {
+            // Same Fresnel factor on entry and exit (no spurious total internal
+            // reflection, since the straight shadow ray ignores refraction).
+            T *= m.Kt * (1 - frDielectric(absDot(wi, h.ns), m.eta));
+        } else if (m.type != MaterialType::Interface) {
+            return Color(0);
+        }
+        if (T.maxComponent() < 1e-4) return Color(0);
+        o = offsetRayOrigin(h.p, h.ng, wi);
+    }
+    return T;
+}
+
 Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, RNG& rng) const {
     Hit hit;
     if (!scene_.intersect(ray, &hit)) return scene_.envL;
@@ -61,8 +88,8 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, R
                 Color Li;
                 l.illuminate(hit.p, &wi, &dist, &Li);
                 if (Li.isBlack() || dot(ngF, wi) <= 0) continue;
-                bool blocked = std::isinf(dist) ? occludedDir(hit.p, ngF, wi) : occludedTo(hit.p, ngF, l.pos);
-                if (!blocked) L += shade(wi, Li);
+                Color vis = visibility(hit.p, ngF, wi, std::isinf(dist), l.pos);
+                if (!vis.isBlack()) L += shade(wi, Li * vis);
             }
             // Area lights act as point lights at a representative point (WSRT has hard shadows).
             for (const auto& al : scene_.areaLights) {
@@ -78,8 +105,9 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, R
                     Vec3 d = c - hit.p;
                     double d2 = lengthSquared(d);
                     Vec3 wi = d / std::sqrt(d2);
-                    if (dot(ngF, wi) <= 0 || occludedTo(hit.p, ngF, pl)) continue;
-                    L += shade(wi, I / d2);
+                    if (dot(ngF, wi) <= 0) continue;
+                    Color vis = visibility(hit.p, ngF, wi, false, pl);
+                    if (!vis.isBlack()) L += shade(wi, I / d2 * vis);
                 } else {
                     pl = al->repPoint;
                     Vec3 d = pl - hit.p;
@@ -89,8 +117,9 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, R
                     double cosL = dot(al->repNormal, -wi);
                     if (!al->twoSided && cosL <= 0) continue;
                     I = al->L * (al->totalArea * std::fabs(cosL));
-                    if (dot(ngF, wi) <= 0 || occludedTo(hit.p, ngF, pl)) continue;
-                    L += shade(wi, I / d2);
+                    if (dot(ngF, wi) <= 0) continue;
+                    Color vis = visibility(hit.p, ngF, wi, false, pl);
+                    if (!vis.isBlack()) L += shade(wi, I / d2 * vis);
                 }
             }
             if (!m.Kr.isBlack()) L += secondary(reflect(wo, nsF), m.Kr);

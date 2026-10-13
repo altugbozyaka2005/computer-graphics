@@ -157,6 +157,7 @@ void SceneBuilder::integrator(const std::string& type, const ParamSet& ps, const
     }
     Color amb;
     if (ps.getRGB("ambient", SpectrumKind::Unbounded, &amb)) in.ambient = amb;
+    in.transparentShadows = ps.getBool("transparentshadows", false);
     in.lightSamples = ps.getInt("lightsamples", 16);
     if (in.lightSamples < 1 || in.lightSamples > 65536) {
         LOG().error("lightsamples must be in [1,65536]; using 16", loc);

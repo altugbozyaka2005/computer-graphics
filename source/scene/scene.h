@@ -27,6 +27,7 @@ struct IntegratorSettings {
     int maxDepth = 5;
     // Whitted
     Color ambient{1, 1, 1};  // ambient light intensity I_a (multiplied by material Ka * Kd)
+    bool transparentShadows = false;  // filtered shadow rays through dielectrics
     // Distributed
     int lightSamples = 16;  // shadow rays per area light (sampling density)
 };

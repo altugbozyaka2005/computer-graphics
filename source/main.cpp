@@ -173,6 +173,7 @@ int run(int argc, char** argv) {
     for (auto& m : scene.meshes) tris += m->indices.size() / 3;
     const IntegratorSettings& is = scene.integrator;
     LOG().info("integrator: " + is.type + ", maxdepth " + std::to_string(is.maxDepth) +
+               (whitted && is.transparentShadows ? ", transparent (filtered) shadows" : "") +
                (whitted ? "" : ", lightsamples " + std::to_string(is.lightSamples)));
     LOG().info("camera: " + scene.camera.type + ", fov " + fmt(scene.camera.fov, 2) + ", lensradius " +
                fmt(scene.camera.lensRadius, 4) + ", focaldistance " + fmt(scene.camera.focalDistance, 3));
