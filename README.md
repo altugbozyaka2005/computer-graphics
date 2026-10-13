@@ -79,7 +79,7 @@ Texture tools use only the Python 3 standard library:
 
 ```sh
 python3 scenes/tools/make_textures.py                                    # regenerates scenes/textures/*.ppm
-python3 scenes/tools/make_billiards.py   # textures/ball_*.ppm, felt.ppm, meshes/glass,water,cue_*.obj (creative scenes)
+python3 scenes/tools/make_poolroom.py    # creative scenes: textures, glass/water/cue/grater meshes, include/poolroom_world.pbrt
 python3 scenes/tools/png2ppm.py photo.png scenes/textures/photo.ppm 512  # use a photo as a texture
 ```
 
