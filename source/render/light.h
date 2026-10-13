@@ -27,7 +27,7 @@ struct DeltaLight {
 struct AreaLight {
     Color L;
     bool twoSided = false;
-    int nSamples = -1;  // per-light override of the integrator's "lightsamples"
+    int nSamples = -1;  // per-light override of "lightsamples"; 0 = never sampled with shadow rays
     std::vector<const Shape*> shapes;
 
     // Derived by finalize()

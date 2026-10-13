@@ -1,33 +1,35 @@
-# Ceiling spots for the DRT: small emissive discs (area lights, 1 shadow ray each).
+# Ceiling spots for the DRT: small emissive discs. "samples 0": visible and emitting, but
+# not sampled with shadow rays (they add < 0.1 % of the light; sampling them cost half of
+# all shadow rays). Their light still reaches the scene through paths that hit them.
 AttributeBegin Translate 10 69.9 320.7 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate 35.2 69.9 339.3 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate 65 69.9 348 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate 111.6 69.9 374.4 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate 150.9 69.9 406.5 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate -30 69.9 -25 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate 15 69.9 -30 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd
 AttributeBegin Translate 60 69.9 -20 Rotate 90 1 0 0 NamedMaterial "spot"
-  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]
+  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
 AttributeEnd

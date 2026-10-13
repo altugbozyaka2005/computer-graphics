@@ -5,6 +5,16 @@ Texture "floorwood" "spectrum" "imagemap" "string filename" "textures/wood.ppm" 
 Texture "metal" "spectrum" "imagemap" "string filename" "textures/metal.ppm" "float scale" [ 0.35 ]
 Texture "cuewood" "spectrum" "imagemap" "string filename" "textures/wood.ppm" "float uscale" [ 1 ] "float vscale" [ 6 ] "float scale" [ 1.35 ]
 Texture "label" "spectrum" "imagemap" "string filename" "textures/label.ppm" "string wrap" "clamp"
+Texture "tex_ball_1" "spectrum" "imagemap" "string filename" "textures/ball_1.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_11" "spectrum" "imagemap" "string filename" "textures/ball_11.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_13" "spectrum" "imagemap" "string filename" "textures/ball_13.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_15" "spectrum" "imagemap" "string filename" "textures/ball_15.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_3" "spectrum" "imagemap" "string filename" "textures/ball_3.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_5" "spectrum" "imagemap" "string filename" "textures/ball_5.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_7" "spectrum" "imagemap" "string filename" "textures/ball_7.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_8" "spectrum" "imagemap" "string filename" "textures/ball_8.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_9" "spectrum" "imagemap" "string filename" "textures/ball_9.ppm" "float scale" [ 0.85 ]
+Texture "tex_ball_cue" "spectrum" "imagemap" "string filename" "textures/ball_cue.ppm" "float scale" [ 0.85 ]
 
 MakeNamedMaterial "glass" "string type" "dielectric" "float eta" [ 1.5 ]
 MakeNamedMaterial "water" "string type" "dielectric" "float eta" [ 1.33 ]
@@ -23,10 +33,16 @@ MakeNamedMaterial "wall" "string type" "blinnphong" "rgb Kd" [ 0.05 0.05 0.055 ]
 MakeNamedMaterial "backwall" "string type" "blinnphong" "rgb Kd" [ 0.35 0.34 0.33 ] "rgb Ks" [ 0 0 0 ] "float shininess" [ 1 ] "rgb Ka" [ 0.6 0.6 0.6 ] "bool normalized" true
 MakeNamedMaterial "ceiling" "string type" "blinnphong" "rgb Kd" [ 0.03 0.03 0.03 ] "rgb Ks" [ 0 0 0 ] "float shininess" [ 1 ] "rgb Ka" [ 0.05 0.05 0.05 ] "bool normalized" true
 MakeNamedMaterial "spot" "string type" "blinnphong" "rgb Kd" [ 1 1 1 ] "rgb Ka" [ 1 1 0.95 ] "bool normalized" true
-MakeNamedMaterial "red" "string type" "blinnphong" "rgb Kd" [ 0.6 0.025 0.025 ] "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
-MakeNamedMaterial "yellow" "string type" "blinnphong" "rgb Kd" [ 0.6 0.38 0.015 ] "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
-MakeNamedMaterial "black" "string type" "blinnphong" "rgb Kd" [ 0.012 0.012 0.012 ] "rgb Ks" [ 0.4 0.4 0.4 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.06 0.06 0.06 ]
-MakeNamedMaterial "white" "string type" "blinnphong" "rgb Kd" [ 0.58 0.57 0.53 ] "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_1" "string type" "blinnphong" "texture Kd" "tex_ball_1" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_11" "string type" "blinnphong" "texture Kd" "tex_ball_11" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_13" "string type" "blinnphong" "texture Kd" "tex_ball_13" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_15" "string type" "blinnphong" "texture Kd" "tex_ball_15" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_3" "string type" "blinnphong" "texture Kd" "tex_ball_3" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_5" "string type" "blinnphong" "texture Kd" "tex_ball_5" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_7" "string type" "blinnphong" "texture Kd" "tex_ball_7" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_8" "string type" "blinnphong" "texture Kd" "tex_ball_8" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_9" "string type" "blinnphong" "texture Kd" "tex_ball_9" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
+MakeNamedMaterial "ball_cue" "string type" "blinnphong" "texture Kd" "tex_ball_cue" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]
 MakeNamedMaterial "rack" "string type" "blinnphong" "rgb Kd" [ 0.015 0.015 0.015 ] "rgb Ks" [ 0.3 0.3 0.3 ] "float shininess" [ 150 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.04 0.04 0.04 ]
 MakeNamedMaterial "collar" "string type" "blinnphong" "rgb Kd" [ 0.35 0.27 0.09 ] "rgb Ks" [ 0.4 0.34 0.18 ] "float shininess" [ 200 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.2 0.17 0.07 ]
 MakeNamedMaterial "label" "string type" "blinnphong" "texture Kd" "label" "rgb Ks" [ 0.05 0.05 0.05 ] "float shininess" [ 30 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true

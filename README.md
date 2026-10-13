@@ -116,6 +116,12 @@ These are not in pbrt-v4, so scenes that use them only work with this renderer.
   - `whitted`: `integer maxdepth`, `rgb ambient`, `bool transparentshadows` (default false: filtered
     shadow rays that pass through dielectrics, attenuated by Fresnel transmission and `Kt`).
   - `distributed`: `integer maxdepth`, `integer lightsamples` (shadow rays per area light).
+    Optional for the DRT (all off by default):
+    `bool transparentshadows` (filtered shadow rays through glass, as in the WSRT; light that reaches
+    a lamp by refraction after a diffuse bounce is then not counted again),
+    `float minweight` (stop a path once its throughput falls below this value, e.g. 0.001), and
+    `bool caustics` (false: light reaching a lamp via a mirror or glass after a diffuse bounce is
+    not counted; removes rare bright speckles at the cost of that light).
 - `Material "blinnphong"` / `"phong"`:
   - `rgb Kd` or `texture Kd`
   - `rgb Ks`, `rgb Ka`, `rgb Kr`
@@ -131,6 +137,8 @@ These are not in pbrt-v4, so scenes that use them only work with this renderer.
   - `float key` (Reinhard's photographic key, 0 = off).
   - `float exposure`.
 - `AreaLightSource "diffuse"` also accepts `integer samples`, a per-light override of `lightsamples`.
+  `samples 0` makes an emitter visible but never sampled with shadow rays (its light reaches
+  surfaces only through paths that hit it), for small lights that add almost no illumination.
 
 ## Known limitations
 

@@ -185,16 +185,39 @@ AttributeEnd
 AttributeEnd
 
 # ---------------------------------------------------------------- balls (spheres)
-AttributeBegin Translate -1.82 1 23.19 NamedMaterial "red" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 0.25 1 27.5 NamedMaterial "yellow" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 2.35 1 28 NamedMaterial "black" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 5.19 1 26.07 NamedMaterial "red" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 5.88 1 21.8 NamedMaterial "yellow" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 10.03 1 25.67 NamedMaterial "red" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 9.43 1 30.84 NamedMaterial "white" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate 13.51 1 42.86 NamedMaterial "yellow" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate -5.71 1 42.66 NamedMaterial "red" Shape "sphere" "float radius" [ 1 ] AttributeEnd
-AttributeBegin Translate -3.75 1 44.6 NamedMaterial "yellow" Shape "sphere" "float radius" [ 1 ] AttributeEnd
+# Each ball is turned so that its number circle (u = 0.745) faces the camera, tipped up
+# towards it, with a little random yaw/tilt. Scale -1 1 1: pbrt's sphere (u,v) runs
+# right-to-left seen from outside; mirroring makes the textures read as authored.
+AttributeBegin Translate -1.82 1 23.19 Rotate 154.5764 0 1 0 Rotate -111.6492 1 0 0 Scale -1 1 1 NamedMaterial "ball_3"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 0.25 1 27.5 Rotate -192.3981 0 1 0 Rotate -103.0034 1 0 0 Scale -1 1 1 NamedMaterial "ball_9"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 2.35 1 28 Rotate -170.0506 0 1 0 Rotate -110.0524 1 0 0 Scale -1 1 1 NamedMaterial "ball_8"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 5.19 1 26.07 Rotate -187.2247 0 1 0 Rotate -113.419 1 0 0 Scale -1 1 1 NamedMaterial "ball_11"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 5.88 1 21.8 Rotate -185.6136 0 1 0 Rotate -108.7102 1 0 0 Scale -1 1 1 NamedMaterial "ball_1"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 10.03 1 25.67 Rotate -160.2844 0 1 0 Rotate -102.0677 1 0 0 Scale -1 1 1 NamedMaterial "ball_15"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 9.43 1 30.84 Rotate -176.8567 0 1 0 Rotate -96.6907 1 0 0 Scale -1 1 1 NamedMaterial "ball_cue"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 13.51 1 42.86 Rotate -162.5522 0 1 0 Rotate -102.7392 1 0 0 Scale -1 1 1 NamedMaterial "ball_13"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate -5.71 1 42.66 Rotate 174.136 0 1 0 Rotate -96.3137 1 0 0 Scale -1 1 1 NamedMaterial "ball_7"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate -3.75 1 44.6 Rotate 153.5874 0 1 0 Rotate -105.3329 1 0 0 Scale -1 1 1 NamedMaterial "ball_5"
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
 
 # ---------------------------------------------------------------- triangle rack: three instances of one bar
 AttributeBegin

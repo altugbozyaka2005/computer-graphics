@@ -17,12 +17,13 @@ bool Integrator::occludedDir(const Vec3& p, const Vec3& ng, const Vec3& dir) con
 }
 
 // ======================================================================= WSRT
-Color WhittedIntegrator::visibility(const Vec3& p, const Vec3& ng, const Vec3& wi, bool toInfinity,
-                                    const Vec3& target) const {
-    if (!scene_.integrator.transparentShadows) {
-        bool blocked = toInfinity ? occludedDir(p, ng, wi) : occludedTo(p, ng, target);
-        return blocked ? Color(0) : Color(1);
-    }
+Color Integrator::visibility(const Vec3& p, const Vec3& ng, const Vec3& wi, bool toInfinity,
+                             const Vec3& target) const {
+    // Fast path: an any-hit test settles every unblocked ray (and every ray when
+    // transparent shadows are off); only blocked rays are traced surface by surface.
+    bool blocked = toInfinity ? occludedDir(p, ng, wi) : occludedTo(p, ng, target);
+    if (!blocked) return Color(1);
+    if (!scene_.integrator.transparentShadows) return Color(0);
     Color T(1);
     Vec3 o = offsetRayOrigin(p, ng, wi);
     for (int i = 0; i < 64; ++i) {
@@ -93,6 +94,7 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, R
             }
             // Area lights act as point lights at a representative point (WSRT has hard shadows).
             for (const auto& al : scene_.areaLights) {
+                if (al->nSamples == 0) continue;  // not sampled: contributes only where it is seen
                 Vec3 pl;
                 Color I;
                 if (al->sphere) {
@@ -158,12 +160,13 @@ Color DistributedIntegrator::directLighting(const Hit& hit, const Vec3& wo, cons
         l.illuminate(hit.p, &wi, &dist, &Li);
         double cosI = dot(ns, wi);
         if (Li.isBlack() || cosI <= 0 || dot(ng, wi) <= 0) continue;
-        bool blocked = std::isinf(dist) ? occludedDir(hit.p, ng, wi) : occludedTo(hit.p, ng, l.pos);
-        if (!blocked) L += phongBRDF(kd, m.Ks, m.exponent, r, wi) * Li * cosI;
+        Color vis = visibility(hit.p, ng, wi, std::isinf(dist), l.pos);
+        if (!vis.isBlack()) L += phongBRDF(kd, m.Ks, m.exponent, r, wi) * Li * cosI * vis;
     }
     for (const auto& al : scene_.areaLights) {
         if (al->shapes.size() == 1 && al->shapes[0] == hit.shape) continue;  // a light does not light itself
         // N shadow rays towards uniformly random points on the light (soft shadows).
+        if (al->nSamples == 0) continue;  // not sampled: its light arrives through paths that hit it
         int n = al->nSamples > 0 ? al->nSamples : set.lightSamples;
         Color sum(0);
         for (int i = 0; i < n; ++i) {
@@ -177,16 +180,18 @@ Color DistributedIntegrator::directLighting(const Hit& hit, const Vec3& wo, cons
             Color Le = al->Le(s.n, -wi);
             if (Le.isBlack()) continue;
             double cosL = absDot(s.n, wi);
-            if (occludedTo(hit.p, ng, s.p)) continue;
+            Color vis = visibility(hit.p, ng, wi, false, s.p);
+            if (vis.isBlack()) continue;
             // Area-measure estimator: f Le cos(theta_i) cos(theta_l) / d^2 / pdf_A, pdf_A = 1 / A.
-            sum += phongBRDF(kd, m.Ks, m.exponent, r, wi) * Le * (cosI * cosL / d2 * al->totalArea);
+            sum += phongBRDF(kd, m.Ks, m.exponent, r, wi) * Le * (cosI * cosL / d2 * al->totalArea) * vis;
         }
         L += sum / (double)n;
     }
     return L;
 }
 
-Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission, RNG& rng) const {
+Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission, const Color& weight,
+                                   RNG& rng) const {
     Hit hit;
     if (!scene_.intersect(ray, &hit)) return scene_.envL;
     const IntegratorSettings& set = scene_.integrator;
@@ -195,11 +200,15 @@ Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission
     const Shape* sh = hit.shape;
     // Emission is skipped after diffuse/glossy bounces: those already sampled the
     // lights explicitly (next-event estimation), counting it twice would be biased.
-    if (sh->areaLight && countEmission) L += sh->areaLight->Le(hit.ng, wo);
+    // An emitter that is never sampled by next-event estimation is counted on every path.
+    if (sh->areaLight && (countEmission || sh->areaLight->nSamples == 0)) L += sh->areaLight->Le(hit.ng, wo);
     if (depth >= set.maxDepth) return L;
     const Material& m = scene_.materials[sh->materialId];
     Vec3 ngF = faceForward(hit.ng, wo);
     Vec3 nsF = faceForward(hit.ns, ngF);
+    // Adaptive path termination ("minweight", off by default): a branch whose
+    // throughput would fall below minWeight cannot visibly change the pixel.
+    auto keep = [&](const Color& w) { return set.minWeight <= 0 || w.maxComponent() >= set.minWeight; };
 
     switch (m.type) {
         case MaterialType::Phong: {
@@ -215,33 +224,45 @@ Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission
                 if (cosI > 0 && dot(wi, ngF) > 0) {
                     Color f = phongBRDF(kd, m.Ks, m.exponent, r, wi);
                     if (!f.isBlack()) {
-                        Color Li = trace(spawn(hit.p, ngF, wi), depth + 1, false, rng);
-                        L += f * Li * (cosI / uniformHemispherePdf());
+                        Color w = weight * f * (cosI / uniformHemispherePdf());
+                        if (keep(w)) {
+                            Color Li = trace(spawn(hit.p, ngF, wi), depth + 1, false, w, rng);
+                            L += f * Li * (cosI / uniformHemispherePdf());
+                        }
                     }
                 }
             }
-            if (!m.Kr.isBlack()) L += m.Kr * trace(spawn(hit.p, ngF, r), depth + 1, true, rng);
+            if (!m.Kr.isBlack() && keep(weight * m.Kr))
+                L += m.Kr * trace(spawn(hit.p, ngF, r), depth + 1, set.caustics || countEmission, weight * m.Kr, rng);
             break;
         }
         case MaterialType::Mirror:
-            L += m.Kr * trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, true, rng);
+            if (keep(weight * m.Kr))
+                L += m.Kr * trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, set.caustics || countEmission,
+                                  weight * m.Kr, rng);
             break;
         case MaterialType::Dielectric: {
             double F = frDielectric(dot(wo, hit.ns), m.eta);
             // Choose reflection with probability F: the Fresnel weight and the
             // selection probability cancel, so each branch has weight 1.
             if (rng.uniform() < F) {
-                L += trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, true, rng);
+                L += trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, set.caustics || countEmission, weight, rng);
             } else {
                 Vec3 wt;
                 double etap;
-                if (refractDir(wo, hit.ns, m.eta, &etap, &wt))
-                    L += m.Kt * trace(spawn(hit.p, ngF, wt), depth + 1, true, rng) / (etap * etap);
+                if (refractDir(wo, hit.ns, m.eta, &etap, &wt)) {
+                    Color w = weight * m.Kt / (etap * etap);
+                    // With filtered shadow rays, light transmitted through glass is already
+                    // counted by next-event estimation: a path that reaches a light by
+                    // refraction after a diffuse bounce must not count it a second time.
+                    bool ce = (set.transparentShadows || !set.caustics) ? countEmission : true;
+                    if (keep(w)) L += m.Kt * trace(spawn(hit.p, ngF, wt), depth + 1, ce, w, rng) / (etap * etap);
+                }
             }
             break;
         }
         case MaterialType::Interface:
-            L += trace(spawn(hit.p, ngF, ray.d), depth + 1, countEmission, rng);
+            L += trace(spawn(hit.p, ngF, ray.d), depth + 1, countEmission, weight, rng);
             break;
     }
     return L;

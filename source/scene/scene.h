@@ -28,6 +28,8 @@ struct IntegratorSettings {
     // Whitted
     Color ambient{1, 1, 1};  // ambient light intensity I_a (multiplied by material Ka * Kd)
     bool transparentShadows = false;  // filtered shadow rays through dielectrics
+    double minWeight = 0;             // DRT: adaptive path termination threshold (0 = off)
+    bool caustics = true;             // DRT: count lights reached via mirror/glass after a diffuse bounce
     // Distributed
     int lightSamples = 16;  // shadow rays per area light (sampling density)
 };

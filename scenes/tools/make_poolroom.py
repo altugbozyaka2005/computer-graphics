@@ -141,6 +141,131 @@ def label_texture():
     write_ppm("label.ppm", W, H, pixels)
 
 
+# ---------------------------------------------------------------- pool-ball textures
+# Styles, colours and proportions measured on the reference sheet (148 x 75 px per ball,
+# equirectangular): number circle centred at u = 0.745 on the equator with an angular
+# radius of 0.539 rad; stripe band +-0.726 rad around the equator; digits 0.46 tall.
+BALL_STYLES = {
+    "1": ("solid", (255, 174, 1)), "2": ("solid", (43, 103, 194)), "3": ("solid", (244, 0, 16)),
+    "4": ("solid", (82, 31, 146)), "5": ("solid", (241, 95, 0)), "6": ("solid", (18, 144, 38)),
+    "7": ("solid", (100, 18, 0)), "8": ("solid", (0, 0, 0)),
+    "9": ("stripe", (255, 174, 1)), "10": ("stripe", (43, 103, 194)), "11": ("stripe", (244, 0, 16)),
+    "12": ("stripe", (82, 31, 146)), "13": ("stripe", (241, 95, 0)), "14": ("stripe", (18, 144, 38)),
+    "15": ("stripe", (100, 18, 0)),
+    "cue": ("cue", (255, 244, 218)), "redwhite": ("band", (244, 0, 16)), "gold": ("crown", (235, 169, 14)),
+}
+BALL_U_CENTRE, BALL_CIRCLE_R, BALL_BAND = 0.745, 0.539, 0.726
+
+
+def _arc(cx, cy, rx, ry, a0, a1, n=28):
+    return [(cx + rx * math.cos(math.radians(a0 + (a1 - a0) * k / n)),
+             cy + ry * math.sin(math.radians(a0 + (a1 - a0) * k / n))) for k in range(n + 1)]
+
+
+def _bezier(p0, p1, p2, n=20):
+    return [((1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t * t * p2[0],
+             (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1]) for t in (k / n for k in range(n + 1))]
+
+
+def _glyphs():
+    """Bold digits as stroked polylines in a 0.62 x 1 em box (y up)."""
+    g = {
+        "0": [_arc(0.31, 0.5, 0.22, 0.385, 0, 360, 48)],
+        "1": [[(0.12, 0.75), (0.33, 0.92), (0.33, 0.08)]],
+        "2": [_arc(0.31, 0.70, 0.20, 0.20, 160, -35) + [(0.09, 0.08), (0.55, 0.08)]],
+        "3": [_arc(0.30, 0.715, 0.185, 0.185, 155, -90), _arc(0.30, 0.29, 0.215, 0.215, 90, -155)],
+        "4": [[(0.45, 0.08), (0.45, 0.92), (0.06, 0.34), (0.59, 0.34)]],
+        "5": [[(0.54, 0.92), (0.17, 0.92), (0.13, 0.56)], _arc(0.31, 0.32, 0.23, 0.23, 128, -150)],
+        "6": [_arc(0.31, 0.30, 0.215, 0.215, 0, 360, 40), _bezier((0.10, 0.33), (0.10, 0.80), (0.47, 0.92))],
+        "7": [[(0.07, 0.92), (0.56, 0.92), (0.24, 0.08)]],
+        "8": [_arc(0.31, 0.72, 0.175, 0.175, 0, 360, 36), _arc(0.31, 0.285, 0.215, 0.215, 0, 360, 40)],
+    }
+    g["9"] = [[(0.62 - x, 1 - y) for (x, y) in line] for line in g["6"]]
+    return g
+
+
+def _seg_dist2(px, py, ax, ay, bx, by):
+    vx, vy = bx - ax, by - ay
+    L2 = vx * vx + vy * vy
+    t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((px - ax) * vx + (py - ay) * vy) / L2))
+    dx, dy = px - (ax + t * vx), py - (ay + t * vy)
+    return dx * dx + dy * dy
+
+
+def _inside_poly(x, y, poly):
+    inside = False
+    for i in range(len(poly)):
+        (x0, y0), (x1, y1) = poly[i], poly[(i + 1) % len(poly)]
+        if (y0 > y) != (y1 > y) and x < x0 + (y - y0) * (x1 - x0) / (y1 - y0):
+            inside = not inside
+    return inside
+
+
+def ball_texture(name, W=768, H=384):
+    """Equirectangular ball texture in the style of the reference sheet. The circle,
+    digits, dot and crown are evaluated on the sphere (great-circle distance and a
+    tangent-plane projection around the circle centre), so they are not distorted."""
+    style, col = BALL_STYLES[name]
+    white, black = (252, 252, 250), (18, 18, 18)
+    phc = 2 * math.pi * BALL_U_CENTRE
+    c = (math.cos(phc), math.sin(phc), 0.0)
+    e = (-math.sin(phc), math.cos(phc), 0.0)  # increasing u (as in the texture image)
+    tanR = math.tan(BALL_CIRCLE_R)
+    glyphs = _glyphs()
+    text = name if style in ("solid", "stripe") else ""
+    h = 0.46  # digit height in tangent-plane units
+    hw = 0.085 * h  # stroke half-width
+    adv = 0.62 * h + 0.10 * h
+    total = len(text) * 0.62 * h + max(0, len(text) - 1) * 0.10 * h
+    strokes = []  # all digit polylines in tangent-plane coordinates
+    for k, ch in enumerate(text):
+        x0 = -total / 2 + k * adv
+        for line in glyphs[ch]:
+            strokes.append([(x0 + x * h, (y - 0.5) * h) for (x, y) in line])
+    crown = [(-0.25, -0.13), (0.25, -0.13), (0.27, 0.12), (0.13, -0.01), (0.0, 0.16), (-0.13, -0.01), (-0.27, 0.12)]
+
+    def colour(u, v):
+        th, ph = math.pi * (1 - v), 2 * math.pi * u
+        d = (math.sin(th) * math.cos(ph), math.sin(th) * math.sin(ph), math.cos(th))
+        base = col
+        if style in ("stripe", "band"):
+            base = col if abs(th - math.pi / 2) < BALL_BAND else white
+        cd = d[0] * c[0] + d[1] * c[1]
+        if cd <= 0:
+            return base
+        X = (d[0] * e[0] + d[1] * e[1]) / cd
+        Y = d[2] / cd
+        r2 = X * X + Y * Y
+        if style == "cue":
+            return (215, 25, 30) if r2 < math.tan(0.169) ** 2 else base
+        if style == "band" or r2 >= tanR * tanR:
+            return base
+        if style == "crown":
+            Xs, Ys = X / tanR, Y / tanR
+            if _inside_poly(Xs, Ys, crown) or any((Xs - px) ** 2 + (Ys - py) ** 2 < 0.045 ** 2
+                                                   for px, py in ((-0.27, 0.12), (0.0, 0.16), (0.27, 0.12))):
+                return col
+            return white
+        if abs(X) < total / 2 + hw and abs(Y) < h / 2 + hw:
+            for line in strokes:
+                for i in range(len(line) - 1):
+                    if _seg_dist2(X, Y, line[i][0], line[i][1], line[i + 1][0], line[i + 1][1]) < hw * hw:
+                        return black
+        return white
+
+    pixels = []
+    for py in range(H):
+        for px in range(W):
+            acc = [0.0, 0.0, 0.0]
+            for sy in (0.25, 0.75):
+                for sx in (0.25, 0.75):
+                    cc = colour((px + sx) / W, 1 - (py + sy) / H)
+                    for k in range(3):
+                        acc[k] += cc[k] / 4
+            pixels.append(acc)
+    write_ppm("ball_%s.ppm" % name, W, H, pixels)
+
+
 # ---------------------------------------------------------------- mesh utilities
 def lathe(profile, segments, smooth_angle_deg=35.0, perturb=None):
     """Revolves a 2D profile [(r, y), ...] about the y axis.
@@ -438,17 +563,17 @@ TABLE_T = (-7.49, 0.0, 4.18)
 TABLE_ROT = -36.5
 TABLE_W, TABLE_L = 48.0, 65.8
 
-BALLS = [  # (x, z, material)  centre height 1
-    (-1.82, 23.19, "red"),        # front centre, between the bottle and the glass
-    (0.25, 27.50, "yellow"),      # directly behind the glass (left)
-    (2.35, 28.00, "black"),       # directly behind the glass (right)
-    (5.19, 26.07, "red"),
-    (5.88, 21.80, "yellow"),      # large, in front
-    (10.03, 25.67, "red"),        # far right
-    (9.43, 30.84, "white"),       # cue ball
-    (13.51, 42.86, "yellow"),     # back right
-    (-5.71, 42.66, "red"),        # in the rack (moved 0.4 towards the centre: clears the bar)
-    (-3.75, 44.60, "yellow"),     # in the rack
+BALLS = [  # (x, z, texture)  centre height 1; colours follow the photograph (red/yellow/black/white)
+    (-1.82, 23.19, "3"),          # front centre, between the bottle and the glass
+    (0.25, 27.50, "9"),           # directly behind the glass (left)
+    (2.35, 28.00, "8"),           # directly behind the glass (right)
+    (5.19, 26.07, "11"),
+    (5.88, 21.80, "1"),           # large, in front
+    (10.03, 25.67, "15"),         # far right
+    (9.43, 30.84, "cue"),         # cue ball
+    (13.51, 42.86, "13"),         # back right
+    (-5.71, 42.66, "7"),          # in the rack (moved 0.4 towards the centre: clears the bar)
+    (-3.75, 44.60, "5"),          # in the rack
 ]
 RACK_CENTROID, RACK_FRONT_ANGLE, RACK_CIRCUMRADIUS = (-4.52, 43.57), -78.5, 6.0
 GLASS_POS, GLASS_SCALE = (1.2, 22.4), 1.18
@@ -541,9 +666,23 @@ def geometry_include():
     a(our_table())
 
     a("\n# ---------------------------------------------------------------- balls (spheres)\n")
-    for x, z, m in BALLS:
-        a('AttributeBegin Translate %s 1 %s NamedMaterial "%s" Shape "sphere" "float radius" [ 1 ] AttributeEnd\n'
-          % (fmt(x), fmt(z), m))
+    a("# Each ball is turned so that its number circle (u = %.3f) faces the camera, tipped up\n"
+      "# towards it, with a little random yaw/tilt. Scale -1 1 1: pbrt's sphere (u,v) runs\n"
+      "# right-to-left seen from outside; mirroring makes the textures read as authored.\n" % BALL_U_CENTRE)
+    rnd = random.Random(42)
+    phc = 2 * math.pi * BALL_U_CENTRE
+    for x, z, tex in BALLS:
+        dist = math.hypot(x - CAM_EYE[0], z - CAM_EYE[2])
+        tilt = math.degrees(math.atan2(CAM_EYE[1] - 1, dist)) + rnd.uniform(-8, 8)
+        t = math.radians(tilt)
+        # circle centre (cos phc, sin phc, 0) after Scale(-1,1,1) and Rotate(-(90 + tilt)) about x:
+        # (-cos phc, -sin phc sin t, -sin phc cos t); its horizontal direction is atan2(x, z)
+        cx, cz = -math.cos(phc), -math.sin(phc) * math.cos(t)
+        a0 = math.atan2(cx, cz)
+        a_t = math.atan2(CAM_EYE[0] - x, CAM_EYE[2] - z)
+        yaw = math.degrees(a_t - a0) + rnd.uniform(-20, 20)
+        a('AttributeBegin Translate %s 1 %s Rotate %s 0 1 0 Rotate %s 1 0 0 Scale -1 1 1 NamedMaterial "ball_%s"\n'
+          '  Shape "sphere" "float radius" [ 1 ]\nAttributeEnd\n' % (fmt(x), fmt(z), fmt(yaw), fmt(-(90 + tilt)), tex))
 
     a("\n# ---------------------------------------------------------------- triangle rack: three instances of one bar\n")
     side = RACK_CIRCUMRADIUS * math.sqrt(3)
@@ -609,7 +748,9 @@ def textures_block():
             'Texture "floorwood" "spectrum" "imagemap" "string filename" "textures/wood.ppm" "float uscale" [ 0.02 ] "float vscale" [ 0.006 ] "float scale" [ 0.5 ]\n'
             'Texture "metal" "spectrum" "imagemap" "string filename" "textures/metal.ppm" "float scale" [ 0.35 ]\n'
             'Texture "cuewood" "spectrum" "imagemap" "string filename" "textures/wood.ppm" "float uscale" [ 1 ] "float vscale" [ 6 ] "float scale" [ 1.35 ]\n'
-            'Texture "label" "spectrum" "imagemap" "string filename" "textures/label.ppm" "string wrap" "clamp"\n\n')
+            'Texture "label" "spectrum" "imagemap" "string filename" "textures/label.ppm" "string wrap" "clamp"\n' +
+            "".join('Texture "tex_ball_%s" "spectrum" "imagemap" "string filename" "textures/ball_%s.ppm" "float scale" [ 0.85 ]\n'
+                    % (t, t) for t in sorted({b[2] for b in BALLS}, key=str)) + "\n")
 
 
 def materials_include(name, mats, header):
@@ -650,10 +791,8 @@ def materials():
         ("backwall", "blinnphong", bp("0.35 0.34 0.33", "0 0 0", 1, "0.6 0.6 0.6")),
         ("ceiling", "blinnphong", bp("0.03 0.03 0.03", "0 0 0", 1, "0.05 0.05 0.05")),
         ("spot", "blinnphong", '"rgb Kd" [ 1 1 1 ] "rgb Ka" [ 1 1 0.95 ] "bool normalized" true'),
-        ("red", "blinnphong", bp("0.6 0.025 0.025", "0.35 0.35 0.35", 600, kr="0.05 0.05 0.05")),
-        ("yellow", "blinnphong", bp("0.6 0.38 0.015", "0.35 0.35 0.35", 600, kr="0.05 0.05 0.05")),
-        ("black", "blinnphong", bp("0.012 0.012 0.012", "0.4 0.4 0.4", 600, kr="0.06 0.06 0.06")),
-        ("white", "blinnphong", bp("0.58 0.57 0.53", "0.35 0.35 0.35", 600, kr="0.05 0.05 0.05")),
+    ] + [("ball_" + t, "blinnphong", bp("tex_ball_" + t, "0.35 0.35 0.35", 600, kr="0.05 0.05 0.05", tex=True))
+         for t in sorted({b[2] for b in BALLS}, key=str)] + [
         ("rack", "blinnphong", bp("0.015 0.015 0.015", "0.3 0.3 0.3", 150, kr="0.04 0.04 0.04")),
         ("collar", "blinnphong", bp("0.35 0.27 0.09", "0.4 0.34 0.18", 200, kr="0.2 0.17 0.07")),
         ("label", "blinnphong", bp("label", "0.05 0.05 0.05", 30, tex=True)),
@@ -684,10 +823,9 @@ def materials():
         ("backwall", "diffuse", '"rgb reflectance" [ 0.35 0.34 0.33 ]'),
         ("ceiling", "diffuse", '"rgb reflectance" [ 0.03 0.03 0.03 ]'),
         ("spot", "diffuse", '"rgb reflectance" [ 0.8 0.8 0.8 ]'),
-        ("red", "phong", ph("0.6 0.025 0.025", "0.25 0.25 0.25", 200, kr="0.04 0.04 0.04")),
-        ("yellow", "phong", ph("0.6 0.38 0.015", "0.25 0.25 0.25", 200, kr="0.04 0.04 0.04")),
-        ("black", "phong", ph("0.012 0.012 0.012", "0.3 0.3 0.3", 200, kr="0.05 0.05 0.05")),
-        ("white", "phong", ph("0.58 0.57 0.53", "0.25 0.25 0.25", 200, kr="0.04 0.04 0.04")),
+    ] + [  # clear coat as an ideal mirror (Kr) + a broader Phong lobe for the light highlights
+        ("ball_" + t, "phong", ph("tex_ball_" + t, "0.15 0.15 0.15", 80, kr="0.06 0.06 0.06", tex=True))
+        for t in sorted({b[2] for b in BALLS}, key=str)] + [
         ("rack", "phong", ph("0.015 0.015 0.015", "0.25 0.25 0.25", 100, kr="0.03 0.03 0.03")),
         ("collar", "phong", ph("0.3 0.24 0.08", "0.3 0.26 0.14", 120, kr="0.2 0.17 0.07")),
         ("label", "phong", ph("label", "0.05 0.05 0.05", 30, tex=True)),
@@ -704,12 +842,14 @@ def materials():
 def spots():
     w = ["# Ceiling spots for the WSRT: bright self-coloured discs (ambient term only), so that\n"
          "# they show in the image without adding extra shadow-casting lights.\n"]
-    d = ["# Ceiling spots for the DRT: small emissive discs (area lights, 1 shadow ray each).\n"]
+    d = ["# Ceiling spots for the DRT: small emissive discs. \"samples 0\": visible and emitting, but\n"
+         "# not sampled with shadow rays (they add < 0.1 % of the light; sampling them cost half of\n"
+         "# all shadow rays). Their light still reaches the scene through paths that hit them.\n"]
     for x, z in SPOTS:
         w.append('AttributeBegin Translate %s %s %s Rotate 90 1 0 0 NamedMaterial "spot" Shape "disk" "float radius" [ 1.6 ] AttributeEnd\n'
                  % (fmt(x), fmt(CEILING_Y - 0.1), fmt(z)))
         d.append('AttributeBegin Translate %s %s %s Rotate 90 1 0 0 NamedMaterial "spot"\n'
-                 '  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 1 ]\n'
+                 '  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]\n'
                  '  Shape "disk" "float radius" [ 1.6 ]\nAttributeEnd\n' % (fmt(x), fmt(CEILING_Y - 0.1), fmt(z)))
     for name, lines in (("poolhall_spots_wsrt.pbrt", w), ("poolhall_spots_drt.pbrt", d)):
         with open(os.path.join(INC, name), "w") as f:
@@ -718,6 +858,10 @@ def spots():
 
 
 def main():
+    import sys
+    names = list(BALL_STYLES) if "--all" in sys.argv else sorted({b[2] for b in BALLS}, key=str)
+    for n in names:
+        ball_texture(n)
     felt_texture()
     railblack_texture()
     metal_texture()

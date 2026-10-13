@@ -13,7 +13,9 @@ WSRT: specular refraction with Snell's law, exact dielectric Fresnel equations a
 WSRT: Blinn-Phong shading (ambient, diffuse, specular) with Kd (or Kd texture), Ks, Ka, shininess per material
 WSRT: point lights with configurable position and radiant intensity (also spot and distant lights)
 WSRT: hard shadows with shadow rays and a normal-offset ray origin against self-shadowing
-WSRT: optional filtered (coloured, transparent) shadows: shadow rays through dielectrics are attenuated by Fresnel transmission and Kt (Integrator "bool transparentshadows"); no caustics
+WSRT and DRT: optional filtered (coloured, transparent) shadows: shadow rays through dielectrics are attenuated by Fresnel transmission and Kt (Integrator "bool transparentshadows"); no caustics. In the DRT, refracted paths reaching a light after a diffuse bounce are then not counted again
+DRT: optional adaptive path termination ("float minweight": stop a path whose throughput falls below the threshold) and "bool caustics" false (ignore light reached via mirror/glass after a diffuse bounce)
+Lights: area lights with "integer samples" 0 are visible and emit but are not sampled with shadow rays
 Geometry: alpha cut-out masks on any shape (pbrt "float alpha" / "texture alpha"), honoured by camera and shadow rays
 WSRT: UV-mapped textures for diffuse colour from PPM files (bilinear filtering, repeat/clamp/black wrap), plus procedural checkerboard, scale and mix textures
 WSRT: geometry: planes (infinite, extension), spheres (including partial), triangles, disks, with ray intersection and UV generation for each

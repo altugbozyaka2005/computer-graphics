@@ -240,10 +240,12 @@ void SceneBuilder::shape(const std::string& type, const ParamSet& ps, const Tran
             sc = 1;
         }
         int ns = area.params.has("samples") ? area.params.getInt("samples", -1) : area.params.getInt("nsamples", -1);
-        if (ns == 0 || ns < -1) {
-            LOG().error("area light samples must be >= 1; using the integrator default", area.loc);
+        if (ns < -1) {
+            LOG().error("area light samples must be >= 0; using the integrator default", area.loc);
             ns = -1;
         }
+        if (ns == 0)
+            LOG().info("area light with samples 0: visible and emitting, but not sampled with shadow rays");
         al->nSamples = ns;
         if (area.params.has("filename")) {
             area.params.getString("filename", "");

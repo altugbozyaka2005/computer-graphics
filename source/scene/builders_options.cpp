@@ -158,6 +158,12 @@ void SceneBuilder::integrator(const std::string& type, const ParamSet& ps, const
     Color amb;
     if (ps.getRGB("ambient", SpectrumKind::Unbounded, &amb)) in.ambient = amb;
     in.transparentShadows = ps.getBool("transparentshadows", false);
+    in.minWeight = ps.getFloat("minweight", 0);
+    in.caustics = ps.getBool("caustics", true);
+    if (in.minWeight < 0 || in.minWeight >= 1) {
+        LOG().error("minweight must be in [0,1); using 0 (off)", loc);
+        in.minWeight = 0;
+    }
     in.lightSamples = ps.getInt("lightsamples", 16);
     if (in.lightSamples < 1 || in.lightSamples > 65536) {
         LOG().error("lightsamples must be in [1,65536]; using 16", loc);

@@ -17,7 +17,7 @@
 #                                     the rack is three instances of one bar (ObjectInstance)
 LookAt 0 9.2 0   0 6.027 9.4832   0 1 0
 Camera "perspective" "float fov" [ 46.2 ]
-Film "rgb" "integer xresolution" [ 600 ] "integer yresolution" [ 800 ]
+Film "rgb" "integer xresolution" [ 1200 ] "integer yresolution" [ 1600 ]
     "string filename" [ "WSRT_creative.png" ]
 Sampler "independent" "integer pixelsamples" [ 16 ]
 Integrator "whitted" "integer maxdepth" [ 12 ] "rgb ambient" [ 1 1 1 ] "bool transparentshadows" true
