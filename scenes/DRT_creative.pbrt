@@ -1,0 +1,121 @@
+# DRT_creative: the billiards still life rendered with the distributed ray tracer
+# (same photograph as WSRT_creative; same layout so the two renderers can be compared).
+# Units: a billiard ball has radius 1.  y is up, the felt is the plane y = 0.
+#
+# Features shown (see report insets):
+#  - triangle meshes (OBJ)         : glass, water and cue are OBJ lathe meshes with per-vertex
+#                                    normals (smooth silhouettes/refraction) and UVs
+#  - textures on meshes            : wood grain on the cue follows the mesh UVs
+#  - area light + soft shadows     : the lamp disc above the table; penumbrae under every ball
+#                                    (16 random shadow rays per shading point)
+#  - Phong BRDF                    : glossy balls (kd + ks <= 1, energy conserving), felt diffuse
+#  - depth of field (thin lens)    : focus on ball 11; the glass (near) and chrome ball (far) blur
+#  - Reinhard tone mapping         : on luminance, white point 1.6 (lamp reflections compress)
+LookAt 0.6 5.2 -17   0.3 1.7 1.0   0 1 0
+Camera "perspective" "float fov" [ 31 ] "float lensradius" [ 0.3 ] "float focaldistance" [ 18.5 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "DRT_creative.png" ]
+    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float whitepoint" [ 1.6 ]
+Sampler "independent" "integer pixelsamples" [ 256 ]
+Integrator "distributed" "integer maxdepth" [ 8 ] "integer lightsamples" [ 16 ]
+
+WorldBegin
+
+LightSource "infinite" "rgb L" [ 0.05 0.055 0.065 ]
+# Lamp above the table: one-sided emissive disc facing down (the main light).
+AttributeBegin
+  Translate 0.5 10 2  Rotate 90 1 0 0
+  AreaLightSource "diffuse" "rgb L" [ 70 66 60 ]
+  Shape "disk" "float radius" [ 1.6 ]
+AttributeEnd
+# Weak cool fill from the right
+LightSource "point" "point3 from" [ 9 5 -7 ] "rgb I" [ 25 28 35 ]
+
+Texture "felt" "spectrum" "imagemap" "string filename" "textures/felt.ppm"
+    "float uscale" [ 0.5 ] "float vscale" [ 0.5 ]
+Texture "wood" "spectrum" "imagemap" "string filename" "textures/wood.ppm"
+    "float uscale" [ 1 ] "float vscale" [ 3 ]
+Texture "railwood" "spectrum" "imagemap" "string filename" "textures/wood.ppm"
+    "float uscale" [ 4 ] "float vscale" [ 1 ]
+Texture "b1" "spectrum" "imagemap" "string filename" "textures/ball_1.ppm"
+Texture "b9" "spectrum" "imagemap" "string filename" "textures/ball_9.ppm"
+Texture "b11" "spectrum" "imagemap" "string filename" "textures/ball_11.ppm"
+Texture "b12" "spectrum" "imagemap" "string filename" "textures/ball_12.ppm"
+
+# ---------------------------------------------------------------- felt
+AttributeBegin
+  Material "diffuse" "texture reflectance" "felt"
+  Shape "plane" "point3 p" [ 0 0 0 ] "normal n" [ 0 1 0 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- rails
+AttributeBegin
+  Material "phong" "texture Kd" "railwood" "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 60 ]
+  Shape "trianglemesh"
+    "point3 P" [ -30 0 -5.6   -3.4 0 -5.6   -3.4 0.9 -5.6   -30 0.9 -5.6
+                 -30 0 -4.6   -3.4 0 -4.6   -3.4 0.9 -4.6   -30 0.9 -4.6 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1   0 1  1 1  1 0  0 0 ]
+    "integer indices" [ 0 1 2 0 2 3   3 2 6 3 6 7   4 7 6 4 6 5   1 5 6 1 6 2 ]
+AttributeEnd
+AttributeBegin
+  Material "diffuse" "rgb reflectance" [ 0.05 0.3 0.12 ]
+  Shape "trianglemesh" "point3 P" [ -30 0 9  30 0 9  30 1.2 9.4  -30 1.2 9.4 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin
+  Material "phong" "texture Kd" "railwood" "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 60 ]
+  Shape "trianglemesh" "point3 P" [ -30 1.2 9.4  30 1.2 9.4  30 1.2 11  -30 1.2 11 ]
+      "point2 uv" [ 0 0  12 0  12 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- balls: glossy Phong (Kd texture + Ks <= 1)
+AttributeBegin
+  Translate -4.6 1 0.3  Rotate -15 0 1 0  Rotate -90 1 0 0
+  Material "phong" "texture Kd" "b9" "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 120 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate -1.6 1 2.4  Rotate 10 0 1 0  Rotate -90 1 0 0
+  Material "phong" "texture Kd" "b1" "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 120 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate 1.4 1 1.0  Rotate 5 0 1 0  Rotate -90 1 0 0
+  Material "phong" "texture Kd" "b11" "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 120 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate 4.3 1 0.6  Rotate 20 0 1 0  Rotate -90 1 0 0
+  Material "phong" "texture Kd" "b12" "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 120 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate 3.0 1 4.0
+  Material "mirror" "rgb Kr" [ 0.85 0.85 0.88 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- glass of water (OBJ meshes with normals)
+AttributeBegin
+  Translate -2.2 0 -1.6
+  AttributeBegin
+    Material "dielectric" "float eta" [ 1.5 ]
+    Shape "objmesh" "string filename" "meshes/glass.obj"
+  AttributeEnd
+  AttributeBegin
+    Material "dielectric" "float eta" [ 1.33 ]
+    Shape "objmesh" "string filename" "meshes/water.obj"
+  AttributeEnd
+AttributeEnd
+
+# ---------------------------------------------------------------- cue (OBJ meshes, wood texture on the mesh UVs)
+AttributeBegin
+  Translate 0.2 0.23 -3.4  Rotate -10 0 1 0  Rotate -90 0 0 1
+  AttributeBegin
+    Material "phong" "rgb Kd" [ 0.75 0.75 0.7 ] "rgb Ks" [ 0.15 0.15 0.15 ] "float exponent" [ 40 ]
+    Shape "objmesh" "string filename" "meshes/cue_tip.obj"
+  AttributeEnd
+  AttributeBegin
+    Material "phong" "texture Kd" "wood" "rgb Ks" [ 0.25 0.25 0.25 ] "float exponent" [ 80 ]
+    Shape "objmesh" "string filename" "meshes/cue_shaft.obj"
+  AttributeEnd
+AttributeEnd

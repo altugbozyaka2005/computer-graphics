@@ -33,10 +33,14 @@ protected:
 class WhittedIntegrator : public Integrator {
 public:
     using Integrator::Integrator;
-    Color Li(const Ray& ray, RNG& rng) const override { return trace(ray, 0, rng); }
+    Color Li(const Ray& ray, RNG& rng) const override { return trace(ray, 0, Color(1), rng); }
 
 private:
-    Color trace(const Ray& ray, int depth, RNG& rng) const;
+    // `weight` is the product of the reflection/transmission factors along the path
+    // to this ray; branches whose weight drops below kMinWeight are not traced
+    // (adaptive ray-tree depth control, Hall & Greenberg 1983).
+    Color trace(const Ray& ray, int depth, const Color& weight, RNG& rng) const;
+    static constexpr double kMinWeight = 1e-3;
 };
 
 class DistributedIntegrator : public Integrator {

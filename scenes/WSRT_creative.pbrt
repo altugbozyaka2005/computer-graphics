@@ -1,0 +1,135 @@
+# WSRT_creative: billiards still life (inspired by the photograph in the Module 1 report).
+# Units: a billiard ball has radius 1.  y is up, the felt is the plane y = 0.
+#
+# Features shown (see report insets):
+#  - recursive mirror reflection : chrome ball (back right) reflects the balls, glass and felt
+#  - refraction + Fresnel + TIR  : glass of water (eta 1.5 / 1.33) bends and inverts ball 9 / ball 1
+#  - Blinn-Phong                 : specular highlights on every ball, ambient light in the shadows
+#  - point lights                : overhead key lamp + fill light (two shadows per ball)
+#  - shadows (with ray offset)   : hard ball/glass/cue shadows on the felt, no self-shadowing acne
+#  - textures (UV)               : numbered ball textures on spheres, felt on the plane,
+#                                  wood on the cue (triangles) and rail (triangles)
+#  - geometry                    : plane (felt), spheres (balls), triangles (glass, cue, rail)
+LookAt 0.6 5.2 -17   0.3 1.7 1.0   0 1 0
+Camera "perspective" "float fov" [ 31 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "WSRT_creative.png" ]
+Sampler "independent" "integer pixelsamples" [ 16 ]
+Integrator "whitted" "integer maxdepth" [ 12 ] "rgb ambient" [ 1 1 1 ]
+
+WorldBegin
+
+# Dark room behind the table
+LightSource "infinite" "rgb L" [ 0.05 0.055 0.065 ]
+# Key lamp above the table (slightly left/front) and a weak cool fill from the right
+LightSource "point" "point3 from" [ -2.5 11 -4 ] "rgb I" [ 190 180 160 ]
+LightSource "point" "point3 from" [ 9 5 -7 ] "rgb I" [ 25 28 35 ]
+# Visible lamp shade above the table (emissive disc facing down): shows up in the chrome ball.
+# In the WSRT an emitter acts as a point light at its centre (hard shadows).
+AttributeBegin
+  Translate 0.5 13 2  Rotate 90 1 0 0
+  AreaLightSource "diffuse" "rgb L" [ 6 5.7 5.2 ]
+  Shape "disk" "float radius" [ 1.6 ]
+AttributeEnd
+
+Texture "felt" "spectrum" "imagemap" "string filename" "textures/felt.ppm"
+    "float uscale" [ 0.5 ] "float vscale" [ 0.5 ]
+Texture "wood" "spectrum" "imagemap" "string filename" "textures/wood.ppm"
+    "float uscale" [ 1 ] "float vscale" [ 3 ]
+Texture "railwood" "spectrum" "imagemap" "string filename" "textures/wood.ppm"
+    "float uscale" [ 4 ] "float vscale" [ 1 ]
+Texture "b1" "spectrum" "imagemap" "string filename" "textures/ball_1.ppm"
+Texture "b9" "spectrum" "imagemap" "string filename" "textures/ball_9.ppm"
+Texture "b11" "spectrum" "imagemap" "string filename" "textures/ball_11.ppm"
+Texture "b12" "spectrum" "imagemap" "string filename" "textures/ball_12.ppm"
+
+# ---------------------------------------------------------------- felt (plane)
+AttributeBegin
+  Material "blinnphong" "texture Kd" "felt" "rgb Ks" [ 0.02 0.02 0.02 ] "float shininess" [ 8 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ]
+  Shape "plane" "point3 p" [ 0 0 0 ] "normal n" [ 0 1 0 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- wooden rail (triangles), front left
+AttributeBegin
+  Material "blinnphong" "texture Kd" "railwood" "rgb Ks" [ 0.25 0.25 0.25 ] "float shininess" [ 60 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ]
+  Shape "trianglemesh"
+    "point3 P" [ -30 0 -5.6   -3.4 0 -5.6   -3.4 0.9 -5.6   -30 0.9 -5.6
+                 -30 0 -4.6   -3.4 0 -4.6   -3.4 0.9 -4.6   -30 0.9 -4.6 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1   0 1  1 1  1 0  0 0 ]
+    "integer indices" [ 0 1 2 0 2 3   3 2 6 3 6 7   4 7 6 4 6 5   1 5 6 1 6 2 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- far cushion (triangles): the table edge
+AttributeBegin
+  Material "blinnphong" "rgb Kd" [ 0.05 0.3 0.12 ] "rgb Ka" [ 0.08 0.08 0.08 ]
+  Shape "trianglemesh" "point3 P" [ -30 0 9  30 0 9  30 1.2 9.4  -30 1.2 9.4 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin
+  Material "blinnphong" "texture Kd" "railwood" "rgb Ks" [ 0.25 0.25 0.25 ] "float shininess" [ 60 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ]
+  Shape "trianglemesh" "point3 P" [ -30 1.2 9.4  30 1.2 9.4  30 1.2 11  -30 1.2 11 ]
+      "point2 uv" [ 0 0  12 0  12 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- balls (spheres, pole along +y)
+# Common ball material: textured Kd, strong highlight, a little clear-coat mirror reflection.
+AttributeBegin
+  Translate -4.6 1 0.3  Rotate -15 0 1 0  Rotate -90 1 0 0
+  Material "blinnphong" "texture Kd" "b9" "rgb Ks" [ 0.45 0.45 0.45 ] "float shininess" [ 150 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ] "rgb Kr" [ 0.05 0.05 0.05 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate -1.6 1 2.4  Rotate 10 0 1 0  Rotate -90 1 0 0
+  Material "blinnphong" "texture Kd" "b1" "rgb Ks" [ 0.45 0.45 0.45 ] "float shininess" [ 150 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ] "rgb Kr" [ 0.05 0.05 0.05 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate 1.4 1 1.0  Rotate 5 0 1 0  Rotate -90 1 0 0
+  Material "blinnphong" "texture Kd" "b11" "rgb Ks" [ 0.45 0.45 0.45 ] "float shininess" [ 150 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ] "rgb Kr" [ 0.05 0.05 0.05 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin
+  Translate 4.3 1 0.6  Rotate 20 0 1 0  Rotate -90 1 0 0
+  Material "blinnphong" "texture Kd" "b12" "rgb Ks" [ 0.45 0.45 0.45 ] "float shininess" [ 150 ]
+      "rgb Ka" [ 0.08 0.08 0.08 ] "rgb Kr" [ 0.05 0.05 0.05 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+# Chrome ball: ideal mirror
+AttributeBegin
+  Translate 3.0 1 4.0
+  Material "mirror" "rgb Kr" [ 0.85 0.85 0.88 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+
+# ---------------------------------------------------------------- glass of water (triangle meshes)
+AttributeBegin
+  Translate -2.2 0 -1.6
+  AttributeBegin
+    Material "dielectric" "float eta" [ 1.5 ]
+    Shape "objmesh" "string filename" "meshes/glass.obj"
+  AttributeEnd
+  AttributeBegin
+    Material "dielectric" "float eta" [ 1.33 ]
+    Shape "objmesh" "string filename" "meshes/water.obj"
+  AttributeEnd
+AttributeEnd
+
+# ---------------------------------------------------------------- cue (triangle meshes), lying on the felt
+AttributeBegin
+  Translate 0.2 0.23 -3.4  Rotate -10 0 1 0  Rotate -90 0 0 1
+  AttributeBegin
+    Material "blinnphong" "rgb Kd" [ 0.75 0.75 0.7 ] "rgb Ks" [ 0.2 0.2 0.2 ] "float shininess" [ 40 ]
+        "rgb Ka" [ 0.08 0.08 0.08 ]
+    Shape "objmesh" "string filename" "meshes/cue_tip.obj"
+  AttributeEnd
+  AttributeBegin
+    Material "blinnphong" "texture Kd" "wood" "rgb Ks" [ 0.3 0.3 0.3 ] "float shininess" [ 80 ]
+        "rgb Ka" [ 0.08 0.08 0.08 ]
+    Shape "objmesh" "string filename" "meshes/cue_shaft.obj"
+  AttributeEnd
+AttributeEnd

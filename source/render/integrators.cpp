@@ -17,7 +17,7 @@ bool Integrator::occludedDir(const Vec3& p, const Vec3& ng, const Vec3& dir) con
 }
 
 // ======================================================================= WSRT
-Color WhittedIntegrator::trace(const Ray& ray, int depth, RNG& rng) const {
+Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, RNG& rng) const {
     Hit hit;
     if (!scene_.intersect(ray, &hit)) return scene_.envL;
     const IntegratorSettings& set = scene_.integrator;
@@ -30,6 +30,12 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, RNG& rng) const {
     // Normals facing the viewer (two-sided shading).
     Vec3 ngF = faceForward(hit.ng, wo);
     Vec3 nsF = faceForward(hit.ns, ngF);
+    // Trace a secondary ray scaled by factor k, unless its contribution is negligible.
+    auto secondary = [&](const Vec3& dir, const Color& k) {
+        Color w = weight * k;
+        if (depth >= set.maxDepth || w.maxComponent() < kMinWeight) return Color(0);
+        return k * trace(spawn(hit.p, ngF, dir), depth + 1, w, rng);
+    };
 
     switch (m.type) {
         case MaterialType::Phong: {
@@ -87,27 +93,24 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, RNG& rng) const {
                     L += shade(wi, I / d2);
                 }
             }
-            if (!m.Kr.isBlack() && depth < set.maxDepth)
-                L += m.Kr * trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, rng);
+            if (!m.Kr.isBlack()) L += secondary(reflect(wo, nsF), m.Kr);
             break;
         }
         case MaterialType::Mirror:
-            if (depth < set.maxDepth) L += m.Kr * trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, rng);
+            L += secondary(reflect(wo, nsF), m.Kr);
             break;
         case MaterialType::Dielectric: {
-            if (depth >= set.maxDepth) break;
             // hit.ns keeps the surface's outward orientation: its sign tells entering vs exiting.
             double F = frDielectric(dot(wo, hit.ns), m.eta);
-            Vec3 r = reflect(wo, nsF);
-            L += F * trace(spawn(hit.p, ngF, r), depth + 1, rng);
+            L += secondary(reflect(wo, nsF), Color(F));
             Vec3 wt;
             double etap;
             if (F < 1 && refractDir(wo, hit.ns, m.eta, &etap, &wt))
-                L += (1 - F) * m.Kt * trace(spawn(hit.p, ngF, wt), depth + 1, rng) / (etap * etap);
+                L += secondary(wt, m.Kt * ((1 - F) / (etap * etap)));
             break;
         }
         case MaterialType::Interface:
-            if (depth < set.maxDepth) L += trace(spawn(hit.p, ngF, ray.d), depth + 1, rng);
+            L += secondary(ray.d, Color(1));
             break;
     }
     return L;

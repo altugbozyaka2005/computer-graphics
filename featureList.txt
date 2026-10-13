@@ -8,6 +8,7 @@ General: multithreaded tile renderer (std::thread) with deterministic per-pixel 
 General: output as 8-bit PNG (own encoder) and linear HDR PFM, plus optional PPM
 Camera: perspective camera matching pbrt-v4 conventions (fov on the shorter image axis, LookAt)
 WSRT: ideal specular reflection, recursive up to maxdepth
+WSRT: adaptive ray-tree depth control: reflection/refraction branches whose accumulated weight (Fresnel x Kr x Kt) falls below 0.001 are not traced
 WSRT: specular refraction with Snell's law, exact dielectric Fresnel equations and total internal reflection
 WSRT: Blinn-Phong shading (ambient, diffuse, specular) with Kd (or Kd texture), Ks, Ka, shininess per material
 WSRT: point lights with configurable position and radiant intensity (also spot and distant lights)
