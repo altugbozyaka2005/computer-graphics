@@ -31,6 +31,8 @@ MakeNamedMaterial "tablebody" "string type" "blinnphong" "rgb Kd" [ 0.02 0.02 0.
 MakeNamedMaterial "floor" "string type" "blinnphong" "texture Kd" "floorwood" "rgb Ks" [ 0.04 0.04 0.04 ] "float shininess" [ 20 ] "rgb Ka" [ 0.06 0.06 0.06 ] "bool normalized" true
 MakeNamedMaterial "wall" "string type" "blinnphong" "rgb Kd" [ 0.05 0.05 0.055 ] "rgb Ks" [ 0 0 0 ] "float shininess" [ 1 ] "rgb Ka" [ 0.05 0.05 0.05 ] "bool normalized" true
 MakeNamedMaterial "backwall" "string type" "blinnphong" "rgb Kd" [ 0.35 0.34 0.33 ] "rgb Ks" [ 0 0 0 ] "float shininess" [ 1 ] "rgb Ka" [ 0.6 0.6 0.6 ] "bool normalized" true
+MakeNamedMaterial "pillar" "string type" "blinnphong" "rgb Kd" [ 0.42 0.42 0.4 ] "rgb Ks" [ 0.02 0.02 0.02 ] "float shininess" [ 10 ] "rgb Ka" [ 0.12 0.12 0.115 ] "bool normalized" true
+MakeNamedMaterial "walllamp" "string type" "blinnphong" "rgb Kd" [ 1 0.78 0.5 ] "rgb Ka" [ 1 1 1 ] "bool normalized" true
 MakeNamedMaterial "ceiling" "string type" "blinnphong" "rgb Kd" [ 0.03 0.03 0.03 ] "rgb Ks" [ 0 0 0 ] "float shininess" [ 1 ] "rgb Ka" [ 0.05 0.05 0.05 ] "bool normalized" true
 MakeNamedMaterial "spot" "string type" "blinnphong" "rgb Kd" [ 1 1 1 ] "rgb Ka" [ 1 1 0.95 ] "bool normalized" true
 MakeNamedMaterial "ball_1" "string type" "blinnphong" "texture Kd" "tex_ball_1" "rgb Ks" [ 0.35 0.35 0.35 ] "float shininess" [ 600 ] "rgb Ka" [ 0.1 0.1 0.1 ] "bool normalized" true "rgb Kr" [ 0.05 0.05 0.05 ]

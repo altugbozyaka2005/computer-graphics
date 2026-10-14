@@ -94,7 +94,7 @@ Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, R
             }
             // Area lights act as point lights at a representative point (WSRT has hard shadows).
             for (const auto& al : scene_.areaLights) {
-                if (al->nSamples == 0) continue;  // not sampled: contributes only where it is seen
+                if (al->nSamples == 0) continue;  // visible-only emitter: does not light the scene
                 Vec3 pl;
                 Color I;
                 if (al->sphere) {
@@ -166,7 +166,7 @@ Color DistributedIntegrator::directLighting(const Hit& hit, const Vec3& wo, cons
     for (const auto& al : scene_.areaLights) {
         if (al->shapes.size() == 1 && al->shapes[0] == hit.shape) continue;  // a light does not light itself
         // N shadow rays towards uniformly random points on the light (soft shadows).
-        if (al->nSamples == 0) continue;  // not sampled: its light arrives through paths that hit it
+        if (al->nSamples == 0) continue;  // visible-only emitter: does not light the scene
         int n = al->nSamples > 0 ? al->nSamples : set.lightSamples;
         Color sum(0);
         for (int i = 0; i < n; ++i) {
@@ -200,8 +200,7 @@ Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission
     const Shape* sh = hit.shape;
     // Emission is skipped after diffuse/glossy bounces: those already sampled the
     // lights explicitly (next-event estimation), counting it twice would be biased.
-    // An emitter that is never sampled by next-event estimation is counted on every path.
-    if (sh->areaLight && (countEmission || sh->areaLight->nSamples == 0)) L += sh->areaLight->Le(hit.ng, wo);
+    if (sh->areaLight && countEmission) L += sh->areaLight->Le(hit.ng, wo);
     if (depth >= set.maxDepth) return L;
     const Material& m = scene_.materials[sh->materialId];
     Vec3 ngF = faceForward(hit.ng, wo);

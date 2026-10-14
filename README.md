@@ -79,7 +79,12 @@ Texture tools use only the Python 3 standard library:
 
 ```sh
 python3 scenes/tools/make_textures.py                                    # regenerates scenes/textures/*.ppm
-python3 scenes/tools/make_poolroom.py    # creative scenes: textures, meshes, include/poolhall_*.pbrt
+python3 scenes/tools/make_poolroom.py    # creative scenes: textures, meshes, include/poolhall_*.pbrt (--all: all 18 ball textures)
+python3 scenes/tools/make_figures.py [--photo photo.png]   # report figures in output/figures/ (annotated
+                                         # images, zoomed insets, WSRT vs DRT, photo vs render, and
+                                         # clamp vs Reinhard tone mapping recomputed from the DRT .pfm);
+                                         # --photo takes a PNG, e.g. from a phone JPEG:
+                                         # sips -s format png --resampleHeightWidthMax 1600 photo.jpg --out photo.png
 python3 scenes/tools/png2ppm.py photo.png scenes/textures/photo.ppm 512  # use a photo as a texture
 ```
 
@@ -137,8 +142,8 @@ These are not in pbrt-v4, so scenes that use them only work with this renderer.
   - `float key` (Reinhard's photographic key, 0 = off).
   - `float exposure`.
 - `AreaLightSource "diffuse"` also accepts `integer samples`, a per-light override of `lightsamples`.
-  `samples 0` makes an emitter visible but never sampled with shadow rays (its light reaches
-  surfaces only through paths that hit it), for small lights that add almost no illumination.
+  `samples 0` makes a visible-only emitter: seen directly and in mirrors/glass, but it does not
+  light the scene (for small decorative lights whose illumination is negligible).
 
 ## Known limitations
 

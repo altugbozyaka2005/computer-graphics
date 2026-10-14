@@ -11,7 +11,7 @@
 #  - Phong BRDF                   : glossy balls, cue and rack (kd + ks + kr <= 1)
 #  - depth of field (thin lens)   : focused on the glass of water (23.4 units); the far end of the
 #                                   table and the hall blur, like the photograph
-#  - Reinhard tone mapping        : on luminance, exposure 1.6, white point 4
+#  - Reinhard tone mapping        : on luminance, exposure 1.8, white point 4
 #
 # Settings chosen for this scene (see the Module 1 report):
 #  - maxdepth 12: the view through the water glass crosses 6 surfaces; with fewer levels the
@@ -29,8 +29,8 @@ LookAt 0 9.2 0   0 6.027 9.4832   0 1 0
 Camera "perspective" "float fov" [ 46.2 ] "float lensradius" [ 0.2 ] "float focaldistance" [ 23.4 ]
 Film "rgb" "integer xresolution" [ 1200 ] "integer yresolution" [ 1600 ]
     "string filename" [ "DRT_creative.png" ]
-    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float exposure" [ 1.6 ] "float whitepoint" [ 4.0 ]
-Sampler "independent" "integer pixelsamples" [ 64 ]
+    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float exposure" [ 1.8 ] "float whitepoint" [ 4.0 ]
+Sampler "independent" "integer pixelsamples" [ 256 ]
 Integrator "distributed" "integer maxdepth" [ 12 ] "integer lightsamples" [ 8 ]
     "bool transparentshadows" true "float minweight" [ 0.001 ] "bool caustics" false
 

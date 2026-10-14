@@ -1,6 +1,7 @@
-# Ceiling spots for the DRT: small emissive discs. "samples 0": visible and emitting, but
-# not sampled with shadow rays (they add < 0.1 % of the light; sampling them cost half of
-# all shadow rays). Their light still reaches the scene through paths that hit them.
+# Ceiling spots and wall lamps for the DRT: small emissive shapes with "samples 0":
+# visible-only emitters (seen directly and in mirrors/glass, they do not light the scene).
+# Their illumination would be < 0.1 % of the key light; as real lights they cost half of all
+# shadow rays, and as unsampled lights they caused speckles on the dark walls.
 AttributeBegin Translate 10 69.9 320.7 Rotate 90 1 0 0 NamedMaterial "spot"
   AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
@@ -32,4 +33,29 @@ AttributeEnd
 AttributeBegin Translate 60 69.9 -20 Rotate 90 1 0 0 NamedMaterial "spot"
   AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]
   Shape "disk" "float radius" [ 1.6 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  AreaLightSource "diffuse" "blackbody L" [ 2700 ] "float scale" [ 8 ] "integer samples" [ 0 ]
+  Shape "trianglemesh" "point3 P" [ -132.2 20.5 469.8  -132.2 23.5 469.8  -127.8 23.5 469.8  -127.8 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  AreaLightSource "diffuse" "blackbody L" [ 2700 ] "float scale" [ 8 ] "integer samples" [ 0 ]
+  Shape "trianglemesh" "point3 P" [ -87.2 20.5 469.8  -87.2 23.5 469.8  -82.8 23.5 469.8  -82.8 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  AreaLightSource "diffuse" "blackbody L" [ 2700 ] "float scale" [ 8 ] "integer samples" [ 0 ]
+  Shape "trianglemesh" "point3 P" [ 27.8 20.5 469.8  27.8 23.5 469.8  32.2 23.5 469.8  32.2 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  AreaLightSource "diffuse" "blackbody L" [ 2700 ] "float scale" [ 8 ] "integer samples" [ 0 ]
+  Shape "trianglemesh" "point3 P" [ 97.8 20.5 469.8  97.8 23.5 469.8  102.2 23.5 469.8  102.2 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  AreaLightSource "diffuse" "blackbody L" [ 2700 ] "float scale" [ 8 ] "integer samples" [ 0 ]
+  Shape "trianglemesh" "point3 P" [ 167.8 20.5 469.8  167.8 23.5 469.8  172.2 23.5 469.8  172.2 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
 AttributeEnd

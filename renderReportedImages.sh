@@ -14,6 +14,8 @@ echo "== Module 1"
 for s in WSRT_simple WSRT_creative DRT_simple DRT_creative; do
   if [ -f "scenes/$s.pbrt" ]; then render "$s"; else echo "$s: scenes/$s.pbrt missing"; FAILED=$((FAILED + 1)); fi
 done
+echo "== report figures (annotated images, insets, WSRT vs DRT)"
+if [ -n "${PHOTO:-}" ]; then python3 scenes/tools/make_figures.py --photo "$PHOTO"; else python3 scenes/tools/make_figures.py; fi
 echo
-if [ $FAILED -eq 0 ]; then echo "all renders finished; images and logs are in output/"; else echo "$FAILED render(s) failed or missing"; fi
+if [ $FAILED -eq 0 ]; then echo "all renders finished; images and logs are in output/, figures in output/figures/"; else echo "$FAILED render(s) failed or missing"; fi
 exit $FAILED

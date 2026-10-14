@@ -1,16 +1,17 @@
 # DRT_simple: every distributed-ray-tracer feature in one scene.
 #  - OBJ triangle mesh with per-vertex normals + UVs (smooth torus, wood texture)
-#  - emissive rectangle on the ceiling: area light, soft shadows (16 random shadow rays)
+#  - emissive rectangle on the ceiling: area light, soft shadows (4 random shadow rays per sample,
+#    1024 per pixel at 256 samples per pixel)
 #  - energy-conserving Phong BRDF: glossy blue sphere (Kd + Ks <= 1)
 #  - thin-lens camera: focus on the torus, foreground glass sphere is blurred
 #  - Reinhard tone mapping on luminance with a configurable white point
 LookAt 0 2 -7.5   0 1.4 0   0 1 0
 Camera "perspective" "float fov" [ 42 ] "float lensradius" [ 0.1 ] "float focaldistance" [ 8.0 ]
-Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+Film "rgb" "integer xresolution" [ 1200 ] "integer yresolution" [ 900 ]
     "string filename" [ "DRT_simple.png" ]
     "string tonemap" "reinhard" "string tonemapmode" "luminance" "float whitepoint" [ 1.6 ]
-Sampler "independent" "integer pixelsamples" [ 64 ]
-Integrator "distributed" "integer maxdepth" [ 3 ] "integer lightsamples" [ 16 ]
+Sampler "independent" "integer pixelsamples" [ 256 ]
+Integrator "distributed" "integer maxdepth" [ 3 ] "integer lightsamples" [ 4 ]
 
 WorldBegin
 

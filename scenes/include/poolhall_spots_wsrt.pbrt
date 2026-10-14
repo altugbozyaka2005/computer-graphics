@@ -8,3 +8,23 @@ AttributeBegin Translate 150.9 69.9 406.5 Rotate 90 1 0 0 NamedMaterial "spot" S
 AttributeBegin Translate -30 69.9 -25 Rotate 90 1 0 0 NamedMaterial "spot" Shape "disk" "float radius" [ 1.6 ] AttributeEnd
 AttributeBegin Translate 15 69.9 -30 Rotate 90 1 0 0 NamedMaterial "spot" Shape "disk" "float radius" [ 1.6 ] AttributeEnd
 AttributeBegin Translate 60 69.9 -20 Rotate 90 1 0 0 NamedMaterial "spot" Shape "disk" "float radius" [ 1.6 ] AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  Shape "trianglemesh" "point3 P" [ -132.2 20.5 469.8  -132.2 23.5 469.8  -127.8 23.5 469.8  -127.8 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  Shape "trianglemesh" "point3 P" [ -87.2 20.5 469.8  -87.2 23.5 469.8  -82.8 23.5 469.8  -82.8 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  Shape "trianglemesh" "point3 P" [ 27.8 20.5 469.8  27.8 23.5 469.8  32.2 23.5 469.8  32.2 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  Shape "trianglemesh" "point3 P" [ 97.8 20.5 469.8  97.8 23.5 469.8  102.2 23.5 469.8  102.2 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin NamedMaterial "walllamp"
+  Shape "trianglemesh" "point3 P" [ 167.8 20.5 469.8  167.8 23.5 469.8  172.2 23.5 469.8  172.2 20.5 469.8 ]
+    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd

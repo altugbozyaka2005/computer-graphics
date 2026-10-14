@@ -245,7 +245,7 @@ void SceneBuilder::shape(const std::string& type, const ParamSet& ps, const Tran
             ns = -1;
         }
         if (ns == 0)
-            LOG().info("area light with samples 0: visible and emitting, but not sampled with shadow rays");
+            LOG().info("area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)");
         al->nSamples = ns;
         if (area.params.has("filename")) {
             area.params.getString("filename", "");

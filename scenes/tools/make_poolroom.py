@@ -559,7 +559,7 @@ def block(lines):
 # Our table: local frame with x from the left cushion line (0) to the right cushion line
 # (48) and z from the near-end white strip (0) to the far-end cushion (65.8). In the world
 # it is rotated by -36.5 deg about y and translated to (-7.49, 0, 4.18).
-TABLE_T = (-7.49, 0.0, 4.18)
+TABLE_T = (-7.49, 4.18)  # (x, z), as for the other tables
 TABLE_ROT = -36.5
 TABLE_W, TABLE_L = 48.0, 65.8
 
@@ -584,6 +584,8 @@ OTHER_TABLES = [((-7.04, 258.3), 38.6, 64.0, 34.0), ((66.5, 365.2), 47.6, 70.0, 
 SPOTS = [(10.0, 320.7), (35.2, 339.3), (65.0, 348.0), (111.6, 374.4), (150.9, 406.5),
          (-30.0, -25.0), (15.0, -30.0), (60.0, -20.0)]  # last three: behind the camera (seen in reflections)
 CEILING_Y, FLOOR_Y = 70.0, -31.0
+PILLAR = ((-50.0, 440.0), (-15.0, 468.0))  # concrete column near the back wall (from the photograph)
+WALL_LAMPS = [-130.0, -85.0, 30.0, 100.0, 170.0]  # x positions of warm lamps on the back wall
 
 
 def table_block(local_lines, t, rot):
@@ -655,6 +657,9 @@ def geometry_include():
     a("  " + quad((-220, FLOOR_Y, -40), (-220, FLOOR_Y, 470), (-220, CEILING_Y, 470), (-220, CEILING_Y, -40)))
     a("  " + quad((260, FLOOR_Y, 470), (260, FLOOR_Y, -40), (260, CEILING_Y, -40), (260, CEILING_Y, 470)))
     a("AttributeEnd\n")
+    (px0, pz0), (px1, pz1) = PILLAR
+    a('# concrete pillar near the back wall\nAttributeBegin NamedMaterial "pillar"\n  ' +
+      box((px0, FLOOR_Y, pz0), (px1, CEILING_Y, pz1), 0.05) + 'AttributeEnd\n')
     a('# the hall behind the camera (only seen in reflections)\nAttributeBegin NamedMaterial "backwall"\n  ' +
       quad((260, FLOOR_Y, -40), (-220, FLOOR_Y, -40), (-220, CEILING_Y, -40), (260, CEILING_Y, -40)) + "AttributeEnd\n")
     a('AttributeBegin NamedMaterial "ceiling"\n  ' +
@@ -789,6 +794,8 @@ def materials():
         ("floor", "blinnphong", bp("floorwood", "0.04 0.04 0.04", 20, "0.06 0.06 0.06", tex=True)),
         ("wall", "blinnphong", bp("0.05 0.05 0.055", "0 0 0", 1, "0.05 0.05 0.05")),
         ("backwall", "blinnphong", bp("0.35 0.34 0.33", "0 0 0", 1, "0.6 0.6 0.6")),
+        ("pillar", "blinnphong", bp("0.42 0.42 0.4", "0.02 0.02 0.02", 10, "0.12 0.12 0.115")),
+        ("walllamp", "blinnphong", '"rgb Kd" [ 1 0.78 0.5 ] "rgb Ka" [ 1 1 1 ] "bool normalized" true'),
         ("ceiling", "blinnphong", bp("0.03 0.03 0.03", "0 0 0", 1, "0.05 0.05 0.05")),
         ("spot", "blinnphong", '"rgb Kd" [ 1 1 1 ] "rgb Ka" [ 1 1 0.95 ] "bool normalized" true'),
     ] + [("ball_" + t, "blinnphong", bp("tex_ball_" + t, "0.35 0.35 0.35", 600, kr="0.05 0.05 0.05", tex=True))
@@ -821,6 +828,8 @@ def materials():
         ("floor", "phong", ph("floorwood", "0.04 0.04 0.04", 20, tex=True)),
         ("wall", "diffuse", '"rgb reflectance" [ 0.05 0.05 0.055 ]'),
         ("backwall", "diffuse", '"rgb reflectance" [ 0.35 0.34 0.33 ]'),
+        ("pillar", "diffuse", '"rgb reflectance" [ 0.42 0.42 0.4 ]'),
+        ("walllamp", "diffuse", '"rgb reflectance" [ 0.8 0.8 0.8 ]'),
         ("ceiling", "diffuse", '"rgb reflectance" [ 0.03 0.03 0.03 ]'),
         ("spot", "diffuse", '"rgb reflectance" [ 0.8 0.8 0.8 ]'),
     ] + [  # clear coat as an ideal mirror (Kr) + a broader Phong lobe for the light highlights
@@ -842,15 +851,22 @@ def materials():
 def spots():
     w = ["# Ceiling spots for the WSRT: bright self-coloured discs (ambient term only), so that\n"
          "# they show in the image without adding extra shadow-casting lights.\n"]
-    d = ["# Ceiling spots for the DRT: small emissive discs. \"samples 0\": visible and emitting, but\n"
-         "# not sampled with shadow rays (they add < 0.1 % of the light; sampling them cost half of\n"
-         "# all shadow rays). Their light still reaches the scene through paths that hit them.\n"]
+    d = ["# Ceiling spots and wall lamps for the DRT: small emissive shapes with \"samples 0\":\n"
+         "# visible-only emitters (seen directly and in mirrors/glass, they do not light the scene).\n"
+         "# Their illumination would be < 0.1 % of the key light; as real lights they cost half of all\n"
+         "# shadow rays, and as unsampled lights they caused speckles on the dark walls.\n"]
     for x, z in SPOTS:
         w.append('AttributeBegin Translate %s %s %s Rotate 90 1 0 0 NamedMaterial "spot" Shape "disk" "float radius" [ 1.6 ] AttributeEnd\n'
                  % (fmt(x), fmt(CEILING_Y - 0.1), fmt(z)))
         d.append('AttributeBegin Translate %s %s %s Rotate 90 1 0 0 NamedMaterial "spot"\n'
                  '  AreaLightSource "diffuse" "blackbody L" [ 3500 ] "float scale" [ 40 ] "integer samples" [ 0 ]\n'
                  '  Shape "disk" "float radius" [ 1.6 ]\nAttributeEnd\n' % (fmt(x), fmt(CEILING_Y - 0.1), fmt(z)))
+    for x in WALL_LAMPS:  # warm lamps on the back wall, facing the room (-z)
+        lamp = quad((x - 2.2, 20.5, 469.8), (x - 2.2, 23.5, 469.8), (x + 2.2, 23.5, 469.8), (x + 2.2, 20.5, 469.8))
+        w.append('AttributeBegin NamedMaterial "walllamp"\n  ' + lamp + 'AttributeEnd\n')
+        d.append('AttributeBegin NamedMaterial "walllamp"\n'
+                 '  AreaLightSource "diffuse" "blackbody L" [ 2700 ] "float scale" [ 8 ] "integer samples" [ 0 ]\n  ' +
+                 lamp + 'AttributeEnd\n')
     for name, lines in (("poolhall_spots_wsrt.pbrt", w), ("poolhall_spots_drt.pbrt", d)):
         with open(os.path.join(INC, name), "w") as f:
             f.write("".join(lines))

@@ -9,7 +9,7 @@
 #  - two point lights              : configurable position + radiant intensity
 LookAt 0 2.6 -7.5   0 1 0   0 1 0
 Camera "perspective" "float fov" [ 40 ]
-Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+Film "rgb" "integer xresolution" [ 1200 ] "integer yresolution" [ 900 ]
     "string filename" [ "WSRT_simple.png" ]
 Sampler "independent" "integer pixelsamples" [ 4 ]
 Integrator "whitted" "integer maxdepth" [ 8 ] "rgb ambient" [ 1 1 1 ]
