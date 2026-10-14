@@ -73,7 +73,10 @@ Command-line overrides (each is recorded in the log). See `--help` for the full 
 ```
 
 The script builds the project and renders `WSRT_simple`, `WSRT_creative`, `DRT_simple` and
-`DRT_creative` into `output/`.
+`DRT_creative` into `output/`. It also renders two parameter checks with command-line overrides
+(each recorded in its log): `WSRT_simple` at `--maxdepth 1, 2, 3` (`WSRT_simple_md*`) and
+`DRT_simple` at `--spp 4 --lightsamples 1, 4, 16` (`DRT_simple_ls*`). Finally it writes the report
+figures to `output/figures/` (set `PHOTO=photo.png` to include the photograph sheet).
 
 Texture tools use only the Python 3 standard library:
 
@@ -81,8 +84,9 @@ Texture tools use only the Python 3 standard library:
 python3 scenes/tools/make_textures.py                                    # regenerates scenes/textures/*.ppm
 python3 scenes/tools/make_poolroom.py    # creative scenes: textures, meshes, include/poolhall_*.pbrt (--all: all 18 ball textures)
 python3 scenes/tools/make_figures.py [--photo photo.png]   # report figures in output/figures/ (annotated
-                                         # images, zoomed insets, WSRT vs DRT, photo vs render, and
-                                         # clamp vs Reinhard tone mapping recomputed from the DRT .pfm);
+                                         # images, zoomed insets, WSRT vs DRT, photo vs render,
+                                         # clamp vs Reinhard tone mapping recomputed from the DRT .pfm,
+                                         # and the maxdepth / light-sample parameter checks);
                                          # --photo takes a PNG, e.g. from a phone JPEG:
                                          # sips -s format png --resampleHeightWidthMax 1600 photo.jpg --out photo.png
 python3 scenes/tools/png2ppm.py photo.png scenes/textures/photo.ppm 512  # use a photo as a texture

@@ -14,6 +14,9 @@ plus
                         linear HDR output (<DRT>.pfm): clamp, Reinhard on luminance (as rendered),
                         Reinhard per channel, Reinhard with another white point; plus enlarged regions
   photo_vs_render.png   (with --photo PATH.png) photograph | WSRT_creative | DRT_creative
+  WSRT_simple_maxdepth.png, DRT_simple_lightsamples.png
+                        the same region of a scene rendered with one parameter changed (renders made
+                        by renderReportedImages.sh with command-line overrides)
 
 Callouts are placed by projecting each feature's 3D position with the same camera
 model as the renderer (pbrt LookAt, fov on the shorter image axis), so they stay on
@@ -187,6 +190,19 @@ TONEMAP_REGIONS = {
         ("White strip on the near rail", (0.5, 0.0, 12.15), 0.06),
     ],
 }
+
+
+# The same scene with one parameter changed (renderReportedImages.sh renders the variants with
+# command-line overrides): (figure, scene whose camera frames the region, region centre, half width
+# and half height as fractions of the image width, zoom, panels: (image stem, title))
+STRIPS = [
+    ("WSRT_simple_maxdepth", "WSRT_simple", (-0.6, 0.85, -0.3), 0.27, 0.19, 1,
+     [("WSRT_simple_md1", "maxdepth 1"), ("WSRT_simple_md2", "maxdepth 2"), ("WSRT_simple_md3", "maxdepth 3"),
+      ("WSRT_simple", "maxdepth 8 (the scene's value)")]),
+    ("DRT_simple_lightsamples", "DRT_simple", (-1.3, 0.0, 0.4), 0.125, 0.085, 2,
+     [("DRT_simple_ls1", "1 shadow ray x 4 spp = 4 per pixel"), ("DRT_simple_ls4", "4 x 4 spp = 16 per pixel"),
+      ("DRT_simple_ls16", "16 x 4 spp = 64 per pixel"), ("DRT_simple", "4 x 256 spp = 1024 per pixel (final)")]),
+]
 
 
 # ---------------------------------------------------------------- PNG I/O
@@ -1034,6 +1050,31 @@ def photo_vs_render(photo, outdir, figdir):
     print("wrote photo_vs_render.png (photograph | WSRT_creative | DRT_creative)")
 
 
+def param_strips(outdir, figdir):
+    for fig, cam, anchor, hw, hh, z, panels in STRIPS:
+        paths = [os.path.join(outdir, stem + ".png") for stem, _ in panels]
+        if not all(os.path.exists(p) for p in paths):
+            print("skip %s.png: variants not rendered yet (renderReportedImages.sh renders them)" % fig)
+            continue
+        imgs = [load_png(p) for p in paths]
+        W, H = imgs[0][0], imgs[0][1]
+        cx, cy = project(cam, anchor, W, H)
+        box = (int(cx - hw * W), int(cy - hh * W), int(cx + hw * W), int(cy + hh * W))
+        crops = [crop_scaled(im, *box, z) for im in imgs]
+        tp, pad, cols = 26, 12, 2
+        title_h = line_height(tp) + 4 if get_font() is not None else 0
+        cw, ch = max(c[0] for c in crops), max(c[1] for c in crops)
+        nrows = (len(crops) + cols - 1) // cols
+        sheet = new_image(cols * (cw + pad) + pad, nrows * (title_h + ch + pad) + pad)
+        for i, (c, (_, title)) in enumerate(zip(crops, panels)):
+            ox, oy = pad + (i % cols) * (cw + pad), pad + (i // cols) * (title_h + ch + pad)
+            draw_text(sheet, ox, oy, "%d  %s" % (i + 1, title), tp, (0, 0, 0), bold=True)
+            paste(sheet, c, ox, oy + title_h)
+            draw_rect(sheet, ox, oy + title_h, ox + c[0], oy + title_h + c[1], (0, 0, 0), 2)
+        save_png(os.path.join(figdir, fig + ".png"), sheet)
+        print("wrote %s.png" % fig)
+
+
 def main():
     args = sys.argv[1:]
     outdir = os.path.join(HERE, "..", "..", "output")
@@ -1048,6 +1089,7 @@ def main():
     compare(outdir, figdir)
     for name in ("DRT_simple", "DRT_creative"):
         tonemap_figure(name, outdir, figdir)
+    param_strips(outdir, figdir)
     if photo:
         photo_vs_render(photo, outdir, figdir)
 
