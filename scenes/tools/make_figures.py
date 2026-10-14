@@ -2,9 +2,12 @@
 """Report figures for the Module 1 images (Python 3 standard library only).
 
 For each rendered image (output/<name>.png) this writes, into output/figures/:
-  <name>_annotated.png  numbered callouts with arrows and frames around the zoomed regions
-  <name>_insets.png     the framed regions enlarged, each with its number
-  <name>_legend.txt     number -> feature, as a starting point for the captions
+  <name>_annotated.png        numbered callouts with arrows and frames around the zoomed regions,
+                              a title bar (renderer, resolution, samples and render time from the
+                              log) and a key with a short label for every callout
+  <name>_annotated_plain.png  the same callouts without the title bar and key
+  <name>_insets.png           the framed regions enlarged, each with its number, label and zoom
+  <name>_legend.txt           number -> full description of each region
 plus
   compare_wsrt_drt.png  the same regions of WSRT_creative and DRT_creative side by side
   <DRT>_tonemap.png     DRT_simple / DRT_creative with four tone mappings recomputed from the
@@ -15,6 +18,9 @@ plus
 Callouts are placed by projecting each feature's 3D position with the same camera
 model as the renderer (pbrt LookAt, fov on the shorter image axis), so they stay on
 target if the images are re-rendered at another resolution.
+
+Text is drawn with a TrueType font read by a small built-in rasteriser (Arial on macOS,
+DejaVu or Liberation Sans on Linux); without such a font the figures have no text.
 
 Usage: python3 scenes/tools/make_figures.py [--outdir output] [--photo photo.png]
   (a JPEG photo can be converted first: sips -s format png --resampleHeightWidthMax 1600 photo.jpg --out photo.png;
@@ -75,51 +81,76 @@ def _cue_point(t):
     return (CUE_TIP[0] + (CUE_BUTT[0] - CUE_TIP[0]) * t, 0.3, CUE_TIP[1] + (CUE_BUTT[1] - CUE_TIP[1]) * t)
 
 
-# (label, 3D anchor, region half-size as a fraction of the image width, badge direction (dx, dy))
+# (short label drawn on the figures, full label for the legend file, 3D anchor,
+#  region half-size as a fraction of the image width, badge direction (dx, dy))
 FEATURES = {
     "WSRT_creative": [
-        ("Mirror reflection (recursive): steel grater", (GRATER_POS[0] + 0.4, 4.6, GRATER_POS[1] - 1.3), 0.07, (1, -1)),
-        ("Refraction, Fresnel and total internal reflection: water glass (balls behind are swapped)",
+        ("Mirror reflection (grater)", "Mirror reflection (recursive): steel grater",
+         (GRATER_POS[0] + 0.4, 4.6, GRATER_POS[1] - 1.3), 0.07, (1, -1)),
+        ("Refraction, Fresnel, TIR (glass)",
+         "Refraction, Fresnel and total internal reflection: water glass (balls behind are swapped)",
          (GLASS_POS[0], 3.0, GLASS_POS[1] - 1.6), 0.09, (1, -1)),
-        ("Refraction through faceted crystal (cap)", (PERFUME_POS[0], 3.3, PERFUME_POS[1] - 1.4), 0.06, (-1, -1)),
-        ("Coloured transparent shadow (amber bottle, filtered shadow rays)", (-4.3, 0.0, 15.6), 0.07, (-1, 1)),
-        ("Light through the grater holes: dots of light in its shadow (alpha cut-outs)", (-9.0, 0.0, 23.0), 0.06, (1, 1)),
-        ("Hard shadows from two point lights: cool key (towards camera) and warm fill (to the left)",
+        ("Refraction (faceted crystal cap)", "Refraction through faceted crystal (cap)",
+         (PERFUME_POS[0], 3.3, PERFUME_POS[1] - 1.4), 0.06, (-1, -1)),
+        ("Coloured filtered shadow (bottle)", "Coloured transparent shadow (amber bottle, filtered shadow rays)",
+         (-4.3, 0.0, 15.6), 0.07, (-1, 1)),
+        ("Alpha cut-outs: light dots",
+         "Light through the grater holes: dots of light in its shadow (alpha cut-outs)",
+         (-9.0, 0.0, 23.0), 0.06, (1, 1)),
+        ("Hard shadows, two point lights",
+         "Hard shadows from two point lights: cool key (towards camera) and warm fill (to the left)",
          (5.6, 0.0, 19.9), 0.07, (1, 1)),
-        ("Blinn-Phong: ambient, diffuse and a small specular highlight", (-1.82, 1.55, 23.19 - 0.6), 0.045, (-1, 1)),
-        ("UV texture on a sphere (numbered ball)", (5.19, 1.0, 26.07 - 1.0), 0.045, (1, -1)),
-        ("Textures on triangles: felt weave and speckled rail (+ white strip)", (0.64, 1.5, 10.0), 0.06, (-1, -1)),
-        ("Triangles + object instancing: rack built from one bar", (-4.52, 0.5, 43.57), 0.06, (1, -1)),
+        ("Blinn-Phong shading (ball 3)", "Blinn-Phong: ambient, diffuse and a small specular highlight",
+         (-1.82, 1.55, 23.19 - 0.6), 0.045, (-1, 1)),
+        ("UV texture on a sphere (ball 11)", "UV texture on a sphere (numbered ball)",
+         (5.19, 1.0, 26.07 - 1.0), 0.045, (1, -1)),
+        ("Textures on triangles (felt, rail)", "Textures on triangles: felt weave and speckled rail (+ white strip)",
+         (0.64, 1.5, 10.0), 0.06, (-1, -1)),
+        ("Triangles + instancing (rack)", "Triangles + object instancing: rack built from one bar",
+         (-4.52, 0.5, 43.57), 0.06, (1, -1)),
     ],
     "DRT_creative": [
-        ("Soft shadows (penumbra) from the area key light", (5.6, 0.0, 19.9), 0.07, (1, 1)),
-        ("Phong BRDF: glossy highlight and clear-coat reflection", (5.19, 1.6, 26.07 - 0.8), 0.045, (1, -1)),
-        ("OBJ meshes with vertex normals: smooth refraction through the glass", (GLASS_POS[0], 3.0, GLASS_POS[1] - 1.6),
-         0.09, (-1, -1)),
-        ("Texture on a mesh through its UVs: cue wood", _cue_point(0.1), 0.035, (1, -1)),
-        ("Depth of field: background out of focus (thin lens): wall lamp bokeh", (30.0, 22.0, 469.8), 0.06, (-1, 1)),
-        ("Depth of field: near rail out of focus", (3.11, 1.5, 12.03), 0.07, (1, 1)),
-        ("Filtered (transparent) shadow of the glass: dark walls, light passing through the middle",
+        ("Soft shadow (area key light)", "Soft shadows (penumbra) from the area key light",
+         (5.6, 0.0, 19.9), 0.07, (1, 1)),
+        ("Phong BRDF highlight (ball 11)", "Phong BRDF: glossy highlight and clear-coat reflection",
+         (5.19, 1.6, 26.07 - 0.8), 0.045, (1, -1)),
+        ("Smooth OBJ meshes (glass, water)", "OBJ meshes with vertex normals: smooth refraction through the glass",
+         (GLASS_POS[0], 3.0, GLASS_POS[1] - 1.6), 0.09, (-1, -1)),
+        ("Texture on mesh UVs (cue wood)", "Texture on a mesh through its UVs: cue wood", _cue_point(0.1), 0.035,
+         (1, -1)),
+        ("Depth of field: lamp bokeh", "Depth of field: background out of focus (thin lens): wall lamp bokeh",
+         (30.0, 22.0, 469.8), 0.06, (-1, 1)),
+        ("Depth of field: near rail blurred", "Depth of field: near rail out of focus", (3.11, 1.5, 12.03), 0.07,
+         (1, 1)),
+        ("Filtered shadow of the glass",
+         "Filtered (transparent) shadow of the glass: dark walls, light passing through the middle",
          (0.9, 0.0, 18.7), 0.1, (-1, 1)),
-        ("Reinhard tone mapping: the brightest felt keeps its gradation instead of clipping "
+        ("Reinhard: bright felt not clipped",
+         "Reinhard tone mapping: the brightest felt keeps its gradation instead of clipping "
          "(see DRT_creative_tonemap.png)", (-10.52, 0.0, 59.31), 0.04, (1, -1)),
     ],
     "WSRT_simple": [
-        ("Recursive mirror reflection (sphere)", (-1.7, 1.0, 0.8), 0.08, (1, -1)),
-        ("Refraction + Fresnel + total internal reflection (glass sphere)", (0.3, 0.95, -1.6), 0.07, (1, 1)),
-        ("Blinn-Phong highlight (red sphere)", (2.1, 0.95, 0.2 - 0.5), 0.06, (1, -1)),
-        ("UV texture on a sphere", (0.6, 1.574, 1.781), 0.06, (1, -1)),
-        ("UV texture on a plane (checker floor) + hard shadow of the glass sphere", (-0.6, 0.0, -1.2), 0.06, (-1, 1)),
-        ("UV texture on triangles (brick wall)", (3.5, 3.5, 5.0), 0.07, (1, -1)),
-        ("Single triangle primitive", (-3.35, 1.85, 2.8), 0.045, (-1, -1)),
+        ("Recursive mirror reflection", "Recursive mirror reflection (sphere)", (-1.7, 1.0, 0.8), 0.08, (1, -1)),
+        ("Refraction, Fresnel, TIR (glass)", "Refraction + Fresnel + total internal reflection (glass sphere)",
+         (0.3, 0.95, -1.6), 0.07, (1, 1)),
+        ("Blinn-Phong highlight", "Blinn-Phong highlight (red sphere)", (2.1, 0.95, 0.2 - 0.5), 0.06, (1, -1)),
+        ("UV texture on a sphere", "UV texture on a sphere", (0.6, 1.574, 1.781), 0.06, (1, -1)),
+        ("Plane texture + hard shadow", "UV texture on a plane (checker floor) + hard shadow of the glass sphere",
+         (-0.6, 0.0, -1.2), 0.06, (-1, 1)),
+        ("Texture on triangles (wall)", "UV texture on triangles (brick wall)", (3.5, 3.5, 5.0), 0.07, (1, -1)),
+        ("Single triangle", "Single triangle primitive", (-3.35, 1.85, 2.8), 0.045, (-1, -1)),
     ],
     "DRT_simple": [
-        ("OBJ triangle mesh: smooth normals + UV wood texture (torus)", (-1.5, 1.4, 0.65), 0.045, (-1, -1)),
-        ("Area light (emissive rectangle)", (0.7, 3.98, 1.2), 0.05, (1, 1)),
-        ("Soft shadow (penumbra) of the torus", (-1.7, 0.0, 0.5), 0.05, (-1, 1)),
-        ("Energy-conserving Phong BRDF (glossy sphere)", (1.25, 0.92, 0.85), 0.08, (1, -1)),
-        ("Depth of field: foreground glass sphere out of focus", (0.45, 0.45, -2.4), 0.08, (-1, 1)),
-        ("Reinhard tone mapping: the highlight rolls off into white (see DRT_simple_tonemap.png)",
+        ("OBJ mesh: normals + UVs", "OBJ triangle mesh: smooth normals + UV wood texture (torus)",
+         (-1.5, 1.4, 0.65), 0.045, (-1, -1)),
+        ("Area light (emissive quad)", "Area light (emissive rectangle)", (0.7, 3.98, 1.2), 0.05, (1, 1)),
+        ("Soft shadow (penumbra)", "Soft shadow (penumbra) of the torus", (-1.7, 0.0, 0.5), 0.05, (-1, 1)),
+        ("Energy-conserving Phong BRDF", "Energy-conserving Phong BRDF (glossy sphere)", (1.25, 0.92, 0.85), 0.08,
+         (1, -1)),
+        ("Depth of field (thin lens)", "Depth of field: foreground glass sphere out of focus", (0.45, 0.45, -2.4),
+         0.08, (-1, 1)),
+        ("Reinhard: highlight roll-off",
+         "Reinhard tone mapping: the highlight rolls off into white (see DRT_simple_tonemap.png)",
          (-0.95, 0.72, 0.3), 0.035, (1, 1)),
     ],
 }
@@ -134,13 +165,16 @@ COMPARE = [
 
 
 # Tone mappings for <DRT>_tonemap.png, applied to the linear HDR output with the renderer's operator
-# (source/core/image.cpp): (label, op, mode, white point: None = the scene's, 0 = maximum luminance,
+# (source/core/image.cpp): (title, label, op, mode, white point: None = the scene's, 0 = maximum luminance,
 # which is what the renderer uses when the scene gives no white point)
 TONEMAP_VARIANTS = [
-    ("No tone mapping: linear radiance x exposure, clamped to [0, 1]", "none", "luminance", None),
-    ("Reinhard on luminance with the scene's white point (the rendered image)", "reinhard", "luminance", None),
-    ("Reinhard per channel (rgb) with the same white point", "reinhard", "rgb", None),
-    ("Reinhard on luminance with white point = maximum luminance", "reinhard", "luminance", 0.0),
+    ("Clamp (no tone mapping)", "No tone mapping: linear radiance x exposure, clamped to [0, 1]",
+     "none", "luminance", None),
+    ("Reinhard, luminance (rendered)", "Reinhard on luminance with the scene's white point (the rendered image)",
+     "reinhard", "luminance", None),
+    ("Reinhard, per channel", "Reinhard per channel (rgb) with the same white point", "reinhard", "rgb", None),
+    ("Reinhard, luminance, white = max", "Reinhard on luminance with white point = maximum luminance",
+     "reinhard", "luminance", 0.0),
 ]
 # Regions enlarged under the four panels: (label, anchor, half-size fraction)
 TONEMAP_REGIONS = {
@@ -378,7 +412,380 @@ def resize_box(img, W2, H2):
     return out
 
 
+# ---------------------------------------------------------------- text (TrueType outlines, stdlib only)
+class Font:
+    """Minimal TrueType reader and rasteriser: cmap format 4, simple and composite glyphs,
+    quadratic outlines filled with the non-zero winding rule and 4 sub-scanlines per pixel."""
+
+    def __init__(self, path):
+        d = self.d = open(path, "rb").read()
+        self.tables = {}
+        for i in range(struct.unpack(">H", d[4:6])[0]):
+            tag, _, off, length = struct.unpack(">4sIII", d[12 + 16 * i:28 + 16 * i])
+            self.tables[tag.decode("latin-1")] = off
+        head, hhea = self.tables["head"], self.tables["hhea"]
+        self.upem = struct.unpack(">H", d[head + 18:head + 20])[0]
+        self.long_loca = struct.unpack(">h", d[head + 50:head + 52])[0] == 1
+        self.ascent, self.descent = struct.unpack(">hh", d[hhea + 4:hhea + 8])
+        self.n_hmetrics = struct.unpack(">H", d[hhea + 34:hhea + 36])[0]
+        self.cmap = self._read_cmap()
+        self.cache = {}
+
+    def _read_cmap(self):
+        d, base = self.d, self.tables["cmap"]
+        sub = None
+        for i in range(struct.unpack(">H", d[base + 2:base + 4])[0]):
+            pid, eid, off = struct.unpack(">HHI", d[base + 4 + 8 * i:base + 12 + 8 * i])
+            if (pid, eid) in ((3, 1), (0, 3), (0, 4)) and struct.unpack(">H", d[base + off:base + off + 2])[0] == 4:
+                sub = base + off
+                break
+        if sub is None:
+            raise ValueError("no Unicode format-4 cmap")
+        seg2 = struct.unpack(">H", d[sub + 6:sub + 8])[0]
+        seg = seg2 // 2
+        ends = struct.unpack(">%dH" % seg, d[sub + 14:sub + 14 + seg2])
+        starts = struct.unpack(">%dH" % seg, d[sub + 16 + seg2:sub + 16 + 2 * seg2])
+        deltas = struct.unpack(">%dh" % seg, d[sub + 16 + 2 * seg2:sub + 16 + 3 * seg2])
+        ro = sub + 16 + 3 * seg2
+        ranges = struct.unpack(">%dH" % seg, d[ro:ro + seg2])
+        cmap = {}
+        for code in list(range(32, 127)) + [0xB0, 0xB2, 0xB7, 0xD7, 0x2013, 0x2014, 0x2192, 0x2248, 0x2264, 0x2265]:
+            for k in range(seg):
+                if code <= ends[k]:
+                    if code >= starts[k]:
+                        if ranges[k] == 0:
+                            g = (code + deltas[k]) & 0xFFFF
+                        else:
+                            a = ro + 2 * k + ranges[k] + 2 * (code - starts[k])
+                            g = struct.unpack(">H", d[a:a + 2])[0]
+                            g = (g + deltas[k]) & 0xFFFF if g else 0
+                        cmap[chr(code)] = g
+                    break
+        return cmap
+
+    def advance(self, g):
+        h = self.tables["hmtx"] + 4 * min(g, self.n_hmetrics - 1)
+        return struct.unpack(">H", self.d[h:h + 2])[0]
+
+    def _glyph_range(self, g):
+        d, loca = self.d, self.tables["loca"]
+        if self.long_loca:
+            a, b = struct.unpack(">II", d[loca + 4 * g:loca + 4 * g + 8])
+        else:
+            a, b = (2 * v for v in struct.unpack(">HH", d[loca + 2 * g:loca + 2 * g + 4]))
+        return self.tables["glyf"] + a, b - a
+
+    def contours(self, g, depth=0):
+        """Outline of glyph g as contours of (x, y, on_curve) in font units (y up)."""
+        d = self.d
+        off, length = self._glyph_range(g)
+        if length == 0 or depth > 4:
+            return []
+        n = struct.unpack(">h", d[off:off + 2])[0]
+        p = off + 10
+        if n >= 0:
+            ends = struct.unpack(">%dH" % n, d[p:p + 2 * n])
+            p += 2 * n
+            p += 2 + struct.unpack(">H", d[p:p + 2])[0]
+            npts = ends[-1] + 1 if n else 0
+            flags = []
+            while len(flags) < npts:
+                f = d[p]
+                p += 1
+                flags.append(f)
+                if f & 8:
+                    flags.extend([f] * d[p])
+                    p += 1
+            coords = []
+            for short, same in ((2, 16), (4, 32)):
+                v, vals = 0, []
+                for f in flags[:npts]:
+                    if f & short:
+                        v += d[p] if f & same else -d[p]
+                        p += 1
+                    elif not f & same:
+                        v += struct.unpack(">h", d[p:p + 2])[0]
+                        p += 2
+                    vals.append(v)
+                coords.append(vals)
+            pts = [(coords[0][i], coords[1][i], bool(flags[i] & 1)) for i in range(npts)]
+            out, s = [], 0
+            for e in ends:
+                out.append(pts[s:e + 1])
+                s = e + 1
+            return out
+        out = []
+        while True:  # composite glyph
+            fl, gi = struct.unpack(">HH", d[p:p + 4])
+            p += 4
+            if fl & 1:
+                a1, a2 = struct.unpack(">hh", d[p:p + 4])
+                p += 4
+            else:
+                a1, a2 = struct.unpack(">bb", d[p:p + 2])
+                p += 2
+            m = (1.0, 0.0, 0.0, 1.0)
+            if fl & 8:
+                s = struct.unpack(">h", d[p:p + 2])[0] / 16384.0
+                m = (s, 0.0, 0.0, s)
+                p += 2
+            elif fl & 0x40:
+                sx, sy = (v / 16384.0 for v in struct.unpack(">hh", d[p:p + 4]))
+                m = (sx, 0.0, 0.0, sy)
+                p += 4
+            elif fl & 0x80:
+                m = tuple(v / 16384.0 for v in struct.unpack(">hhhh", d[p:p + 8]))
+                p += 8
+            dx, dy = (a1, a2) if fl & 2 else (0, 0)
+            for c in self.contours(gi, depth + 1):
+                out.append([(m[0] * x + m[2] * y + dx, m[1] * x + m[3] * y + dy, on) for x, y, on in c])
+            if not fl & 0x20:
+                return out
+
+    def glyph(self, ch, px):
+        """(coverage rows, left, top, advance) of a character at pixel size px (em height)."""
+        key = (ch, px)
+        if key in self.cache:
+            return self.cache[key]
+        g = self.cmap.get(ch, self.cmap.get("?", 0))
+        s = px / self.upem
+        edges = []
+        for c in self.contours(g):
+            poly = _ttf_flatten(c)
+            for i in range(len(poly)):
+                (x0, y0), (x1, y1) = poly[i], poly[(i + 1) % len(poly)]
+                if y0 != y1:
+                    edges.append((x0 * s, -y0 * s, x1 * s, -y1 * s))
+        adv = self.advance(g) * s
+        if not edges:
+            res = ([], 0, 0, adv)
+        else:
+            xmin = math.floor(min(min(e[0], e[2]) for e in edges))
+            xmax = math.ceil(max(max(e[0], e[2]) for e in edges))
+            ymin = math.floor(min(min(e[1], e[3]) for e in edges))
+            ymax = math.ceil(max(max(e[1], e[3]) for e in edges))
+            w, h, S = xmax - xmin, ymax - ymin, 4
+            rows = [[0.0] * (w + 1) for _ in range(h)]
+            for yy in range(h):
+                row = rows[yy]
+                for k in range(S):
+                    ys = ymin + yy + (k + 0.5) / S
+                    xs = []
+                    for x0, y0, x1, y1 in edges:
+                        if (y0 <= ys < y1) or (y1 <= ys < y0):
+                            xs.append((x0 + (ys - y0) / (y1 - y0) * (x1 - x0) - xmin, 1 if y1 > y0 else -1))
+                    xs.sort()
+                    wind = 0
+                    for i in range(len(xs) - 1):
+                        wind += xs[i][1]
+                        if wind:
+                            _ttf_span(row, xs[i][0], xs[i + 1][0], 1.0 / S)
+            res = (rows, xmin, ymin, adv)
+        self.cache[key] = res
+        return res
+
+
+def _ttf_flatten(contour, steps=6):
+    """TrueType quadratic contour (implied on-curve midpoints) -> closed polyline."""
+    pts = [(x, y, on) for x, y, on in contour]
+    if not pts:
+        return []
+    if not any(on for _, _, on in pts):
+        x0, y0, _ = pts[0]
+        x1, y1, _ = pts[1 % len(pts)]
+        pts.insert(0, ((x0 + x1) / 2, (y0 + y1) / 2, True))
+    while not pts[0][2]:
+        pts.append(pts.pop(0))
+    out = [(pts[0][0], pts[0][1])]
+    n, i = len(pts), 1
+    cur = (pts[0][0], pts[0][1])
+    while i <= n:
+        x, y, on = pts[i % n]
+        if on:
+            cur = (x, y)
+            out.append(cur)
+            i += 1
+            continue
+        nx, ny, non = pts[(i + 1) % n]
+        end = (nx, ny) if non else ((x + nx) / 2, (y + ny) / 2)
+        for k in range(1, steps + 1):
+            t = k / steps
+            out.append(((1 - t) ** 2 * cur[0] + 2 * (1 - t) * t * x + t * t * end[0],
+                        (1 - t) ** 2 * cur[1] + 2 * (1 - t) * t * y + t * t * end[1]))
+        cur = end
+        i += 2 if non else 1
+    return out
+
+
+def _ttf_span(row, xa, xb, amt):
+    if xb <= xa:
+        return
+    ia, ib = int(math.floor(xa)), int(math.floor(xb))
+    ia, ib = max(ia, 0), min(ib, len(row) - 1)
+    if ia == ib:
+        row[ia] += (xb - xa) * amt
+        return
+    row[ia] += (ia + 1 - xa) * amt
+    for i in range(ia + 1, ib):
+        row[i] += amt
+    row[ib] += (xb - ib) * amt
+
+FONT_FILES = {
+    False: ["/System/Library/Fonts/Supplemental/Arial.ttf", "/Library/Fonts/Arial.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "/usr/share/fonts/TTF/DejaVuSans.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", "C:/Windows/Fonts/arial.ttf"],
+    True: ["/System/Library/Fonts/Supplemental/Arial Bold.ttf", "/Library/Fonts/Arial Bold.ttf",
+           "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf",
+           "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", "C:/Windows/Fonts/arialbd.ttf"],
+}
+_fonts = {}
+
+
+def get_font(bold=False):
+    """The first readable font in FONT_FILES (bold falls back to regular); None if there is none."""
+    if bold not in _fonts:
+        _fonts[bold] = None
+        for path in FONT_FILES[bold]:
+            try:
+                _fonts[bold] = Font(path)
+                break
+            except (OSError, ValueError, KeyError, IndexError, struct.error):
+                continue
+        if _fonts[bold] is None and bold:
+            _fonts[bold] = get_font(False)
+    return _fonts[bold]
+
+
+def text_width(s, px, bold=False):
+    f = get_font(bold)
+    return 0 if f is None else sum(f.glyph(ch, px)[3] for ch in s)
+
+
+def line_height(px):
+    return int(round(px * 1.25))
+
+
+def draw_text(img, x, y, s, px, col, bold=False):
+    """Draws s at pixel size px with the top of its line at y; returns the advance width."""
+    f = get_font(bold)
+    if f is None:
+        return 0
+    base = int(round(y + f.ascent * px / f.upem))
+    x0 = x
+    for ch in s:
+        rows, left, top, adv = f.glyph(ch, px)
+        ox, oy = int(round(x)) + left, base + top
+        for j, row in enumerate(rows):
+            for i, a in enumerate(row):
+                if a > 0.004:
+                    _blend(img, ox + i, oy + j, col, a)
+        x += adv
+    return x - x0
+
+
+def wrap_text(s, px, width, bold=False):
+    lines, cur = [], ""
+    for word in s.split():
+        t = word if not cur else cur + " " + word
+        if cur and text_width(t, px, bold) > width:
+            lines.append(cur)
+            cur = word
+        else:
+            cur = t
+    return lines + ([cur] if cur else [])
+
+
+def fill_rect(img, x0, y0, x1, y1, col):
+    w, h, d = img
+    xa, xb = max(0, int(x0)), min(w, int(x1))
+    for y in range(max(0, int(y0)), min(h, int(y1))):
+        if xb > xa:
+            d[(y * w + xa) * 3:(y * w + xb) * 3] = bytes(col) * (xb - xa)
+
+
 # ---------------------------------------------------------------- figures
+def _render_info(outdir, name):
+    """Renderer, resolution, samples per pixel and render time from <name>.log, for title bars."""
+    try:
+        log = open(os.path.join(outdir, name + ".log")).read()
+    except OSError:
+        return ""
+    parts = []
+    m = re.search(r"integrator: (\w+)", log)
+    if m:
+        parts.append({"whitted": "Whitted ray tracer", "distributed": "distributed ray tracer"}.get(m.group(1),
+                                                                                                m.group(1)))
+    m = re.search(r"film: (\d+)x(\d+), (\d+) spp", log)
+    if m:
+        parts.append("%s×%s px, %s spp" % m.groups())
+    m = re.search(r"render \(s\):\s+([0-9.]+)", log)
+    if m:
+        t = float(m.group(1))
+        parts.append("render " + ("%.2f s" % t if t < 1 else "%.0f s" % t if t < 600 else "%.0f min" % (t / 60)))
+    return " · ".join(parts)
+
+
+def _labelled(ann, title, info, keys):
+    """The annotated image with a title bar above it and a key of the numbered callouts below."""
+    if get_font() is None:
+        return ann
+    W, H = ann[0], ann[1]
+    px = max(16, int(round(W / 34)))
+    sub = int(round(px * 0.72))
+    pad = int(round(px * 0.55))
+    lh = line_height(px)
+    head_h = pad + lh + (line_height(sub) if info else 0) + pad
+    cols = 2 if W >= 900 else 1
+    col_w = (W - pad * (cols + 1)) // cols
+    r = px * 0.62
+    tx = int(round(2 * r + pad))
+    entries = [(n, wrap_text(s, px, col_w - tx)) for n, s in keys]
+    rows = [entries[i:i + cols] for i in range(0, len(entries), cols)]
+    row_h = [max(max(len(lines) * lh for _, lines in row), int(2 * r + 6)) + pad // 2 for row in rows]
+    out = new_image(W, head_h + H + pad + sum(row_h) + pad)
+    fill_rect(out, 0, 0, W, head_h, (30, 30, 30))
+    draw_text(out, pad, pad, title, px, (255, 255, 255), bold=True)
+    if info:
+        draw_text(out, pad, pad + lh, info, sub, (205, 205, 205))
+    paste(out, ann, 0, head_h)
+    y = head_h + H + pad
+    for row, h in zip(rows, row_h):
+        for c, (n, lines) in enumerate(row):
+            x0 = pad + c * (col_w + pad)
+            block = len(lines) * lh
+            cy = y + max(r + 3, block / 2)
+            badge(out, x0 + r + 3, cy, r, n)
+            for k, line in enumerate(lines):
+                draw_text(out, x0 + tx, cy - block / 2 + k * lh, line, px, (0, 0, 0))
+        y += h
+    return out
+
+
+def _inset_sheet(tiles, rad):
+    """The enlarged regions in rows of three, each with its number, label and zoom factor."""
+    pad, cols = 12, 3
+    tw = max(t[3][0] for t in tiles)
+    th = max(t[3][1] for t in tiles)
+    font = get_font() is not None
+    cp = max(14, int(round(tw / 16)))
+    lh = line_height(cp)
+    caps = [(wrap_text("%d  %s" % (n, s), cp, tw, bold=True) + ["zoom ×%d" % z]) if font else []
+            for n, s, z, _ in tiles]
+    cap_h = max(len(c) for c in caps) * lh + 6 if font else 0
+    nrows = (len(tiles) + cols - 1) // cols
+    sheet = new_image(cols * (tw + pad) + pad, nrows * (th + cap_h + pad) + pad)
+    for k, ((n, s, z, tile), cap) in enumerate(zip(tiles, caps)):
+        ox, oy = pad + (k % cols) * (tw + pad), pad + (k // cols) * (th + cap_h + pad)
+        paste(sheet, tile, ox, oy)
+        draw_rect(sheet, ox, oy, ox + tile[0], oy + tile[1], (0, 0, 0), 2)
+        badge(sheet, ox + rad + 6, oy + rad + 6, rad, n)
+        for i, line in enumerate(cap):
+            last = i == len(cap) - 1
+            draw_text(sheet, ox, oy + tile[1] + 4 + i * lh, line, cp, (110, 110, 110) if last else (0, 0, 0),
+                      bold=not last)
+    return sheet
+
+
 def annotate(name, outdir, figdir):
     path = os.path.join(outdir, name + ".png")
     if not os.path.exists(path):
@@ -389,8 +796,8 @@ def annotate(name, outdir, figdir):
     ann = [W, H, bytearray(img[2])]
     lw = max(2.0, W / 400)
     rad = max(14, W / 48)
-    tiles, legend = [], []
-    for n, (label, anchor, hs, (dx, dy)) in enumerate(FEATURES[name], 1):
+    tiles, legend, keys = [], [], []
+    for n, (short, label, anchor, hs, (dx, dy)) in enumerate(FEATURES[name], 1):
         px, py = project(name, anchor, W, H)
         r = int(hs * W)
         x0, y0, x1, y1 = int(px - r), int(py - r), int(px + r), int(py + r)
@@ -408,25 +815,17 @@ def annotate(name, outdir, figdir):
         draw_arrow(ann, bx, by, cx, cy, (0, 0, 0), lw + 2)
         draw_arrow(ann, bx, by, cx, cy, (255, 214, 0), lw)
         badge(ann, bx, by, rad, n)
-        tiles.append((n, crop_scaled(img, x0, y0, x1, y1, max(1, round(360 / (x1 - x0))))))
+        z = max(1, round(360 / (x1 - x0)))
+        tiles.append((n, short, z, crop_scaled(img, x0, y0, x1, y1, z)))
         legend.append("%d  %s" % (n, label))
+        keys.append((n, short))
     os.makedirs(figdir, exist_ok=True)
-    save_png(os.path.join(figdir, name + "_annotated.png"), ann)
-    # insets sheet: tiles in rows of 3, each with its number
-    tw = max(t[1][0] for t in tiles)
-    th = max(t[1][1] for t in tiles)
-    cols = 3
-    rows = (len(tiles) + cols - 1) // cols
-    pad = 12
-    sheet = new_image(cols * (tw + pad) + pad, rows * (th + pad) + pad, (255, 255, 255))
-    for k, (n, tile) in enumerate(tiles):
-        ox, oy = pad + (k % cols) * (tw + pad), pad + (k // cols) * (th + pad)
-        paste(sheet, tile, ox, oy)
-        draw_rect(sheet, ox, oy, ox + tile[0], oy + tile[1], (0, 0, 0), 2)
-        badge(sheet, ox + rad + 6, oy + rad + 6, rad, n)
-    save_png(os.path.join(figdir, name + "_insets.png"), sheet)
+    save_png(os.path.join(figdir, name + "_annotated_plain.png"), ann)
+    save_png(os.path.join(figdir, name + "_annotated.png"), _labelled(ann, name, _render_info(outdir, name), keys))
+    save_png(os.path.join(figdir, name + "_insets.png"), _inset_sheet(tiles, rad))
     with open(os.path.join(figdir, name + "_legend.txt"), "w") as f:
-        f.write("%s: numbered regions in %s_annotated.png / %s_insets.png\n" % (name, name, name))
+        f.write("%s: numbered regions in %s_annotated.png, %s_annotated_plain.png and %s_insets.png\n"
+                % (name, name, name, name))
         f.write("\n".join(legend) + "\n")
     print("wrote figures for %s (%d callouts)" % (name, len(tiles)))
 
@@ -443,12 +842,23 @@ def compare(outdir, figdir):
         px, py = project("WSRT_creative", anchor, W, H)
         r = int(hs * W)
         box = (int(px - r), int(py - r), int(px + r), int(py + r))
-        tiles.append((crop_scaled(A, *box, 1), crop_scaled(B, *box, 1)))
+        tiles.append((crop_scaled(A, *box, 2), crop_scaled(B, *box, 2)))
     tw, th, pad = max(t[0][0] for t in tiles), max(t[0][1] for t in tiles), 12
-    sheet = new_image(2 * tw + 3 * pad, len(tiles) * (th + pad) + pad)
+    font = get_font() is not None
+    tp = 28
+    lh = line_height(tp) if font else 0
+    head = lh + pad if font else 0
+    cap = lh + 4 if font else 0
+    sheet = new_image(2 * tw + 3 * pad, pad + head + len(tiles) * (cap + th + pad))
     rad = max(14, W / 48)
+    if font:
+        draw_text(sheet, pad, pad, "WSRT_creative (Whitted)", tp, (0, 0, 0), bold=True)
+        draw_text(sheet, 2 * pad + tw, pad, "DRT_creative (distributed)", tp, (0, 0, 0), bold=True)
     for k, (ta, tb) in enumerate(tiles):
-        oy = pad + k * (th + pad)
+        oy = pad + head + k * (cap + th + pad)
+        if font:
+            draw_text(sheet, pad, oy, "%d  %s" % (k + 1, COMPARE[k][0]), tp, (60, 60, 60))
+        oy += cap
         for j, t in enumerate((ta, tb)):
             ox = pad + j * (tw + pad)
             paste(sheet, t, ox, oy)
@@ -456,7 +866,7 @@ def compare(outdir, figdir):
         badge(sheet, pad + rad + 6, oy + rad + 6, rad, k + 1)
     save_png(os.path.join(figdir, "compare_wsrt_drt.png"), sheet)
     with open(os.path.join(figdir, "compare_wsrt_drt_legend.txt"), "w") as f:
-        f.write("compare_wsrt_drt.png: left column WSRT_creative, right column DRT_creative\n")
+        f.write("compare_wsrt_drt.png: left column WSRT_creative, right column DRT_creative (regions enlarged x2)\n")
         f.write("\n".join("%d  %s" % (k + 1, c[0]) for k, c in enumerate(COMPARE)) + "\n")
     print("wrote compare_wsrt_drt.png")
 
@@ -499,6 +909,10 @@ def tonemap(hdr, op, mode, scale, white):
     return [w, h, out], clipped / n, white
 
 
+def _num(v):
+    return "%.0f" % v if v >= 100 else "%.3g" % v
+
+
 def tonemap_figure(name, outdir, figdir):
     pfm, png, log = (os.path.join(outdir, name + ext) for ext in (".pfm", ".png", ".log"))
     if not all(os.path.exists(p) for p in (pfm, png, log)):
@@ -513,14 +927,15 @@ def tonemap_figure(name, outdir, figdir):
     scale, white = float(m.group(4).rstrip(",")), float(m.group(5))
     hdr = load_pfm(pfm)
     W, H = hdr[0], hdr[1]
-    imgs, notes = [], []
-    for label, op, md, wp in TONEMAP_VARIANTS:
+    imgs, stats, notes = [], [], []
+    for title, label, op, md, wp in TONEMAP_VARIANTS:
         img, clipped, used = tonemap(hdr, op, md, scale, white if wp is None else wp)
         imgs.append(img)
-        wtxt = "" if op == "none" else ", white point %.3g" % used
+        stats.append((used, clipped))
+        wtxt = "" if op == "none" else ", white point %s" % _num(used)
         notes.append("%s (exposure %.3g%s): %.2f%% of pixels at white" % (label, scale, wtxt, 100 * clipped))
     # the variant with the scene's own settings must reproduce the rendered PNG
-    k = next(i for i, v in enumerate(TONEMAP_VARIANTS) if v[1] == "reinhard" and v[2] == mode and v[3] is None)
+    k = next(i for i, v in enumerate(TONEMAP_VARIANTS) if v[2] == "reinhard" and v[3] == mode and v[4] is None)
     ref = load_png(png)
     worst = differing = 0
     for a, b in zip(ref[2], imgs[k][2]):
@@ -531,8 +946,12 @@ def tonemap_figure(name, outdir, figdir):
         k + 1, name, name, worst, 100 * differing / len(ref[2]))
     if worst > 2:
         print("  warning: " + check)
-    # sheet: the four versions at half size (2 x 2), then one row of enlarged regions per region
+    # sheet: the four versions at half size (2 x 2) with titles, then one row of enlarged regions per region
+    font = get_font() is not None
     pad, pw, ph = 12, W // 2, H // 2
+    tp = max(16, int(round(pw / 26)))
+    lh = line_height(tp)
+    title_h = 2 * lh + 6 if font else 0
     sheet_w = 2 * pw + 3 * pad
     cell = (sheet_w - 5 * pad) // 4
     rad, srad = max(14, pw / 30), max(10, cell / 16)
@@ -548,17 +967,29 @@ def tonemap_figure(name, outdir, figdir):
             if c[0] > cell:
                 c = resize_box(c, cell, max(1, c[1] * cell // c[0]))
             crops.append(c)
-        rows.append((box, crops))
-    sheet = new_image(sheet_w, 2 * ph + 3 * pad + sum(max(c[1] for c in cr) + pad for _, cr in rows))
+        rows.append((label, box, crops))
+    row_cap = lh + 6 if font else 0
+    sheet = new_image(sheet_w, 3 * pad + 2 * (title_h + ph) + sum(row_cap + max(c[1] for c in cr) + pad
+                                                                  for _, _, cr in rows))
     for i, im in enumerate(imgs):
-        ox, oy = pad + (i % 2) * (pw + pad), pad + (i // 2) * (ph + pad)
+        ox, oy = pad + (i % 2) * (pw + pad), pad + (i // 2) * (title_h + ph + pad)
+        if font:
+            used, clipped = stats[i]
+            detail = ("exposure %.3g" % scale) if TONEMAP_VARIANTS[i][2] == "none" else ("white point " + _num(used))
+            draw_text(sheet, ox, oy, "%d  %s" % (i + 1, TONEMAP_VARIANTS[i][0]), tp, (0, 0, 0), bold=True)
+            draw_text(sheet, ox, oy + lh, "%s · %.2f%% of pixels at white" % (detail, 100 * clipped), tp,
+                      (90, 90, 90))
+        oy += title_h
         paste(sheet, resize_box(im, pw, ph), ox, oy)
-        for (x0, y0, x1, y1), _ in rows:
+        for _, (x0, y0, x1, y1), _ in rows:
             draw_rect(sheet, ox + x0 // 2, oy + y0 // 2, ox + x1 // 2, oy + y1 // 2, (255, 214, 0), 2)
         draw_rect(sheet, ox, oy, ox + pw, oy + ph, (0, 0, 0), 2)
         badge(sheet, ox + rad + 6, oy + rad + 6, rad, i + 1)
-    oy = 2 * ph + 3 * pad
-    for _, crops in rows:
+    oy = pad + 2 * (title_h + ph + pad)
+    for label, _, crops in rows:
+        if font:
+            draw_text(sheet, pad, oy, "Enlarged (yellow frame): " + label, tp, (60, 60, 60))
+            oy += row_cap
         for j, c in enumerate(crops):
             ox = pad + j * (cell + pad)
             paste(sheet, c, ox, oy)
@@ -568,12 +999,12 @@ def tonemap_figure(name, outdir, figdir):
     os.makedirs(figdir, exist_ok=True)
     save_png(os.path.join(figdir, name + "_tonemap.png"), sheet)
     with open(os.path.join(figdir, name + "_tonemap_legend.txt"), "w") as f:
-        f.write("%s_tonemap.png: one HDR render (%s.pfm, max luminance %s, log-average %s) shown with four\n"
-                "tone mappings; panels 1 2 (top) and 3 4 (bottom); the rows under them enlarge the framed\n"
-                "regions with the same numbers\n" % (name, name, max_lum, log_avg))
-        f.write("\n".join("%d  %s" % (i + 1, t) for i, t in enumerate(notes)) + "\n")
-        f.write("regions, top to bottom: " + "; ".join(t[0] for t in TONEMAP_REGIONS.get(name, [])) + "\n")
-        f.write("check: " + check + "\n")
+        f.write("%s_tonemap.png: one HDR render (%s.pfm, max luminance %s, log-average %s) shown with four\\n"
+                "tone mappings; panels 1 2 (top) and 3 4 (bottom); the rows under them enlarge the framed\\n"
+                "regions with the same numbers\\n" % (name, name, max_lum, log_avg))
+        f.write("\\n".join("%d  %s" % (i + 1, t) for i, t in enumerate(notes)) + "\\n")
+        f.write("regions, top to bottom: " + "; ".join(t[0] for t in TONEMAP_REGIONS.get(name, [])) + "\\n")
+        f.write("check: " + check + "\\n")
     print("wrote %s_tonemap.png (%s)" % (name, check))
 
 
@@ -591,10 +1022,13 @@ def photo_vs_render(photo, outdir, figdir):
     ph = 1000
     scaled = [resize_box(p, int(round(p[0] * ph / p[1])), ph) for p in panels]
     pad = 12
-    sheet = new_image(sum(s[0] for s in scaled) + pad * (len(scaled) + 1), ph + 2 * pad)
+    tp = 30
+    head = line_height(tp) + 6 if get_font() is not None else 0
+    sheet = new_image(sum(s[0] for s in scaled) + pad * (len(scaled) + 1), ph + 2 * pad + head)
     ox = pad
-    for s in scaled:
-        paste(sheet, s, ox, pad)
+    for s, title in zip(scaled, ("Photograph", "WSRT_creative (Whitted)", "DRT_creative (distributed)")):
+        draw_text(sheet, ox, pad, title, tp, (0, 0, 0), bold=True)
+        paste(sheet, s, ox, pad + head)
         ox += s[0] + pad
     save_png(os.path.join(figdir, "photo_vs_render.png"), sheet)
     print("wrote photo_vs_render.png (photograph | WSRT_creative | DRT_creative)")
