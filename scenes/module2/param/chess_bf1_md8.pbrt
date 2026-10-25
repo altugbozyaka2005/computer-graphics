@@ -1,0 +1,9 @@
+# Module 2, 2.2.4 sweep for param_small_low: BF 1, MD 8, 16 samples per pixel (study resolution).
+LookAt 3.6 4.6 -7.8   0.4 0.5 0.6   0 1 0
+Camera "perspective" "float fov" [ 38 ]
+Film "rgb" "integer xresolution" [ 400 ] "integer yresolution" [ 300 ]
+    "string filename" [ "chess_bf1_md8.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 16 ]
+Integrator "distributed" "integer maxdepth" [ 8 ] "integer branchingfactor" [ 1 ] "integer lightsamples" [ 1 ]
+
+Include "../../include/m2_chess.pbrt"

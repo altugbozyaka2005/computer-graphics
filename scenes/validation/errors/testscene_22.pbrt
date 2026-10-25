@@ -1,0 +1,8 @@
+# testscene_22 (see README.txt)
+LookAt 0 3 -8  0 1 0  0 1 0
+Camera "perspective" "float fov" [ 45 ]
+Film "rgb" "integer xresolution" [ 64 ] "integer yresolution" [ 48 ] "string filename" [ "testsuite_my_22.pfm" ]
+Sampler "independent" "integer pixelsamples" [ 4 ]
+PixelFilter "box"
+Integrator "path" "integer maxdepth" [ 1 ]
+Shape "sphere" "float radius" [ 1 ]

@@ -1,0 +1,27 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:44:05
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_25.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out val_err_25
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_25.pbrt
+[INFO] hardware threads: 15
+[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_25.pbrt:4:1: xresolution -64 out of range [1,16384]; using 1280
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_25.pbrt:7:1: integrator 'path' mapped to 'distributed' (for comparison with pbrt)
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 45.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 1280x48, 4 spp (independent, 4 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 1 primitives (0 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 1 objects, 1 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.13046, scale 1.00000, white point 0.13046 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/val_err_25.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/val_err_25.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0004
+render (s):          0.0013
+tonemap+write (s):   0.0020
+total (s):           0.0041
+camera rays:         245760
+secondary rays:      0
+shadow rays:         468
+ray-primitive tests: 1547
+rays by depth:       0:245760
+Mrays/s:             195.833
+---- result ----
+OK: errors: 1, warnings: 1

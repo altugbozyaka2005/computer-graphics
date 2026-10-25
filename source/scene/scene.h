@@ -16,10 +16,18 @@
 struct FilmSettings {
     int xRes = 1280, yRes = 720;
     double crop[4] = {0, 1, 0, 1};  // xmin xmax ymin ymax (normalised)
+    int pixelBounds[4] = {0, 0, 0, 0};  // x0 x1 y0 y1 (pixels, end exclusive); used when hasPixelBounds
+    bool hasPixelBounds = false;
     std::string filename = "pbrt.exr";
     bool filenameSpecified = false;
     ToneMapSettings tonemap;
     bool tonemapSpecified = false;
+};
+
+// Pixel reconstruction: equal-weight average of samples drawn from a box of these radii
+// around the pixel centre (pbrt-v4 box filter; 0.5 = the pixel itself).
+struct FilterSettings {
+    double xRadius = 0.5, yRadius = 0.5;
 };
 
 struct IntegratorSettings {
@@ -32,6 +40,11 @@ struct IntegratorSettings {
     bool caustics = true;             // DRT: count lights reached via mirror/glass after a diffuse bounce
     // Distributed
     int lightSamples = 16;  // shadow rays per area light (sampling density)
+    LightSampling lightSampling = LightSampling::Uniform;  // sample pattern on the light
+    bool haltonRandomize = true;  // Cranley-Patterson rotation of the Halton light samples
+    // Branching factor BF: rays cast at each non-specular scattering event (diffuse/glossy
+    // Phong) of the ray tree; a camera ray spawns up to BF^d rays at depth d.
+    int branchingFactor = 1;
 };
 
 class Scene {
@@ -41,6 +54,7 @@ public:
     FilmSettings film;
     SamplerSettings sampler;
     bool samplerSpecified = false;
+    FilterSettings filter;
     IntegratorSettings integrator;
 
     // Content

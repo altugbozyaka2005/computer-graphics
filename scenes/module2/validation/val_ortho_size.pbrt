@@ -1,0 +1,13 @@
+# Module 2 validation: orthographic size invariance. Two spheres of radius 1, 2 and 12 units from the
+# camera, on a black background. Orthographic: both must be 2 r / (screen window width) * xres = 80 px
+# wide; perspective (val_ortho_size_persp.pbrt) draws the far one smaller.
+LookAt 0 0 -10  0 0 0  0 1 0
+Camera "orthographic" "float screenwindow" [ -4 4 -3 3 ]
+Film "rgb" "integer xresolution" [ 320 ] "integer yresolution" [ 240 ] "string filename" [ "val_ortho_size.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "whitted" "integer maxdepth" [ 1 ] "rgb ambient" [ 0 0 0 ]
+WorldBegin
+LightSource "distant" "point3 from" [ 0 0 -1 ] "point3 to" [ 0 0 0 ] "rgb L" [ 1 1 1 ]
+Material "blinnphong" "rgb Kd" [ 0.8 0.8 0.8 ]
+AttributeBegin Translate -2 0 -8 Shape "sphere" "float radius" [ 1 ] AttributeEnd
+AttributeBegin Translate 2 0 2 Shape "sphere" "float radius" [ 1 ] AttributeEnd

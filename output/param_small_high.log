@@ -1,0 +1,35 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:14:14
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/param_small_high.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out param_small_high
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/param_small_high.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_mirrors.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 48 triangles, 144 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 1280 triangles, 697 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 24, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 50.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 32 spp (independent, 32 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 1354 primitives (1352 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 11 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.03098, max luminance 1.41447, scale 1.00000, white point 1.41447 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/param_small_high.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/param_small_high.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0020
+render (s):          54.7722
+tonemap+write (s):   0.0304
+total (s):           54.8055
+camera rays:         15360000
+secondary rays:      256565434
+shadow rays:         357400063
+ray-primitive tests: 62066800634
+rays by depth:       0:15360000 1:15233476 2:14993936 3:14564739 4:14101994 5:13659561 6:13217057 7:12791926 8:12375963 9:11972133 10:11580586 11:11200796 12:10833865 13:10478188 14:10133708 15:9800443 16:9478570 17:9167329 18:8866904 19:8575260 20:8293508 21:8021916 22:7758300 23:7503454 24:1961822
+Mrays/s:             11.490
+---- result ----
+OK: errors: 0, warnings: 0

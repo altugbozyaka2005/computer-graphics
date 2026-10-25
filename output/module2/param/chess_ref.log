@@ -1,0 +1,41 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:34:37
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/chess_ref.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param --out chess_ref
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/chess_ref.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_chess.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 952 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 10, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 38.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x300, 2048 spp (independent, 2048 spp (uniform random)), tonemap none
+[INFO] scene: 10712 primitives (10712 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 16 objects, 5 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/chess_ref.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/chess_ref.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0117
+render (s):          189.2527
+tonemap+write (s):   0.0044
+total (s):           189.2711
+camera rays:         245760000
+secondary rays:      317085544
+shadow rays:         498808392
+ray-primitive tests: 463224064800
+rays by depth:       0:245760000 1:237820623 2:42623285 3:19123668 4:7916169 5:4122407 6:2213458 7:1447947 8:1000314 9:817673
+Mrays/s:             5.610
+---- result ----
+OK: errors: 0, warnings: 0

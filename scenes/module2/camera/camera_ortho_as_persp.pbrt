@@ -1,0 +1,10 @@
+# Module 2, 2.2.1: the town block of camera_ortho through a perspective camera from the same
+# direction: near houses are drawn larger than far ones and parallel streets converge.
+LookAt 10.1036 10.9036 -10.1036   0 0.8 0   0 1 0
+Camera "perspective" "float fov" [ 62 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "camera_ortho_as_persp.png" ]
+Sampler "stratified" "integer xsamples" [ 3 ] "integer ysamples" [ 3 ] "bool jitter" true
+Integrator "whitted" "integer maxdepth" [ 2 ] "rgb ambient" [ 0.12 0.12 0.14 ]
+
+Include "../../include/m2_town.pbrt"

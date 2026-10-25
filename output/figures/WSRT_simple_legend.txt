@@ -1,0 +1,8 @@
+WSRT_simple: numbered regions in WSRT_simple_annotated.png, WSRT_simple_annotated_plain.png and WSRT_simple_insets.png
+1  Recursive mirror reflection (sphere)
+2  Refraction + Fresnel + total internal reflection (glass sphere)
+3  Blinn-Phong highlight (red sphere)
+4  UV texture on a sphere
+5  UV texture on a plane (checker floor) + hard shadow of the glass sphere
+6  UV texture on triangles (brick wall)
+7  Single triangle primitive

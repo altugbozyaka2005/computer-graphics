@@ -1,0 +1,6 @@
+sampler_unif_16: numbered regions in sampler_unif_16_annotated.png and sampler_unif_16_insets.png
+1  axis-aligned box: edges parallel to the light grid
+2  rotated box
+3  sphere: curved penumbra
+4  thin pole: narrow penumbra
+5  grille: overlapping penumbrae

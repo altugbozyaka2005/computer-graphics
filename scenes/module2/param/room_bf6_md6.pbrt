@@ -1,0 +1,9 @@
+# Module 2, 2.2.4 sweep for param_large_high: BF 6, MD 6, 4 samples per pixel (study resolution).
+LookAt 0.2 1.55 -3.7   -0.1 1.15 1.8   0 1 0
+Camera "perspective" "float fov" [ 62 ]
+Film "rgb" "integer xresolution" [ 320 ] "integer yresolution" [ 240 ]
+    "string filename" [ "room_bf6_md6.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 4 ]
+Integrator "distributed" "integer maxdepth" [ 6 ] "integer branchingfactor" [ 6 ] "integer lightsamples" [ 1 ]
+
+Include "../../include/m2_room.pbrt"

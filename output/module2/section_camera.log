@@ -1,0 +1,23 @@
+== 2.2.1 camera models
+  roof sizes of the 16 identical houses (connected red-roof regions, pixels):
+    camera_ortho           16 roofs  area   4686 +-    21 px (min 4643, max 4706)  width 114.6 +-  0.5 px (min 114, max 115)
+    camera_ortho_as_persp  16 roofs  area   4202 +-  2892 px (min 1447, max 13156)  width  98.4 +- 24.0 px (min 65, max 159)
+  telegraph pole (height 5.2) image heights, exact projection:  z: perspective px / orthographic px
+    0: 607 / 416   10: 235 / 416   20: 145 / 416   40: 83 / 416   80: 44 / 416
+  field of view: red reference sphere (r 0.5 at (0, 0.5, 4)), measured vs exact projection (px)
+    image                fov diam meas diam pred tan(fov/2)     f_px diam*tan(fov/2)
+    camera_fov1           25     134.0     134.8      0.222   1353.2           29.9
+    camera_fov2           60      51.0      51.8      0.577    519.6           29.9
+    camera_fov3          100      24.0      25.1      1.192    251.7           29.9
+    camera_fov1_dolly     25      52.0      51.8      0.222   1353.2           11.5
+    camera_fov2_dolly     60      51.0      51.8      0.577    519.6           29.9
+    camera_fov3_dolly    100      52.0      51.8      1.192    251.7           61.7
+  wide-angle stretching of spheres away from the image centre (radial / tangential extent)
+    image              sphere             angle    meas    pred   1/cos
+    camera_fov1        reference           2.3d   1.000   1.001   1.001
+    camera_fov2        reference           2.3d   1.000   1.001   1.001
+    camera_fov3        near-left          45.5d   1.424   1.438   1.428
+    camera_fov3        near-right         45.5d   1.428   1.438   1.428
+    camera_fov3        reference           2.3d   1.000   1.001   1.001
+    camera_fov3_dolly  reference           4.7d   1.000   1.003   1.003
+  -> output/module2/camera.csv

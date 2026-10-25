@@ -1,0 +1,2 @@
+camera_fov3: numbered regions in camera_fov3_annotated.png and camera_fov3_insets.png
+1  reference sphere

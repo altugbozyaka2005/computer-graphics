@@ -1,0 +1,42 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:15:09
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/param_small_low.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out param_small_low
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/param_small_low.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_chess.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 952 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 38.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 16 spp (stratified 4x4 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 10712 primitives (10712 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 16 objects, 5 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00291, max luminance 0.40638, scale 1.00000, white point 0.40638 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/param_small_low.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/param_small_low.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0159
+render (s):          4.5529
+tonemap+write (s):   0.0293
+total (s):           4.5995
+camera rays:         7680000
+secondary rays:      7431981
+shadow rays:         13919786
+ray-primitive tests: 11747325390
+rays by depth:       0:7680000 1:7431981
+Mrays/s:             6.377
+---- result ----
+OK: errors: 0, warnings: 0

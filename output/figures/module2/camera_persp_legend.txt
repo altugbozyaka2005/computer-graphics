@@ -1,0 +1,4 @@
+camera_persp: numbered regions in camera_persp_annotated.png and camera_persp_insets.png
+1  rails converge to a vanishing point
+2  poles shrink as 1/z
+3  near pole

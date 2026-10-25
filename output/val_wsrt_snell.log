@@ -1,0 +1,24 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:47:41
+[INFO] command: ./output/CGR26_renderer scenes/validation/val_wsrt_snell.pbrt --quiet
+[INFO] scene: scenes/validation/val_wsrt_snell.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 1 triangles, 3 vertices
+[INFO] integrator: whitted, maxdepth 4
+[INFO] camera: perspective, fov 130.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 600x600, 64 spp, tonemap none
+[INFO] scene: 4 primitives (1 triangles, 1 planes), 2 point/spot/distant lights, 0 area lights, 3 objects, 4 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote ./output/val_wsrt_snell.png (display), ./output/val_wsrt_snell.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0004
+render (s):          0.5277
+tonemap+write (s):   0.0136
+total (s):           0.5427
+camera rays:         23040000
+secondary rays:      28181107
+shadow rays:         46295609
+ray-primitive tests: 195464350
+Mrays/s:             184.803
+---- result ----
+OK: errors: 0, warnings: 0

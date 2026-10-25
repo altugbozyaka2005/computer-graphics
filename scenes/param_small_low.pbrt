@@ -1,0 +1,10 @@
+# Module 2, 2.2.4: BF 1, MD 2: direct light from the spot dominates and the dark open room returns little light,
+# so one indirect ray per bounce and two levels already give the converged image.
+LookAt 3.6 4.6 -7.8   0.4 0.5 0.6   0 1 0
+Camera "perspective" "float fov" [ 38 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "param_small_low.png" ] "string tonemap" "reinhard"
+Sampler "stratified" "integer xsamples" [ 4 ] "integer ysamples" [ 4 ] "bool jitter" true
+Integrator "distributed" "integer maxdepth" [ 2 ] "integer branchingfactor" [ 1 ] "integer lightsamples" [ 1 ]
+
+Include "include/m2_chess.pbrt"

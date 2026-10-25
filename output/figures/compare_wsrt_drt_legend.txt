@@ -1,0 +1,5 @@
+compare_wsrt_drt.png: left column WSRT_creative, right column DRT_creative (regions enlarged x2)
+1  Hard vs soft shadows
+2  Glass: Whitted ray tree vs distributed paths
+3  Bottle shadow and crystal cap
+4  Pinhole vs thin lens: background

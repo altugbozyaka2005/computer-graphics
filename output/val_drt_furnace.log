@@ -1,0 +1,24 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:47:41
+[INFO] command: ./output/CGR26_renderer scenes/validation/val_drt_furnace.pbrt --quiet
+[INFO] scene: scenes/validation/val_drt_furnace.pbrt
+[INFO] hardware threads: 15
+[WARNING] scenes/validation/val_drt_furnace.pbrt:34:3: material 'phong': Kd + Ks + Kr > 1; the DRT clamps Kd to conserve energy (the WSRT uses it as given)
+[INFO] integrator: distributed, maxdepth 8, lightsamples 1
+[INFO] camera: perspective, fov 4.77, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 2000x250, 256 spp, tonemap none
+[INFO] scene: 4 primitives (0 triangles, 0 planes), 0 point/spot/distant lights, 0 area lights, 4 objects, 4 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote ./output/val_drt_furnace.png (display), ./output/val_drt_furnace.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0003
+render (s):          0.3952
+tonemap+write (s):   0.0174
+total (s):           0.4137
+camera rays:         128000000
+secondary rays:      7757071
+shadow rays:         0
+ray-primitive tests: 20263199
+Mrays/s:             343.513
+---- result ----
+OK: errors: 0, warnings: 1

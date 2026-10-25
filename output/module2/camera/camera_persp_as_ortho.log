@@ -1,0 +1,60 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 15:38:58
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/camera/camera_persp_as_ortho.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/camera --out camera_persp_as_ortho
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/camera/camera_persp_as_ortho.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_railway.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 360 triangles, 1080 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] integrator: whitted, maxdepth 2
+[INFO] camera: orthographic, screen window x [-5.000, 5.000], y [-2.100, 5.400] (camera-space units), lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 9 spp (stratified 3x3 (jittered)), tonemap none
+[INFO] scene: 3688 primitives (3688 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 35 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/camera/camera_persp_as_ortho.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/camera/camera_persp_as_ortho.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0049
+render (s):          0.1331
+tonemap+write (s):   0.0195
+total (s):           0.1584
+camera rays:         4320000
+secondary rays:      0
+shadow rays:         4320000
+ray-primitive tests: 204583895
+rays by depth:       0:4320000
+Mrays/s:             64.913
+---- result ----
+OK: errors: 0, warnings: 0

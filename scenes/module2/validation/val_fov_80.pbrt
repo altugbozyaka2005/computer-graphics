@@ -1,0 +1,11 @@
+# Module 2 validation: perspective field of view 80 degrees. A sphere of radius 1 at distance 10 on the
+# optical axis projects to a disc of radius f_px tan(asin(1/10)) with f_px = (yres/2) / tan(fov/2).
+LookAt 0 0 -10  0 0 0  0 1 0
+Camera "perspective" "float fov" [ 80 ]
+Film "rgb" "integer xresolution" [ 400 ] "integer yresolution" [ 300 ] "string filename" [ "val_fov_80.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "whitted" "integer maxdepth" [ 1 ] "rgb ambient" [ 0 0 0 ]
+WorldBegin
+LightSource "distant" "point3 from" [ 0 0 -1 ] "point3 to" [ 0 0 0 ] "rgb L" [ 1 1 1 ]
+Material "blinnphong" "rgb Kd" [ 0.8 0.8 0.8 ]
+Shape "sphere" "float radius" [ 1 ]

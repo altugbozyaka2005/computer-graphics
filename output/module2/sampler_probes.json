@@ -1,0 +1,62 @@
+{
+ "probes": [
+  [
+   "axis-aligned box: edges parallel to the light grid",
+   144,
+   337,
+   0.5001031832889663
+  ],
+  [
+   "rotated box",
+   435,
+   294,
+   0.4995814651057465
+  ],
+  [
+   "sphere: curved penumbra",
+   315,
+   326,
+   0.5000842550973116
+  ],
+  [
+   "thin pole: narrow penumbra",
+   448,
+   388,
+   0.7323109933052334
+  ],
+  [
+   "grille: overlapping penumbrae",
+   113,
+   400,
+   0.5116677354035968
+  ],
+  [
+   "fully lit",
+   320,
+   197,
+   1.0
+  ]
+ ],
+ "regions": [
+  [
+   "axis-aligned box: edges parallel to the light grid",
+   2674
+  ],
+  [
+   "rotated box",
+   2604
+  ],
+  [
+   "sphere: curved penumbra",
+   3593
+  ],
+  [
+   "thin pole: narrow penumbra",
+   3980
+  ],
+  [
+   "grille: overlapping penumbrae",
+   7209
+  ]
+ ]
+}

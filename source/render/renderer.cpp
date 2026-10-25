@@ -33,15 +33,23 @@ RNG pixelRNG(int px, int py, uint64_t seed) {
 RenderResult renderImage(const Scene& scene, const RenderOptions& opt) {
     RenderResult res;
     const FilmSettings& film = scene.film;
+    // Rendered pixel range: the crop window (pbrt-v4 rounds both ends up), or explicit pixel bounds.
     int x0 = (int)std::ceil(film.xRes * film.crop[0]), x1 = (int)std::ceil(film.xRes * film.crop[1]);
     int y0 = (int)std::ceil(film.yRes * film.crop[2]), y1 = (int)std::ceil(film.yRes * film.crop[3]);
+    if (film.hasPixelBounds) {
+        x0 = film.pixelBounds[0]; x1 = film.pixelBounds[1];
+        y0 = film.pixelBounds[2]; y1 = film.pixelBounds[3];
+    }
     if (x1 <= x0) x1 = x0 + 1;
     if (y1 <= y0) y1 = y0 + 1;
     int w = x1 - x0, h = y1 - y0;
     res.hdr = Image(w, h);
     Camera cam(scene.camera, film.xRes, film.yRes);
     auto integ = makeIntegrator(scene);
-    int spp = scene.sampler.pixelSamples;
+    const int spp = scene.sampler.samplesPerPixel();
+    // Box filter of radius r: film samples are spread over [-r, r]^2 around the pixel centre.
+    const double rx = scene.filter.xRadius, ry = scene.filter.yRadius;
+    const bool unitBox = rx == 0.5 && ry == 0.5;
 
     const int tile = 16;
     int tilesX = (w + tile - 1) / tile, tilesY = (h + tile - 1) / tile;
@@ -52,6 +60,7 @@ RenderResult renderImage(const Scene& scene, const RenderOptions& opt) {
 
     auto worker = [&]() {
         tlsStats = RayStats();
+        PixelSampler sampler(scene.sampler);
         while (true) {
             int t = next.fetch_add(1);
             if (t >= nTiles) break;
@@ -60,12 +69,14 @@ RenderResult renderImage(const Scene& scene, const RenderOptions& opt) {
                 for (int x = tx * tile; x < std::min(w, (tx + 1) * tile); ++x) {
                     int px = x0 + x, py = y0 + y;
                     RNG rng = pixelRNG(px, py, opt.seed + (uint64_t)scene.sampler.seed);
+                    sampler.startPixel(rng);
                     Color sum(0);
                     for (int s = 0; s < spp; ++s) {
-                        // One sample: the pixel centre (classic Whitted); several samples:
-                        // random positions inside the pixel.
-                        Vec2 off = spp == 1 ? Vec2(0.5, 0.5) : rng.uniform2();
-                        Vec2 uLens = rng.uniform2();
+                        // Supersampling: spp camera rays at the sampler's positions inside the
+                        // pixel, averaged with equal weights (box filter).
+                        Vec2 off, uLens;
+                        sampler.get(s, rng, &off, &uLens);
+                        if (!unitBox) off = Vec2(0.5 + (off.x - 0.5) * 2 * rx, 0.5 + (off.y - 0.5) * 2 * ry);
                         Ray ray = cam.generateRay(Vec2(px + off.x, py + off.y), uLens);
                         ++tlsStats.cameraRays;
                         Color c = integ->Li(ray, rng);

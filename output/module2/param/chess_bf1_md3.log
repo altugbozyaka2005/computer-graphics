@@ -1,0 +1,41 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:37:51
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/chess_bf1_md3.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param --out chess_bf1_md3
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/chess_bf1_md3.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_chess.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 952 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 3, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 38.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x300, 16 spp (independent, 16 spp (uniform random)), tonemap none
+[INFO] scene: 10712 primitives (10712 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 16 objects, 5 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/chess_bf1_md3.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/chess_bf1_md3.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0107
+render (s):          1.3018
+tonemap+write (s):   0.0065
+total (s):           1.3196
+camera rays:         1920000
+secondary rays:      2190127
+shadow rays:         3716737
+ray-primitive tests: 3320393076
+rays by depth:       0:1920000 1:1857803 2:332324
+Mrays/s:             6.012
+---- result ----
+OK: errors: 0, warnings: 0

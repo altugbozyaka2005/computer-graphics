@@ -1,0 +1,12 @@
+# pbrt-v4 reference for the sampler comparison: the same camera and world as sampler_*.pbrt.
+# Point sampling at the pixel centre (box filter of radius 1e-4), direct light only
+# (path, maxdepth 1), 16384 low-discrepancy samples per pixel.
+# Render: pbrt --outfile sampler_ref_pbrt.pfm sampler_ref_pbrt.pbrt
+LookAt 0 2.6 -4.6   0 0.25 0.6   0 1 0
+Camera "perspective" "float fov" [ 42 ]
+Film "rgb" "integer xresolution" [ 640 ] "integer yresolution" [ 480 ] "string filename" [ "sampler_ref_pbrt.pfm" ]
+Sampler "zsobol" "integer pixelsamples" [ 16384 ]
+PixelFilter "box" "float xradius" [ 0.0001 ] "float yradius" [ 0.0001 ]
+Integrator "path" "integer maxdepth" [ 1 ]
+
+Include "../../include/m2_study.pbrt"

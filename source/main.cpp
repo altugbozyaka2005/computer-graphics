@@ -7,9 +7,12 @@
 #include <new>
 #include <string>
 #include <thread>
+#include <vector>
+#include <cmath>
 
 #include "core/image.h"
 #include "core/log.h"
+#include "render/camera.h"
 #include "render/renderer.h"
 #include "scene/parser.h"
 
@@ -22,11 +25,17 @@ const char* kUsage =
     "  --out NAME            output file stem (default: stem of the Film \"filename\")\n"
     "  --threads N           worker threads (default: all hardware threads)\n"
     "  --seed N              random seed (default 0)\n"
-    "  --spp N               camera rays per pixel\n"
+    "  --spp N               camera rays per pixel (stratified: N must be a square, n x n cells)\n"
+    "  --sampler S           independent | stratified | halton (pixel sample positions)\n"
+    "  --nojitter            stratified sampler: samples at the cell centres (regular grid)\n"
     "  --integrator I        whitted | distributed\n"
-    "  --maxdepth N          maximum ray depth\n"
+    "  --maxdepth N          maximum ray depth (MD)\n"
+    "  --bf N                DRT branching factor (BF): rays per diffuse/glossy scattering event\n"
     "  --lightsamples N      DRT shadow rays per area light\n"
+    "  --lightsampling S     DRT light sample pattern: uniform | grid | stratified | halton\n"
     "  --res WxH             film resolution\n"
+    "  --pixelbounds X0,X1,Y0,Y1  render only these pixels (end exclusive), as pbrt --pixelbounds\n"
+    "  --cropwindow X0,X1,Y0,Y1   render only this part of the image (fractions in [0,1])\n"
     "  --ppm                 also write an 8-bit PPM\n"
     "  --quiet               no progress output\n";
 
@@ -62,9 +71,32 @@ std::string fmt(double v, int prec = 3) {
 }
 
 struct CliOverrides {
-    long spp = -1, maxDepth = -1, lightSamples = -1, xres = -1, yres = -1;
-    std::string integrator;
+    long spp = -1, maxDepth = -1, lightSamples = -1, bf = -1, xres = -1, yres = -1;
+    std::string integrator, sampler, lightSampling;
+    bool noJitter = false;
+    std::vector<double> pixelBounds, cropWindow;
 };
+
+// "a,b,c,d" -> four numbers.
+bool parseQuad(const std::string& v, std::vector<double>* out) {
+    out->clear();
+    size_t start = 0;
+    while (true) {
+        size_t c = v.find(',', start);
+        std::string part = v.substr(start, c == std::string::npos ? std::string::npos : c - start);
+        try {
+            size_t idx;
+            double d = std::stod(part, &idx);
+            if (idx != part.size()) return false;
+            out->push_back(d);
+        } catch (...) {
+            return false;
+        }
+        if (c == std::string::npos) break;
+        start = c + 1;
+    }
+    return out->size() == 4;
+}
 
 int run(int argc, char** argv) {
     std::string scenePath;
@@ -94,7 +126,16 @@ int run(int argc, char** argv) {
             else if (a == "--spp") num(&ov.spp, 1);
             else if (a == "--maxdepth") num(&ov.maxDepth, 0);
             else if (a == "--lightsamples") num(&ov.lightSamples, 1);
+            else if (a == "--bf") num(&ov.bf, 1);
             else if (a == "--integrator") ov.integrator = need(i);
+            else if (a == "--sampler") ov.sampler = need(i);
+            else if (a == "--nojitter") ov.noJitter = true;
+            else if (a == "--lightsampling") ov.lightSampling = need(i);
+            else if (a == "--pixelbounds" || a == "--cropwindow") {
+                std::string v = need(i);
+                std::vector<double>& q = a == "--pixelbounds" ? ov.pixelBounds : ov.cropWindow;
+                if (!parseQuad(v, &q)) throw std::runtime_error("invalid " + a + " '" + v + "' (expected 4 comma-separated numbers)");
+            }
             else if (a == "--res") {
                 std::string v = need(i);
                 size_t x = v.find('x');
@@ -162,10 +203,57 @@ int run(int argc, char** argv) {
         LOG().info(std::string("no Sampler given; default ") +
                    (whitted ? "1 ray through the pixel centre (classic Whitted)" : "16 random samples per pixel"));
     }
-    if (ov.spp > 0) { scene.sampler.pixelSamples = (int)ov.spp; LOG().info("override: spp = " + std::to_string(ov.spp)); }
-    if (ov.maxDepth >= 0) { scene.integrator.maxDepth = (int)ov.maxDepth; LOG().info("override: maxdepth = " + std::to_string(ov.maxDepth)); }
+    if (!ov.sampler.empty()) {
+        if (ov.sampler != "independent" && ov.sampler != "stratified" && ov.sampler != "halton")
+            LOG().error("--sampler must be independent, stratified or halton; ignored");
+        else {
+            if (ov.sampler == "stratified" && scene.sampler.type != "stratified") {
+                int n = std::max(1, (int)std::lround(std::sqrt((double)scene.sampler.pixelSamples)));
+                scene.sampler.xSamples = scene.sampler.ySamples = n;
+            } else if (ov.sampler != "stratified" && scene.sampler.type == "stratified") {
+                scene.sampler.pixelSamples = scene.sampler.samplesPerPixel();
+            }
+            scene.sampler.type = ov.sampler;
+            LOG().info("override: sampler = " + ov.sampler);
+        }
+    }
+    if (ov.spp > 0) {
+        if (scene.sampler.type == "stratified") {
+            int n = (int)std::lround(std::sqrt((double)ov.spp));
+            if (n * n != ov.spp) LOG().error("--spp " + std::to_string(ov.spp) + " is not a square (stratified sampler); using " + std::to_string(n * n));
+            scene.sampler.xSamples = scene.sampler.ySamples = std::max(1, n);
+        } else {
+            scene.sampler.pixelSamples = (int)ov.spp;
+        }
+        LOG().info("override: spp = " + std::to_string(scene.sampler.samplesPerPixel()));
+    }
+    if (ov.noJitter) { scene.sampler.jitter = false; LOG().info("override: jitter = false"); }
+    if (ov.maxDepth >= 0) { scene.integrator.maxDepth = (int)std::min(ov.maxDepth, 64L); LOG().info("override: maxdepth = " + std::to_string(scene.integrator.maxDepth)); }
+    if (ov.bf > 0) { scene.integrator.branchingFactor = (int)std::min(ov.bf, 4096L); LOG().info("override: branchingfactor = " + std::to_string(scene.integrator.branchingFactor)); }
     if (ov.lightSamples > 0) { scene.integrator.lightSamples = (int)ov.lightSamples; LOG().info("override: lightsamples = " + std::to_string(ov.lightSamples)); }
-    if (ov.xres > 0) { scene.film.xRes = (int)ov.xres; scene.film.yRes = (int)ov.yres; LOG().info("override: resolution"); }
+    if (!ov.lightSampling.empty()) {
+        if (parseLightSampling(ov.lightSampling, &scene.integrator.lightSampling)) LOG().info("override: lightsampling = " + ov.lightSampling);
+        else LOG().error("unknown --lightsampling '" + ov.lightSampling + "' (uniform|grid|stratified|halton); ignored");
+    }
+    if (ov.xres > 0) { scene.film.xRes = (int)ov.xres; scene.film.yRes = (int)ov.yres; scene.film.hasPixelBounds = false; LOG().info("override: resolution"); }
+    if (!ov.cropWindow.empty()) {
+        const std::vector<double>& c = ov.cropWindow;
+        if (c[0] >= 0 && c[1] <= 1 && c[0] < c[1] && c[2] >= 0 && c[3] <= 1 && c[2] < c[3]) {
+            for (int i = 0; i < 4; ++i) scene.film.crop[i] = c[i];
+            scene.film.hasPixelBounds = false;
+            LOG().info("override: cropwindow");
+        } else LOG().error("--cropwindow needs x0,x1,y0,y1 in [0,1] with x0 < x1, y0 < y1; ignored");
+    }
+    if (!ov.pixelBounds.empty()) {
+        const std::vector<double>& b = ov.pixelBounds;
+        bool ok = b[0] >= 0 && b[0] < b[1] && b[1] <= scene.film.xRes && b[2] >= 0 && b[2] < b[3] && b[3] <= scene.film.yRes;
+        for (double v : b) ok = ok && v == std::floor(v);
+        if (ok) {
+            scene.film.hasPixelBounds = true;
+            for (int i = 0; i < 4; ++i) scene.film.pixelBounds[i] = (int)b[i];
+            LOG().info("override: pixelbounds");
+        } else LOG().error("--pixelbounds needs integers x0,x1,y0,y1 inside the image with x0 < x1, y0 < y1; ignored");
+    }
     if (!scene.film.tonemapSpecified) scene.film.tonemap.op = whitted ? "none" : "reinhard";
 
     // ------------------------------------------------------------ scene summary
@@ -176,12 +264,28 @@ int run(int argc, char** argv) {
                (is.transparentShadows ? ", transparent (filtered) shadows" : "") +
                (is.minWeight > 0 ? ", min path weight " + fmt(is.minWeight, 4) : "") +
                (!whitted && !is.caustics ? ", caustic paths off" : "") +
-               (whitted ? "" : ", lightsamples " + std::to_string(is.lightSamples)));
-    LOG().info("camera: " + scene.camera.type + ", fov " + fmt(scene.camera.fov, 2) + ", lensradius " +
-               fmt(scene.camera.lensRadius, 4) + ", focaldistance " + fmt(scene.camera.focalDistance, 3));
+               (whitted ? "" : ", branchingfactor " + std::to_string(is.branchingFactor) + ", lightsamples " +
+                                   std::to_string(effectiveLightSamples(is.lightSampling, is.lightSamples)) + " (" +
+                                   lightSamplingName(is.lightSampling) +
+                                   (is.lightSampling == LightSampling::Halton && !is.haltonRandomize ? ", not randomized" : "") + ")"));
+    const CameraSettings& cs = scene.camera;
+    std::string view = ", fov " + fmt(cs.fov, 2);
+    if (cs.type == "orthographic") {
+        Camera cam(cs, scene.film.xRes, scene.film.yRes);
+        view = ", screen window x [" + fmt(cam.screen(0), 3) + ", " + fmt(cam.screen(1), 3) + "], y [" +
+               fmt(cam.screen(2), 3) + ", " + fmt(cam.screen(3), 3) + "] (camera-space units)";
+    }
+    LOG().info("camera: " + cs.type + view + ", lensradius " +
+               fmt(cs.lensRadius, 4) + ", focaldistance " + fmt(cs.focalDistance, 3));
     LOG().info("film: " + std::to_string(scene.film.xRes) + "x" + std::to_string(scene.film.yRes) + ", " +
-               std::to_string(scene.sampler.pixelSamples) + " spp, tonemap " + scene.film.tonemap.op +
-               (scene.film.tonemap.op == "reinhard" ? " (" + scene.film.tonemap.mode + ")" : ""));
+               std::to_string(scene.sampler.samplesPerPixel()) + " spp (" + scene.sampler.describe() + "), tonemap " +
+               scene.film.tonemap.op + (scene.film.tonemap.op == "reinhard" ? " (" + scene.film.tonemap.mode + ")" : "") +
+               (scene.filter.xRadius != 0.5 || scene.filter.yRadius != 0.5
+                    ? ", box filter radius " + fmt(scene.filter.xRadius, 4) + " x " + fmt(scene.filter.yRadius, 4) : "") +
+               (scene.film.hasPixelBounds ? ", pixel bounds [" + std::to_string(scene.film.pixelBounds[0]) + "," +
+                                                std::to_string(scene.film.pixelBounds[1]) + ") x [" +
+                                                std::to_string(scene.film.pixelBounds[2]) + "," +
+                                                std::to_string(scene.film.pixelBounds[3]) + ")" : ""));
     LOG().info("scene: " + std::to_string(scene.primitiveCount()) + " primitives (" + std::to_string(tris) +
                " triangles, " + std::to_string(scene.unbounded.size()) + " planes), " +
                std::to_string(scene.deltaLights.size()) + " point/spot/distant lights, " +
@@ -227,6 +331,10 @@ int run(int argc, char** argv) {
     LOG().raw("secondary rays:      " + std::to_string(s.secondaryRays));
     LOG().raw("shadow rays:         " + std::to_string(s.shadowRays));
     LOG().raw("ray-primitive tests: " + std::to_string(s.primTests));
+    std::string perDepth;
+    for (int d = 0; d < RayStats::kDepths; ++d)
+        if (s.depthRays[d]) perDepth += (perDepth.empty() ? "" : " ") + std::to_string(d) + ":" + std::to_string(s.depthRays[d]);
+    LOG().raw("rays by depth:       " + perDepth);
     if (rr.seconds > 0) LOG().raw("Mrays/s:             " + fmt(rays / rr.seconds / 1e6, 3));
     LOG().raw("---- result ----");
     LOG().raw(std::string(wok ? "OK" : "FAILED") + ": errors: " + std::to_string(LOG().errorCount()) +

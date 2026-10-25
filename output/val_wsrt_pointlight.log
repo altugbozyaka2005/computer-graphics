@@ -1,0 +1,23 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:47:41
+[INFO] command: ./output/CGR26_renderer scenes/validation/val_wsrt_pointlight.pbrt --quiet
+[INFO] scene: scenes/validation/val_wsrt_pointlight.pbrt
+[INFO] hardware threads: 15
+[INFO] integrator: whitted, maxdepth 1
+[INFO] camera: perspective, fov 50.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 200x150, 1 spp, tonemap none
+[INFO] scene: 1 primitives (0 triangles, 1 planes), 1 point/spot/distant lights, 0 area lights, 0 objects, 1 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote ./output/val_wsrt_pointlight.png (display), ./output/val_wsrt_pointlight.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0009
+render (s):          0.0004
+tonemap+write (s):   0.0026
+total (s):           0.0045
+camera rays:         30000
+secondary rays:      0
+shadow rays:         30000
+ray-primitive tests: 60000
+Mrays/s:             155.861
+---- result ----
+OK: errors: 0, warnings: 0

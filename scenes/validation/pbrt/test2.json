@@ -1,0 +1,10 @@
+{
+  "kind": "image",
+  "category": "camera",
+  "output": "testsuite_my_2",
+  "reference": "reference/testsuite_ref_2.pfm",
+  "metric": "mask",
+  "threshold": 0.004,
+  "mask_level": 0.01,
+  "scene": "testscene_2.pbrt"
+}

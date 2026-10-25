@@ -1,0 +1,26 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:53:37
+[INFO] command: ./output/CGR26_renderer scenes/validation/pbrt/testscene_2.pbrt --quiet --out val_pbrt_2
+[INFO] scene: scenes/validation/pbrt/testscene_2.pbrt
+[INFO] hardware threads: 15
+[WARNING] scenes/validation/pbrt/testscene_2.pbrt:6:1: PixelFilter "box" ignored: pixel samples are averaged with equal weights (box)
+[WARNING] scenes/validation/pbrt/testscene_2.pbrt:7:1: integrator 'path' mapped to 'distributed' (for comparison with pbrt)
+[INFO] integrator: distributed, maxdepth 1, lightsamples 16
+[INFO] camera: perspective, fov 30.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 192x108, 64 spp, tonemap reinhard (luminance)
+[INFO] scene: 9 primitives (0 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 9 objects, 1 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.76137, scale 1.00000, white point 0.76137 (auto = max)
+[INFO] wrote ./output/val_pbrt_2.png (display), ./output/val_pbrt_2.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0003
+render (s):          0.0072
+tonemap+write (s):   0.0008
+total (s):           0.0088
+camera rays:         1327104
+secondary rays:      49001
+shadow rays:         47740
+ray-primitive tests: 181232
+Mrays/s:             197.407
+---- result ----
+OK: errors: 0, warnings: 2

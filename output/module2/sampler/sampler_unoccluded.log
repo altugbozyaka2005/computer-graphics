@@ -1,0 +1,28 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 15:42:37
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/sampler/sampler_unoccluded.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/sampler --out sampler_unoccluded
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/sampler/sampler_unoccluded.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_study_open.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.280000
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16384 (stratified)
+[INFO] camera: perspective, fov 42.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 640x480, 1 spp (independent, 1 spp (pixel centre)), tonemap none
+[INFO] scene: 4 primitives (4 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 2 objects, 1 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/sampler/sampler_unoccluded.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/sampler/sampler_unoccluded.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0004
+render (s):          12.9435
+tonemap+write (s):   0.0155
+total (s):           12.9603
+camera rays:         307200
+secondary rays:      0
+shadow rays:         4907335680
+ray-primitive tests: 599040
+rays by depth:       0:307200
+Mrays/s:             379.158
+---- result ----
+OK: errors: 0, warnings: 0

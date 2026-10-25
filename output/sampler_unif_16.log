@@ -1,0 +1,32 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 15:41:58
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/sampler_unif_16.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out sampler_unif_16
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/sampler_unif_16.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_study.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.280000
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 108 triangles, 324 vertices
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 42.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 640x480, 1 spp (independent, 1 spp (pixel centre)), tonemap none
+[INFO] scene: 161 primitives (160 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 7 objects, 2 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/sampler_unif_16.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/sampler_unif_16.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0007
+render (s):          0.0690
+tonemap+write (s):   0.0138
+total (s):           0.0843
+camera rays:         307200
+secondary rays:      0
+shadow rays:         4405345
+ray-primitive tests: 60772589
+rays by depth:       0:307200
+Mrays/s:             68.259
+---- result ----
+OK: errors: 0, warnings: 0

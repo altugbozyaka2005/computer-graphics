@@ -1,0 +1,12 @@
+# Module 2 validation: the branching factor does not change the expected value, only the noise. A
+# diffuse sphere (reflectance 0.5) inside a uniform white environment (L = 1) has radiance 0.5 everywhere;
+# with BF rays per bounce the per-pixel standard deviation falls as 1 / sqrt(BF).
+LookAt 0 0 -6  0 0 0  0 1 0
+Camera "perspective" "float fov" [ 22 ]
+Film "rgb" "integer xresolution" [ 100 ] "integer yresolution" [ 100 ] "string filename" [ "val_bf_furnace.pfm" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 4 ]
+Integrator "distributed" "integer maxdepth" [ 4 ] "integer branchingfactor" [ 1 ] "integer lightsamples" [ 1 ]
+WorldBegin
+LightSource "infinite" "rgb L" [ 1 1 1 ]
+Material "diffuse" "rgb reflectance" [ 0.5 0.5 0.5 ]
+Shape "sphere" "float radius" [ 1 ]

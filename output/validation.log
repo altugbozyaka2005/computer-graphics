@@ -1,0 +1,130 @@
+== 1  WSRT point light vs analytic value (val_wsrt_pointlight)
+   30000 pixels compared; worst relative error 5.90e-08 at pixel (78,4): rendered 0.015774, analytic 0.015774 (d = 9.834)
+   PASS (threshold 1e-4)
+
+== 10 WSRT filtered shadow through a glass slab (val_wsrt_filteredshadow)
+   floor below the light: rendered 0.460800, analytic Kd I/d^2 (1-F)^2 = 0.460800 (F = 0.0400): rel. error 1.7e-08 -> PASS
+
+== 8  Snell's window (val_wsrt_snell): Fresnel transmission and TIR through a water surface
+   centre row, 300 pixels: RMS |rendered - analytic| = 0.00154, worst 0.0265 (blue at normal incidence 0.8667)
+   window edge (first pixel with blue < 1% of the sky): rendered 48.92 deg, analytic 48.92 deg; critical angle asin(1/1.33) = 48.75 deg
+   PASS (RMS < 0.005, every pixel within 0.05, same edge pixel)
+
+== 2  DRT white furnace (val_drt_furnace): mean reflected radiance vs analytic albedo
+   A diffuse 0.5                        7994 px  mean 0.4999   max pixel 0.560
+   B phong Kd 1                         7686 px  mean 0.9989   max pixel 1.153
+   C phong Ks 1 n 20                    7686 px  mean 0.6839   max pixel 1.849
+   D phong Kd 0.8->0.5 Ks 0.5 n 50      7994 px  mean 0.8401   max pixel 2.019
+   binned by cos(theta_o) (10 bins):  sphere, cos, analytic, rendered
+     A  0.15  0.5000  0.4964
+     A  0.25  0.5000  0.5001
+     A  0.35  0.5000  0.5005
+     A  0.45  0.5000  0.4994
+     A  0.55  0.5000  0.4998
+     A  0.65  0.5000  0.4996
+     A  0.75  0.5000  0.5003
+     A  0.85  0.5000  0.4996
+     A  0.95  0.5000  0.5003
+     B  0.15  1.0000  0.9984
+     B  0.25  1.0000  0.9944
+     B  0.35  1.0000  0.9989
+     B  0.45  1.0000  1.0000
+     B  0.55  1.0000  0.9995
+     B  0.65  1.0000  0.9994
+     B  0.75  1.0000  0.9997
+     B  0.85  1.0000  0.9988
+     B  0.95  1.0000  0.9983
+     C  0.15  0.1823  0.2004
+     C  0.25  0.2635  0.2621
+     C  0.35  0.3545  0.3616
+     C  0.45  0.4512  0.4604
+     C  0.55  0.5502  0.5544
+     C  0.65  0.6500  0.6455
+     C  0.75  0.7500  0.7473
+     C  0.85  0.8500  0.8546
+     C  0.95  0.9500  0.9519
+     D  0.15  0.5801  0.5931
+     D  0.25  0.6260  0.6274
+     D  0.35  0.6751  0.6714
+     D  0.45  0.7250  0.7235
+     D  0.55  0.7750  0.7748
+     D  0.65  0.8250  0.8282
+     D  0.75  0.8750  0.8776
+     D  0.85  0.9250  0.9259
+     D  0.95  0.9750  0.9718
+   PASS (each bin within 2% + 0.02 of the analytic albedo, and no bin above 1.01)
+
+== 3  Comparison with pbrt-v4 (scenes/validation/pbrt, references rendered by pbrt-v4)
+   test1  mask: 11 of 19200 pixels differ (0.057%), IoU 0.9935 -> PASS (threshold 0.40%)
+   test2  mask: 9 of 20736 pixels differ (0.043%), IoU 0.9896 -> PASS (threshold 0.40%)
+   test4  mask: 9 of 14400 pixels differ (0.062%), IoU 0.9826 -> PASS (threshold 0.60%)
+   test5  pixel (48,50) 3x3 mean: ours 0.30724 0.25603 0.20483 | pbrt 0.31028 0.25600 0.20780 | rel.err 0.0098 0.0001 0.0143
+   test5  pixel (20,60) 3x3 mean: ours 0.10691 0.08909 0.07128 | pbrt 0.10779 0.08913 0.07044 | rel.err 0.0081 0.0004 0.0119
+   test5  pixel (80,40) 3x3 mean: ours 0.07201 0.06001 0.04800 | pbrt 0.07251 0.06012 0.04759 | rel.err 0.0069 0.0019 0.0087
+   test5  pixel (48,30) 3x3 mean: ours 0.01378 0.01148 0.00919 | pbrt 0.01376 0.01140 0.00951 | rel.err 0.0016 0.0078 0.0335
+   test5  worst relative error 3.35% -> PASS (threshold 5%)
+   test6  pixel (48,36) 3x3 mean: ours 0.20893 0.20893 0.20893 | pbrt 0.20538 0.20581 0.20877 | rel.err 0.0173 0.0152 0.0008
+   test6  pixel (48,60) 3x3 mean: ours 0.17982 0.17982 0.17982 | pbrt 0.18004 0.18035 0.18422 | rel.err 0.0012 0.0030 0.0239
+   test6  pixel (25,55) 3x3 mean: ours 0.19334 0.19334 0.19334 | pbrt 0.19158 0.19301 0.18872 | rel.err 0.0092 0.0017 0.0245
+   test6  pixel (72,55) 3x3 mean: ours 0.18163 0.18163 0.18163 | pbrt 0.18220 0.18296 0.18309 | rel.err 0.0031 0.0072 0.0080
+   test6  worst relative error 2.45% -> PASS (threshold 6%)
+   test7  pixel (40,70) 5x5 mean: ours 0.20389 0.19906 0.17511 | pbrt 0.20363 0.19887 0.17395 | rel.err 0.0013 0.0009 0.0067
+   test7  pixel (8,40) 5x5 mean: ours 0.18315 0.02875 0.02454 | pbrt 0.18503 0.02938 0.02409 | rel.err 0.0102 0.0216 0.0186
+   test7  pixel (72,40) 5x5 mean: ours 0.02805 0.14609 0.02309 | pbrt 0.03074 0.14708 0.02229 | rel.err 0.0876 0.0068 0.0360
+   test7  pixel (40,20) 5x5 mean: ours 0.10489 0.10092 0.07915 | pbrt 0.10597 0.10266 0.07961 | rel.err 0.0102 0.0170 0.0058
+   test7  worst relative error 8.76% -> FAIL (threshold 8%)
+   test8  pixel (48,30) 3x3 mean: ours 0.15418 0.18037 0.20655 | pbrt 0.15762 0.18296 0.21170 | rel.err 0.0218 0.0141 0.0243
+   test8  pixel (48,40) 3x3 mean: ours 0.16007 0.19751 0.23495 | pbrt 0.16319 0.20105 0.23991 | rel.err 0.0191 0.0176 0.0207
+   test8  pixel (15,60) 3x3 mean: ours 0.18989 0.21523 0.24057 | pbrt 0.18533 0.21068 0.23252 | rel.err 0.0246 0.0216 0.0346
+   test8  pixel (80,60) 3x3 mean: ours 0.28542 0.31026 0.33510 | pbrt 0.28445 0.30870 0.33754 | rel.err 0.0034 0.0050 0.0072
+   test8  worst relative error 3.46% -> PASS (threshold 10%)
+
+== 4  WSRT maxdepth sweep: pixels whose 8-bit display value changes between depths
+   maxdepth 1 -> 2: 6.389% of pixels change by more than 1/255, mean |dL| 1.05e-02
+   maxdepth 2 -> 3: 1.088% of pixels change by more than 1/255, mean |dL| 6.41e-04
+   maxdepth 3 -> 8: 1.061% of pixels change by more than 1/255, mean |dL| 1.33e-04
+
+== 5  DRT shadow rays per sample (DRT_simple_ls1/4/16 at 4 spp) vs the 256 spp render
+   region x 240-600, y 610-690 (torus shadow); luminance RMSE vs DRT_simple.pfm (256 spp, 4 shadow rays)
+   shadow rays/sample  per pixel   RMSE      RMSE / RMSE(N=1)       render s  shadow rays
+       1                  4       0.0517    1.000                     5.35    9.17e+06
+       4                 16       0.0390    0.754                     9.26    3.67e+07
+      16                 64       0.0357    0.691                    27.29    1.47e+08
+
+== 9  Area-light estimator noise vs shadow rays (val_drt_penumbra: direct light, pinhole, 1 spp)
+   shadow rays N   sigma (RMS over 396x94 px)   sigma x sqrt(N)   render s
+        1          0.06027                    0.06027           0.150
+        4          0.02995                    0.05991           0.306
+       16          0.01491                    0.05966           1.025
+       64          0.00746                    0.05968           3.606
+      256          0.00373                    0.05960           13.233
+     1024          0.00187                    0.05989           51.428
+   log-log slope -0.501 (Monte Carlo theory: -0.5) -> PASS (within 0.05)
+
+== 6  Thin lens: defocused wall lamps in DRT_creative vs the pinhole WSRT_creative
+   lamp x= -130 at pixel (186,286), depth 441.5: predicted CoC radius 11.39 px; measured 11.30 px (x), 11.33 px (y)
+   lamp x=  -85 at pixel (329,286), depth 441.5: predicted CoC radius 11.39 px; measured 11.32 px (x), 11.36 px (y)
+   lamp x=   30 at pixel (696,286), depth 441.5: predicted CoC radius 11.39 px; measured 11.21 px (x), 11.40 px (y)
+   lamp x=  100 at pixel (919,286), depth 441.5: predicted CoC radius 11.39 px; measured 11.25 px (x), 11.42 px (y)
+   worst deviation from the thin-lens prediction: 1.6% -> PASS (threshold 10%)
+
+== 7  Error handling: deliberately broken scenes (scenes/validation/errors)
+   testscene_9.pbrt   exit 0  PASS  [ERROR] testscene_9.pbrt:11:1: unknown shape type 'teapot'; ignored
+   testscene_10.pbrt  exit 0  PASS  [ERROR] testscene_10.pbrt:11:1: Translate expects 3 numeric arguments but got 2; directive ignored
+   testscene_11.pbrt  exit 0  PASS  [ERROR] testscene_11.pbrt:11:1: cannot load texture image 'does_not_exist.ppm': cannot open file '/Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/does_not_exist.ppm'
+   testscene_12.pbrt  exit 0  PASS  [ERROR] testscene_12.pbrt:11:1: sphere radius must be > 0 (got -1.000000); shape ignored
+   testscene_13.pbrt  exit 1  PASS  [ERROR] testscene_13.pbrt:11:1: unknown shape type 'sphere '; ignored
+   testscene_14.pbrt  exit 0  PASS  [ERROR] testscene_14.pbrt:11:1: unknown directive 'Shapee'; skipping to the next directive
+   testscene_15.pbrt  exit 0  PASS  [ERROR] testscene_15.pbrt:11:1: Include: cannot open file 'missing_include.pbrt'; ignored
+   testscene_16.pbrt  exit 0  PASS  [ERROR] testscene_16.pbrt:11:1: AttributeEnd without matching AttributeBegin; ignored
+   testscene_17.pbrt  exit 0  PASS  [ERROR] testscene_17.pbrt:11:1: trianglemesh: vertex index 7 out of range [0,2]; shape ignored
+   testscene_18.pbrt  exit 0  PASS  [ERROR] testscene_18.pbrt:11:1: unknown material type 'plasticky'; using diffuse 0.5
+   testscene_19.pbrt  exit 0  PASS  [ERROR] testscene_19.pbrt:3:1: camera fov 200.000000 out of range (0,180); using 90
+   testscene_20.pbrt  exit 0  PASS  [ERROR] testscene_20.pbrt:11:1: undefined named material 'undefined_mat'; keeping the current material
+   testscene_21.pbrt  exit 0  PASS  [ERROR] testscene_21.pbrt:11:16: invalid parameter "float radius": non-numeric value 'big'; parameter ignored
+   testscene_22.pbrt  exit 1  PASS  [ERROR] testscene_22.pbrt:8:1: Shape is only allowed after WorldBegin; ignored
+   testscene_23.pbrt  exit 1  PASS  [ERROR] testscene_23.pbrt:12:1: syntax error: missing ']' for parameter "rgb reflectance" before directive 'Shape' -- parsing aborted
+   testscene_24.pbrt  exit 0  PASS  [ERROR] testscene_24.pbrt:11:1: failed to load mesh 'no_such_mesh.ply': cannot open PLY file '/Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/no_such_mesh.ply'; shape ignored
+   testscene_25.pbrt  exit 0  PASS  [ERROR] testscene_25.pbrt:4:1: xresolution -64 out of range [1,16384]; using 1280
+   testscene_26.pbrt  exit 0  PASS  [ERROR] testscene_26.pbrt:9:46: invalid parameter "rgb I": rgb needs exactly 3 values; parameter ignored
+   18 / 18 broken scenes reported with a descriptive error and no crash

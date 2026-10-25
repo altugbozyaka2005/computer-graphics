@@ -4,9 +4,11 @@
 //                       ambient term, hard shadows from point-like lights, and
 //                       recursive ideal reflection/refraction (Fresnel, TIR).
 //  DistributedIntegrator : Cook-style distributed ray tracer. Area lights sampled
-//                       with N shadow rays to random points on the light (soft
-//                       shadows), energy-conserving Phong BRDF, and one indirect
-//                       ray per bounce (uniform hemisphere) up to maxdepth.
+//                       with N shadow rays to points on the light (soft shadows;
+//                       uniform, grid, stratified or Halton patterns), energy-conserving
+//                       Phong BRDF, and BF indirect rays per diffuse/glossy scattering
+//                       event (uniform hemisphere) up to maxdepth: a ray tree with up
+//                       to BF^d rays at depth d.
 #pragma once
 
 #include "../core/log.h"

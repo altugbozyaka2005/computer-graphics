@@ -1,0 +1,5 @@
+param_large_high: numbered regions in param_large_high_annotated.png and param_large_high_insets.png
+1  ceiling lit by the lamp (1 bounce from the camera)
+2  colour bleeding from the red wall
+3  corner lit after several bounces
+4  shadow under the table: indirect only

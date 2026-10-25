@@ -1,0 +1,9 @@
+DRT_creative: numbered regions in DRT_creative_annotated.png, DRT_creative_annotated_plain.png and DRT_creative_insets.png
+1  Soft shadows (penumbra) from the area key light
+2  Phong BRDF: glossy highlight and clear-coat reflection
+3  OBJ meshes with vertex normals: smooth refraction through the glass
+4  Texture on a mesh through its UVs: cue wood
+5  Depth of field: background out of focus (thin lens): wall lamp bokeh
+6  Depth of field: near rail out of focus
+7  Filtered (transparent) shadow of the glass: dark walls, light passing through the middle
+8  Reinhard tone mapping: the brightest felt keeps its gradation instead of clipping (see DRT_creative_tonemap.png)

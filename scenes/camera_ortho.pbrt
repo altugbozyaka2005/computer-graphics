@@ -1,0 +1,10 @@
+# Module 2, 2.2.1: orthographic projection, isometric view of a town block of identical
+# houses. Parallel edges stay parallel and every house has the same size in the image.
+LookAt 34.641 35.441 -34.641   0 0.8 0   0 1 0
+Camera "orthographic" "float screenwindow" [ -11.2 11.2 -8.4 8.4 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "camera_ortho.png" ]
+Sampler "stratified" "integer xsamples" [ 3 ] "integer ysamples" [ 3 ] "bool jitter" true
+Integrator "whitted" "integer maxdepth" [ 2 ] "rgb ambient" [ 0.12 0.12 0.14 ]
+
+Include "include/m2_town.pbrt"

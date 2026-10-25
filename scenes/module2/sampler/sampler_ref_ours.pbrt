@@ -1,0 +1,10 @@
+# Module 2, 2.2.3: converged reference from this renderer (128 x 128 = 16384 stratified light
+# samples per shading point).
+LookAt 0 2.6 -4.6   0 0.25 0.6   0 1 0
+Camera "perspective" "float fov" [ 42 ]
+Film "rgb" "integer xresolution" [ 640 ] "integer yresolution" [ 480 ]
+    "string filename" [ "sampler_ref_ours.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "distributed" "integer maxdepth" [ 1 ] "integer branchingfactor" [ 1 ] "integer lightsamples" [ 16384 ] "string lightsampling" "stratified"
+
+Include "../../include/m2_study.pbrt"

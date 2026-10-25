@@ -46,6 +46,7 @@ Color Integrator::visibility(const Vec3& p, const Vec3& ng, const Vec3& wi, bool
 }
 
 Color WhittedIntegrator::trace(const Ray& ray, int depth, const Color& weight, RNG& rng) const {
+    ++tlsStats.depthRays[std::min(depth, RayStats::kDepths - 1)];
     Hit hit;
     if (!scene_.intersect(ray, &hit)) return scene_.envL;
     const IntegratorSettings& set = scene_.integrator;
@@ -165,12 +166,15 @@ Color DistributedIntegrator::directLighting(const Hit& hit, const Vec3& wo, cons
     }
     for (const auto& al : scene_.areaLights) {
         if (al->shapes.size() == 1 && al->shapes[0] == hit.shape) continue;  // a light does not light itself
-        // N shadow rays towards uniformly random points on the light (soft shadows).
+        // N shadow rays towards points on the light (soft shadows), placed by the chosen
+        // pattern: uniform random, grid cell centres, jittered cells or Halton points.
         if (al->nSamples == 0) continue;  // visible-only emitter: does not light the scene
-        int n = al->nSamples > 0 ? al->nSamples : set.lightSamples;
+        int n = effectiveLightSamples(set.lightSampling, al->nSamples > 0 ? al->nSamples : set.lightSamples);
+        LightSamplePattern pattern(set.lightSampling, n, set.haltonRandomize, rng);
         Color sum(0);
         for (int i = 0; i < n; ++i) {
-            SurfaceSample s = al->sample(rng.uniform2());
+            Vec2 u = pattern.get(i, rng);
+            SurfaceSample s = pattern.structured() ? al->sampleStratified(u) : al->sample(u);
             Vec3 d = s.p - hit.p;
             double d2 = lengthSquared(d);
             if (d2 == 0) continue;
@@ -192,6 +196,7 @@ Color DistributedIntegrator::directLighting(const Hit& hit, const Vec3& wo, cons
 
 Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission, const Color& weight,
                                    RNG& rng) const {
+    ++tlsStats.depthRays[std::min(depth, RayStats::kDepths - 1)];
     Hit hit;
     if (!scene_.intersect(ray, &hit)) return scene_.envL;
     const IntegratorSettings& set = scene_.integrator;
@@ -215,21 +220,30 @@ Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission
             L += directLighting(hit, wo, nsF, ngF, kd, m, rng);
             Vec3 r = reflect(wo, nsF);
             if (!kd.isBlack() || !m.Ks.isBlack()) {
-                // Indirect light: one ray in a uniformly random hemisphere direction,
-                // weighted by f * cos / pdf with pdf = 1 / (2 pi).
+                // Indirect light: the branching factor BF of the ray tree. BF rays in uniformly
+                // random hemisphere directions, each weighted by f cos / pdf (pdf = 1 / (2 pi));
+                // their average estimates the reflected indirect radiance.
                 Frame frame = Frame::fromZ(nsF);
-                Vec3 wi = frame.fromLocal(sampleUniformHemisphere(rng.uniform2()));
-                double cosI = dot(wi, nsF);
-                if (cosI > 0 && dot(wi, ngF) > 0) {
+                const int bf = set.branchingFactor;
+                // A ray of the last level (depth + 1 = maxdepth) can only bring back environment
+                // light: lights are sampled explicitly and emission is not counted after a
+                // diffuse/glossy bounce. Without an environment such rays return exactly 0 and
+                // are not traced (the random numbers are still drawn, so images are unchanged).
+                const bool lastLevel = depth + 1 >= set.maxDepth && !scene_.hasEnv;
+                Color acc(0);
+                for (int i = 0; i < bf; ++i) {
+                    Vec3 wi = frame.fromLocal(sampleUniformHemisphere(rng.uniform2()));
+                    if (lastLevel) continue;
+                    double cosI = dot(wi, nsF);
+                    if (cosI <= 0 || dot(wi, ngF) <= 0) continue;
                     Color f = phongBRDF(kd, m.Ks, m.exponent, r, wi);
-                    if (!f.isBlack()) {
-                        Color w = weight * f * (cosI / uniformHemispherePdf());
-                        if (keep(w)) {
-                            Color Li = trace(spawn(hit.p, ngF, wi), depth + 1, false, w, rng);
-                            L += f * Li * (cosI / uniformHemispherePdf());
-                        }
-                    }
+                    if (f.isBlack()) continue;
+                    Color w = weight * f * (cosI / uniformHemispherePdf() / bf);
+                    if (!keep(w)) continue;
+                    Color Li = trace(spawn(hit.p, ngF, wi), depth + 1, false, w, rng);
+                    acc += f * Li * (cosI / uniformHemispherePdf());
                 }
+                L += acc / (double)bf;
             }
             if (!m.Kr.isBlack() && keep(weight * m.Kr))
                 L += m.Kr * trace(spawn(hit.p, ngF, r), depth + 1, set.caustics || countEmission, weight * m.Kr, rng);
@@ -242,7 +256,25 @@ Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission
             break;
         case MaterialType::Dielectric: {
             double F = frDielectric(dot(wo, hit.ns), m.eta);
-            // Choose reflection with probability F: the Fresnel weight and the
+            // With filtered shadow rays, light transmitted through glass is already
+            // counted by next-event estimation: a path that reaches a light by
+            // refraction after a diffuse bounce must not count it a second time.
+            bool ceT = (set.transparentShadows || !set.caustics) ? countEmission : true;
+            if (set.branchingFactor >= 2) {
+                // Splitting (BF >= 2): both specular lobes are traced, weighted by their Fresnel
+                // factors. A delta lobe has a single direction, so more rays would only repeat it.
+                if (F > 0 && keep(weight * F))
+                    L += F * trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, set.caustics || countEmission,
+                                   weight * F, rng);
+                Vec3 wt;
+                double etap;
+                if (F < 1 && refractDir(wo, hit.ns, m.eta, &etap, &wt)) {
+                    Color k = m.Kt * ((1 - F) / (etap * etap));
+                    if (keep(weight * k)) L += k * trace(spawn(hit.p, ngF, wt), depth + 1, ceT, weight * k, rng);
+                }
+                break;
+            }
+            // BF = 1: choose reflection with probability F. The Fresnel weight and the
             // selection probability cancel, so each branch has weight 1.
             if (rng.uniform() < F) {
                 L += trace(spawn(hit.p, ngF, reflect(wo, nsF)), depth + 1, set.caustics || countEmission, weight, rng);
@@ -251,11 +283,7 @@ Color DistributedIntegrator::trace(const Ray& ray, int depth, bool countEmission
                 double etap;
                 if (refractDir(wo, hit.ns, m.eta, &etap, &wt)) {
                     Color w = weight * m.Kt / (etap * etap);
-                    // With filtered shadow rays, light transmitted through glass is already
-                    // counted by next-event estimation: a path that reaches a light by
-                    // refraction after a diffuse bounce must not count it a second time.
-                    bool ce = (set.transparentShadows || !set.caustics) ? countEmission : true;
-                    if (keep(w)) L += m.Kt * trace(spawn(hit.p, ngF, wt), depth + 1, ce, w, rng) / (etap * etap);
+                    if (keep(w)) L += m.Kt * trace(spawn(hit.p, ngF, wt), depth + 1, ceT, w, rng) / (etap * etap);
                 }
             }
             break;

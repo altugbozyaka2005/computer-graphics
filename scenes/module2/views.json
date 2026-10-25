@@ -1,0 +1,4981 @@
+{
+ "camera_ortho": {
+  "camera": {
+   "type": "orthographic",
+   "eye": [
+    34.64101615137755,
+    35.441016151377546,
+    -34.64101615137755
+   ],
+   "look": [
+    0.0,
+    0.8,
+    0.0
+   ],
+   "window": [
+    -11.2,
+    11.2,
+    -8.4,
+    8.4
+   ]
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "near house: same size",
+    [
+     2.0,
+     1.0,
+     -6.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "far house: same size",
+    [
+     -6.0,
+     1.0,
+     6.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "streets stay parallel: no vanishing point",
+    [
+     8.4,
+     0.0,
+     0.0
+    ],
+    0.04,
+    [
+     1,
+     1
+    ]
+   ]
+  ]
+ },
+ "camera_ortho_as_persp": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    10.103629710818453,
+    10.903629710818453,
+    -10.103629710818453
+   ],
+   "look": [
+    0.0,
+    0.8,
+    0.0
+   ],
+   "fov": 62
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "near house: larger",
+    [
+     2.0,
+     1.0,
+     -6.0
+    ],
+    0.08,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "far house: smaller",
+    [
+     -6.0,
+     1.0,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ]
+ },
+ "camera_persp": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    4.5,
+    2.2,
+    -5.0
+   ],
+   "look": [
+    -1.5,
+    1.4,
+    30.0
+   ],
+   "fov": 45
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "rails converge to a vanishing point",
+    [
+     0.0,
+     0.2,
+     140.0
+    ],
+    0.04,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "poles shrink as 1/z",
+    [
+     -3.2,
+     3.0,
+     40.0
+    ],
+    0.05,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "near pole",
+    [
+     -3.2,
+     2.6,
+     10.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ]
+  ]
+ },
+ "camera_persp_as_ortho": {
+  "camera": {
+   "type": "orthographic",
+   "eye": [
+    4.5,
+    2.2,
+    -5.0
+   ],
+   "look": [
+    -1.5,
+    1.4,
+    30.0
+   ],
+   "window": [
+    -5.0,
+    5.0,
+    -2.1,
+    5.4
+   ]
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": []
+ },
+ "camera_fov1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.6,
+    -6.0
+   ],
+   "look": [
+    0.0,
+    0.9,
+    4.0
+   ],
+   "fov": 25.0
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "reference sphere",
+    [
+     0.0,
+     0.5,
+     4.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "fov": 25.0
+ },
+ "camera_fov1_dolly": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.722981138177656,
+    -22.04258768825222
+   ],
+   "look": [
+    0.0,
+    0.9,
+    4.0
+   ],
+   "fov": 25.0
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "reference sphere",
+    [
+     0.0,
+     0.5,
+     4.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "fov": 25.0
+ },
+ "camera_fov2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.6,
+    -6.0
+   ],
+   "look": [
+    0.0,
+    0.9,
+    4.0
+   ],
+   "fov": 60.0
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "reference sphere",
+    [
+     0.0,
+     0.5,
+     4.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "fov": 60.0
+ },
+ "camera_fov2_dolly": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.6,
+    -6.0
+   ],
+   "look": [
+    0.0,
+    0.9,
+    4.0
+   ],
+   "fov": 60.0
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "reference sphere",
+    [
+     0.0,
+     0.5,
+     4.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "fov": 60.0
+ },
+ "camera_fov3": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.6,
+    -6.0
+   ],
+   "look": [
+    0.0,
+    0.9,
+    4.0
+   ],
+   "fov": 100.0
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "reference sphere",
+    [
+     0.0,
+     0.5,
+     4.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "fov": 100.0
+ },
+ "camera_fov3_dolly": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.239118078555983,
+    -0.8445439793711831
+   ],
+   "look": [
+    0.0,
+    0.9,
+    4.0
+   ],
+   "fov": 100.0
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "reference sphere",
+    [
+     0.0,
+     0.5,
+     4.0
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "fov": 100.0
+ },
+ "aa_wsrt": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ]
+ },
+ "aa_drt": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ]
+ },
+ "aa_ss1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 1
+ },
+ "aa_ss4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 4
+ },
+ "aa_ss9": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 9
+ },
+ "aa_ss16": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 16
+ },
+ "aa_ss4_regular": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 4
+ },
+ "aa_ss4_random": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 4
+ },
+ "aa_ss16_regular": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 16
+ },
+ "aa_ss16_random": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "spp": 16
+ },
+ "aa_ref": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    1.3,
+    -3.0
+   ],
+   "look": [
+    0.0,
+    1.2,
+    10.0
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "moire on the checker lawn",
+    [
+     9.0,
+     0.0,
+     70.0
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "broken power lines (thinner than a pixel)",
+    [
+     0.0,
+     5.2,
+     23.2
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "picket fence: slats merge and alias",
+    [
+     -5.0,
+     0.6,
+     9.0
+    ],
+    0.06,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "spokes: jagged and broken",
+    [
+     -2.2,
+     1.35,
+     5.0
+    ],
+    0.06,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "checkered ball: texture aliasing",
+    [
+     2.0,
+     0.7,
+     4.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "jagged silhouette edges (crate)",
+    [
+     4.3,
+     1.2,
+     6.0
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ]
+  ]
+ },
+ "sampler_unif_1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 1,
+  "lightsampling": "uniform"
+ },
+ "sampler_unif_4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 4,
+  "lightsampling": "uniform"
+ },
+ "sampler_unif_16": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 16,
+  "lightsampling": "uniform"
+ },
+ "sampler_unif_64": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 64,
+  "lightsampling": "uniform"
+ },
+ "sampler_unif_256": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 256,
+  "lightsampling": "uniform"
+ },
+ "sampler_grid_1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 1,
+  "lightsampling": "grid"
+ },
+ "sampler_grid_4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 4,
+  "lightsampling": "grid"
+ },
+ "sampler_grid_16": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 16,
+  "lightsampling": "grid"
+ },
+ "sampler_grid_64": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 64,
+  "lightsampling": "grid"
+ },
+ "sampler_grid_256": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 256,
+  "lightsampling": "grid"
+ },
+ "sampler_halton_1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 1,
+  "lightsampling": "halton"
+ },
+ "sampler_halton_4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 4,
+  "lightsampling": "halton"
+ },
+ "sampler_halton_16": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 16,
+  "lightsampling": "halton"
+ },
+ "sampler_halton_64": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 64,
+  "lightsampling": "halton"
+ },
+ "sampler_halton_256": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 256,
+  "lightsampling": "halton"
+ },
+ "sampler_strat_1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 1,
+  "lightsampling": "stratified"
+ },
+ "sampler_strat_4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 4,
+  "lightsampling": "stratified"
+ },
+ "sampler_strat_16": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 16,
+  "lightsampling": "stratified"
+ },
+ "sampler_strat_64": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 64,
+  "lightsampling": "stratified"
+ },
+ "sampler_strat_256": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "lightsamples": 256,
+  "lightsampling": "stratified"
+ },
+ "sampler_unoccluded": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": []
+ },
+ "sampler_ref_ours": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ]
+ },
+ "sampler_ref_pbrt": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.0,
+    2.6,
+    -4.6
+   ],
+   "look": [
+    0.0,
+    0.25,
+    0.6
+   ],
+   "fov": 42
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "axis-aligned box: edges parallel to the light grid",
+    [
+     -1.5,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "rotated box",
+    [
+     1.15,
+     0.0,
+     -0.25
+    ],
+    0.07,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "sphere: curved penumbra",
+    [
+     -0.15,
+     0.0,
+     0.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "thin pole: narrow penumbra",
+    [
+     0.86,
+     0.0,
+     -1.55
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "grille: overlapping penumbrae",
+    [
+     -0.95,
+     0.0,
+     -1.75
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ]
+  ]
+ },
+ "param_small_low": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "spot-lit pieces: direct light, hard shadows",
+    [
+     0.0,
+     0.8,
+     -3.5
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "dark surroundings: little indirect light",
+    [
+     -6.0,
+     0.0,
+     7.0
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "board bounce onto the pieces' undersides",
+    [
+     -0.5,
+     0.7,
+     -0.5
+    ],
+    0.05,
+    [
+     1,
+     -1
+    ]
+   ]
+  ],
+  "bf": 1,
+  "md": 2,
+  "spp": 16,
+  "world": "chess"
+ },
+ "param_small_high": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "1st reflection (needs MD >= 2)",
+    [
+     -6.0,
+     1.3,
+     1.5
+    ],
+    0.05,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "2nd reflection (MD >= 3)",
+    [
+     -12.0,
+     1.3,
+     1.5
+    ],
+    0.04,
+    [
+     0,
+     1
+    ]
+   ],
+   [
+    "deep reflections need high MD",
+    [
+     -36.0,
+     1.3,
+     1.5
+    ],
+    0.04,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "glass sphere: refraction chain",
+    [
+     0.0,
+     1.3,
+     1.5
+    ],
+    0.05,
+    [
+     -1,
+     1
+    ]
+   ]
+  ],
+  "bf": 1,
+  "md": 24,
+  "spp": 32,
+  "world": "mirrors"
+ },
+ "param_large_low": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   800,
+   600
+  ],
+  "callouts": [
+   [
+    "soft sky shadow under the lintel",
+    [
+     -2.4,
+     1.0,
+     1.9
+    ],
+    0.06,
+    [
+     1,
+     -1
+    ]
+   ],
+   [
+    "contact shadow of the urn",
+    [
+     0.4,
+     0.05,
+     0.6
+    ],
+    0.05,
+    [
+     1,
+     1
+    ]
+   ],
+   [
+    "large softly lit surfaces",
+    [
+     4.6,
+     1.0,
+     4.5
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ]
+  ],
+  "bf": 32,
+  "md": 2,
+  "spp": 4,
+  "world": "sculpture"
+ },
+ "param_large_high": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   640,
+   480
+  ],
+  "callouts": [
+   [
+    "ceiling lit by the lamp (1 bounce from the camera)",
+    [
+     1.9,
+     3.0,
+     2.6
+    ],
+    0.07,
+    [
+     -1,
+     1
+    ]
+   ],
+   [
+    "colour bleeding from the red wall",
+    [
+     -2.6,
+     0.5,
+     0.5
+    ],
+    0.06,
+    [
+     -1,
+     -1
+    ]
+   ],
+   [
+    "corner lit after several bounces",
+    [
+     -3.0,
+     0.2,
+     4.0
+    ],
+    0.06,
+    [
+     0,
+     -1
+    ]
+   ],
+   [
+    "shadow under the table: indirect only",
+    [
+     -0.7,
+     0.0,
+     1.3
+    ],
+    0.06,
+    [
+     1,
+     1
+    ]
+   ]
+  ],
+  "bf": 4,
+  "md": 6,
+  "spp": 16,
+  "world": "room"
+ },
+ "_params": {
+  "param_small_low": {
+   "world": "chess",
+   "bf": 1,
+   "md": 2,
+   "spp": 16,
+   "res": [
+    800,
+    600
+   ]
+  },
+  "param_small_high": {
+   "world": "mirrors",
+   "bf": 1,
+   "md": 24,
+   "spp": 32,
+   "res": [
+    800,
+    600
+   ]
+  },
+  "param_large_low": {
+   "world": "sculpture",
+   "bf": 32,
+   "md": 2,
+   "spp": 4,
+   "res": [
+    800,
+    600
+   ]
+  },
+  "param_large_high": {
+   "world": "room",
+   "bf": 4,
+   "md": 6,
+   "spp": 16,
+   "res": [
+    640,
+    480
+   ]
+  }
+ },
+ "chess_bf1_md1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 1,
+  "spp": 16
+ },
+ "chess_bf1_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 2,
+  "spp": 16
+ },
+ "chess_bf1_md3": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 3,
+  "spp": 16
+ },
+ "chess_bf1_md5": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 5,
+  "spp": 16
+ },
+ "chess_bf1_md8": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 8,
+  "spp": 16
+ },
+ "chess_bf2_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 2,
+  "spp": 16
+ },
+ "chess_bf4_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 2,
+  "spp": 16
+ },
+ "chess_bf16_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 16,
+  "md": 2,
+  "spp": 16
+ },
+ "chess_ref": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    3.6,
+    4.6,
+    -7.8
+   ],
+   "look": [
+    0.4,
+    0.5,
+    0.6
+   ],
+   "fov": 38
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 10,
+  "spp": 2048
+ },
+ "mirrors_bf1_md1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 1,
+  "spp": 16
+ },
+ "mirrors_bf1_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 2,
+  "spp": 16
+ },
+ "mirrors_bf1_md3": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 3,
+  "spp": 16
+ },
+ "mirrors_bf1_md5": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 5,
+  "spp": 16
+ },
+ "mirrors_bf1_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 6,
+  "spp": 16
+ },
+ "mirrors_bf1_md8": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 8,
+  "spp": 16
+ },
+ "mirrors_bf1_md12": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 12,
+  "spp": 16
+ },
+ "mirrors_bf1_md16": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 16,
+  "spp": 16
+ },
+ "mirrors_bf1_md24": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 24,
+  "spp": 16
+ },
+ "mirrors_bf1_md40": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 40,
+  "spp": 16
+ },
+ "mirrors_bf2_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 6,
+  "spp": 16
+ },
+ "mirrors_bf4_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 6,
+  "spp": 16
+ },
+ "mirrors_ref": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    2.0,
+    1.65,
+    -2.2
+   ],
+   "look": [
+    -3.0,
+    1.35,
+    0.9
+   ],
+   "fov": 50
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 48,
+  "spp": 256
+ },
+ "sculpture_bf1_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 2,
+  "spp": 4
+ },
+ "sculpture_bf4_md1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 1,
+  "spp": 4
+ },
+ "sculpture_bf4_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 2,
+  "spp": 4
+ },
+ "sculpture_bf4_md3": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 3,
+  "spp": 4
+ },
+ "sculpture_bf4_md4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 4,
+  "spp": 4
+ },
+ "sculpture_bf16_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 16,
+  "md": 2,
+  "spp": 4
+ },
+ "sculpture_bf64_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 64,
+  "md": 2,
+  "spp": 4
+ },
+ "sculpture_ref": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    1.2,
+    2.3,
+    -5.6
+   ],
+   "look": [
+    0.0,
+    1.0,
+    1.8
+   ],
+   "fov": 48
+  },
+  "res": [
+   400,
+   300
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 6,
+  "spp": 4096
+ },
+ "room_bf1_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 6,
+  "spp": 4
+ },
+ "room_bf2_md1": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 1,
+  "spp": 4
+ },
+ "room_bf2_md2": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 2,
+  "spp": 4
+ },
+ "room_bf2_md3": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 3,
+  "spp": 4
+ },
+ "room_bf2_md4": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 4,
+  "spp": 4
+ },
+ "room_bf2_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 6,
+  "spp": 4
+ },
+ "room_bf2_md8": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 2,
+  "md": 8,
+  "spp": 4
+ },
+ "room_bf3_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 3,
+  "md": 6,
+  "spp": 4
+ },
+ "room_bf4_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 4,
+  "md": 6,
+  "spp": 4
+ },
+ "room_bf6_md6": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 6,
+  "md": 6,
+  "spp": 4
+ },
+ "room_ref": {
+  "camera": {
+   "type": "perspective",
+   "eye": [
+    0.2,
+    1.55,
+    -3.7
+   ],
+   "look": [
+    -0.1,
+    1.15,
+    1.8
+   ],
+   "fov": 62
+  },
+  "res": [
+   320,
+   240
+  ],
+  "callouts": [],
+  "bf": 1,
+  "md": 20,
+  "spp": 4096
+ },
+ "_sweeps": {
+  "param_small_low": {
+   "world": "chess",
+   "res": [
+    400,
+    300
+   ],
+   "spp": 16,
+   "md": [
+    1,
+    2,
+    3,
+    5,
+    8
+   ],
+   "md_bf": 1,
+   "bf": [
+    1,
+    2,
+    4,
+    16
+   ],
+   "bf_md": 2,
+   "ref": [
+    1,
+    10,
+    2048
+   ],
+   "files": [
+    "chess_bf1_md1",
+    "chess_bf1_md2",
+    "chess_bf1_md3",
+    "chess_bf1_md5",
+    "chess_bf1_md8",
+    "chess_bf2_md2",
+    "chess_bf4_md2",
+    "chess_bf16_md2"
+   ],
+   "refname": "chess_ref"
+  },
+  "param_small_high": {
+   "world": "mirrors",
+   "res": [
+    400,
+    300
+   ],
+   "spp": 16,
+   "md": [
+    1,
+    2,
+    3,
+    5,
+    8,
+    12,
+    16,
+    24,
+    40
+   ],
+   "md_bf": 1,
+   "bf": [
+    1,
+    2,
+    4
+   ],
+   "bf_md": 6,
+   "ref": [
+    1,
+    48,
+    256
+   ],
+   "files": [
+    "mirrors_bf1_md1",
+    "mirrors_bf1_md2",
+    "mirrors_bf1_md3",
+    "mirrors_bf1_md5",
+    "mirrors_bf1_md6",
+    "mirrors_bf1_md8",
+    "mirrors_bf1_md12",
+    "mirrors_bf1_md16",
+    "mirrors_bf1_md24",
+    "mirrors_bf1_md40",
+    "mirrors_bf2_md6",
+    "mirrors_bf4_md6"
+   ],
+   "refname": "mirrors_ref"
+  },
+  "param_large_low": {
+   "world": "sculpture",
+   "res": [
+    400,
+    300
+   ],
+   "spp": 4,
+   "md": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "md_bf": 4,
+   "bf": [
+    1,
+    4,
+    16,
+    64
+   ],
+   "bf_md": 2,
+   "ref": [
+    1,
+    6,
+    4096
+   ],
+   "files": [
+    "sculpture_bf1_md2",
+    "sculpture_bf4_md1",
+    "sculpture_bf4_md2",
+    "sculpture_bf4_md3",
+    "sculpture_bf4_md4",
+    "sculpture_bf16_md2",
+    "sculpture_bf64_md2"
+   ],
+   "refname": "sculpture_ref"
+  },
+  "param_large_high": {
+   "world": "room",
+   "res": [
+    320,
+    240
+   ],
+   "spp": 4,
+   "md": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8
+   ],
+   "md_bf": 2,
+   "bf": [
+    1,
+    2,
+    3,
+    4,
+    6
+   ],
+   "bf_md": 6,
+   "ref": [
+    1,
+    20,
+    4096
+   ],
+   "files": [
+    "room_bf1_md6",
+    "room_bf2_md1",
+    "room_bf2_md2",
+    "room_bf2_md3",
+    "room_bf2_md4",
+    "room_bf2_md6",
+    "room_bf2_md8",
+    "room_bf3_md6",
+    "room_bf4_md6",
+    "room_bf6_md6"
+   ],
+   "refname": "room_ref"
+  }
+ }
+}

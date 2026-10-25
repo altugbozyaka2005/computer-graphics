@@ -4,9 +4,9 @@
 #
 # Effects to point out in the report:
 #  - mirror reflection (recursive)  : steel grater reflects the felt, balls and perfume bottle
-#  - refraction, Fresnel, TIR       : water glass (eta 1.5 / water 1.33): the yellow and black balls
+#  - refraction, Fresnel           : water glass (eta 1.5 / water 1.33): the yellow and black balls
 #                                     behind it appear magnified and swapped left-to-right; crystal cap
-#                                     (eta 1.55) with diagonal cut facets; bright edges/waterline (TIR)
+#                                     (eta 1.55) with diagonal cut facets; ribbed rim: zig-zag waterline
 #  - coloured transparent shadow    : amber bottle (filtered shadow rays: Fresnel x Kt per interface)
 #  - light through the grater holes : alpha cut-outs, dots of light inside the grater's shadow
 #  - hard shadows, two lights       : cool-white key (behind, high) and warm 3000 K fill (right)

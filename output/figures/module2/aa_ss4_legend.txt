@@ -1,0 +1,7 @@
+aa_ss4: numbered regions in aa_ss4_annotated.png and aa_ss4_insets.png
+1  moire on the checker lawn
+2  broken power lines (thinner than a pixel)
+3  picket fence: slats merge and alias
+4  spokes: jagged and broken
+5  checkered ball: texture aliasing
+6  jagged silhouette edges (crate)

@@ -13,10 +13,11 @@ void ignoreQuietly(const ParamSet& ps, std::initializer_list<const char*> names,
 
 void SceneBuilder::camera(const std::string& type, const ParamSet& ps, const Transform& ctm, const FileLoc& loc) {
     CameraSettings& c = scene_->camera;
-    if (type == "perspective") {
+    if (type == "perspective" || type == "orthographic") {
         c.type = type;
     } else {
-        LOG().error("unsupported camera type '" + type + "' (supported: perspective); using perspective", loc);
+        LOG().error("unsupported camera type '" + type + "' (supported: perspective, orthographic); using perspective",
+                    loc);
         c.type = "perspective";
     }
     if (!ctm.valid()) {
@@ -25,10 +26,14 @@ void SceneBuilder::camera(const std::string& type, const ParamSet& ps, const Tra
     } else {
         c.worldFromCamera = ctm.inverse();
     }
-    c.fov = ps.getFloat("fov", 90);
-    if (!(c.fov > 0 && c.fov < 180)) {
-        LOG().error("camera fov " + std::to_string(c.fov) + " out of range (0,180); using 90", loc);
-        c.fov = 90;
+    // pbrt's orthographic camera has no field of view: its extent is the screen window
+    // (camera-space units), so a "fov" given to it is reported as unused.
+    if (c.type == "perspective") {
+        c.fov = ps.getFloat("fov", 90);
+        if (!(c.fov > 0 && c.fov < 180)) {
+            LOG().error("camera fov " + std::to_string(c.fov) + " out of range (0,180); using 90", loc);
+            c.fov = 90;
+        }
     }
     c.lensRadius = ps.getFloat("lensradius", 0);
     if (c.lensRadius < 0) {
@@ -82,6 +87,18 @@ void SceneBuilder::film(const std::string& type, const ParamSet& ps, const FileL
         if (ok) for (int i = 0; i < 4; ++i) f.crop[i] = cw[i];
         else LOG().error("cropwindow must be 4 values in [0,1] with min < max; ignored", loc);
     }
+    std::vector<int> pb = ps.getInts("pixelbounds");
+    if (!pb.empty()) {
+        bool ok = pb.size() == 4 && pb[0] >= 0 && pb[0] < pb[1] && pb[1] <= xr && pb[2] >= 0 && pb[2] < pb[3] &&
+                  pb[3] <= yr;
+        if (ok) {
+            f.hasPixelBounds = true;
+            for (int i = 0; i < 4; ++i) f.pixelBounds[i] = pb[i];
+        } else {
+            LOG().error("pixelbounds must be 4 integers x0 x1 y0 y1 inside the image with x0 < x1, y0 < y1; ignored",
+                        loc);
+        }
+    }
     // Renderer extensions for tone mapping (Module 1 DRT requirement).
     if (ps.has("tonemap")) {
         f.tonemapSpecified = true;
@@ -113,7 +130,7 @@ void SceneBuilder::film(const std::string& type, const ParamSet& ps, const FileL
         LOG().error("exposure must be > 0; using 1", loc);
         f.tonemap.exposure = 1;
     }
-    ignoreQuietly(ps, {"iso", "whitebalance", "sensor", "savefp16", "maxcomponentvalue", "diagonal", "pixelbounds"},
+    ignoreQuietly(ps, {"iso", "whitebalance", "sensor", "savefp16", "maxcomponentvalue", "diagonal"},
                   "Film");
     ps.reportUnused("Film \"" + type + "\"");
 }
@@ -121,21 +138,67 @@ void SceneBuilder::film(const std::string& type, const ParamSet& ps, const FileL
 void SceneBuilder::sampler(const std::string& type, const ParamSet& ps, const FileLoc& loc) {
     SamplerSettings& s = scene_->sampler;
     scene_->samplerSpecified = true;
-    if (type != "independent")
-        LOG().warning("sampler '" + type + "' not implemented; using independent random pixel samples", loc);
-    s.pixelSamples = ps.getInt("pixelsamples", 16);
-    if (s.pixelSamples <= 0) {
-        LOG().error("pixelsamples must be > 0; using 16", loc);
-        s.pixelSamples = 16;
+    if (type == "independent" || type == "stratified" || type == "halton") {
+        s.type = type;
+    } else if (type == "zsobol" || type == "sobol" || type == "paddedsobol" || type == "pmj02bn") {
+        LOG().warning("sampler '" + type + "' not implemented; using the (also low-discrepancy) halton sampler", loc);
+        s.type = "halton";
+    } else {
+        LOG().error("unknown sampler '" + type + "' (supported: independent, stratified, halton); using independent",
+                    loc);
+        s.type = "independent";
+    }
+    if (s.type == "stratified") {
+        s.xSamples = ps.getInt("xsamples", 4);
+        s.ySamples = ps.getInt("ysamples", 4);
+        if (s.xSamples <= 0 || s.ySamples <= 0 || s.xSamples > 256 || s.ySamples > 256) {
+            LOG().error("xsamples/ysamples must be in [1,256]; using 4x4", loc);
+            s.xSamples = s.ySamples = 4;
+        }
+        s.jitter = ps.getBool("jitter", true);
+    } else {
+        s.pixelSamples = ps.getInt("pixelsamples", 16);
+        if (s.pixelSamples <= 0 || s.pixelSamples > 65536) {
+            LOG().error("pixelsamples must be in [1,65536]; using 16", loc);
+            s.pixelSamples = 16;
+        }
+    }
+    if (const Param* r = ps.find("randomization")) {
+        std::string v = ps.getString("randomization", "permutedigits");
+        if (s.type == "halton") {
+            s.randomize = v != "none";
+            if (s.randomize && v != "permutedigits" && v != "owen" && v != "fastowen")
+                LOG().error("unknown halton randomization '" + v + "' (permutedigits|owen|fastowen|none)", loc);
+            else if (s.randomize)
+                LOG().info("halton randomization '" + v + "' approximated by a Cranley-Patterson rotation per pixel");
+        } else {
+            r->used = true;
+            LOG().info("ignoring \"randomization\" for the " + s.type + " sampler");
+        }
     }
     s.seed = ps.getInt("seed", 0);
-    ignoreQuietly(ps, {"randomization", "xsamples", "ysamples", "jitter"}, "Sampler");
     ps.reportUnused("Sampler \"" + type + "\"");
 }
 
 void SceneBuilder::pixelFilter(const std::string& type, const ParamSet& ps, const FileLoc& loc) {
-    LOG().warning("PixelFilter \"" + type + "\" ignored: pixel samples are averaged with equal weights (box)", loc);
-    for (const auto& p : ps.params) p.used = true;
+    // The film averages the samples of a pixel with equal weights. As in pbrt-v4 (filter
+    // importance sampling), a box filter of radius r draws the samples from [-r, r]^2 around
+    // the pixel centre; the default r = 0.5 covers exactly the pixel.
+    FilterSettings& f = scene_->filter;
+    if (type == "box") {
+        double rx = ps.getFloat("xradius", 0.5), ry = ps.getFloat("yradius", 0.5);
+        if (rx > 0 && ry > 0 && rx <= 4 && ry <= 4) {
+            f.xRadius = rx;
+            f.yRadius = ry;
+        } else {
+            LOG().error("box filter radius must be in (0,4]; using 0.5", loc);
+        }
+        ps.reportUnused("PixelFilter \"box\"");
+    } else {
+        LOG().warning("PixelFilter \"" + type + "\" not implemented: pixel samples are averaged with equal weights "
+                      "(box filter, radius 0.5)", loc);
+        for (const auto& p : ps.params) p.used = true;
+    }
 }
 
 void SceneBuilder::integrator(const std::string& type, const ParamSet& ps, const FileLoc& loc) {
@@ -169,6 +232,28 @@ void SceneBuilder::integrator(const std::string& type, const ParamSet& ps, const
         LOG().error("lightsamples must be in [1,65536]; using 16", loc);
         in.lightSamples = 16;
     }
+    std::string ls = ps.getString("lightsampling", "uniform");
+    if (!parseLightSampling(ls, &in.lightSampling)) {
+        LOG().error("unknown lightsampling '" + ls + "' (uniform|grid|stratified|halton); using uniform", loc);
+        in.lightSampling = LightSampling::Uniform;
+    }
+    std::string hr = ps.getString("haltonrandomization", "cp");
+    if (hr != "cp" && hr != "none") {
+        LOG().error("unknown haltonrandomization '" + hr + "' (cp|none); using cp", loc);
+        hr = "cp";
+    }
+    in.haltonRandomize = hr == "cp";
+    int eff = effectiveLightSamples(in.lightSampling, in.lightSamples);
+    if (eff != in.lightSamples)
+        LOG().warning("lightsampling " + ls + " needs a square number of samples: lightsamples " +
+                      std::to_string(in.lightSamples) + " -> " + std::to_string(eff), loc);
+    in.branchingFactor = ps.getInt("branchingfactor", 1);
+    if (in.branchingFactor < 1 || in.branchingFactor > 4096) {
+        LOG().error("branchingfactor must be in [1,4096]; using 1", loc);
+        in.branchingFactor = 1;
+    }
+    if (type == "whitted" && (ps.has("branchingfactor") || ps.has("lightsampling")))
+        LOG().warning("branchingfactor/lightsampling only affect the distributed integrator", loc);
     ignoreQuietly(ps, {"lightsampler", "regularize"}, "Integrator");
     ps.reportUnused("Integrator \"" + type + "\"");
 }

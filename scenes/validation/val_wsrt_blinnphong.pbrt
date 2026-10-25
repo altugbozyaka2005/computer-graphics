@@ -1,0 +1,42 @@
+# WSRT validation: Blinn-Phong parameters set per material (Module 1 report, section 2.3).
+# Five spheres under one point light, left to right:
+#   A  Ks 0                     : ambient + diffuse only (no highlight)
+#   B  Ks 0.5, shininess 10     : broad highlight
+#   C  Ks 0.5, shininess 50
+#   D  Ks 0.5, shininess 250    : small, sharp highlight
+#   E  blue Kd, gold Ks 0.9 0.6 0.15, shininess 50 : the highlight takes the specular colour
+# The unlit side of every sphere shows the ambient term Ka * Kd * Ia (Ka 0.15, Ia 1).
+LookAt 0 0.6 -9   0 0 0   0 1 0
+Camera "perspective" "float fov" [ 21 ]
+Film "rgb" "integer xresolution" [ 1000 ] "integer yresolution" [ 250 ]
+    "string filename" [ "val_wsrt_blinnphong.png" ]
+Sampler "independent" "integer pixelsamples" [ 16 ]
+Integrator "whitted" "integer maxdepth" [ 4 ] "rgb ambient" [ 1 1 1 ]
+
+WorldBegin
+LightSource "point" "point3 from" [ -3 4 -6 ] "rgb I" [ 60 60 60 ]
+
+AttributeBegin Translate -4 0 0
+  Material "blinnphong" "rgb Kd" [ 0.7 0.08 0.06 ] "rgb Ks" [ 0 0 0 ] "rgb Ka" [ 0.15 0.15 0.15 ]
+  Shape "sphere" "float radius" [ 0.85 ]
+AttributeEnd
+AttributeBegin Translate -2 0 0
+  Material "blinnphong" "rgb Kd" [ 0.7 0.08 0.06 ] "rgb Ks" [ 0.5 0.5 0.5 ] "float shininess" [ 10 ]
+      "rgb Ka" [ 0.15 0.15 0.15 ]
+  Shape "sphere" "float radius" [ 0.85 ]
+AttributeEnd
+AttributeBegin Translate 0 0 0
+  Material "blinnphong" "rgb Kd" [ 0.7 0.08 0.06 ] "rgb Ks" [ 0.5 0.5 0.5 ] "float shininess" [ 50 ]
+      "rgb Ka" [ 0.15 0.15 0.15 ]
+  Shape "sphere" "float radius" [ 0.85 ]
+AttributeEnd
+AttributeBegin Translate 2 0 0
+  Material "blinnphong" "rgb Kd" [ 0.7 0.08 0.06 ] "rgb Ks" [ 0.5 0.5 0.5 ] "float shininess" [ 250 ]
+      "rgb Ka" [ 0.15 0.15 0.15 ]
+  Shape "sphere" "float radius" [ 0.85 ]
+AttributeEnd
+AttributeBegin Translate 4 0 0
+  Material "blinnphong" "rgb Kd" [ 0.06 0.1 0.45 ] "rgb Ks" [ 0.9 0.6 0.15 ] "float shininess" [ 50 ]
+      "rgb Ka" [ 0.15 0.15 0.15 ]
+  Shape "sphere" "float radius" [ 0.85 ]
+AttributeEnd

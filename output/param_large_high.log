@@ -1,0 +1,35 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:10:30
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/param_large_high.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out param_large_high
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/param_large_high.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_room.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 60 triangles, 180 vertices
+[INFO] trianglemesh: 384 triangles, 363 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 6, branchingfactor 4, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 62.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 640x480, 16 spp (stratified 4x4 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 481 primitives (480 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 10 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.02611, max luminance 1.20999, scale 1.00000, white point 1.20999 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/param_large_high.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/param_large_high.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0016
+render (s):          172.9391
+tonemap+write (s):   0.0148
+total (s):           172.9570
+camera rays:         4915200
+secondary rays:      6695051039
+shadow rays:         569933552
+ray-primitive tests: 90559419608
+rays by depth:       0:4915200 1:19652541 2:78587280 3:314264094 4:1256749364 5:5025797760
+Mrays/s:             42.037
+---- result ----
+OK: errors: 0, warnings: 0

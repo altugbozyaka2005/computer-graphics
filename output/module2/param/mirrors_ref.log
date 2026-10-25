@@ -1,0 +1,34 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:25:43
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/mirrors_ref.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param --out mirrors_ref
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/mirrors_ref.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_mirrors.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 48 triangles, 144 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 1280 triangles, 697 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 48, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 50.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x300, 256 spp (independent, 256 spp (uniform random)), tonemap none
+[INFO] scene: 1354 primitives (1352 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 11 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/mirrors_ref.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/mirrors_ref.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0020
+render (s):          171.9604
+tonemap+write (s):   0.0051
+total (s):           171.9683
+camera rays:         30720000
+secondary rays:      754979023
+shadow rays:         1051664127
+ray-primitive tests: 172745140298
+rays by depth:       0:30720000 1:30466645 2:29987254 3:29127621 4:28201830 5:27318525 6:26434558 7:25583349 8:24752139 9:23945815 10:23163215 11:22405861 12:21670487 13:20960791 14:20272981 15:19606678 16:18964164 17:18341572 18:17738653 19:17156545 20:16593354 21:16049694 22:15524197 23:15015878 24:14522815 25:14046959 26:13586798 27:13141976 28:12711243 29:12294552 30:11890864 31:11500804 32:11123481 33:10758676 34:10406507 35:10065620 36:9734777 37:9414635 38:9105562 39:8807544 40:8518515 41:8239542 42:7969630 43:7708646 44:7456305 45:7211900 46:6975497 47:6747171 48:1757198
+Mrays/s:             10.685
+---- result ----
+OK: errors: 0, warnings: 0

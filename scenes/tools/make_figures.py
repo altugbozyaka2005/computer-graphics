@@ -90,8 +90,8 @@ FEATURES = {
     "WSRT_creative": [
         ("Mirror reflection (grater)", "Mirror reflection (recursive): steel grater",
          (GRATER_POS[0] + 0.4, 4.6, GRATER_POS[1] - 1.3), 0.07, (1, -1)),
-        ("Refraction, Fresnel, TIR (glass)",
-         "Refraction, Fresnel and total internal reflection: water glass (balls behind are swapped)",
+        ("Refraction + Fresnel (water glass)",
+         "Refraction and Fresnel: water glass (the ball behind it is magnified and mirrored left to right)",
          (GLASS_POS[0], 3.0, GLASS_POS[1] - 1.6), 0.09, (1, -1)),
         ("Refraction (faceted crystal cap)", "Refraction through faceted crystal (cap)",
          (PERFUME_POS[0], 3.3, PERFUME_POS[1] - 1.4), 0.06, (-1, -1)),
@@ -134,7 +134,7 @@ FEATURES = {
     ],
     "WSRT_simple": [
         ("Recursive mirror reflection", "Recursive mirror reflection (sphere)", (-1.7, 1.0, 0.8), 0.08, (1, -1)),
-        ("Refraction, Fresnel, TIR (glass)", "Refraction + Fresnel + total internal reflection (glass sphere)",
+        ("Refraction + Fresnel (glass)", "Refraction + Fresnel (glass sphere: inverted image; TIR cannot occur in a sphere, see val_wsrt_snell)",
          (0.3, 0.95, -1.6), 0.07, (1, 1)),
         ("Blinn-Phong highlight", "Blinn-Phong highlight (red sphere)", (2.1, 0.95, 0.2 - 0.5), 0.06, (1, -1)),
         ("UV texture on a sphere", "UV texture on a sphere", (0.6, 1.574, 1.781), 0.06, (1, -1)),

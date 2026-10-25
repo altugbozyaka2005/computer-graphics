@@ -1,0 +1,7 @@
+aa_drt: numbered regions in aa_drt_annotated.png and aa_drt_insets.png
+1  moire on the checker lawn
+2  broken power lines (thinner than a pixel)
+3  picket fence: slats merge and alias
+4  spokes: jagged and broken
+5  checkered ball: texture aliasing
+6  jagged silhouette edges (crate)

@@ -1,0 +1,31 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 15:39:02
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/aa/aa_ref.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/aa --out aa_ref
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/aa/aa_ref.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_garden.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 660 triangles, 1980 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] integrator: whitted, maxdepth 3
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 1024 spp (stratified 32x32 (jittered)), tonemap none
+[INFO] scene: 845 primitives (842 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 9 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/aa/aa_ref.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/aa/aa_ref.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0018
+render (s):          11.7284
+tonemap+write (s):   0.0214
+total (s):           11.7528
+camera rays:         491520000
+secondary rays:      0
+shadow rays:         249186805
+ray-primitive tests: 28777369684
+rays by depth:       0:491520000
+Mrays/s:             63.155
+---- result ----
+OK: errors: 0, warnings: 0

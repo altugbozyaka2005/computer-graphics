@@ -1,0 +1,27 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 15:38:57
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/camera_fov2.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out camera_fov2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/camera_fov2.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_gallery.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] integrator: whitted, maxdepth 2
+[INFO] camera: perspective, fov 60.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 9 spp (stratified 3x3 (jittered)), tonemap none
+[INFO] scene: 39 primitives (4 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 37 objects, 8 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/camera_fov2.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/camera_fov2.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0002
+render (s):          0.1409
+tonemap+write (s):   0.0208
+total (s):           0.1629
+camera rays:         4320000
+secondary rays:      0
+shadow rays:         8503592
+ray-primitive tests: 10894713
+rays by depth:       0:4320000
+Mrays/s:             90.996
+---- result ----
+OK: errors: 0, warnings: 0

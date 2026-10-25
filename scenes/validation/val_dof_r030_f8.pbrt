@@ -1,0 +1,12 @@
+# DRT validation: depth-of-field sweep on the DRT_simple scene (Module 1 report, section 3.5).
+# lensradius 0.3, focaldistance 8: three times the aperture, stronger blur off the focal plane.
+# Only the camera differs from scenes/DRT_simple.pbrt (600x450, 64 spp for speed).
+LookAt 0 2 -7.5   0 1.4 0   0 1 0
+Camera "perspective" "float fov" [ 42 ] "float lensradius" [ 0.3 ] "float focaldistance" [ 8 ]
+Film "rgb" "integer xresolution" [ 600 ] "integer yresolution" [ 450 ]
+    "string filename" [ "val_dof_r030_f8.png" ]
+    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float whitepoint" [ 1.6 ]
+Sampler "independent" "integer pixelsamples" [ 64 ]
+Integrator "distributed" "integer maxdepth" [ 3 ] "integer lightsamples" [ 4 ]
+
+Include "include/drt_simple_world.pbrt"

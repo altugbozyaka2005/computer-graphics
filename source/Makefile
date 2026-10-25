@@ -10,7 +10,7 @@ SRC := main.cpp \
 	core/transform.cpp core/image.cpp core/log.cpp \
 	geometry/shape.cpp \
 	render/texture.cpp render/light.cpp render/camera.cpp \
-	render/integrators.cpp render/renderer.cpp \
+	render/integrators.cpp render/renderer.cpp render/sampler.cpp \
 	scene/scene.cpp scene/params.cpp scene/meshio.cpp scene/parser.cpp \
 	scene/builders_options.cpp scene/builders_world.cpp scene/builders_lights.cpp scene/builders_shapes.cpp
 OBJ := $(SRC:%.cpp=$(OBJDIR)/%.o)

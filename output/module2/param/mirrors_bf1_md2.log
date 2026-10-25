@@ -1,0 +1,34 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:28:35
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/mirrors_bf1_md2.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param --out mirrors_bf1_md2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/mirrors_bf1_md2.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_mirrors.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 48 triangles, 144 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 1280 triangles, 697 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 50.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x300, 16 spp (independent, 16 spp (uniform random)), tonemap none
+[INFO] scene: 1354 primitives (1352 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 11 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/mirrors_bf1_md2.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/mirrors_bf1_md2.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0018
+render (s):          0.6692
+tonemap+write (s):   0.0059
+total (s):           0.6775
+camera rays:         1920000
+secondary rays:      2503943
+shadow rays:         3906822
+ray-primitive tests: 1587344156
+rays by depth:       0:1920000 1:1904170 2:599773
+Mrays/s:             12.449
+---- result ----
+OK: errors: 0, warnings: 0

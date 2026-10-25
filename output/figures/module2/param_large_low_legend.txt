@@ -1,0 +1,4 @@
+param_large_low: numbered regions in param_large_low_annotated.png and param_large_low_insets.png
+1  soft sky shadow under the lintel
+2  contact shadow of the urn
+3  large softly lit surfaces

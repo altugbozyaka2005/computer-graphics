@@ -3,10 +3,11 @@ General: pbrt-v4 scene parser (tokenizer, parameter lists, graphics state, Inclu
 General: integrator chosen by the scene file: Integrator "whitted" (WSRT) or "distributed" (DRT); pbrt "path"/"volpath" mapped to distributed with a warning
 General: .log file written next to every output image, with errors and warnings as file:line:column messages
 General: graceful handling of syntax errors and unsupported features: recoverable problems fall back to defaults, fatal ones are logged without a crash
-General: profiling in the log: parse/load, render, tone-map/write times; camera/secondary/shadow ray counts, ray-primitive tests, Mrays/s
+General: profiling in the log: parse/load, render, tone-map/write times; camera/secondary/shadow ray counts, ray-primitive tests, Mrays/s, and the number of rays traced at each depth of the ray tree
 General: multithreaded tile renderer (std::thread) with deterministic per-pixel random streams (PCG32)
 General: output as 8-bit PNG (own encoder) and linear HDR PFM, plus optional PPM
-Camera: perspective camera matching pbrt-v4 conventions (fov on the shorter image axis, LookAt)
+Camera: perspective camera matching pbrt-v4 conventions (fov on the shorter image axis, LookAt, screenwindow, frameaspectratio)
+Camera (Module 2): orthographic camera (pbrt-v4 "orthographic": parallel rays from the z = 0 plane, extent set by the screen window in camera-space units, optional thin lens as in pbrt-v4); framing checked against pbrt-v4
 WSRT: ideal specular reflection, recursive up to maxdepth
 WSRT: adaptive ray-tree depth control: reflection/refraction branches whose accumulated weight (Fresnel x Kr x Kt) falls below 0.001 are not traced
 WSRT: specular refraction with Snell's law, exact dielectric Fresnel equations and total internal reflection
@@ -22,15 +23,26 @@ WSRT: geometry: planes (infinite, extension), spheres (including partial), trian
 WSRT: area lights approximated as point lights at their centroid (hard shadows)
 DRT: triangle meshes from OBJ (v/vt/vn, polygons, negative indices) and PLY (ascii, binary) files and inline trianglemesh/bilinearmesh, with per-vertex normals (smooth shading) and UVs
 DRT: textures on meshes through interpolated UVs
-DRT: area lights (emissive triangles/quads, disks, spheres; one- or two-sided) with soft shadows from shadow rays to uniformly random points on the light; number of shadow rays configurable (lightsamples, or per-light samples)
+DRT: area lights (emissive triangles/quads, disks, spheres; one- or two-sided) with soft shadows from shadow rays to points on the light; number of shadow rays configurable (lightsamples, or per-light samples)
+Sampler comparison (Module 2): area-light sample patterns (Integrator "string lightsampling", --lightsampling): uniform (independent random points), grid (n x n cell centres, deterministic), halton (first N points of the 2-D Halton sequence, bases 2 and 3, Cranley-Patterson rotated per shading point; "string haltonrandomization" "none" turns the rotation off), and stratified (one random point per n x n cell, an extra comparator); grid and stratified round N to n x n (logged)
+Sampler comparison (Module 2): an emissive rectangle (two triangles) is detected and sampled through its exact (u, v) parametrisation, so grid cells are true cells of the rectangle
 DRT: energy-conserving modified Phong BRDF (kd/pi + ks (n+2)/(2pi) cos^n); kd clamped so that kd+ks+kr <= 1
-DRT: indirect light with one uniform-hemisphere ray per bounce up to maxdepth; emission skipped after diffuse bounces (no double counting)
+DRT: indirect light with uniform-hemisphere rays up to maxdepth; emission skipped after diffuse bounces (no double counting)
+DRT (Module 2): branching factor BF (Integrator "integer branchingfactor", --bf): BF rays at every diffuse/glossy scattering event, so a camera ray spawns up to BF^d rays at depth d; maxdepth is MD. Delta lobes are not multiplied (a mirror casts one ray); with BF >= 2 a dielectric traces both reflection and refraction weighted by Fresnel (splitting) instead of choosing one
+DRT (Module 2): rays of the last level (depth = MD) that could only return environment light are not traced when the scene has no environment (identical images, fewer rays)
 DRT: dielectrics and mirrors (Fresnel-weighted stochastic reflect/refract choice)
 DRT: thin-lens depth of field (lensradius, focaldistance) with rays jittered over the aperture
 DRT: Reinhard tone mapping on luminance (default) or per channel, configurable white point, optional key and exposure
-Sampling: random (jittered) camera rays per pixel, configurable with Sampler "independent" "integer pixelsamples"; 1 sample = pixel centre
+Antialiasing (Module 2): supersampling, the samples of a pixel averaged with equal weights: Sampler "independent" (uniform random; 1 sample = pixel centre), "stratified" (xsamples x ysamples cells; jitter true: jittered, false: regular grid at the cell centres; lens samples stratified and shuffled), "halton" (bases 2, 3 on the film and 5, 7 on the lens, Cranley-Patterson rotated per pixel; randomization "none" = the same points in every pixel)
+Antialiasing (Module 2): PixelFilter "box" with configurable xradius/yradius (samples drawn from [-r, r]^2 around the pixel centre, as pbrt-v4's filter importance sampling)
+Command line (Module 2): --sampler, --nojitter, --spp, --bf, --maxdepth, --lightsampling, --pixelbounds, --cropwindow overrides (each recorded in the log); Film "integer pixelbounds"
 Lights: blackbody and spectral inputs converted to RGB with an analytic CIE 1931 fit (approximation; rendering itself is RGB)
 Partial: rough conductors and dielectrics rendered as smooth; coateddiffuse and named metal spectra approximated
 Partial: infinite lights support constant radiance only (no environment maps)
-Not implemented: acceleration structure (every ray is tested against every primitive)
+Partial: no BVH; one bounding box per object (slab test) lets a ray skip all primitives of an object it misses
+Partial: Halton pixel sampler randomization approximated by a Cranley-Patterson rotation (pbrt-v4 permutes digits); zsobol, sobol, paddedsobol and pmj02bn samplers are mapped to halton (warning)
+Not implemented: reconstruction filters other than box (gaussian, triangle, mitchell, sinc fall back to box with a warning); adaptive sampling (only discussed as an alternative)
 Not implemented: participating media, displacement and normal mapping, PNG/EXR texture input
+Validation: scenes/validation (analytic tests, pbrt-v4 reference comparisons, 18 broken scenes) checked by scenes/tools/validate_module1.py into output/validation.log
+Validation (Module 2): scenes/module2/validation checked by scenes/tools/validate_module2.py into output/module2/validation.log: orthographic camera vs pbrt-v4, orthographic size invariance, field of view vs exact projection, supersampling vs exact pixel coverage, light-sample patterns vs an analytic form factor, BF unbiasedness and noise / sqrt(BF), dielectric splitting, BF^d rays per depth, thread determinism
+Studies (Module 2): scenes/tools/module2_study.py renders every Module 2 image and writes the measurements (output/module2/*.csv, module2.log): camera sizes and wide-angle stretching, antialiasing error and render time vs spp, sampler RMSE vs a pbrt-v4 reference over 24 seeds, BF/MD sweeps with energy, noise, error and equal-time comparisons; scenes/tools/make_figures_m2.py draws the annotated figures and plots

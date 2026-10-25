@@ -1,0 +1,10 @@
+# Module 2, 2.2.1: the railway of camera_persp through an orthographic camera from the same
+# position and direction: all poles have the same size and the depth cues disappear.
+LookAt 4.5 2.2 -5   -1.5 1.4 30   0 1 0
+Camera "orthographic" "float screenwindow" [ -5 5 -2.1 5.4 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "camera_persp_as_ortho.png" ]
+Sampler "stratified" "integer xsamples" [ 3 ] "integer ysamples" [ 3 ] "bool jitter" true
+Integrator "whitted" "integer maxdepth" [ 2 ] "rgb ambient" [ 0.12 0.12 0.14 ]
+
+Include "../../include/m2_railway.pbrt"

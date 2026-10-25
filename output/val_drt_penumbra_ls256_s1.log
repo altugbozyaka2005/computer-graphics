@@ -1,0 +1,35 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:51:29
+[INFO] command: ./output/CGR26_renderer scenes/validation/val_drt_penumbra.pbrt --quiet --lightsamples 256 --seed 1 --out val_drt_penumbra_ls256_s1
+[INFO] scene: scenes/validation/val_drt_penumbra.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/drt_simple_world.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.960000
+[INFO] loaded texture '../textures/wood.ppm' (256x256)
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] objmesh '../meshes/torus.obj': 9216 triangles, 4753 vertices, normals, uvs
+[INFO] override: lightsamples = 256
+[INFO] integrator: distributed, maxdepth 1, lightsamples 256
+[INFO] camera: perspective, fov 42.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 1200x900, 1 spp, tonemap reinhard (luminance)
+[INFO] scene: 9230 primitives (9228 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 9 objects, 6 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.01144, max luminance 0.23085, scale 1.00000, white point 1.60000
+[INFO] wrote ./output/val_drt_penumbra_ls256_s1.png (display), ./output/val_drt_penumbra_ls256_s1.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0179
+render (s):          13.2328
+tonemap+write (s):   0.0066
+total (s):           13.2581
+camera rays:         37224
+secondary rays:      37209
+shadow rays:         8923648
+ray-primitive tests: 40122128056
+Mrays/s:             0.680
+---- result ----
+OK: errors: 0, warnings: 0

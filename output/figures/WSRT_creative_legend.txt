@@ -1,0 +1,11 @@
+WSRT_creative: numbered regions in WSRT_creative_annotated.png, WSRT_creative_annotated_plain.png and WSRT_creative_insets.png
+1  Mirror reflection (recursive): steel grater
+2  Refraction, Fresnel and total internal reflection: water glass (balls behind are swapped)
+3  Refraction through faceted crystal (cap)
+4  Coloured transparent shadow (amber bottle, filtered shadow rays)
+5  Light through the grater holes: dots of light in its shadow (alpha cut-outs)
+6  Hard shadows from two point lights: cool key (towards camera) and warm fill (to the left)
+7  Blinn-Phong: ambient, diffuse and a small specular highlight
+8  UV texture on a sphere (numbered ball)
+9  Textures on triangles: felt weave and speckled rail (+ white strip)
+10  Triangles + object instancing: rack built from one bar

@@ -1,0 +1,51 @@
+# The world of scenes/DRT_simple.pbrt (from WorldBegin on), shared by the depth-of-field sweep
+# scenes in scenes/validation/ (paths are relative to scenes/validation/).
+WorldBegin
+
+# Ceiling light (normal faces down, one-sided)
+AttributeBegin
+  AreaLightSource "diffuse" "rgb L" [ 9 8.6 8 ]
+  Shape "trianglemesh" "point3 P" [ -0.7 3.98 -0.2   0.7 3.98 -0.2   0.7 3.98 1.2   -0.7 3.98 1.2 ]
+      "integer indices" [ 0 1 2  0 2 3 ]
+AttributeEnd
+
+Texture "wood" "spectrum" "imagemap" "string filename" "../textures/wood.ppm"
+
+# Room: floor, ceiling, back, left (red), right (green)
+AttributeBegin
+  Material "diffuse" "rgb reflectance" [ 0.72 0.72 0.7 ]
+  Shape "trianglemesh" "point3 P" [ -2.5 0 -8  2.5 0 -8  2.5 0 3  -2.5 0 3 ] "integer indices" [ 0 1 2 0 2 3 ]
+  Shape "trianglemesh" "point3 P" [ -2.5 4 -8  2.5 4 -8  2.5 4 3  -2.5 4 3 ] "integer indices" [ 0 1 2 0 2 3 ]
+  Shape "trianglemesh" "point3 P" [ -2.5 0 3  2.5 0 3  2.5 4 3  -2.5 4 3 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin
+  Material "diffuse" "rgb reflectance" [ 0.63 0.07 0.06 ]
+  Shape "trianglemesh" "point3 P" [ -2.5 0 -8  -2.5 0 3  -2.5 4 3  -2.5 4 -8 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+AttributeBegin
+  Material "diffuse" "rgb reflectance" [ 0.12 0.45 0.10 ]
+  Shape "trianglemesh" "point3 P" [ 2.5 0 -8  2.5 0 3  2.5 4 3  2.5 4 -8 ] "integer indices" [ 0 1 2 0 2 3 ]
+AttributeEnd
+
+# Smooth, textured OBJ torus (in focus)
+AttributeBegin
+  Translate -0.95 0.95 0.6
+  Rotate 65 1 0 0
+  Scale 0.7 0.7 0.7
+  Material "phong" "texture Kd" "wood" "rgb Ks" [ 0.15 0.15 0.15 ] "float exponent" [ 60 ]
+  Shape "objmesh" "string filename" "../meshes/torus.obj"
+AttributeEnd
+
+# Glossy Phong sphere
+AttributeBegin
+  Translate 1.25 0.75 0.9
+  Material "phong" "rgb Kd" [ 0.08 0.15 0.45 ] "rgb Ks" [ 0.45 0.45 0.45 ] "float exponent" [ 120 ]
+  Shape "sphere" "float radius" [ 0.75 ]
+AttributeEnd
+
+# Foreground glass sphere (out of focus)
+AttributeBegin
+  Translate 0.45 0.45 -2.4
+  Material "dielectric" "float eta" [ 1.5 ]
+  Shape "sphere" "float radius" [ 0.45 ]
+AttributeEnd

@@ -1,0 +1,4 @@
+param_small_low: numbered regions in param_small_low_annotated.png and param_small_low_insets.png
+1  spot-lit pieces: direct light, hard shadows
+2  dark surroundings: little indirect light
+3  board bounce onto the pieces' undersides

@@ -1,0 +1,10 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:44:05
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_23.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out val_err_23
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_23.pbrt
+[INFO] hardware threads: 15
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_23.pbrt:7:1: integrator 'path' mapped to 'distributed' (for comparison with pbrt)
+[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_23.pbrt:12:1: syntax error: missing ']' for parameter "rgb reflectance" before directive 'Shape' -- parsing aborted
+---- result ----
+FAILED: scene could not be parsed; no image written.
+errors: 1, warnings: 1

@@ -1,0 +1,45 @@
+# WSRT validation: Snell's law, Fresnel transmission and total internal reflection (report 2.2).
+# "Snell's window": the camera is under water (eta 1.33) looking straight up at a flat surface.
+# Sky light reaches it only through a cone of half-angle asin(1 / 1.33) = 48.75 degrees; outside
+# that cone the surface reflects totally (TIR) and shows the pool floor. Inside the cone the
+# transmitted sky is weighted by the Fresnel transmittance 1 - F and the radiance factor 1.33^2.
+# The sky has blue 0.5 and nothing else in the scene has any blue, so along the centre row
+#   blue = 0.5 * 1.33^2 * (1 - F(theta)),   F = 1 beyond the critical angle,
+# which scenes/tools/validate_module1.py compares with the exact Fresnel equations.
+# The water body is a sphere of radius 1000 (flat to within 0.07 degrees across the window).
+LookAt 0 -1 0   0 0 0   0 0 1
+Camera "perspective" "float fov" [ 130 ]
+Film "rgb" "integer xresolution" [ 600 ] "integer yresolution" [ 600 ]
+    "string filename" [ "val_wsrt_snell.png" ]
+Sampler "independent" "integer pixelsamples" [ 64 ]
+Integrator "whitted" "integer maxdepth" [ 4 ] "rgb ambient" [ 1 1 1 ]
+
+WorldBegin
+LightSource "infinite" "rgb L" [ 0.12 0.25 0.5 ]
+LightSource "point" "point3 from" [ 0 0.8 0.6 ] "rgb I" [ 5 5 5 ]
+LightSource "point" "point3 from" [ 0 -0.5 -2 ] "rgb I" [ 4 4 4 ]
+
+AttributeBegin
+  Translate 0 -1000 0
+  Material "dielectric" "float eta" [ 1.33 ]
+  Shape "sphere" "float radius" [ 1000 ]
+AttributeEnd
+
+# pool floor, 3 units below the surface (no blue)
+Texture "tiles" "spectrum" "checkerboard" "float uscale" [ 1 ] "float vscale" [ 1 ]
+    "rgb tex1" [ 0.8 0.55 0 ] "rgb tex2" [ 0.3 0.15 0 ]
+AttributeBegin
+  Material "blinnphong" "texture Kd" "tiles" "rgb Ka" [ 0.15 0.15 0.15 ]
+  Shape "plane" "point3 p" [ 0 -3 0 ] "normal n" [ 0 1 0 ]
+AttributeEnd
+
+# objects above the water, seen through the window (kept off the centre row)
+AttributeBegin
+  Translate -1.2 2.5 2.2
+  Material "blinnphong" "rgb Kd" [ 0.7 0.1 0 ] "rgb Ks" [ 0.3 0.3 0 ] "float shininess" [ 40 ] "rgb Ka" [ 0.15 0.15 0 ]
+  Shape "sphere" "float radius" [ 0.7 ]
+AttributeEnd
+AttributeBegin
+  Material "blinnphong" "rgb Kd" [ 0.9 0.8 0 ] "rgb Ka" [ 0.15 0.15 0 ]
+  Shape "trianglemesh" "point3 P" [ 0.6 2 1.2   2.4 2 1.6   1.5 3.5 3.0 ]
+AttributeEnd

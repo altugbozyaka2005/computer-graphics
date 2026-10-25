@@ -1,0 +1,27 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 15:38:58
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/camera/camera_fov3_dolly.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/camera --out camera_fov3_dolly
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/camera/camera_fov3_dolly.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_gallery.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] integrator: whitted, maxdepth 2
+[INFO] camera: perspective, fov 100.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 9 spp (stratified 3x3 (jittered)), tonemap none
+[INFO] scene: 39 primitives (4 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 37 objects, 8 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/camera/camera_fov3_dolly.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/camera/camera_fov3_dolly.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0002
+render (s):          0.1289
+tonemap+write (s):   0.0195
+total (s):           0.1496
+camera rays:         4320000
+secondary rays:      0
+shadow rays:         8356854
+ray-primitive tests: 11858580
+rays by depth:       0:4320000
+Mrays/s:             98.316
+---- result ----
+OK: errors: 0, warnings: 0

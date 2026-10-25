@@ -1,0 +1,31 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:23:04
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/sculpture_bf4_md2.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param --out sculpture_bf4_md2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/module2/param/sculpture_bf4_md2.pbrt
+[INFO] hardware threads: 15
+[INFO] Include '../../include/m2_sculpture.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 36 triangles, 108 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 648 triangles, 666 vertices, normals, uvs
+[INFO] trianglemesh: 1008 triangles, 555 vertices, normals, uvs
+[INFO] trianglemesh: 36 triangles, 108 vertices
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 4, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x300, 4 spp (independent, 4 spp (uniform random)), tonemap none
+[INFO] scene: 1743 primitives (1742 triangles, 0 planes), 0 point/spot/distant lights, 0 area lights, 7 objects, 4 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/sculpture_bf4_md2.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/param/sculpture_bf4_md2.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0027
+render (s):          0.3062
+tonemap+write (s):   0.0090
+total (s):           0.3186
+camera rays:         480000
+secondary rays:      3074329
+shadow rays:         0
+ray-primitive tests: 730371963
+rays by depth:       0:480000 1:1289599 2:1784730
+Mrays/s:             11.608
+---- result ----
+OK: errors: 0, warnings: 0

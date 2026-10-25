@@ -1,0 +1,33 @@
+== 2.2.2 antialiasing
+  display-referred (sRGB) RMSE against a 1024-spp reference (aa_ref), whole image and per callout region
+    image             spp       all  r1  r2  r3  r4  r5  r6
+    aa_ss1              1    0.0735  0.169  0.061  0.167  0.127  0.076  0.082
+    aa_ss4              4    0.0336  0.073  0.019  0.082  0.056  0.035  0.039
+    aa_ss9              9    0.0194  0.044  0.008  0.049  0.035  0.019  0.026
+    aa_ss16            16    0.0133  0.031  0.006  0.034  0.024  0.013  0.017
+    aa_ss4_regular      4    0.0373  0.091  0.014  0.098  0.066  0.031  0.044
+    aa_ss16_regular    16    0.0198  0.051  0.007  0.052  0.039  0.014  0.027
+    aa_ss4_random       4    0.0405  0.085  0.026  0.094  0.065  0.048  0.045
+    aa_ss16_random     16    0.0193  0.040  0.010  0.046  0.031  0.023  0.021
+    r1 = moire on the checker lawn
+    r2 = broken power lines (thinner than a pixel)
+    r3 = picket fence: slats merge and alias
+    r4 = spokes: jagged and broken
+    r5 = checkered ball: texture aliasing
+    r6 = jagged silhouette edges (crate)
+  render time vs samples per pixel (median of 5 runs; 800x600; stratified jittered, 1 = pixel centre)
+    tracer  spp   time (s)    s / spp         rays       RMSE
+    WSRT      1     0.0110    0.01100       723494     0.0735
+    WSRT      4     0.0475    0.01188      2893424     0.0334
+    WSRT      9     0.1118    0.01242      6510178     0.0193
+    WSRT     16     0.2049    0.01281     11573529     0.0133
+    WSRT     25     0.3018    0.01207     18083652     0.0099
+    WSRT     36     0.4385    0.01218     26040291     0.0077
+    WSRT     64     0.8207    0.01282     46294239     0.0055
+    WSRT fit: time = -0.0057 s + 0.01275 s x spp
+    DRT       1     1.9772    1.97720     45675859          -
+    DRT       4     8.3116    2.07789    182383603          -
+    DRT       9    20.1253    2.23614    410378852          -
+    DRT      16    43.2880    2.70550    729578949          -
+    DRT fit: time = -2.2834 s + 2.76119 s x spp
+  -> output/module2/aa.csv

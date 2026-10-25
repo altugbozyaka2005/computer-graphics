@@ -1,0 +1,10 @@
+# Module 2, 2.2.4: BF 1, MD 24: two facing mirrors; each further reflection needs one more level of recursion,
+# but specular reflections never branch, so one ray per bounce is enough.
+LookAt 2 1.65 -2.2   -3 1.35 0.9   0 1 0
+Camera "perspective" "float fov" [ 50 ]
+Film "rgb" "integer xresolution" [ 800 ] "integer yresolution" [ 600 ]
+    "string filename" [ "param_small_high.png" ] "string tonemap" "reinhard"
+Sampler "independent" "integer pixelsamples" [ 32 ]
+Integrator "distributed" "integer maxdepth" [ 24 ] "integer branchingfactor" [ 1 ] "integer lightsamples" [ 1 ]
+
+Include "include/m2_mirrors.pbrt"

@@ -1,0 +1,35 @@
+# DRT validation: triangle meshes with and without per-vertex normals (Module 1 report, section 3.1).
+# Two copies of the same coarse OBJ torus (576 triangles, scenes/tools/make_validation_meshes.py):
+#   left : meshes/torus_coarse_flat.obj   positions + UVs only   -> flat (faceted) shading
+#   right: meshes/torus_coarse_smooth.obj positions + UVs + vn  -> normals interpolated across each triangle
+# Both carry the UV-grid texture through the OBJ "vt" coordinates; the silhouettes are identical
+# (normals change shading, not geometry). Glossy Phong so that the highlight shows the normal field.
+LookAt 0 3.2 -4.2   0 0.25 0.3   0 1 0
+Camera "perspective" "float fov" [ 34 ]
+Film "rgb" "integer xresolution" [ 900 ] "integer yresolution" [ 420 ]
+    "string filename" [ "val_drt_meshnormals.png" ]
+    "string tonemap" "reinhard" "string tonemapmode" "luminance" "float whitepoint" [ 2 ]
+Sampler "independent" "integer pixelsamples" [ 64 ]
+Integrator "distributed" "integer maxdepth" [ 2 ] "integer lightsamples" [ 4 ]
+
+WorldBegin
+AttributeBegin
+  AreaLightSource "diffuse" "rgb L" [ 6 6 6 ]
+  Shape "trianglemesh" "point3 P" [ -1.5 4 -1.5   1.5 4 -1.5   1.5 4 1.0   -1.5 4 1.0 ]
+      "integer indices" [ 0 1 2  0 2 3 ]
+AttributeEnd
+AttributeBegin
+  Material "diffuse" "rgb reflectance" [ 0.55 0.55 0.55 ]
+  Shape "plane" "point3 p" [ 0 0 0 ] "normal n" [ 0 1 0 ]
+AttributeEnd
+Texture "uv" "spectrum" "imagemap" "string filename" "../textures/uvgrid.ppm" "float uscale" [ 2 ]
+AttributeBegin
+  Translate -1.45 0.4 0.4  Rotate -20 1 0 0
+  Material "phong" "texture Kd" "uv" "rgb Ks" [ 0.3 0.3 0.3 ] "float exponent" [ 40 ]
+  Shape "objmesh" "string filename" "../meshes/torus_coarse_flat.obj"
+AttributeEnd
+AttributeBegin
+  Translate 1.45 0.4 0.4  Rotate -20 1 0 0
+  Material "phong" "texture Kd" "uv" "rgb Ks" [ 0.3 0.3 0.3 ] "float exponent" [ 40 ]
+  Shape "objmesh" "string filename" "../meshes/torus_coarse_smooth.obj"
+AttributeEnd

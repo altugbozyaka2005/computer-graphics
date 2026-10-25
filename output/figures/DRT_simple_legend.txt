@@ -1,0 +1,7 @@
+DRT_simple: numbered regions in DRT_simple_annotated.png, DRT_simple_annotated_plain.png and DRT_simple_insets.png
+1  OBJ triangle mesh: smooth normals + UV wood texture (torus)
+2  Area light (emissive rectangle)
+3  Soft shadow (penumbra) of the torus
+4  Energy-conserving Phong BRDF (glossy sphere)
+5  Depth of field: foreground glass sphere out of focus
+6  Reinhard tone mapping: the highlight rolls off into white (see DRT_simple_tonemap.png)

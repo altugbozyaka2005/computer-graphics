@@ -1,0 +1,36 @@
+# DRT validation: white furnace test of the Phong BRDF (Module 1 report, section 3.4).
+# Spheres inside a uniform white environment (L = 1). A sphere whose BRDF conserves energy
+# reflects at most what it receives, so no region may exceed 1; with albedo 1 it vanishes.
+#   A  diffuse reflectance 0.5           : expected 0.5 everywhere
+#   B  phong Kd 1, Ks 0                  : albedo 1, expected 1 (the sphere disappears)
+#   C  phong Kd 0, Ks 1, exponent 20     : pure lobe; 1 at normal incidence, < 1 towards the rim
+#   D  phong Kd 0.8, Ks 0.5, exponent 50 : Kd + Ks > 1; the DRT clamps Kd to 0.5 (logged warning)
+# The spheres are 12 radii apart so that each one hides less than 0.4 % of the environment from
+# its neighbours. validate_module1.py compares each sphere in output/val_drt_furnace.pfm with the
+# albedo of its BRDF, integrated numerically for every viewing angle.
+LookAt 0 0 -60   0 0 0   0 1 0
+Camera "perspective" "float fov" [ 4.772 ]
+Film "rgb" "integer xresolution" [ 2000 ] "integer yresolution" [ 250 ]
+    "string filename" [ "val_drt_furnace.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 256 ]
+Integrator "distributed" "integer maxdepth" [ 8 ] "integer lightsamples" [ 1 ]
+
+WorldBegin
+LightSource "infinite" "rgb L" [ 1 1 1 ]
+
+AttributeBegin Translate -18 0 0
+  Material "diffuse" "rgb reflectance" [ 0.5 0.5 0.5 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate -6 0 0
+  Material "phong" "rgb Kd" [ 1 1 1 ] "rgb Ks" [ 0 0 0 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 6 0 0
+  Material "phong" "rgb Kd" [ 0 0 0 ] "rgb Ks" [ 1 1 1 ] "float exponent" [ 20 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd
+AttributeBegin Translate 18 0 0
+  Material "phong" "rgb Kd" [ 0.8 0.8 0.8 ] "rgb Ks" [ 0.5 0.5 0.5 ] "float exponent" [ 50 ]
+  Shape "sphere" "float radius" [ 1 ]
+AttributeEnd

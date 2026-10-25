@@ -1,0 +1,16 @@
+# WSRT validation: point-light shading against the analytic value (Module 1 report, section 2.4).
+# A matte Blinn-Phong plane (Kd 0.5, Ks 0, Ka 0) lit by one point light. With 1 sample per pixel
+# the camera ray goes through the pixel centre, so every pixel has an exact expected radiance
+#   L = Kd * I * cos(theta) / d^2      (classic Blinn-Phong diffuse term, no 1/pi)
+# which scenes/tools/validate_module1.py compares with output/val_wsrt_pointlight.pfm.
+LookAt 0 6 -6   0 0 0   0 1 0
+Camera "perspective" "float fov" [ 50 ]
+Film "rgb" "integer xresolution" [ 200 ] "integer yresolution" [ 150 ]
+    "string filename" [ "val_wsrt_pointlight.png" ]
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "whitted" "integer maxdepth" [ 1 ] "rgb ambient" [ 0 0 0 ]
+
+WorldBegin
+LightSource "point" "point3 from" [ 1 3 0.5 ] "rgb I" [ 10 10 10 ]
+Material "blinnphong" "rgb Kd" [ 0.5 0.5 0.5 ] "rgb Ks" [ 0 0 0 ] "rgb Ka" [ 0 0 0 ]
+Shape "plane" "point3 p" [ 0 0 0 ] "normal n" [ 0 1 0 ]

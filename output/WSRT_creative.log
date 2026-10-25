@@ -1,0 +1,108 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 00:03:56
+[INFO] command: ./output/CGR26_renderer scenes/WSRT_creative.pbrt --quiet
+[INFO] scene: scenes/WSRT_creative.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/poolhall_materials_wsrt.pbrt'
+[INFO] loaded texture 'textures/felt.ppm' (512x512)
+[INFO] loaded texture 'textures/railblack.ppm' (256x256)
+[INFO] loaded texture 'textures/wood.ppm' (256x256)
+[INFO] loaded texture 'textures/metal.ppm' (256x256)
+[INFO] loaded texture 'textures/label.ppm' (128x96)
+[INFO] loaded texture 'textures/ball_1.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_11.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_13.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_15.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_3.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_5.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_7.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_8.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_9.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_cue.ppm' (768x384)
+[INFO] Include 'include/poolhall_spots_wsrt.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] Include 'include/poolhall_geometry.pbrt'
+[INFO] loaded texture 'textures/grater_alpha.ppm' (512x512)
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] objmesh 'meshes/glass.obj': 8064 triangles, 4493 vertices, normals, uvs
+[INFO] objmesh 'meshes/water.obj': 256 triangles, 388 vertices, normals, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] objmesh 'meshes/cap.obj': 432 triangles, 1296 vertices, normals, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] objmesh 'meshes/grater.obj': 48 triangles, 96 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_leather.obj': 160 triangles, 164 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_ferrule.obj': 64 triangles, 66 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_shaft.obj': 64 triangles, 66 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_butt.obj': 160 triangles, 164 vertices, normals, uvs
+[INFO] integrator: whitted, maxdepth 12, transparent (filtered) shadows
+[INFO] camera: perspective, fov 46.20, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 1200x1600, 16 spp, tonemap none
+[INFO] scene: 9823 primitives (9804 triangles, 1 planes), 2 point/spot/distant lights, 0 area lights, 84 objects, 37 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote ./output/WSRT_creative.png (display), ./output/WSRT_creative.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0992
+render (s):          295.2581
+tonemap+write (s):   0.1359
+total (s):           295.4972
+camera rays:         30720000
+secondary rays:      74618638
+shadow rays:         136539272
+ray-primitive tests: 674794974393
+Mrays/s:             0.819
+---- result ----
+OK: errors: 0, warnings: 0

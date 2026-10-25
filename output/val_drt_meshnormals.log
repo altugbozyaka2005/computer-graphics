@@ -1,0 +1,29 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:47:42
+[INFO] command: ./output/CGR26_renderer scenes/validation/val_drt_meshnormals.pbrt --quiet
+[INFO] scene: scenes/validation/val_drt_meshnormals.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 7.500000
+[INFO] loaded texture '../textures/uvgrid.ppm' (256x256)
+[INFO] objmesh '../meshes/torus_coarse_flat.obj': 576 triangles, 325 vertices, uvs
+[INFO] objmesh '../meshes/torus_coarse_smooth.obj': 576 triangles, 325 vertices, normals, uvs
+[INFO] integrator: distributed, maxdepth 2, lightsamples 4
+[INFO] camera: perspective, fov 34.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 900x420, 64 spp, tonemap reinhard (luminance)
+[INFO] scene: 1155 primitives (1154 triangles, 1 planes), 0 point/spot/distant lights, 1 area lights, 3 objects, 3 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.09777, max luminance 2.29552, scale 1.00000, white point 2.00000
+[INFO] wrote ./output/val_drt_meshnormals.png (display), ./output/val_drt_meshnormals.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0053
+render (s):          19.5575
+tonemap+write (s):   0.0230
+total (s):           19.5868
+camera rays:         24192000
+secondary rays:      30362340
+shadow rays:         104835463
+ray-primitive tests: 62444187528
+Mrays/s:             8.150
+---- result ----
+OK: errors: 0, warnings: 0

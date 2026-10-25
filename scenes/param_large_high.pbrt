@@ -1,0 +1,10 @@
+# Module 2, 2.2.4: BF 4, MD 6: a closed room lit only by light bounced off the ceiling: several bounces carry
+# most of the light (MD) and every bounce needs many rays to average it (BF).
+LookAt 0.2 1.55 -3.7   -0.1 1.15 1.8   0 1 0
+Camera "perspective" "float fov" [ 62 ]
+Film "rgb" "integer xresolution" [ 640 ] "integer yresolution" [ 480 ]
+    "string filename" [ "param_large_high.png" ] "string tonemap" "reinhard"
+Sampler "stratified" "integer xsamples" [ 4 ] "integer ysamples" [ 4 ] "bool jitter" true
+Integrator "distributed" "integer maxdepth" [ 6 ] "integer branchingfactor" [ 4 ] "integer lightsamples" [ 1 ]
+
+Include "include/m2_room.pbrt"

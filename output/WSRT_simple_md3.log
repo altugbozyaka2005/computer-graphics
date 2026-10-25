@@ -1,0 +1,30 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 13:42:03
+[INFO] command: ./output/CGR26_renderer scenes/WSRT_simple.pbrt --quiet --maxdepth 3 --out WSRT_simple_md3
+[INFO] scene: scenes/WSRT_simple.pbrt
+[INFO] hardware threads: 15
+[INFO] loaded texture 'textures/checker.ppm' (256x256)
+[INFO] loaded texture 'textures/uvgrid.ppm' (256x256)
+[INFO] loaded texture 'textures/bricks.ppm' (256x256)
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[WARNING] scenes/WSRT_simple.pbrt:61:3: material 'blinnphong': Kd + Ks + Kr > 1; the DRT clamps Kd to conserve energy (the WSRT uses it as given)
+[INFO] trianglemesh: 1 triangles, 3 vertices
+[INFO] override: maxdepth = 3
+[INFO] integrator: whitted, maxdepth 3
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 1200x900, 4 spp, tonemap none
+[INFO] scene: 8 primitives (3 triangles, 1 planes), 2 point/spot/distant lights, 0 area lights, 6 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote ./output/WSRT_simple_md3.png (display), ./output/WSRT_simple_md3.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0043
+render (s):          0.0782
+tonemap+write (s):   0.0458
+total (s):           0.1299
+camera rays:         4320000
+secondary rays:      1927457
+shadow rays:         8667320
+ray-primitive tests: 25920405
+Mrays/s:             190.843
+---- result ----
+OK: errors: 0, warnings: 1

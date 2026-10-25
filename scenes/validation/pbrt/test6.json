@@ -1,0 +1,28 @@
+{
+  "kind": "image",
+  "category": "shading",
+  "output": "testsuite_my_6",
+  "reference": "reference/testsuite_ref_6.pfm",
+  "metric": "pixels",
+  "threshold": 0.06,
+  "pixels": [
+    [
+      48,
+      36
+    ],
+    [
+      48,
+      60
+    ],
+    [
+      25,
+      55
+    ],
+    [
+      72,
+      55
+    ]
+  ],
+  "window": 1,
+  "scene": "testscene_6.pbrt"
+}

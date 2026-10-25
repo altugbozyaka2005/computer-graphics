@@ -1,0 +1,5 @@
+param_small_high: numbered regions in param_small_high_annotated.png and param_small_high_insets.png
+1  1st reflection (needs MD >= 2)
+2  2nd reflection (MD >= 3)
+3  deep reflections need high MD
+4  glass sphere: refraction chain

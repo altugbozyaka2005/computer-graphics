@@ -1,0 +1,4 @@
+camera_ortho: numbered regions in camera_ortho_annotated.png and camera_ortho_insets.png
+1  near house: same size
+2  far house: same size
+3  streets stay parallel: no vanishing point

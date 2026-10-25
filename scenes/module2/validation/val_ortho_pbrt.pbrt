@@ -1,0 +1,18 @@
+# Module 2 validation: orthographic camera against pbrt-v4 (pure pbrt-v4 syntax; reference image in
+# reference/val_ortho_pbrt.pfm, rendered with: pbrt --outfile reference/val_ortho_pbrt.pfm val_ortho_pbrt.pbrt).
+# Spheres and a triangle at different depths, an off-centre screen window and a rotated camera, so that
+# a wrong axis, handedness or y flip of the projection would move the object boundaries.
+LookAt 3 4 -8  0 1 0  0 1 0
+Camera "orthographic" "float screenwindow" [ -3.5 2.5 -2 2.5 ]
+Film "rgb" "integer xresolution" [ 240 ] "integer yresolution" [ 180 ] "string filename" [ "val_ortho_pbrt.pfm" ]
+Sampler "independent" "integer pixelsamples" [ 64 ]
+PixelFilter "box"
+Integrator "path" "integer maxdepth" [ 1 ]
+WorldBegin
+LightSource "distant" "point3 from" [ 1 3 -4 ] "point3 to" [ 0 0 0 ] "rgb L" [ 3 3 3 ]
+Material "diffuse" "rgb reflectance" [ 0.8 0.8 0.8 ]
+AttributeBegin Translate -1.5 1 0 Shape "sphere" "float radius" [ 1 ] AttributeEnd
+AttributeBegin Translate 1.5 1 4 Shape "sphere" "float radius" [ 1 ] AttributeEnd
+AttributeBegin Translate 0.5 0.4 -2 Shape "sphere" "float radius" [ 0.4 ] AttributeEnd
+Shape "trianglemesh" "point3 P" [ 0.8 0 1  2.8 0 1  1.8 2.4 1 ] "integer indices" [ 0 1 2 ]
+Shape "trianglemesh" "point3 P" [ -6 0 -6  6 0 -6  6 0 8  -6 0 8 ] "integer indices" [ 0 1 2 0 2 3 ]

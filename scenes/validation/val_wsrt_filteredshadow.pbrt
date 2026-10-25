@@ -1,0 +1,28 @@
+# WSRT validation: filtered ("transparent") shadow through a glass slab (Module 1 report, section 2.5).
+# A point light (I = 16) 4 units above a matte floor (Kd 0.5, classic Blinn-Phong); a clear glass slab
+# (eta 1.5, Kt 1) hangs between them. With "transparentshadows" each glass surface passes 1 - F of the
+# light, so directly below the light (normal incidence, F = 0.04)
+#   L = Kd * I / d^2 * (1 - 0.04)^2 = 0.5 * 16 / 16 * 0.9216 = 0.4608     (0.5 without the slab)
+# The camera looks at that point from the side, below the slab; 1 spp at the centre of the 101 x 101
+# image is exactly the floor point (0, 0, 0). validate_module1.py reads the centre pixel.
+LookAt 3 0.5 -3   0 0 0   0 1 0
+Camera "perspective" "float fov" [ 30 ]
+Film "rgb" "integer xresolution" [ 101 ] "integer yresolution" [ 101 ]
+    "string filename" [ "val_wsrt_filteredshadow.png" ]
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "whitted" "integer maxdepth" [ 4 ] "rgb ambient" [ 0 0 0 ] "bool transparentshadows" true
+
+WorldBegin
+LightSource "point" "point3 from" [ 0 4 0 ] "rgb I" [ 16 16 16 ]
+AttributeBegin
+  Material "blinnphong" "rgb Kd" [ 0.5 0.5 0.5 ] "rgb Ks" [ 0 0 0 ] "rgb Ka" [ 0 0 0 ]
+  Shape "plane" "point3 p" [ 0 0 0 ] "normal n" [ 0 1 0 ]
+AttributeEnd
+# glass slab 1 x 0.1 x 1 at height 2 (closed box)
+AttributeBegin
+  Material "dielectric" "float eta" [ 1.5 ]
+  Shape "trianglemesh"
+    "point3 P" [ -0.5 1.95 -0.5   0.5 1.95 -0.5   0.5 1.95 0.5   -0.5 1.95 0.5
+                 -0.5 2.05 -0.5   0.5 2.05 -0.5   0.5 2.05 0.5   -0.5 2.05 0.5 ]
+    "integer indices" [ 0 2 1  0 3 2   4 5 6  4 6 7   0 1 5  0 5 4   1 2 6  1 6 5   2 3 7  2 7 6   3 0 4  3 4 7 ]
+AttributeEnd

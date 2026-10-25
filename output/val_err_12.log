@@ -1,0 +1,27 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 16:44:05
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_12.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output --out val_err_12
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_12.pbrt
+[INFO] hardware threads: 15
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_12.pbrt:7:1: integrator 'path' mapped to 'distributed' (for comparison with pbrt)
+[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/validation/errors/testscene_12.pbrt:11:1: sphere radius must be > 0 (got -1.000000); shape ignored
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 45.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 64x48, 4 spp (independent, 4 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 0 primitives (0 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 0 objects, 1 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.00000, scale 1.00000, white point 1.00000 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/val_err_12.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/val_err_12.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0002
+render (s):          0.0003
+tonemap+write (s):   0.0002
+total (s):           0.0011
+camera rays:         12288
+secondary rays:      0
+shadow rays:         0
+ray-primitive tests: 0
+rays by depth:       0:12288
+Mrays/s:             40.864
+---- result ----
+OK: errors: 1, warnings: 1

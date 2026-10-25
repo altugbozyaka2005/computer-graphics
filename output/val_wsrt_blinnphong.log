@@ -1,0 +1,26 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-14 15:47:41
+[INFO] command: ./output/CGR26_renderer scenes/validation/val_wsrt_blinnphong.pbrt --quiet
+[INFO] scene: scenes/validation/val_wsrt_blinnphong.pbrt
+[INFO] hardware threads: 15
+[WARNING] scenes/validation/val_wsrt_blinnphong.pbrt:24:3: material 'blinnphong': Kd + Ks + Kr > 1; the DRT clamps Kd to conserve energy (the WSRT uses it as given)
+[WARNING] scenes/validation/val_wsrt_blinnphong.pbrt:29:3: material 'blinnphong': Kd + Ks + Kr > 1; the DRT clamps Kd to conserve energy (the WSRT uses it as given)
+[WARNING] scenes/validation/val_wsrt_blinnphong.pbrt:34:3: material 'blinnphong': Kd + Ks + Kr > 1; the DRT clamps Kd to conserve energy (the WSRT uses it as given)
+[INFO] integrator: whitted, maxdepth 4
+[INFO] camera: perspective, fov 21.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 1000x250, 16 spp, tonemap none
+[INFO] scene: 5 primitives (0 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 5 objects, 5 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote ./output/val_wsrt_blinnphong.png (display), ./output/val_wsrt_blinnphong.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0005
+render (s):          0.0208
+tonemap+write (s):   0.0077
+total (s):           0.0297
+camera rays:         4000000
+secondary rays:      0
+shadow rays:         965052
+ray-primitive tests: 2829445
+Mrays/s:             238.537
+---- result ----
+OK: errors: 0, warnings: 3

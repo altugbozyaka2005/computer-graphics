@@ -1,0 +1,19 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-10-24 14:09:44
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/aa_drt.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module1/output/module2/aa/timing --out DRT_t36 --sampler stratified --spp 36 --seed 0
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module1/scenes/aa_drt.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_garden.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 660 triangles, 1980 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] override: sampler = stratified
+[INFO] override: spp = 36
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 32, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 800x600, 36 spp (stratified 6x6 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 845 primitives (842 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 9 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...

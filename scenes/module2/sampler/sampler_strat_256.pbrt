@@ -1,0 +1,11 @@
+# Module 2, 2.2.3: soft shadows of a rectangular area light with 256 stratified light sample(s) per
+# shading point. One camera ray through each pixel centre and direct light only (maxdepth 1),
+# so the light samples are the only source of error.
+LookAt 0 2.6 -4.6   0 0.25 0.6   0 1 0
+Camera "perspective" "float fov" [ 42 ]
+Film "rgb" "integer xresolution" [ 640 ] "integer yresolution" [ 480 ]
+    "string filename" [ "sampler_strat_256.png" ] "string tonemap" "none"
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "distributed" "integer maxdepth" [ 1 ] "integer branchingfactor" [ 1 ] "integer lightsamples" [ 256 ] "string lightsampling" "stratified"
+
+Include "../../include/m2_study.pbrt"
