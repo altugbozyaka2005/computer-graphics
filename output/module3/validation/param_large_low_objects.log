@@ -1,0 +1,40 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:55
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_large_low.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out param_large_low_objects --accel objects --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_large_low.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_sculpture.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 36 triangles, 108 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 648 triangles, 666 vertices, normals, uvs
+[INFO] trianglemesh: 1008 triangles, 555 vertices, normals, uvs
+[INFO] trianglemesh: 36 triangles, 108 vertices
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (7 boxes)
+[ERROR] --spp 2 is not a square (stratified sampler); using 1
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 32, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 1 spp (stratified 1x1 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 1743 primitives (1742 triangles, 0 planes), 0 point/spot/distant lights, 0 area lights, 7 objects, 4 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.43325, max luminance 1.00000, scale 1.00000, white point 1.00000 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_large_low_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_large_low_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0024
+accel build (s):     0.0000
+render (s):          0.4093
+tonemap+write (s):   0.0009
+total (s):           0.4133
+camera rays:         10800
+secondary rays:      2802222
+shadow rays:         0
+ray-primitive tests: 641191513
+ray-box tests:       19691154
+tests per ray:       227.94 primitive, 7.00 box
+rays by depth:       0:10800 1:232187 2:2570035
+Mrays/s:             6.872
+---- result ----
+OK: errors: 1, warnings: 0

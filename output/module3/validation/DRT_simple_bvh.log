@@ -1,0 +1,41 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:34
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/DRT_simple.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out DRT_simple_bvh --accel bvh --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/DRT_simple.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.960000
+[INFO] loaded texture 'textures/wood.ppm' (256x256)
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] objmesh 'meshes/torus.obj': 9216 triangles, 4753 vertices, normals, uvs
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 9230 primitives, 18447 nodes, 9224 leaves, depth 19, largest leaf 2, mean prims/leaf 1.00, SAH cost 7.71
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 3, branchingfactor 1, lightsamples 4 (uniform)
+[INFO] camera: perspective, fov 42.00, lensradius 0.1000, focaldistance 8.000
+[INFO] film: 120x90, 2 spp (independent, 2 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 9230 primitives (9228 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 9 objects, 6 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.05725, max luminance 8.85519, scale 1.00000, white point 1.60000
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/DRT_simple_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/DRT_simple_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0122
+accel build (s):     0.0024
+render (s):          0.0031
+tonemap+write (s):   0.0007
+total (s):           0.0192
+camera rays:         21600
+secondary rays:      42842
+shadow rays:         183452
+ray-primitive tests: 178674
+ray-box tests:       4305187
+tests per ray:       0.72 primitive, 17.37 box
+rays by depth:       0:21600 1:21586 2:20620 3:636
+Mrays/s:             79.830
+---- result ----
+OK: errors: 0, warnings: 0

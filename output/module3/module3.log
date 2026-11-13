@@ -1,0 +1,57 @@
+==== Module 3 acceleration study (2026-11-11 15:09:43) ====
+== 4  Output images (BVH, scene settings) and cost maps (1 spp, at the timing resolution)
+   acc_best     1920x1080, 9 spp: build 0.051 s, render 1.65 s (wall 1.9 s), 2.01 primitive + 48.3 box tests per ray
+   acc_worst    1920x1080, 16 spp: build 0.002 s, render 76.56 s (wall 76.7 s), 280.41 primitive + 1798.9 box tests per ray
+   acc_complex  1920x1280, 256 spp: build 0.010 s, render 519.76 s (wall 520.0 s), 1.82 primitive + 67.2 box tests per ray
+
+== 1  Render time without and with the BVH (all configurations of a row: same resolution and spp)
+   none = every ray against every primitive; objects = one box per Shape directive (the Module 1/2
+   renderer); bvh = SAH BVH, maxnodeprims 4. Times in seconds on all threads.
+                     scene        res  spp   prims   none s  objects s  build s  bvh s  x none  x objects  tests/ray none  prim/ray bvh  box/ray bvh
+                      best    960x540    1  145004  223.928     48.095    0.049  0.061  3670.9      788.4        139695.9          2.01         48.2
+                     worst    960x540    1    8002    2.968      1.184    0.003  1.391     2.1        0.9          5839.1        280.10       1797.5
+                   complex    960x640    1   28790  107.646      7.296    0.009  0.500   215.5       14.6         22705.5          1.82         67.2
+  few primitives (Module 1   1200x900    1       8    0.020      0.017    0.000  0.017     1.2        1.0             7.8          1.68          5.6
+  realistic (Module 1 DRT_  1200x1600    1    9824  185.908     18.380    0.003  1.385   134.3       13.3          9359.2         12.10         54.3
+   (x none = none_s / bvh_s; x objects = objects_s / bvh_s; the build time is not in bvh_s)
+
+== 2  Scaling with the number of primitives (400x225, 1 spp, Whitted, maxdepth 5)
+   layout  count  prims  none s  bvh s  build s  speedup  prim/ray none  prim/ray bvh  box/ray bvh  depth
+  marbles      4      8   0.003  0.002    0.000     1.04            8.0          0.54          9.4      5
+  marbles     16     20   0.005  0.002    0.000     2.09           20.0          0.54         12.6      6
+  marbles     64     68   0.014  0.002    0.000     6.13           67.9          0.54         14.9      8
+  marbles    256    260   0.058  0.003    0.000    17.58          259.4          0.56         17.9     10
+  marbles   1024   1028   0.245  0.004    0.000    70.00         1020.6          0.62         21.2     12
+  marbles   4096   4100   1.288  0.005    0.002   234.18         3995.3          0.85         25.7     15
+  marbles  16384  16388   7.632  0.009    0.007   867.31        15471.6          1.29         30.2     16
+   straws    250    502   0.040  0.022    0.000     1.85          435.6         47.31        170.4     16
+   straws    500   1002   0.132  0.035    0.000     3.80          829.9         75.08        298.5     17
+   straws   1000   2002   0.137  0.068    0.001     2.02         1585.4        123.34        559.3     19
+   straws   2000   4002   0.271  0.144    0.002     1.88         3035.4        188.80        997.8     23
+   straws   4000   8002   0.505  0.292    0.003     1.73         5839.2        279.79       1797.0     22
+
+== 3  BVH split method (maxnodeprims 4) and leaf size (sah); 1 spp at each scene's resolution
+        scene   split  build s   nodes  depth  SAH cost  render s  prim/ray  box/ray
+     acc_best     sah    0.040  289773     23      6.17     0.225      2.01     48.3
+     acc_best  middle    0.026  290005     28     10.49     0.261      2.00     66.5
+     acc_best   equal    0.033  290005     18     10.06     0.300      2.01     79.7
+    acc_worst     sah    0.002   14161     22      36.7     5.323    280.50   1798.9
+    acc_worst  middle    0.002   16001     18     39.57     6.720    235.31   2367.7
+    acc_worst   equal    0.002   16003     13     45.76     6.839    244.35   2406.1
+  acc_complex     sah    0.008   37561     21     36.57     2.088      1.82     67.2
+  acc_complex  middle    0.004   38681     21     44.47     2.468      1.71     86.2
+  acc_complex   equal    0.006   50015     15     58.91     3.279      1.74    127.3
+        scene  maxnodeprims  build s   nodes  depth  prims/leaf  SAH cost  render s  prim/ray  box/ray
+     acc_best             1    0.044  290005     23        1.00      6.17     0.224      2.00     48.3
+     acc_best             2    0.046  290005     23        1.00      6.17     0.222      2.00     48.3
+     acc_best             4    0.047  289773     23        1.00      6.17     0.221      2.01     48.3
+     acc_best             8    0.046  289749     23        1.00      6.17     0.221      2.01     48.2
+     acc_best            16    0.045  289749     23        1.00      6.17     0.221      2.01     48.2
+     acc_best            32    0.045  289749     23        1.00      6.17     0.221      2.01     48.2
+  acc_complex             1    0.006   38681     22        1.49     36.77     1.910      1.70     67.5
+  acc_complex             2    0.008   38681     22        1.49     36.77     1.970      1.70     67.5
+  acc_complex             4    0.007   37561     21        1.53     36.57     1.972      1.82     67.2
+  acc_complex             8    0.007   37549     21        1.53     36.56     1.968      1.84     67.1
+  acc_complex            16    0.008   37513     21        1.53     37.07     1.994      3.05     66.2
+  acc_complex            32    0.007   37513     21        1.53     37.07     1.993      3.05     66.2
+

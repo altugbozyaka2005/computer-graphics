@@ -1,0 +1,15 @@
+{
+ "name": "Thin-lens depth of field: chess pawns from 1.5 to 14 units, focus at 5.3",
+ "category": "camera",
+ "metric": "coverage",
+ "description": "Seven pawns (triangle meshes of revolution) and thin wires at increasing depth, perspective camera with lensradius 0.06 and focaldistance 5.3. In-focus silhouettes must align exactly and the defocus blur of the others must have the same width (mean |coverage difference| on edges).",
+ "test": 9,
+ "scene": "testscene_9.pbrt",
+ "reference": "testsuite_ref_9.pfm",
+ "reference_log": "testsuite_ref_9.log",
+ "pbrt_scene": "testscene_9_pbrt.pbrt",
+ "max_mismatch": 0.0008,
+ "max_offset": 0.1,
+ "max_edge_abs_diff": 0.04,
+ "display_exposure": 1.0
+}

@@ -19,18 +19,42 @@ bool hitBox(const AABB& b, const Ray& r, double tMax) {
 }
 }  // namespace
 
+const char* accelName(AccelType t) {
+    switch (t) {
+        case AccelType::BVH: return "bvh";
+        case AccelType::Objects: return "objects";
+        case AccelType::None: return "none";
+    }
+    return "?";
+}
+
 void Scene::prepare() {
     for (auto& o : objects) {
         o.box = AABB();
         for (size_t i = o.first; i < o.last; ++i) o.box.expand(shapes[i]->bounds());
     }
+    if (accel.type == AccelType::BVH) bvh.build(shapes, accel.split, accel.maxNodePrims);
 }
 
 bool Scene::intersect(const Ray& r, Hit* hit) const {
     double tMax = Infinity;
     bool found = false;
     RayStats& st = tlsStats;
-    for (const auto& o : objects) {
+    if (accel.type == AccelType::BVH) {
+        if (bvh.intersect(r, tMax, hit)) {
+            found = true;
+            tMax = hit->t;
+        }
+    } else if (accel.type == AccelType::None) {
+        for (const auto& s : shapes) {
+            ++st.primTests;
+            if (s->intersectA(r, tMax, hit)) {
+                found = true;
+                tMax = hit->t;
+            }
+        }
+    } else for (const auto& o : objects) {
+        ++st.boxTests;
         if (!hitBox(o.box, r, tMax)) continue;
         for (size_t i = o.first; i < o.last; ++i) {
             ++st.primTests;
@@ -57,7 +81,16 @@ bool Scene::occluded(const Ray& r, double tMax) const {
         ++st.primTests;
         if (s->intersectPA(r, tMax)) return true;
     }
+    if (accel.type == AccelType::BVH) return bvh.occluded(r, tMax);
+    if (accel.type == AccelType::None) {
+        for (const auto& s : shapes) {
+            ++st.primTests;
+            if (s->intersectPA(r, tMax)) return true;
+        }
+        return false;
+    }
     for (const auto& o : objects) {
+        ++st.boxTests;
         if (!hitBox(o.box, r, tMax)) continue;
         for (size_t i = o.first; i < o.last; ++i) {
             ++st.primTests;

@@ -1,0 +1,13 @@
+{
+ "name": "Negative maxdepth",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (range): negative maxdepth. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['maxdepth']).",
+ "test": 52,
+ "scene": "testscene_52.pbrt",
+ "group": "range",
+ "keywords": [
+  "maxdepth"
+ ],
+ "reference_log": "testsuite_ref_52.log"
+}

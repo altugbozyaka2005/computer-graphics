@@ -1,0 +1,39 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:39
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/aa_ss9.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out aa_ss9_objects --accel objects --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/aa_ss9.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_garden.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 660 triangles, 1980 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (9 boxes)
+[ERROR] --spp 2 is not a square (stratified sampler); using 1
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: whitted, maxdepth 3
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 1 spp (stratified 1x1 (jittered)), tonemap none
+[INFO] scene: 845 primitives (842 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 9 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/aa_ss9_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/aa_ss9_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0014
+accel build (s):     0.0000
+render (s):          0.0007
+tonemap+write (s):   0.0007
+total (s):           0.0032
+camera rays:         10800
+secondary rays:      0
+shadow rays:         5475
+ray-primitive tests: 640245
+ray-box tests:       146109
+tests per ray:       39.34 primitive, 8.98 box
+rays by depth:       0:10800
+Mrays/s:             21.940
+---- result ----
+OK: errors: 1, warnings: 0

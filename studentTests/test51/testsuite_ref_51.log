@@ -1,0 +1,22 @@
+# pbrt-v4 console output for testscene_51_pbrt.pbrt (exit status -6)
+pbrt version 4 (built Oct 11 2026 at 02:18:28)
+Copyright (c)1998-2021 Matt Pharr, Wenzel Jakob, and Greg Humphreys.
+The source code to pbrt (but *not* the book contents) is covered by the Apache 2.0 License.
+See the file LICENSE.txt for the conditions of the license.
+[1m[31mWarning[0m: testscene_51_pbrt.pbrt:6:0: Output filename supplied on command line, "/Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/tests_tmp/err.png" will override filename provided in scene description file, "testsuite_ref_51.png".
+[ tid 34777284 @     0.000s film.h:191 ] FATAL Check failed: pixelBounds.pMin.x >= 0 with pixelBounds.pMin.x = -96, 0 = 0
+(pbrt)	0x0x0000000103068bc0 - pbrt::PrintStackTrace() + 60
+(pbrt)	0x0x0000000103068d8c - pbrt::CheckCallbackScope::Fail() + 24
+(pbrt)	0x0x00000001030b0cec - pbrt::LogFatal(pbrt::LogLevel, char const*, int, char const*) + 568
+(pbrt)	0x0x0000000102ea4014 - void pbrt::LogFatal<char const (&) [19], char const (&) [2], char const (&) [19], int&, char const (&) [2], int&>(pbrt::LogLevel, char const*, int, char const*, char const (&) [19], char const (&) [2], char const (&) [19], int&, char const (&) [2], int&) + 116
+(pbrt)	0x0x0000000102e9dbb0 - pbrt::FilmBase::FilmBase(pbrt::FilmBaseParameters) + 468
+(pbrt)	0x0x0000000102e9d73c - pbrt::RGBFilm::RGBFilm(pbrt::FilmBaseParameters, pbrt::RGBColorSpace const*, float, bool, pstd::pmr::polymorphic_allocator<std::byte>) + 132
+(pbrt)	0x0x0000000102e9ebb0 - pbrt::RGBFilm::Create(pbrt::ParameterDictionary const&, float, pbrt::Filter, pbrt::RGBColorSpace const*, pbrt::FileLoc const*, pstd::pmr::polymorphic_allocator<std::byte>) + 376
+(pbrt)	0x0x0000000102ea3258 - pbrt::Film::Create(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, pbrt::ParameterDictionary const&, float, pbrt::CameraTransform const&, pbrt::Filter, pbrt::FileLoc const*, pstd::pmr::polymorphic_allocator<std::byte>) + 324
+(pbrt)	0x0x0000000102fa0430 - pbrt::BasicScene::SetOptions(pbrt::SceneEntity, pbrt::SceneEntity, pbrt::CameraSceneEntity, pbrt::SceneEntity, pbrt::SceneEntity, pbrt::SceneEntity) + 432
+(pbrt)	0x0x0000000102fa0034 - pbrt::BasicSceneBuilder::WorldBegin(pbrt::FileLoc) + 2264
+(pbrt)	0x0x0000000102f5f6f8 - pbrt::parse(pbrt::ParserTarget*, std::__1::unique_ptr<pbrt::Tokenizer, std::__1::default_delete<pbrt::Tokenizer>>) + 1416
+(pbrt)	0x0x0000000102f65fc8 - pbrt::ParseFiles(pbrt::ParserTarget*, pstd::span<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const>) + 284
+(pbrt)	0x0x0000000102e55ca4 - main + 7148
+
+

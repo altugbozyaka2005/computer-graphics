@@ -1,0 +1,14 @@
+{
+ "name": "Misspelt directive (Shapee)",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (syntax): misspelt directive (Shapee). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['shapee', 'directive']).",
+ "test": 15,
+ "scene": "testscene_15.pbrt",
+ "group": "syntax",
+ "keywords": [
+  "shapee",
+  "directive"
+ ],
+ "reference_log": "testsuite_ref_15.log"
+}

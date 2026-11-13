@@ -1,0 +1,39 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:38
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/aa_drt.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out aa_drt_bvh --accel bvh --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/aa_drt.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_garden.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 660 triangles, 1980 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 845 primitives, 985 nodes, 493 leaves, depth 15, largest leaf 2, mean prims/leaf 1.71, SAH cost 2.46
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 32, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 2 spp (independent, 2 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 845 primitives (842 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 9 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.52389, max luminance 4.09144, scale 1.00000, white point 3.00000
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/aa_drt_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/aa_drt_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0018
+accel build (s):     0.0002
+render (s):          0.0300
+tonemap+write (s):   0.0008
+total (s):           0.0334
+camera rays:         21600
+secondary rays:      1979648
+shadow rays:         52497
+ray-primitive tests: 3084578
+ray-box tests:       28561732
+tests per ray:       1.50 primitive, 13.91 box
+rays by depth:       0:21600 1:358112 2:1621536
+Mrays/s:             68.455
+---- result ----
+OK: errors: 0, warnings: 0

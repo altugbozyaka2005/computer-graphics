@@ -44,6 +44,7 @@ RenderResult renderImage(const Scene& scene, const RenderOptions& opt) {
     if (y1 <= y0) y1 = y0 + 1;
     int w = x1 - x0, h = y1 - y0;
     res.hdr = Image(w, h);
+    if (opt.costMap) res.cost = Image(w, h);
     Camera cam(scene.camera, film.xRes, film.yRes);
     auto integ = makeIntegrator(scene);
     const int spp = scene.sampler.samplesPerPixel();
@@ -70,6 +71,8 @@ RenderResult renderImage(const Scene& scene, const RenderOptions& opt) {
                     int px = x0 + x, py = y0 + y;
                     RNG rng = pixelRNG(px, py, opt.seed + (uint64_t)scene.sampler.seed);
                     sampler.startPixel(rng);
+                    RayStats before;
+                    if (opt.costMap) before = tlsStats;
                     Color sum(0);
                     for (int s = 0; s < spp; ++s) {
                         // Supersampling: spp camera rays at the sampler's positions inside the
@@ -87,6 +90,13 @@ RenderResult renderImage(const Scene& scene, const RenderOptions& opt) {
                         sum += c;
                     }
                     res.hdr.at(x, y) = sum / (double)spp;
+                    if (opt.costMap) {
+                        const RayStats& a = tlsStats;
+                        uint64_t rays = (a.cameraRays + a.secondaryRays + a.shadowRays) -
+                                        (before.cameraRays + before.secondaryRays + before.shadowRays);
+                        res.cost.at(x, y) = Color((double)(a.boxTests - before.boxTests), (double)(a.primTests - before.primTests),
+                                                  (double)rays) / (double)spp;
+                    }
                 }
             int d = ++done;
             if (!opt.quiet && (d % std::max(1, nTiles / 20) == 0 || d == nTiles)) {

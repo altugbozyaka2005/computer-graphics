@@ -1,0 +1,31 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:30:10
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_marbles_1024.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc --out scale_marbles_1024_none --accel none
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_marbles_1024.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/marbles_1024.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] override: accel = none
+[INFO] accelerator: none: every ray is tested against all 1028 primitives
+[INFO] integrator: whitted, maxdepth 5
+[INFO] camera: perspective, fov 34.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x225, 1 spp (independent, 1 spp (pixel centre)), tonemap none
+[INFO] scene: 1028 primitives (2 triangles, 0 planes), 3 point/spot/distant lights, 0 area lights, 1027 objects, 59 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_marbles_1024_none.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_marbles_1024_none.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0032
+accel build (s):     0.0000
+render (s):          0.2557
+tonemap+write (s):   0.0070
+total (s):           0.2667
+camera rays:         90000
+secondary rays:      94530
+shadow rays:         274098
+ray-primitive tests: 468067133
+ray-box tests:       0
+tests per ray:       1020.58 primitive, 0.00 box
+rays by depth:       0:90000 1:90000 2:4450 3:43 4:35 5:2
+Mrays/s:             1.793
+---- result ----
+OK: errors: 0, warnings: 0

@@ -1,0 +1,68 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:49
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/camera_persp.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out camera_persp_objects --accel objects --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/camera_persp.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_railway.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 240 triangles, 720 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 360 triangles, 1080 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (35 boxes)
+[ERROR] --spp 2 is not a square (stratified sampler); using 1
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: whitted, maxdepth 2
+[INFO] camera: perspective, fov 45.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 1 spp (stratified 1x1 (jittered)), tonemap none
+[INFO] scene: 3688 primitives (3688 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 35 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/camera_persp_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/camera_persp_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0054
+accel build (s):     0.0000
+render (s):          0.0006
+tonemap+write (s):   0.0007
+total (s):           0.0072
+camera rays:         10800
+secondary rays:      0
+shadow rays:         5761
+ray-primitive tests: 376359
+ray-box tests:       578393
+tests per ray:       22.73 primitive, 34.93 box
+rays by depth:       0:10800
+Mrays/s:             25.480
+---- result ----
+OK: errors: 1, warnings: 0

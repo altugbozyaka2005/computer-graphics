@@ -1,0 +1,14 @@
+{
+ "name": "Unknown material type (plasticky)",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (unknown): unknown material type (plasticky). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['plasticky', 'material']).",
+ "test": 29,
+ "scene": "testscene_29.pbrt",
+ "group": "unknown",
+ "keywords": [
+  "plasticky",
+  "material"
+ ],
+ "reference_log": "testsuite_ref_29.log"
+}

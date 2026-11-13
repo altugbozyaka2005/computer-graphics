@@ -1,0 +1,45 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:11:01
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/acc_worst.pbrt --quiet --accel bvh --spp 1 --res 960x540 --costmap --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc --out acc_worst_costmap_bvh
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/acc_worst.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m3_worst.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 1164 triangles, 2328 vertices
+[INFO] trianglemesh: 898 triangles, 1796 vertices
+[INFO] trianglemesh: 688 triangles, 1376 vertices
+[INFO] trianglemesh: 514 triangles, 1028 vertices
+[INFO] trianglemesh: 336 triangles, 672 vertices
+[INFO] trianglemesh: 384 triangles, 768 vertices
+[INFO] trianglemesh: 328 triangles, 656 vertices
+[INFO] trianglemesh: 418 triangles, 836 vertices
+[INFO] trianglemesh: 494 triangles, 988 vertices
+[INFO] trianglemesh: 650 triangles, 1300 vertices
+[INFO] trianglemesh: 974 triangles, 1948 vertices
+[INFO] trianglemesh: 1152 triangles, 2304 vertices
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 8002 primitives, 14161 nodes, 7081 leaves, depth 22, largest leaf 4, mean prims/leaf 1.13, SAH cost 36.70
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: whitted, maxdepth 5
+[INFO] camera: perspective, fov 36.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 960x540, 1 spp (stratified 1x1 (jittered)), tonemap none
+[INFO] scene: 8002 primitives (8002 triangles, 0 planes), 4 point/spot/distant lights, 0 area lights, 13 objects, 13 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/acc_worst_costmap_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/acc_worst_costmap_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0131
+accel build (s):     0.0032
+render (s):          1.6351
+tonemap+write (s):   0.0370
+total (s):           1.6909
+camera rays:         518400
+secondary rays:      158388
+shadow rays:         951304
+ray-primitive tests: 456033473
+ray-box tests:       2926417164
+tests per ray:       280.10 primitive, 1797.45 box
+rays by depth:       0:518400 1:158388
+Mrays/s:             0.996
+---- result ----
+OK: errors: 0, warnings: 0

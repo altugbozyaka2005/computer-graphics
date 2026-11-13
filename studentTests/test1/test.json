@@ -1,0 +1,14 @@
+{
+ "name": "Orrery: sphere, clipped sphere, annulus, raised disk, triangles, icosahedron, tiny spheres",
+ "category": "camera",
+ "metric": "coverage",
+ "description": "A ringed planet (sphere + tilted annulus), an open lantern (sphere clipped by zmin, zmax and phimax), a disk raised by 'height', a 20-triangle gem, a comet (sphere + thin triangle), a non-planar kite and stars only a few pixels wide. Checks every primitive's intersection and the perspective camera at sub-pixel level.",
+ "test": 1,
+ "scene": "testscene_1.pbrt",
+ "reference": "testsuite_ref_1.pfm",
+ "reference_log": "testsuite_ref_1.log",
+ "pbrt_scene": "testscene_1_pbrt.pbrt",
+ "max_mismatch": 0.0005,
+ "max_offset": 0.1,
+ "display_exposure": 1.0
+}

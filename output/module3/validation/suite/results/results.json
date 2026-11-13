@@ -1,0 +1,353 @@
+[
+ {
+  "test": 15,
+  "category": "error",
+  "name": "Misspelt directive (Shapee)",
+  "seconds": 0.01,
+  "status": "exit 0",
+  "group": "syntax",
+  "pass": false
+ },
+ {
+  "test": 16,
+  "category": "error",
+  "name": "Unterminated parameter list (missing ])",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "syntax",
+  "pass": false
+ },
+ {
+  "test": 17,
+  "category": "error",
+  "name": "Unterminated string",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "syntax",
+  "pass": false
+ },
+ {
+  "test": 18,
+  "category": "error",
+  "name": "Non-numeric value for a float parameter",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "syntax",
+  "pass": false
+ },
+ {
+  "test": 19,
+  "category": "error",
+  "name": "Unknown parameter type (flot)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "syntax",
+  "pass": false
+ },
+ {
+  "test": 20,
+  "category": "error",
+  "name": "Wrong number of values for an rgb parameter",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "syntax",
+  "pass": false
+ },
+ {
+  "test": 21,
+  "category": "error",
+  "name": "AttributeEnd without AttributeBegin",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 22,
+  "category": "error",
+  "name": "AttributeBegin never closed",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 23,
+  "category": "error",
+  "name": "Camera after WorldBegin",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 24,
+  "category": "error",
+  "name": "WorldBegin twice",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 25,
+  "category": "error",
+  "name": "Scene content before WorldBegin",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 26,
+  "category": "error",
+  "name": "Missing Include file",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 27,
+  "category": "error",
+  "name": "Recursive Include (a file that includes itself)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "structure",
+  "pass": false
+ },
+ {
+  "test": 28,
+  "category": "error",
+  "name": "Unknown shape type (teapot)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 29,
+  "category": "error",
+  "name": "Unknown material type (plasticky)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 30,
+  "category": "error",
+  "name": "Unknown light type (laser)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 31,
+  "category": "error",
+  "name": "Unknown camera type (fisheye)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 32,
+  "category": "error",
+  "name": "Unknown integrator (warpdrive)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 33,
+  "category": "error",
+  "name": "Unknown texture class (marble)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 34,
+  "category": "error",
+  "name": "Undefined named material",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 35,
+  "category": "error",
+  "name": "Undefined texture reference",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 36,
+  "category": "error",
+  "name": "Misspelt parameter name (radiuss)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "unknown",
+  "pass": false
+ },
+ {
+  "test": 37,
+  "category": "error",
+  "name": "Missing texture file",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "files",
+  "pass": false
+ },
+ {
+  "test": 38,
+  "category": "error",
+  "name": "Missing mesh file",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "files",
+  "pass": false
+ },
+ {
+  "test": 39,
+  "category": "error",
+  "name": "Malformed transform: Translate with two numbers",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "transform",
+  "pass": false
+ },
+ {
+  "test": 40,
+  "category": "error",
+  "name": "Singular transform: Scale 1 0 1",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "transform",
+  "pass": false
+ },
+ {
+  "test": 41,
+  "category": "error",
+  "name": "Rotate about a zero axis",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "transform",
+  "pass": false
+ },
+ {
+  "test": 42,
+  "category": "error",
+  "name": "Degenerate LookAt (eye equals look point)",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "transform",
+  "pass": false
+ },
+ {
+  "test": 43,
+  "category": "error",
+  "name": "Negative sphere radius",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 44,
+  "category": "error",
+  "name": "Sphere zmin greater than zmax",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 45,
+  "category": "error",
+  "name": "Disk innerradius larger than radius",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 46,
+  "category": "error",
+  "name": "Triangle mesh index out of range",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 47,
+  "category": "error",
+  "name": "Triangle mesh index count not a multiple of 3",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 48,
+  "category": "error",
+  "name": "Negative light intensity",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 49,
+  "category": "error",
+  "name": "Spotlight cone angle 270 degrees",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 50,
+  "category": "error",
+  "name": "Camera field of view 200 degrees",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 51,
+  "category": "error",
+  "name": "Negative film resolution",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 52,
+  "category": "error",
+  "name": "Negative maxdepth",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ },
+ {
+  "test": 53,
+  "category": "error",
+  "name": "Zero pixel samples",
+  "seconds": 0.0,
+  "status": "exit 0",
+  "group": "range",
+  "pass": false
+ }
+]

@@ -259,6 +259,36 @@ void SceneBuilder::integrator(const std::string& type, const ParamSet& ps, const
 }
 
 void SceneBuilder::accelerator(const std::string& type, const ParamSet& ps, const FileLoc& loc) {
-    LOG().warning("Accelerator \"" + type + "\" ignored: every ray is tested against every primitive", loc);
-    for (const auto& p : ps.params) p.used = true;
+    AccelSettings& a = scene_->accel;
+    if (type == "bvh") a.type = AccelType::BVH;
+    else if (type == "none") a.type = AccelType::None;        // renderer extension (brute force)
+    else if (type == "objects") a.type = AccelType::Objects;  // renderer extension (per-object boxes)
+    else if (type == "kdtree") {
+        LOG().warning("Accelerator \"kdtree\" is not implemented; using \"bvh\"", loc);
+        a.type = AccelType::BVH;
+        for (const auto& p : ps.params) p.used = true;
+        return;
+    } else {
+        LOG().error("unknown Accelerator \"" + type + "\" (bvh|none|objects); using \"bvh\"", loc);
+        a.type = AccelType::BVH;
+        for (const auto& p : ps.params) p.used = true;
+        return;
+    }
+    std::string sm = ps.getString("splitmethod", "sah");
+    if (sm == "hlbvh") {
+        LOG().warning("splitmethod \"hlbvh\" is not implemented; using \"sah\"", loc);
+        sm = "sah";
+    }
+    if (!parseSplitMethod(sm, &a.split)) {
+        LOG().error("unknown splitmethod \"" + sm + "\" (sah|middle|equal); using \"sah\"", loc);
+        a.split = SplitMethod::SAH;
+    }
+    a.maxNodePrims = ps.getInt("maxnodeprims", 4);
+    if (a.maxNodePrims < 1 || a.maxNodePrims > 255) {
+        LOG().error("maxnodeprims must be in [1,255]; using 4", loc);
+        a.maxNodePrims = 4;
+    }
+    if (type != "bvh" && (ps.has("splitmethod") || ps.has("maxnodeprims")))
+        LOG().warning("splitmethod/maxnodeprims only affect Accelerator \"bvh\"", loc);
+    ps.reportUnused("Accelerator \"" + type + "\"");
 }

@@ -1,0 +1,7 @@
+# pbrt-v4 console output for testscene_46_pbrt.pbrt (exit status -11)
+pbrt version 4 (built Oct 11 2026 at 02:18:28)
+Copyright (c)1998-2021 Matt Pharr, Wenzel Jakob, and Greg Humphreys.
+The source code to pbrt (but *not* the book contents) is covered by the Apache 2.0 License.
+See the file LICENSE.txt for the conditions of the license.
+[1m[31mWarning[0m: testscene_46_pbrt.pbrt:6:0: Output filename supplied on command line, "/Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/tests_tmp/err.png" will override filename provided in scene description file, "testsuite_ref_46.png".
+[1m[31mError[0m: testscene_46_pbrt.pbrt:25:0: trianglemesh has out of-bounds vertex index 7 (3 "P" values were given. Discarding this mesh.

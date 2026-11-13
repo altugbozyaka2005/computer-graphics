@@ -1,0 +1,8 @@
+# Module 3 timing study: 2002 primitives (1000 straws as triangles + floor), acc_worst layout.
+LookAt 0 2.1 -9.4   0 2.35 0   0 1 0
+Camera "perspective" "float fov" [ 36 ]
+Film "rgb" "integer xresolution" [ 400 ] "integer yresolution" [ 225 ] "string filename" [ "scale_straws_1000.png" ]
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "whitted" "integer maxdepth" [ 5 ] "rgb ambient" [ 0.06 0.06 0.07 ]
+
+Include "include/straws_1000.pbrt"

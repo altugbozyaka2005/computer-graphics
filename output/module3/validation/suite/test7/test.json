@@ -1,0 +1,14 @@
+{
+ "name": "Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, distant and near spheres",
+ "category": "camera",
+ "metric": "coverage",
+ "description": "Lamp posts, railings and cables only 0.02 units thick receding to 60 units, lanterns at 80 units, a moon at 90 and spheres close to the lens at the image border, seen with fov 100. Checks precision of thin and distant hits and wide-angle framing.",
+ "test": 7,
+ "scene": "testscene_7.pbrt",
+ "reference": "testsuite_ref_7.pfm",
+ "reference_log": "testsuite_ref_7.log",
+ "pbrt_scene": "testscene_7_pbrt.pbrt",
+ "max_mismatch": 0.0008,
+ "max_offset": 0.15,
+ "display_exposure": 1.0
+}

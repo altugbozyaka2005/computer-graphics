@@ -1,0 +1,14 @@
+{
+ "name": "Camera after WorldBegin",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (structure): camera after WorldBegin. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['camera', 'worldbegin']).",
+ "test": 23,
+ "scene": "testscene_23.pbrt",
+ "group": "structure",
+ "keywords": [
+  "camera",
+  "worldbegin"
+ ],
+ "reference_log": "testsuite_ref_23.log"
+}

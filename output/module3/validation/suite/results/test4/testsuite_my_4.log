@@ -1,0 +1,38 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:17:47
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test4/testscene_4.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test4/testscene_4.pbrt
+[INFO] hardware threads: 15
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 9 primitives, 17 nodes, 9 leaves, depth 4, largest leaf 1, mean prims/leaf 1.00, SAH cost 0.98
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 32.20, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x240, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 9 primitives (0 triangles, 0 planes), 0 point/spot/distant lights, 9 area lights, 9 objects, 9 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.61997, scale 1.00000, white point 0.61997 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_4.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_4.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0002
+accel build (s):     0.0000
+render (s):          0.0332
+tonemap+write (s):   0.0018
+total (s):           0.0356
+camera rays:         1843200
+secondary rays:      0
+shadow rays:         215883
+ray-primitive tests: 436370
+ray-box tests:       10904308
+tests per ray:       0.21 primitive, 5.30 box
+rays by depth:       0:1843200
+Mrays/s:             62.075
+---- result ----
+OK: errors: 0, warnings: 0

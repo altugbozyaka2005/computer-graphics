@@ -1,0 +1,26 @@
+# pbrt-v4 console output for testscene_42_pbrt.pbrt (exit status -6)
+pbrt version 4 (built Oct 11 2026 at 02:18:28)
+Copyright (c)1998-2021 Matt Pharr, Wenzel Jakob, and Greg Humphreys.
+The source code to pbrt (but *not* the book contents) is covered by the Apache 2.0 License.
+See the file LICENSE.txt for the conditions of the license.
+[1m[31mWarning[0m: testscene_42_pbrt.pbrt:6:0: Output filename supplied on command line, "/Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/tests_tmp/err.png" will override filename provided in scene description file, "testsuite_ref_42.png".
+[1m[31mWarning[0m: testscene_42_pbrt.pbrt:10:0: Animated lights aren't supported. Using the start transform.
+[1m[31mWarning[0m: testscene_42_pbrt.pbrt:11:0: Animated lights aren't supported. Using the start transform.
+[ tid 34776783 @     0.000s lightsamplers.h:213 ] FATAL Check failed: c >= min && c <= max
+(pbrt)	0x0x0000000102678bc0 - pbrt::PrintStackTrace() + 60
+(pbrt)	0x0x0000000102678d8c - pbrt::CheckCallbackScope::Fail() + 24
+(pbrt)	0x0x00000001026c0cec - pbrt::LogFatal(pbrt::LogLevel, char const*, int, char const*) + 568
+(pbrt)	0x0x000000010247b68c - void pbrt::LogFatal<char const (&) [21]>(pbrt::LogLevel, char const*, int, char const*, char const (&) [21]) + 92
+(pbrt)	0x0x00000001025193cc - pbrt::CompactLightBounds::CompactLightBounds(pbrt::LightBounds const&, pbrt::Bounds3<float> const&) + 1104
+(pbrt)	0x0x00000001025167f4 - pbrt::BVHLightSampler::buildBVH(std::__1::vector<std::__1::pair<int, pbrt::LightBounds>, std::__1::allocator<std::__1::pair<int, pbrt::LightBounds>>>&, int, int, unsigned int, int) + 144
+(pbrt)	0x0x00000001025165fc - pbrt::BVHLightSampler::BVHLightSampler(pstd::span<pbrt::Light const>, pstd::pmr::polymorphic_allocator<std::byte>) + 1512
+(pbrt)	0x0x0000000102515410 - pbrt::LightSampler::Create(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, pstd::span<pbrt::Light const>, pstd::pmr::polymorphic_allocator<std::byte>) + 796
+(pbrt)	0x0x0000000102631954 - pbrt::PathIntegrator::PathIntegrator(int, pbrt::Camera, pbrt::Sampler, pbrt::Primitive, std::__1::vector<pbrt::Light, std::__1::allocator<pbrt::Light>>, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, bool) + 328
+(pbrt)	0x0x000000010263306c - std::__1::unique_ptr<pbrt::PathIntegrator, std::__1::default_delete<pbrt::PathIntegrator>> std::__1::make_unique[abi:nqe210106]<pbrt::PathIntegrator, int&, pbrt::Camera&, pbrt::Sampler&, pbrt::Primitive&, std::__1::vector<pbrt::Light, std::__1::allocator<pbrt::Light>>&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>&, bool&, 0>(int&, pbrt::Camera&, pbrt::Sampler&, pbrt::Primitive&, std::__1::vector<pbrt::Light, std::__1::allocator<pbrt::Light>>&, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>&, bool&) + 316
+(pbrt)	0x0x0000000102632e8c - pbrt::PathIntegrator::Create(pbrt::ParameterDictionary const&, pbrt::Camera, pbrt::Sampler, pbrt::Primitive, std::__1::vector<pbrt::Light, std::__1::allocator<pbrt::Light>>, pbrt::FileLoc const*) + 344
+(pbrt)	0x0x000000010264a44c - pbrt::Integrator::Create(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>> const&, pbrt::ParameterDictionary const&, pbrt::Camera, pbrt::Sampler, pbrt::Primitive, std::__1::vector<pbrt::Light, std::__1::allocator<pbrt::Light>>, pbrt::RGBColorSpace const*, pbrt::FileLoc const*) + 1072
+(pbrt)	0x0x00000001025bafec - pbrt::BasicScene::CreateIntegrator(pbrt::Camera, pbrt::Sampler, pbrt::Primitive, std::__1::vector<pbrt::Light, std::__1::allocator<pbrt::Light>>) const + 276
+(pbrt)	0x0x000000010267417c - pbrt::RenderCPU(pbrt::BasicScene&) + 736
+(pbrt)	0x0x0000000102465e5c - main + 7588
+
+

@@ -1,0 +1,13 @@
+{
+ "name": "Negative sphere radius",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (range): negative sphere radius. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['radius']).",
+ "test": 43,
+ "scene": "testscene_43.pbrt",
+ "group": "range",
+ "keywords": [
+  "radius"
+ ],
+ "reference_log": "testsuite_ref_43.log"
+}

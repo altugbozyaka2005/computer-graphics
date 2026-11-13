@@ -1,0 +1,43 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:30:24
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_straws_1000.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc --out scale_straws_1000_none --accel none
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_straws_1000.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/straws_1000.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 280 triangles, 560 vertices
+[INFO] trianglemesh: 240 triangles, 480 vertices
+[INFO] trianglemesh: 156 triangles, 312 vertices
+[INFO] trianglemesh: 124 triangles, 248 vertices
+[INFO] trianglemesh: 76 triangles, 152 vertices
+[INFO] trianglemesh: 102 triangles, 204 vertices
+[INFO] trianglemesh: 62 triangles, 124 vertices
+[INFO] trianglemesh: 124 triangles, 248 vertices
+[INFO] trianglemesh: 134 triangles, 268 vertices
+[INFO] trianglemesh: 156 triangles, 312 vertices
+[INFO] trianglemesh: 264 triangles, 528 vertices
+[INFO] trianglemesh: 282 triangles, 564 vertices
+[INFO] override: accel = none
+[INFO] accelerator: none: every ray is tested against all 2002 primitives
+[INFO] integrator: whitted, maxdepth 5
+[INFO] camera: perspective, fov 36.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x225, 1 spp (independent, 1 spp (pixel centre)), tonemap none
+[INFO] scene: 2002 primitives (2002 triangles, 0 planes), 4 point/spot/distant lights, 0 area lights, 13 objects, 13 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_straws_1000_none.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_straws_1000_none.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0034
+accel build (s):     0.0000
+render (s):          0.1373
+tonemap+write (s):   0.0055
+total (s):           0.1470
+camera rays:         90000
+secondary rays:      31090
+shadow rays:         157842
+ray-primitive tests: 442205960
+ray-box tests:       0
+tests per ray:       1585.35 primitive, 0.00 box
+rays by depth:       0:90000 1:31090
+Mrays/s:             2.031
+---- result ----
+OK: errors: 0, warnings: 0

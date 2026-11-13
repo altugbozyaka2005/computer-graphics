@@ -1,0 +1,12 @@
+# Module 3, 2.3.1 worst case, "Firework": 8002 primitives, long thin straws that all cross one small
+# region. Every straw's bounding box spans most of the burst, so BVH nodes overlap and a ray has to
+# visit nearly every leaf.
+LookAt 0 2.1 -9.4   0 2.35 0   0 1 0
+Camera "perspective" "float fov" [ 36 ]
+Film "rgb" "integer xresolution" [ 1920 ] "integer yresolution" [ 1080 ]
+    "string filename" [ "acc_worst.png" ]
+Sampler "stratified" "integer xsamples" [ 4 ] "integer ysamples" [ 4 ] "bool jitter" true
+Integrator "whitted" "integer maxdepth" [ 5 ] "rgb ambient" [ 0.06 0.06 0.07 ]
+Accelerator "bvh" "string splitmethod" "sah" "integer maxnodeprims" [ 4 ]
+
+Include "include/m3_worst.pbrt"

@@ -1,0 +1,39 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:39
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/aa_drt.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out aa_drt_objects --accel objects --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/aa_drt.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_garden.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 660 triangles, 1980 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 72 triangles, 216 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (9 boxes)
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 32, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 48.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 2 spp (independent, 2 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 845 primitives (842 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 9 objects, 8 materials, environment
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.52389, max luminance 4.09144, scale 1.00000, white point 3.00000
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/aa_drt_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/aa_drt_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0013
+accel build (s):     0.0000
+render (s):          0.1818
+tonemap+write (s):   0.0022
+total (s):           0.1857
+camera rays:         21600
+secondary rays:      1979648
+shadow rays:         52497
+ray-primitive tests: 218322030
+ray-box tests:       18475201
+tests per ray:       106.30 primitive, 9.00 box
+rays by depth:       0:21600 1:358112 2:1621536
+Mrays/s:             11.298
+---- result ----
+OK: errors: 0, warnings: 0

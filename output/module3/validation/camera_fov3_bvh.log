@@ -1,0 +1,35 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:49
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/camera_fov3.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out camera_fov3_bvh --accel bvh --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/camera_fov3.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_gallery.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 39 primitives, 73 nodes, 37 leaves, depth 7, largest leaf 2, mean prims/leaf 1.05, SAH cost 3.23
+[ERROR] --spp 2 is not a square (stratified sampler); using 1
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: whitted, maxdepth 2
+[INFO] camera: perspective, fov 100.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 1 spp (stratified 1x1 (jittered)), tonemap none
+[INFO] scene: 39 primitives (4 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 37 objects, 8 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/camera_fov3_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/camera_fov3_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0003
+accel build (s):     0.0000
+render (s):          0.0004
+tonemap+write (s):   0.0011
+total (s):           0.0022
+camera rays:         10800
+secondary rays:      0
+shadow rays:         21345
+ray-primitive tests: 24701
+ray-box tests:       260967
+tests per ray:       0.77 primitive, 8.12 box
+rays by depth:       0:10800
+Mrays/s:             88.169
+---- result ----
+OK: errors: 1, warnings: 0

@@ -1,0 +1,42 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:56
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_small_high.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out param_small_high_objects --accel objects --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_small_high.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_mirrors.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 48 triangles, 144 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 1280 triangles, 697 vertices, normals, uvs
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (11 boxes)
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 24, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 50.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 2 spp (independent, 2 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 1354 primitives (1352 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 11 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.02942, max luminance 1.24275, scale 1.00000, white point 1.24275 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_small_high_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_small_high_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0014
+accel build (s):     0.0000
+render (s):          0.0378
+tonemap+write (s):   0.0008
+total (s):           0.0405
+camera rays:         21600
+secondary rays:      360972
+shadow rays:         502724
+ray-primitive tests: 86883533
+ray-box tests:       9696880
+tests per ray:       98.14 primitive, 10.95 box
+rays by depth:       0:21600 1:21432 2:21109 3:20499 4:19844 5:19216 6:18612 7:17948 8:17392 9:16799 10:16259 11:15776 12:15259 13:14800 14:14302 15:13811 16:13375 17:12925 18:12466 19:12068 20:11629 21:11272 22:10896 23:10549 24:2734
+Mrays/s:             23.402
+---- result ----
+OK: errors: 0, warnings: 0

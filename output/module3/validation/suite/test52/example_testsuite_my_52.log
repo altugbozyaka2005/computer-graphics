@@ -1,0 +1,32 @@
+# CGR26_renderer log for testscene_52.pbrt (exit status 0)
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:11:55
+[INFO] command: output/CGR26_renderer studentTests/test52/testscene_52.pbrt --quiet --outdir output/module3/tests_tmp --out example_52
+[INFO] scene: studentTests/test52/testscene_52.pbrt
+[INFO] hardware threads: 15
+[ERROR] studentTests/test52/testscene_52.pbrt:7:1: maxdepth -3 out of range [0,64]; using 5
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 4 primitives, 5 nodes, 3 leaves, depth 2, largest leaf 2, mean prims/leaf 1.33, SAH cost 2.86
+[INFO] integrator: distributed, maxdepth 5, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 96x72, 8 spp (independent, 8 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 4 primitives (2 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 3 objects, 3 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00708, max luminance 0.24277, scale 1.00000, white point 0.24277 (auto = max)
+[INFO] wrote output/module3/tests_tmp/example_52.png (display), output/module3/tests_tmp/example_52.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0001
+accel build (s):     0.0000
+render (s):          0.0015
+tonemap+write (s):   0.0010
+total (s):           0.0031
+camera rays:         55296
+secondary rays:      49176
+shadow rays:         92639
+ray-primitive tests: 135546
+ray-box tests:       935147
+tests per ray:       0.69 primitive, 4.74 box
+rays by depth:       0:55296 1:41773 2:4574 3:2056 4:773
+Mrays/s:             131.276
+---- result ----
+OK: errors: 1, warnings: 0

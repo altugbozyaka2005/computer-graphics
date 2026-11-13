@@ -1,0 +1,31 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:30:10
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_marbles_256.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc --out scale_marbles_256_bvh --accel bvh
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_marbles_256.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/marbles_256.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 260 primitives, 517 nodes, 259 leaves, depth 10, largest leaf 2, mean prims/leaf 1.00, SAH cost 4.58
+[INFO] integrator: whitted, maxdepth 5
+[INFO] camera: perspective, fov 34.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x225, 1 spp (independent, 1 spp (pixel centre)), tonemap none
+[INFO] scene: 260 primitives (2 triangles, 0 planes), 3 point/spot/distant lights, 0 area lights, 259 objects, 59 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_marbles_256_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_marbles_256_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0011
+accel build (s):     0.0001
+render (s):          0.0033
+tonemap+write (s):   0.0048
+total (s):           0.0099
+camera rays:         90000
+secondary rays:      91219
+shadow rays:         266313
+ray-primitive tests: 250540
+ray-box tests:       8014070
+tests per ray:       0.56 primitive, 17.91 box
+rays by depth:       0:90000 1:90000 2:1145 3:36 4:36 5:2
+Mrays/s:             135.250
+---- result ----
+OK: errors: 0, warnings: 0

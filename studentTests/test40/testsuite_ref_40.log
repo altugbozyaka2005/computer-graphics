@@ -1,0 +1,25 @@
+# pbrt-v4 console output for testscene_40_pbrt.pbrt (exit status -6)
+pbrt version 4 (built Oct 11 2026 at 02:18:28)
+Copyright (c)1998-2021 Matt Pharr, Wenzel Jakob, and Greg Humphreys.
+The source code to pbrt (but *not* the book contents) is covered by the Apache 2.0 License.
+See the file LICENSE.txt for the conditions of the license.
+[1m[31mWarning[0m: testscene_40_pbrt.pbrt:6:0: Output filename supplied on command line, "/Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/tests_tmp/err.png" will override filename provided in scene description file, "testsuite_ref_40.png".
+
+(pbrt)	0x0x0000000100894bc0 - pbrt::PrintStackTrace() + 60
+(pbrt)	0x0x0000000100894d8c - pbrt::CheckCallbackScope::Fail() + 24
+(pbrt)	0x0x00000001008dccec - pbrt::LogFatal(pbrt::LogLevel, char const*, int, char const*) + 568
+(pbrt)	0x0x000000010088c308 - void pbrt::LogFatal<char const (&) [18], char const (&) [3], char const (&) [18], float&, char const (&) [3], double&>(pbrt::LogLevel, char const*, int, char const*, char const (&) [18], char const (&) [3], char const (&) [18], float&, char const (&) [3], double&) + 116
+(pbrt)	0x0x000000010088b174 - pbrt::SimplePrimitive::Intersect(pbrt::Ray const&, float) const + 408
+(pbrt)	0x0x000000010088a754 - pbrt::Primitive::Intersect(pbrt::Ray const&, float) const + 52
+(pbrt)	0x0x000000010082f38c - pbrt::BVHAggregate::Intersect(pbrt::Ray const&, float) const + 600
+(pbrt)	0x0x000000010088a754 - pbrt::Primitive::Intersect(pbrt::Ray const&, float) const + 52
+(pbrt)	0x0x000000010084daf0 - pbrt::PathIntegrator::Li(pbrt::RayDifferential, pbrt::SampledWavelengths&, pbrt::Sampler, pbrt::ScratchBuffer&, pbrt::VisibleSurface*) const + 320
+(pbrt)	0x0x0000000100847eec - pbrt::RayIntegrator::EvaluatePixelSample(pbrt::Point2<int>, int, pbrt::Sampler, pbrt::ScratchBuffer&) + 1020
+(pbrt)	0x0x0000000100873048 - std::__1::__function::__func<pbrt::ImageTileIntegrator::Render()::$_4, void (pbrt::Bounds2<int>)>::operator()(pbrt::Bounds2<int>&&) + 516
+(pbrt)	0x0x00000001009099b8 - pbrt::ParallelForLoop2D::RunStep(std::__1::unique_lock<std::__1::mutex>*) + 224
+(pbrt)	0x0x0000000100908f6c - pbrt::ThreadPool::WorkOrWait(std::__1::unique_lock<std::__1::mutex>*, bool) + 132
+(pbrt)	0x0x0000000100908e18 - pbrt::ThreadPool::Worker() + 112
+(pbrt)	0x0x000000010090c6a8 - void* std::__1::__thread_proxy[abi:nqe210106]<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, void (pbrt::ThreadPool::*)(), pbrt::ThreadPool*>>(void*) + 72
+Rendering failed at pixel (29, 17) sample 0. Debug with "--debugstart 29,17,0"
+
+

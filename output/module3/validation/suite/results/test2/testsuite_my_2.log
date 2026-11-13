@@ -1,0 +1,117 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:17:38
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt
+[INFO] hardware threads: 15
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:20:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:28:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:36:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:44:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:52:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:60:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:68:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:76:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:84:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt:92:1: sphere under non-uniform scale: intersection is exact but its area (used for area lights) is approximate
+[INFO] area light: 1 shape(s), area 0.925159, two-sided
+[INFO] area light: 1 shape(s), area 0.723823, two-sided
+[INFO] trianglemesh: 10 triangles, 11 vertices
+[INFO] area light: 10 shape(s), area 0.899277, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.271200, two-sided
+[INFO] trianglemesh: 1 triangles, 3 vertices
+[INFO] area light: 1 shape(s), area 0.113699, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.271200, two-sided
+[INFO] trianglemesh: 1 triangles, 3 vertices
+[INFO] area light: 1 shape(s), area 0.113699, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.820000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.205800, two-sided
+[INFO] area light: 1 shape(s), area 0.101788, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309754, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309993, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309906, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.310052, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309905, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309995, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.310001, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309769, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.310000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309754, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.310000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.309769, two-sided
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 384 primitives, 567 nodes, 284 leaves, depth 14, largest leaf 4, mean prims/leaf 1.35, SAH cost 3.75
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 45.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 384x288, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 384 primitives (372 triangles, 0 planes), 0 point/spot/distant lights, 45 area lights, 45 objects, 43 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00001, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_2.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_2.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0011
+accel build (s):     0.0001
+render (s):          7.5226
+tonemap+write (s):   0.0059
+total (s):           7.5302
+camera rays:         7077888
+secondary rays:      0
+shadow rays:         372501084
+ray-primitive tests: 1599327168
+ray-box tests:       10828857069
+tests per ray:       4.21 primitive, 28.53 box
+rays by depth:       0:7077888
+Mrays/s:             50.458
+---- result ----
+OK: errors: 0, warnings: 10

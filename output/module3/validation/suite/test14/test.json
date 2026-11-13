@@ -1,0 +1,55 @@
+{
+ "name": "Phong specular lobes vs the analytic value: RGB lights, three Phong spheres on a Phong plane",
+ "category": "shading",
+ "metric": "pixels",
+ "description": "Three white Phong spheres (exponents 60, 200, 12) on a Phong plane (exponent 20) under a red, a green and a blue point light (normalised modified Phong: kd/pi + ks (n+2)/(2 pi) cos^n alpha). pbrt-v4 has no Phong BRDF, so the reference is the closed form with hard shadows, box-filtered over each pixel. Pixels at the highlight peaks and in the coloured shadows.",
+ "test": 14,
+ "scene": "testscene_14.pbrt",
+ "reference": "testsuite_ref_14.pfm",
+ "reference_log": "testsuite_ref_14.log",
+ "pixels": [
+  {
+   "label": "sphere 1 (n 60), red highlight",
+   "x": 76,
+   "y": 89
+  },
+  {
+   "label": "sphere 1 (n 60), green highlight",
+   "x": 91,
+   "y": 92
+  },
+  {
+   "label": "sphere 2 (n 200), green highlight",
+   "x": 194,
+   "y": 122
+  },
+  {
+   "label": "sphere 2 (n 200), blue highlight",
+   "x": 204,
+   "y": 119
+  },
+  {
+   "label": "sphere 3 (n 12), red highlight",
+   "x": 220,
+   "y": 102
+  },
+  {
+   "label": "plane, lit by all three lights (white)",
+   "x": 137,
+   "y": 231
+  },
+  {
+   "label": "plane, red light blocked (cyan shadow)",
+   "x": 219,
+   "y": 162
+  },
+  {
+   "label": "plane, blue light blocked (yellow shadow)",
+   "x": 171,
+   "y": 163
+  }
+ ],
+ "window": 0,
+ "max_rel_error": 0.03,
+ "display_exposure": 8.3062
+}

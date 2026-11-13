@@ -1,0 +1,39 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:56
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/sampler_halton_16.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out sampler_halton_16_bvh --accel bvh --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/sampler_halton_16.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_study.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.280000
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 108 triangles, 324 vertices
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 161 primitives, 165 nodes, 83 leaves, depth 10, largest leaf 2, mean prims/leaf 1.94, SAH cost 3.79
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (halton)
+[INFO] camera: perspective, fov 42.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 2 spp (independent, 2 spp (uniform random)), tonemap none
+[INFO] scene: 161 primitives (160 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 7 objects, 2 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/sampler_halton_16_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/sampler_halton_16_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0004
+accel build (s):     0.0000
+render (s):          0.0022
+tonemap+write (s):   0.0007
+total (s):           0.0038
+camera rays:         21600
+secondary rays:      0
+shadow rays:         309486
+ray-primitive tests: 149984
+ray-box tests:       3657740
+tests per ray:       0.45 primitive, 11.05 box
+rays by depth:       0:21600
+Mrays/s:             152.180
+---- result ----
+OK: errors: 0, warnings: 0

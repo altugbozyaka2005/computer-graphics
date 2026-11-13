@@ -1,0 +1,79 @@
+{
+ "name": "Field of view, portrait 1:2 (fov on the horizontal axis)",
+ "category": "camera",
+ "metric": "centroids",
+ "description": "As test 3 for a portrait image with fov 60, where the shorter axis, and so the fov, is horizontal.",
+ "test": 4,
+ "scene": "testscene_4.pbrt",
+ "reference": "testsuite_ref_4.pfm",
+ "reference_log": "testsuite_ref_4.log",
+ "pbrt_scene": "testscene_4_pbrt.pbrt",
+ "markers": [
+  {
+   "label": "(0.05,0.06)",
+   "x": 5.975,
+   "y": 14.349,
+   "analytic_x": 6.0,
+   "analytic_y": 14.4
+  },
+  {
+   "label": "(0.50,0.06)",
+   "x": 60.0,
+   "y": 14.358,
+   "analytic_x": 60.0,
+   "analytic_y": 14.4
+  },
+  {
+   "label": "(0.95,0.06)",
+   "x": 114.026,
+   "y": 14.351,
+   "analytic_x": 114.0,
+   "analytic_y": 14.4
+  },
+  {
+   "label": "(0.05,0.50)",
+   "x": 5.977,
+   "y": 120.0,
+   "analytic_x": 6.0,
+   "analytic_y": 120.0
+  },
+  {
+   "label": "(0.50,0.50)",
+   "x": 60.001,
+   "y": 120.0,
+   "analytic_x": 60.0,
+   "analytic_y": 120.0
+  },
+  {
+   "label": "(0.95,0.50)",
+   "x": 114.023,
+   "y": 120.0,
+   "analytic_x": 114.0,
+   "analytic_y": 120.0
+  },
+  {
+   "label": "(0.05,0.94)",
+   "x": 5.975,
+   "y": 225.651,
+   "analytic_x": 6.0,
+   "analytic_y": 225.6
+  },
+  {
+   "label": "(0.50,0.94)",
+   "x": 60.0,
+   "y": 225.643,
+   "analytic_x": 60.0,
+   "analytic_y": 225.6
+  },
+  {
+   "label": "(0.95,0.94)",
+   "x": 114.028,
+   "y": 225.651,
+   "analytic_x": 114.0,
+   "analytic_y": 225.6
+  }
+ ],
+ "radius": 6,
+ "max_centroid_error": 0.2,
+ "display_exposure": 1.0
+}

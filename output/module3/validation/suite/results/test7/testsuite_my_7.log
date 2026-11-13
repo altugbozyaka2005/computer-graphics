@@ -1,0 +1,257 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:18:03
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test7/testscene_7.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test7/testscene_7.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 4.060000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.105020, two-sided
+[INFO] area light: 1 shape(s), area 0.212372, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 4.060000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.140000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 4.720000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 4.720000, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.388160, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.388160, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.388160, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.388160, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.388160, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.388160, two-sided
+[INFO] area light: 1 shape(s), area 4.523893, two-sided
+[INFO] area light: 1 shape(s), area 4.523893, two-sided
+[INFO] area light: 1 shape(s), area 4.523893, two-sided
+[INFO] area light: 1 shape(s), area 4.523893, two-sided
+[INFO] area light: 1 shape(s), area 4.523893, two-sided
+[INFO] area light: 1 shape(s), area 153.938040, two-sided
+[INFO] area light: 1 shape(s), area 1.539380, two-sided
+[INFO] area light: 1 shape(s), area 0.785398, two-sided
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 928 primitives, 967 nodes, 484 leaves, depth 15, largest leaf 2, mean prims/leaf 1.92, SAH cost 1.08
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 100.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x300, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 928 primitives (888 triangles, 0 planes), 0 point/spot/distant lights, 134 area lights, 134 objects, 83 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_7.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_7.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0020
+accel build (s):     0.0002
+render (s):          8.8624
+tonemap+write (s):   0.0046
+total (s):           8.8702
+camera rays:         7680000
+secondary rays:      0
+shadow rays:         294037415
+ray-primitive tests: 387799488
+ray-box tests:       16700394207
+tests per ray:       1.29 primitive, 55.35 box
+rays by depth:       0:7680000
+Mrays/s:             34.045
+---- result ----
+OK: errors: 0, warnings: 0

@@ -1,0 +1,401 @@
+# testscene_6: Tunnel of rings (fov 70): framing at the image border and depth
+# Category: camera. Eighteen thin annuli receding from 1.3 to 60 units along a winding axis, a spiral of beads and a sphere at 75 units, seen with fov 70. The nearest rings are cut by the image border, so the field of view and the projection are compared pixel by pixel along every ring edge.
+# Reference: testsuite_ref_6.pfm, rendered by pbrt-v4 from testscene_6_pbrt.pbrt (same scene; only Integrator, Sampler and Film differ).
+LookAt 0 0 0  0 0 1  0 1 0
+Camera "perspective" "float fov" [ 70 ]
+Film "rgb" "integer xresolution" [ 384 ] "integer yresolution" [ 288 ] "string filename" [ "testsuite_my_6.png" ]
+Sampler "stratified" "integer xsamples" [ 8 ] "integer ysamples" [ 8 ] "bool jitter" true
+PixelFilter "box"
+Integrator "distributed" "integer maxdepth" [ 1 ]
+
+WorldBegin
+AttributeBegin
+Translate 0 0 1.3
+Rotate 0 0 1 0
+Rotate 10 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.0866 0.0095 1.586
+Rotate 9.019 0 1 0
+Rotate 8.7758 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.2774 0.065 1.9349
+Rotate 13.7963 0 1 0
+Rotate 5.403 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.4633 0.1844 2.3606
+Rotate 12.0849 0 1 0
+Rotate 0.7074 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.554 0.36 2.8799
+Rotate 4.6898 0 1 0
+Rotate -4.1615 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.4996 0.5665 3.5135
+Rotate -4.911 0 1 0
+Rotate -8.0114 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.2988 0.7697 4.2865
+Rotate -12.2021 0 1 0
+Rotate -9.8999 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.0063 0.9351 5.2295
+Rotate -13.7543 0 1 0
+Rotate -9.3646 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.3444 1.0349 6.38
+Rotate -8.8377 0 1 0
+Rotate -6.5364 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.6349 1.0529 7.7836
+Rotate 0.2354 0 1 0
+Rotate -2.108 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.8076 0.9864 9.496
+Rotate 9.1978 0 1 0
+Rotate 2.8366 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.8188 0.8467 11.5851
+Rotate 13.8344 0 1 0
+Rotate 7.0867 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.6609 0.6567 14.1339
+Rotate 11.9644 0 1 0
+Rotate 9.6017 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate -0.3631 0.4466 17.2433
+Rotate 4.4674 0 1 0
+Rotate 9.7659 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.0147 0.2497 21.0369
+Rotate -5.1307 0 1 0
+Rotate 7.539 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.3955 0.0968 25.665
+Rotate -12.3157 0 1 0
+Rotate 3.4664 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.7012 0.0121 31.3113
+Rotate -13.7085 0 1 0
+Rotate -1.455 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.8688 0.0092 38.1997
+Rotate -8.6539 0 1 0
+Rotate -6.0201 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]
+AttributeEnd
+AttributeBegin
+Translate 0.2 1.1 75
+AreaLightSource "diffuse" "rgb L" [ 0.62 0.62 0.62 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 1.6 ]
+AttributeEnd
+AttributeBegin
+Translate 0.75 0 1.6
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.05 ]
+AttributeEnd
+AttributeBegin
+Translate 0.6694 0.412 1.728
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.052 ]
+AttributeEnd
+AttributeBegin
+Translate 0.4002 0.7084 1.8662
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.054 ]
+AttributeEnd
+AttributeBegin
+Translate 0.0307 0.8076 2.0155
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.056 ]
+AttributeEnd
+AttributeBegin
+Translate -0.3214 0.6864 2.1768
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.058 ]
+AttributeEnd
+AttributeBegin
+Translate -0.5432 0.3862 2.3509
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.06 ]
+AttributeEnd
+AttributeBegin
+Translate -0.5606 0.0017 2.539
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.062 ]
+AttributeEnd
+AttributeBegin
+Translate -0.3595 -0.348 2.7421
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.064 ]
+AttributeEnd
+AttributeBegin
+Translate 0.0095 -0.5537 2.9615
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.066 ]
+AttributeEnd
+AttributeBegin
+Translate 0.4465 -0.5489 3.1984
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.068 ]
+AttributeEnd
+AttributeBegin
+Translate 0.8315 -0.3292 3.4543
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.07 ]
+AttributeEnd
+AttributeBegin
+Translate 1.0597 0.0467 3.7306
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.072 ]
+AttributeEnd
+AttributeBegin
+Translate 1.0727 0.4737 4.0291
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.074 ]
+AttributeEnd
+AttributeBegin
+Translate 0.8754 0.8317 4.3514
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.076 ]
+AttributeEnd
+AttributeBegin
+Translate 0.535 1.0211 4.6995
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.078 ]
+AttributeEnd
+AttributeBegin
+Translate 0.1607 0.992 5.0755
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.08 ]
+AttributeEnd
+AttributeBegin
+Translate -0.1283 0.7587 5.4815
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.082 ]
+AttributeEnd
+AttributeBegin
+Translate -0.2379 0.396 5.92
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.084 ]
+AttributeEnd
+AttributeBegin
+Translate -0.1269 0.0168 6.3936
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.086 ]
+AttributeEnd
+AttributeBegin
+Translate 0.1808 -0.2611 6.9051
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.088 ]
+AttributeEnd
+AttributeBegin
+Translate 0.6033 -0.35 7.4575
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 1.0248 -0.2177 8.0541
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.092 ]
+AttributeEnd
+AttributeBegin
+Translate 1.3299 0.1028 8.6985
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.094 ]
+AttributeEnd
+AttributeBegin
+Translate 1.4374 0.5226 9.3943
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.096 ]
+AttributeEnd
+AttributeBegin
+Translate 1.3244 0.9241 10.1459
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.098 ]
+AttributeEnd
+AttributeBegin
+Translate 1.0332 1.1945 10.9576
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.1 ]
+AttributeEnd
+AttributeBegin
+Translate 0.6584 1.2601 11.8342
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.102 ]
+AttributeEnd
+AttributeBegin
+Translate 0.3195 1.1074 12.7809
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.104 ]
+AttributeEnd
+AttributeBegin
+Translate 0.1253 0.7873 13.8034
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.106 ]
+AttributeEnd
+AttributeBegin
+Translate 0.1419 0.4002 14.9076
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.108 ]
+AttributeEnd
+AttributeBegin
+Translate 0.3732 0.0662 16.1003
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.11 ]
+AttributeEnd
+AttributeBegin
+Translate 0.7599 -0.1105 17.3883
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.112 ]
+AttributeEnd
+AttributeBegin
+Translate 1.1968 -0.0716 18.7793
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.114 ]
+AttributeEnd
+AttributeBegin
+Translate 1.5638 0.1771 20.2817
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.116 ]
+AttributeEnd
+AttributeBegin
+Translate 1.7616 0.5683 21.9042
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.118 ]
+AttributeEnd
+AttributeBegin
+Translate 1.7407 0.9924 23.6566
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 1.516 1.3303 25.5491
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.122 ]
+AttributeEnd
+AttributeBegin
+Translate 1.1627 1.4881 27.593
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.124 ]
+AttributeEnd
+AttributeBegin
+Translate 0.7939 1.4254 29.8004
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.126 ]
+AttributeEnd
+AttributeBegin
+Translate 0.5272 1.1663 32.1845
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.128 ]
+AttributeEnd

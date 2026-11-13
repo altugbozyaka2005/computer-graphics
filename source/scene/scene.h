@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../core/image.h"
+#include "../geometry/bvh.h"
 #include "../geometry/shape.h"
 #include "../render/camera.h"
 #include "../render/light.h"
@@ -47,6 +48,17 @@ struct IntegratorSettings {
     int branchingFactor = 1;
 };
 
+// Ray-primitive acceleration (pbrt "Accelerator"). bvh: bounding volume hierarchy (default);
+// objects: one bounding box per Shape directive (the Module 1/2 renderer); none: every ray is
+// tested against every primitive.
+enum class AccelType { BVH, Objects, None };
+struct AccelSettings {
+    AccelType type = AccelType::BVH;
+    SplitMethod split = SplitMethod::SAH;
+    int maxNodePrims = 4;
+};
+const char* accelName(AccelType t);
+
 class Scene {
 public:
     // Settings
@@ -56,6 +68,7 @@ public:
     bool samplerSpecified = false;
     FilterSettings filter;
     IntegratorSettings integrator;
+    AccelSettings accel;
 
     // Content
     std::vector<std::unique_ptr<Shape>> shapes;     // bounded shapes
@@ -74,11 +87,13 @@ public:
     };
     std::vector<Object> objects;
     void addObject(size_t first, size_t last) { objects.push_back({first, last, AABB()}); }
-    // Computes each object's bounding box (call once after parsing).
+    // Computes each object's bounding box and builds the BVH (call once after parsing
+    // and after any change to `accel`).
     void prepare();
+    BVH bvh;
 
-    // Closest hit / any hit. Each object's primitives are only tested when the
-    // ray hits the object's bounding box (simple per-object bounding volumes).
+    // Closest hit / any hit through the chosen accelerator (unbounded planes are always
+    // tested directly).
     bool intersect(const Ray& r, Hit* hit) const;
     bool occluded(const Ray& r, double tMax) const;
     size_t primitiveCount() const { return shapes.size() + unbounded.size(); }

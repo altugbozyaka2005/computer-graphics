@@ -1,0 +1,70 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:20:49
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test9/testscene_9.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test9/testscene_9.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 832 triangles, 896 vertices
+[INFO] area light: 832 shape(s), area 2.250912, two-sided
+[INFO] area light: 1 shape(s), area 0.180956, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.480800, two-sided
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 5939 primitives, 10209 nodes, 5105 leaves, depth 18, largest leaf 3, mean prims/leaf 1.16, SAH cost 5.22
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0600, focaldistance 5.300
+[INFO] film: 384x256, 256 spp (stratified 16x16 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 5939 primitives (5932 triangles, 0 planes), 0 point/spot/distant lights, 23 area lights, 23 objects, 23 materials
+[INFO] rendering with 15 threads ...
+  rendering:   4%  (0.0s)  rendering:   9%  (0.3s)  rendering:  14%  (0.3s)  rendering:  19%  (0.6s)  rendering:  24%  (0.8s)  rendering:  29%  (1.3s)  rendering:  34%  (1.7s)  rendering:  39%  (2.1s)  rendering:  44%  (2.5s)  rendering:  49%  (3.2s)  rendering:  54%  (4.1s)  rendering:  59%  (5.4s)  rendering:  64%  (7.0s)  rendering:  69%  (8.1s)  rendering:  74%  (8.6s)  rendering:  79%  (9.8s)  rendering:  84%  (9.9s)  rendering:  89%  (10.1s)  rendering:  94%  (10.2s)  rendering:  98%  (11.1s)  rendering: 100%  (14.1s)
+[INFO] Reinhard: mode luminance, log-average luminance 0.00002, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_9.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_9.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0047
+accel build (s):     0.0013
+render (s):          14.1050
+tonemap+write (s):   0.0037
+total (s):           14.1152
+camera rays:         25165824
+secondary rays:      0
+shadow rays:         375900633
+ray-primitive tests: 1877852160
+ray-box tests:       18721705380
+tests per ray:       4.68 primitive, 46.68 box
+rays by depth:       0:25165824
+Mrays/s:             28.434
+---- result ----
+OK: errors: 0, warnings: 0
+log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_9.log

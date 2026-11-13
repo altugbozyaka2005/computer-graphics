@@ -1,0 +1,14 @@
+{
+ "name": "Rotate about a zero axis",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (transform): rotate about a zero axis. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['rotate', 'axis']).",
+ "test": 41,
+ "scene": "testscene_41.pbrt",
+ "group": "transform",
+ "keywords": [
+  "rotate",
+  "axis"
+ ],
+ "reference_log": "testsuite_ref_41.log"
+}

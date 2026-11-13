@@ -1,0 +1,54 @@
+test1: Orrery: sphere, clipped sphere, annulus, raised disk, triangles, icosahedron, tiny spheres
+test2: Clockwork: Scale/Rotate petals, ConcatTransform, Transform, mirror Scale, CoordSysTransform
+test3: Field of view, landscape 2:1 (fov on the shorter axis)
+test4: Field of view, portrait 1:2 (fov on the horizontal axis)
+test5: Off-centre screen window on a perspective camera (shifted lens)
+test6: Tunnel of rings (fov 70): framing at the image border and depth
+test7: Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, distant and near spheres
+test8: Orthographic camera with a screen window: isometric town
+test9: Thin-lens depth of field: chess pawns from 1.5 to 14 units, focus at 5.3
+test10: Still life: Phong diffuse under a point light and a spotlight (direct lighting)
+test11: Chess endgame: Phong diffuse under a rectangular and a spherical area light (soft shadows)
+test12: Gallery: Phong diffuse interreflection in a closed room (maxdepth 3)
+test13: Textures: checkerboards (mesh uv, sphere uv) and a PFM image map with scale
+test14: Phong specular lobes vs the analytic value: RGB lights, three Phong spheres on a Phong plane
+test15: Misspelt directive (Shapee)
+test16: Unterminated parameter list (missing ])
+test17: Unterminated string
+test18: Non-numeric value for a float parameter
+test19: Unknown parameter type (flot)
+test20: Wrong number of values for an rgb parameter
+test21: AttributeEnd without AttributeBegin
+test22: AttributeBegin never closed
+test23: Camera after WorldBegin
+test24: WorldBegin twice
+test25: Scene content before WorldBegin
+test26: Missing Include file
+test27: Recursive Include (a file that includes itself)
+test28: Unknown shape type (teapot)
+test29: Unknown material type (plasticky)
+test30: Unknown light type (laser)
+test31: Unknown camera type (fisheye)
+test32: Unknown integrator (warpdrive)
+test33: Unknown texture class (marble)
+test34: Undefined named material
+test35: Undefined texture reference
+test36: Misspelt parameter name (radiuss)
+test37: Missing texture file
+test38: Missing mesh file
+test39: Malformed transform: Translate with two numbers
+test40: Singular transform: Scale 1 0 1
+test41: Rotate about a zero axis
+test42: Degenerate LookAt (eye equals look point)
+test43: Negative sphere radius
+test44: Sphere zmin greater than zmax
+test45: Disk innerradius larger than radius
+test46: Triangle mesh index out of range
+test47: Triangle mesh index count not a multiple of 3
+test48: Negative light intensity
+test49: Spotlight cone angle 270 degrees
+test50: Camera field of view 200 degrees
+test51: Negative film resolution
+test52: Negative maxdepth
+test53: Zero pixel samples
+python3 scenes/tools/make_module3_tests.py > output/module3/make_tests.txt 2>  4689.42s user 136.91s system 969% cpu 8:17.80 total

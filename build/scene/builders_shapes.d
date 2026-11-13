@@ -1,8 +1,8 @@
 ../build/scene/builders_shapes.o: scene/builders_shapes.cpp \
   scene/builders.h scene/../core/transform.h scene/../core/math.h \
   scene/params.h scene/../core/log.h scene/scene.h scene/../core/image.h \
-  scene/../geometry/shape.h scene/../geometry/../core/math.h \
-  scene/../geometry/../core/transform.h \
+  scene/../geometry/bvh.h scene/../geometry/shape.h \
+  scene/../geometry/../core/math.h scene/../geometry/../core/transform.h \
   scene/../geometry/../render/texture.h \
   scene/../geometry/../render/../core/image.h \
   scene/../geometry/../render/../core/math.h scene/../render/camera.h \
@@ -18,6 +18,7 @@ scene/params.h:
 scene/../core/log.h:
 scene/scene.h:
 scene/../core/image.h:
+scene/../geometry/bvh.h:
 scene/../geometry/shape.h:
 scene/../geometry/../core/math.h:
 scene/../geometry/../core/transform.h:

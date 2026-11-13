@@ -1,0 +1,13 @@
+{
+ "name": "Malformed transform: Translate with two numbers",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (transform): malformed transform: Translate with two numbers. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['translate']).",
+ "test": 39,
+ "scene": "testscene_39.pbrt",
+ "group": "transform",
+ "keywords": [
+  "translate"
+ ],
+ "reference_log": "testsuite_ref_39.log"
+}

@@ -1,0 +1,208 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:18:12
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test8/testscene_8.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test8/testscene_8.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.100000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.100000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.100000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.100000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.000000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.000000, two-sided
+[INFO] trianglemesh: 4 triangles, 6 vertices
+[INFO] area light: 4 shape(s), area 1.705520, two-sided
+[INFO] trianglemesh: 2 triangles, 6 vertices
+[INFO] area light: 2 shape(s), area 0.495000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.640000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.640000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.480000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.480000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.480000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.480000, two-sided
+[INFO] trianglemesh: 4 triangles, 6 vertices
+[INFO] area light: 4 shape(s), area 1.145513, two-sided
+[INFO] trianglemesh: 2 triangles, 6 vertices
+[INFO] area light: 2 shape(s), area 0.405000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.560000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.560000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.050000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.050000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.200000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.200000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.700000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.700000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.630000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.630000, two-sided
+[INFO] trianglemesh: 4 triangles, 6 vertices
+[INFO] area light: 4 shape(s), area 1.479899, two-sided
+[INFO] trianglemesh: 2 triangles, 6 vertices
+[INFO] area light: 2 shape(s), area 0.450000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.960000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.960000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.720000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.720000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.480000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.480000, two-sided
+[INFO] trianglemesh: 4 triangles, 6 vertices
+[INFO] area light: 4 shape(s), area 1.654630, two-sided
+[INFO] trianglemesh: 2 triangles, 6 vertices
+[INFO] area light: 2 shape(s), area 0.405000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.640000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.640000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.600000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.600000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.600000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.600000, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test8/testscene_8.pbrt:215:1: partial sphere area light is sampled as a full sphere
+[INFO] area light: 1 shape(s), area 0.907292, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.080000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.080000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.680000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.680000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.260000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.260000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.900000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.720000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.720000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.800000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.800000, two-sided
+[INFO] trianglemesh: 4 triangles, 6 vertices
+[INFO] area light: 4 shape(s), area 1.421267, two-sided
+[INFO] trianglemesh: 2 triangles, 6 vertices
+[INFO] area light: 2 shape(s), area 0.495000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.880000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.880000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.320000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 1.320000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.960000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.960000, two-sided
+[INFO] trianglemesh: 4 triangles, 6 vertices
+[INFO] area light: 4 shape(s), area 1.527351, two-sided
+[INFO] trianglemesh: 2 triangles, 6 vertices
+[INFO] area light: 2 shape(s), area 0.405000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.600000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.600000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.500000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.500000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.300000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.300000, two-sided
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test8/testscene_8.pbrt:342:1: annulus/partial disk area light is sampled as a full disk
+[INFO] area light: 1 shape(s), area 0.816814, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.014400, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.014400, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.060000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.060000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.060000, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.060000, two-sided
+[INFO] area light: 1 shape(s), area 0.321699, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.091200, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.091200, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.091200, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.091200, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] area light: 12 shape(s), area 0.091200, two-sided
+[INFO] area light: 1 shape(s), area 0.502655, two-sided
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 248 primitives, 267 nodes, 134 leaves, depth 12, largest leaf 2, mean prims/leaf 1.85, SAH cost 11.62
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: orthographic, screen window x [-3.434, 3.434], y [-2.000, 2.675] (camera-space units), lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 384x264, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 248 primitives (240 triangles, 0 planes), 0 point/spot/distant lights, 91 area lights, 92 objects, 59 materials
+[INFO] rendering with 15 threads ...
+  rendering:   4%  (0.0s)  rendering:   9%  (0.0s)  rendering:  14%  (0.0s)  rendering:  19%  (0.9s)  rendering:  24%  (2.6s)  rendering:  29%  (3.9s)  rendering:  34%  (6.8s)  rendering:  39%  (9.9s)  rendering:  44%  (13.4s)  rendering:  49%  (16.2s)  rendering:  53%  (17.7s)  rendering:  58%  (20.2s)  rendering:  63%  (22.6s)  rendering:  68%  (25.0s)  rendering:  73%  (26.9s)  rendering:  78%  (28.9s)  rendering:  83%  (30.3s)  rendering:  88%  (30.9s)  rendering:  93%  (31.4s)  rendering:  98%  (32.3s)  rendering: 100%  (33.3s)
+[INFO] Reinhard: mode luminance, log-average luminance 0.00074, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_8.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_8.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0009
+accel build (s):     0.0000
+render (s):          33.3339
+tonemap+write (s):   0.0041
+total (s):           33.3398
+camera rays:         6488064
+secondary rays:      0
+shadow rays:         2493161317
+ray-primitive tests: 4387652006
+ray-box tests:       61375957390
+tests per ray:       1.76 primitive, 24.55 box
+rays by depth:       0:6488064
+Mrays/s:             74.988
+---- result ----
+OK: errors: 0, warnings: 2
+log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_8.log

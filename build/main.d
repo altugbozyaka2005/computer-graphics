@@ -6,8 +6,9 @@
   render/../geometry/../render/../core/image.h \
   render/../geometry/../render/../core/math.h render/renderer.h \
   render/../core/image.h render/../core/log.h render/../scene/scene.h \
-  render/../scene/../core/image.h render/../scene/../geometry/shape.h \
-  render/../scene/../render/camera.h render/../scene/../render/light.h \
+  render/../scene/../core/image.h render/../scene/../geometry/bvh.h \
+  render/../scene/../geometry/shape.h render/../scene/../render/camera.h \
+  render/../scene/../render/light.h \
   render/../scene/../render/../core/math.h \
   render/../scene/../render/../core/rng.h \
   render/../scene/../render/../geometry/shape.h \
@@ -31,6 +32,7 @@ render/../core/image.h:
 render/../core/log.h:
 render/../scene/scene.h:
 render/../scene/../core/image.h:
+render/../scene/../geometry/bvh.h:
 render/../scene/../geometry/shape.h:
 render/../scene/../render/camera.h:
 render/../scene/../render/light.h:

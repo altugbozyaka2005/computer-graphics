@@ -1,0 +1,35 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:19:28
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test13/testscene_13.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test13/testscene_13.pbrt
+[INFO] hardware threads: 15
+[INFO] loaded texture 'painting.pfm' (32x16)
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 7 primitives, 7 nodes, 4 leaves, depth 2, largest leaf 2, mean prims/leaf 1.75, SAH cost 2.56
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 42.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 320x240, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 7 primitives (6 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 4 objects, 4 materials
+[INFO] rendering with 15 threads ...
+  rendering:   5%  (0.0s)  rendering:  10%  (0.0s)  rendering:  15%  (0.0s)  rendering:  20%  (0.0s)  rendering:  25%  (0.0s)  rendering:  30%  (0.0s)  rendering:  35%  (0.0s)  rendering:  40%  (0.0s)  rendering:  45%  (0.0s)  rendering:  50%  (0.0s)  rendering:  55%  (0.0s)  rendering:  60%  (0.0s)  rendering:  65%  (0.1s)  rendering:  70%  (0.1s)  rendering:  75%  (0.1s)  rendering:  80%  (0.1s)  rendering:  85%  (0.1s)  rendering:  90%  (0.1s)  rendering:  95%  (0.1s)  rendering: 100%  (0.1s)
+[INFO] Reinhard: mode luminance, log-average luminance 0.18492, max luminance 0.94932, scale 1.00000, white point 0.94932 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_13.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_13.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0002
+accel build (s):     0.0000
+render (s):          0.0731
+tonemap+write (s):   0.0047
+total (s):           0.0785
+camera rays:         4915200
+secondary rays:      0
+shadow rays:         9579827
+ray-primitive tests: 12711946
+ray-box tests:       76537740
+tests per ray:       0.88 primitive, 5.28 box
+rays by depth:       0:4915200
+Mrays/s:             198.200
+---- result ----
+OK: errors: 0, warnings: 0
+log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_13.log

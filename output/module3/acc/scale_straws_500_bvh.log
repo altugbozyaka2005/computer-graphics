@@ -1,0 +1,43 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:30:23
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_straws_500.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc --out scale_straws_500_bvh --accel bvh
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/module3/acc/scale_straws_500.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/straws_500.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 142 triangles, 284 vertices
+[INFO] trianglemesh: 110 triangles, 220 vertices
+[INFO] trianglemesh: 74 triangles, 148 vertices
+[INFO] trianglemesh: 64 triangles, 128 vertices
+[INFO] trianglemesh: 34 triangles, 68 vertices
+[INFO] trianglemesh: 56 triangles, 112 vertices
+[INFO] trianglemesh: 30 triangles, 60 vertices
+[INFO] trianglemesh: 72 triangles, 144 vertices
+[INFO] trianglemesh: 72 triangles, 144 vertices
+[INFO] trianglemesh: 78 triangles, 156 vertices
+[INFO] trianglemesh: 128 triangles, 256 vertices
+[INFO] trianglemesh: 140 triangles, 280 vertices
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 1002 primitives, 1875 nodes, 938 leaves, depth 17, largest leaf 4, mean prims/leaf 1.07, SAH cost 6.32
+[INFO] integrator: whitted, maxdepth 5
+[INFO] camera: perspective, fov 36.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 400x225, 1 spp (independent, 1 spp (pixel centre)), tonemap none
+[INFO] scene: 1002 primitives (1002 triangles, 0 planes), 4 point/spot/distant lights, 0 area lights, 13 objects, 13 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_straws_500_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/acc/scale_straws_500_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0018
+accel build (s):     0.0003
+render (s):          0.0346
+tonemap+write (s):   0.0050
+total (s):           0.0424
+camera rays:         90000
+secondary rays:      32709
+shadow rays:         154074
+ray-primitive tests: 20780973
+ray-box tests:       82612786
+tests per ray:       75.08 primitive, 298.47 box
+rays by depth:       0:90000 1:32709
+Mrays/s:             8.009
+---- result ----
+OK: errors: 0, warnings: 0

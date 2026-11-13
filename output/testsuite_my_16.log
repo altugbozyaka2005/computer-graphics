@@ -1,0 +1,10 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:21:16
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test16/testscene_16.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test16/testscene_16.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test16/testscene_16.pbrt:25:1: syntax error: missing ']' for parameter "float radius" before directive 'Material' -- parsing aborted
+---- result ----
+FAILED: scene could not be parsed; no image written.
+errors: 1, warnings: 0

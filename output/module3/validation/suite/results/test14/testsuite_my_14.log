@@ -1,0 +1,30 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:19:28
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test14/testscene_14.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test14/testscene_14.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 5 primitives, 7 nodes, 4 leaves, depth 2, largest leaf 2, mean prims/leaf 1.25, SAH cost 2.93
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 320x240, 256 spp (stratified 16x16 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 5 primitives (2 triangles, 0 planes), 3 point/spot/distant lights, 0 area lights, 4 objects, 4 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00989, max luminance 10.28886, scale 1.00000, white point 10.28886 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_14.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_14.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0001
+accel build (s):     0.0000
+render (s):          0.2926
+tonemap+write (s):   0.0054
+total (s):           0.2986
+camera rays:         19660800
+secondary rays:      0
+shadow rays:         56796765
+ray-primitive tests: 52246292
+ray-box tests:       396381722
+tests per ray:       0.68 primitive, 5.18 box
+rays by depth:       0:19660800
+Mrays/s:             261.332
+---- result ----
+OK: errors: 0, warnings: 0

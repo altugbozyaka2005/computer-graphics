@@ -1,0 +1,8 @@
+# Module 3 timing study: 1028 primitives (1024 marbles + floor and pool), acc_best layout.
+LookAt 0 9.5 -16.5   0 1.6 0.5   0 1 0
+Camera "perspective" "float fov" [ 34 ]
+Film "rgb" "integer xresolution" [ 400 ] "integer yresolution" [ 225 ] "string filename" [ "scale_marbles_1024.png" ]
+Sampler "independent" "integer pixelsamples" [ 1 ]
+Integrator "whitted" "integer maxdepth" [ 5 ] "rgb ambient" [ 0.06 0.06 0.07 ]
+
+Include "include/marbles_1024.pbrt"

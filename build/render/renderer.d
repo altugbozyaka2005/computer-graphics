@@ -1,7 +1,7 @@
 ../build/render/renderer.o: render/renderer.cpp render/renderer.h \
   render/../core/image.h render/../core/math.h render/../core/log.h \
   render/../scene/scene.h render/../scene/../core/image.h \
-  render/../scene/../geometry/shape.h \
+  render/../scene/../geometry/bvh.h render/../scene/../geometry/shape.h \
   render/../scene/../geometry/../core/math.h \
   render/../scene/../geometry/../core/transform.h \
   render/../scene/../geometry/../render/texture.h \
@@ -23,6 +23,7 @@ render/../core/math.h:
 render/../core/log.h:
 render/../scene/scene.h:
 render/../scene/../core/image.h:
+render/../scene/../geometry/bvh.h:
 render/../scene/../geometry/shape.h:
 render/../scene/../geometry/../core/math.h:
 render/../scene/../geometry/../core/transform.h:

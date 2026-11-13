@@ -1,0 +1,37 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:38
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/WSRT_simple.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out WSRT_simple_objects --accel objects --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/WSRT_simple.pbrt
+[INFO] hardware threads: 15
+[INFO] loaded texture 'textures/checker.ppm' (256x256)
+[INFO] loaded texture 'textures/uvgrid.ppm' (256x256)
+[INFO] loaded texture 'textures/bricks.ppm' (256x256)
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[WARNING] /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/WSRT_simple.pbrt:61:3: material 'blinnphong': Kd + Ks + Kr > 1; the DRT clamps Kd to conserve energy (the WSRT uses it as given)
+[INFO] trianglemesh: 1 triangles, 3 vertices
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (6 boxes); 1 infinite plane(s) tested separately
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: whitted, maxdepth 8
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 2 spp (independent, 2 spp (uniform random)), tonemap none
+[INFO] scene: 8 primitives (3 triangles, 1 planes), 2 point/spot/distant lights, 0 area lights, 6 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/WSRT_simple_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/WSRT_simple_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0054
+accel build (s):     0.0000
+render (s):          0.0009
+tonemap+write (s):   0.0006
+total (s):           0.0074
+camera rays:         21600
+secondary rays:      11390
+shadow rays:         44799
+ray-primitive tests: 135408
+ray-box tests:       454605
+tests per ray:       1.74 primitive, 5.84 box
+rays by depth:       0:21600 1:4296 2:2989 3:2326 4:1031 5:359 6:181 7:119 8:89
+Mrays/s:             85.190
+---- result ----
+OK: errors: 0, warnings: 1

@@ -1,0 +1,66 @@
+# testscene_3: Field of view, landscape 2:1 (fov on the shorter axis)
+# Category: camera. Nine small spheres placed at 5%/50%/95% of the width and 6%/50%/94% of the height for fov 30 on a landscape image. pbrt applies fov to the shorter (vertical) axis; checks framing to a fraction of a pixel.
+# Reference: testsuite_ref_3.pfm, rendered by pbrt-v4 from testscene_3_pbrt.pbrt (same scene; only Integrator, Sampler and Film differ).
+# pbrt-v4 version of testscene_3.pbrt, used to render the reference image.
+LookAt 0 0 0  0 0 1  0 1 0
+Camera "perspective" "float fov" [ 30 ]
+Film "rgb" "integer xresolution" [ 240 ] "integer yresolution" [ 120 ] "string filename" [ "testsuite_ref_3.pfm" ]
+Sampler "stratified" "integer xsamples" [ 32 ] "integer ysamples" [ 32 ] "bool jitter" true
+PixelFilter "box"
+Integrator "path" "integer maxdepth" [ 1 ]
+
+WorldBegin
+AttributeBegin
+Translate -4.8231 2.358 10
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 0 2.358 10
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 4.8231 2.358 10
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate -4.8231 0 10
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 0 0 10
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 4.8231 0 10
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate -4.8231 -2.358 10
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 0 -2.358 10
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Translate 4.8231 -2.358 10
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd

@@ -2,7 +2,7 @@
   render/integrators.h render/../core/log.h render/../core/rng.h \
   render/../core/math.h render/../scene/scene.h \
   render/../scene/../core/image.h render/../scene/../core/math.h \
-  render/../scene/../geometry/shape.h \
+  render/../scene/../geometry/bvh.h render/../scene/../geometry/shape.h \
   render/../scene/../geometry/../core/math.h \
   render/../scene/../geometry/../core/transform.h \
   render/../scene/../geometry/../render/texture.h \
@@ -24,6 +24,7 @@ render/../core/math.h:
 render/../scene/scene.h:
 render/../scene/../core/image.h:
 render/../scene/../core/math.h:
+render/../scene/../geometry/bvh.h:
 render/../scene/../geometry/shape.h:
 render/../scene/../geometry/../core/math.h:
 render/../scene/../geometry/../core/transform.h:

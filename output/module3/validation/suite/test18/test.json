@@ -1,0 +1,16 @@
+{
+ "name": "Non-numeric value for a float parameter",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (syntax): non-numeric value for a float parameter. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['radius', 'numeric', 'float', 'big']).",
+ "test": 18,
+ "scene": "testscene_18.pbrt",
+ "group": "syntax",
+ "keywords": [
+  "radius",
+  "numeric",
+  "float",
+  "big"
+ ],
+ "reference_log": "testsuite_ref_18.log"
+}

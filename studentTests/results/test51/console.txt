@@ -1,0 +1,33 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:21:16
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test51/testscene_51.pbrt
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test51/testscene_51.pbrt
+[INFO] hardware threads: 15
+[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test51/testscene_51.pbrt:5:1: xresolution -96 out of range [1,16384]; using 1280
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 4 primitives, 5 nodes, 3 leaves, depth 2, largest leaf 2, mean prims/leaf 1.33, SAH cost 2.86
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 1280x72, 8 spp (independent, 8 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 4 primitives (2 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 3 objects, 3 materials
+[INFO] rendering with 15 threads ...
+  rendering:   5%  (0.0s)  rendering:  10%  (0.0s)  rendering:  15%  (0.0s)  rendering:  20%  (0.0s)  rendering:  25%  (0.0s)  rendering:  30%  (0.0s)  rendering:  35%  (0.0s)  rendering:  40%  (0.0s)  rendering:  45%  (0.0s)  rendering:  50%  (0.0s)  rendering:  55%  (0.0s)  rendering:  60%  (0.0s)  rendering:  65%  (0.0s)  rendering:  70%  (0.0s)  rendering:  75%  (0.0s)  rendering:  80%  (0.0s)  rendering:  85%  (0.0s)  rendering:  90%  (0.0s)  rendering:  95%  (0.0s)  rendering: 100%  (0.0s)
+[INFO] Reinhard: mode luminance, log-average luminance 0.00005, max luminance 0.24086, scale 1.00000, white point 0.24086 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_51.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_51.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0003
+accel build (s):     0.0000
+render (s):          0.0063
+tonemap+write (s):   0.0043
+total (s):           0.0113
+camera rays:         737280
+secondary rays:      256985
+shadow rays:         518867
+ray-primitive tests: 554939
+ray-box tests:       6400610
+tests per ray:       0.37 primitive, 4.23 box
+rays by depth:       0:737280 1:256985
+Mrays/s:             241.557
+---- result ----
+OK: errors: 1, warnings: 0
+log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_51.log

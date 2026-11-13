@@ -1,0 +1,14 @@
+{
+ "name": "Wrong number of values for an rgb parameter",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (syntax): wrong number of values for an rgb parameter. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['rgb', 'values']).",
+ "test": 20,
+ "scene": "testscene_20.pbrt",
+ "group": "syntax",
+ "keywords": [
+  "rgb",
+  "values"
+ ],
+ "reference_log": "testsuite_ref_20.log"
+}

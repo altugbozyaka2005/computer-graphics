@@ -1,0 +1,16 @@
+{
+ "name": "Unterminated string",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (syntax): unterminated string. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['string', 'quote', 'unterminated', 'syntax']).",
+ "test": 17,
+ "scene": "testscene_17.pbrt",
+ "group": "syntax",
+ "keywords": [
+  "string",
+  "quote",
+  "unterminated",
+  "syntax"
+ ],
+ "reference_log": "testsuite_ref_17.log"
+}

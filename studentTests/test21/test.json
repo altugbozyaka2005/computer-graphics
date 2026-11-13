@@ -1,0 +1,14 @@
+{
+ "name": "AttributeEnd without AttributeBegin",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (structure): attributeEnd without AttributeBegin. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['attributeend', 'attribute']).",
+ "test": 21,
+ "scene": "testscene_21.pbrt",
+ "group": "structure",
+ "keywords": [
+  "attributeend",
+  "attribute"
+ ],
+ "reference_log": "testsuite_ref_21.log"
+}

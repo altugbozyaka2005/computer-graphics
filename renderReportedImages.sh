@@ -1,12 +1,18 @@
 #!/bin/bash
-# Builds the renderer, then renders every image shown in the Module 1 and Module 2 reports into
+# Builds the renderer, then renders every image shown in the Module 1, 2 and 3 reports into
 # output/, runs the quantitative checks quoted in the reports and makes the figures.
-#   ./renderReportedImages.sh        both modules
+#   ./renderReportedImages.sh        all modules
 #   ./renderReportedImages.sh 1      Module 1 only (output/, output/validation.log, output/figures/)
 #   ./renderReportedImages.sh 2      Module 2 only (output/, output/module2/, output/figures/module2/)
+#   ./renderReportedImages.sh 3      Module 3 only (output/acc_*, output/module3/, output/figures/module3/,
+#                                    studentTests/runAllTests.log)
+# Modules 1 and 2 are rendered with CGR26_ACCEL=objects, the per-object bounding boxes of the Module 1/2
+# renderer, so that their images and logged timings are those of the checkpoints. With the BVH (the
+# default since Module 3) the images are the same except for a few pixels where two surfaces meet at
+# exactly the same distance (see output/module3/validation.log).
 cd "$(dirname "$0")" || exit 1
 WHICH=${1:-all}
-case "$WHICH" in all|1|2) ;; *) echo "usage: $0 [1|2]"; exit 2 ;; esac
+case "$WHICH" in all|1|2|3) ;; *) echo "usage: $0 [1|2|3]"; exit 2 ;; esac
 echo "== building"
 make -C source -j4 || { echo "build failed"; exit 1; }
 R=./output/CGR26_renderer
@@ -16,7 +22,8 @@ render() {  # render <scene-name> [extra renderer options...]
   printf "%-22s" "$s $*"
   if $R "scenes/$s.pbrt" --quiet "$@"; then echo " ok"; else echo " FAILED"; FAILED=$((FAILED + 1)); fi
 }
-if [ "$WHICH" != 2 ]; then
+if [ "$WHICH" = all ] || [ "$WHICH" = 1 ]; then
+export CGR26_ACCEL=objects
 echo "== Module 1"
 for s in WSRT_simple WSRT_creative DRT_simple DRT_creative; do
   if [ -f "scenes/$s.pbrt" ]; then render "$s"; else echo "$s: scenes/$s.pbrt missing"; FAILED=$((FAILED + 1)); fi
@@ -44,7 +51,8 @@ python3 scenes/tools/validate_module1.py --renderer "$R" --outdir output | grep 
 echo "== report figures (annotated images, insets, WSRT vs DRT, tone mapping, parameter checks)"
 if [ -n "${PHOTO:-}" ]; then python3 scenes/tools/make_figures.py --photo "$PHOTO"; else python3 scenes/tools/make_figures.py; fi
 fi
-if [ "$WHICH" != 1 ]; then
+if [ "$WHICH" = all ] || [ "$WHICH" = 2 ]; then
+  export CGR26_ACCEL=objects
   echo "== Module 2: renders and measurements (output/module2/module2.log)"
   python3 scenes/tools/module2_study.py || FAILED=$((FAILED + 1))
   echo "== Module 2: feature checks (output/module2/validation.log)"
@@ -53,6 +61,19 @@ if [ "$WHICH" != 1 ]; then
   [ $V2RC -eq 0 ] || FAILED=$((FAILED + 1))
   echo "== Module 2: figures (output/figures/module2/)"
   python3 scenes/tools/make_figures_m2.py > /dev/null || FAILED=$((FAILED + 1))
+fi
+if [ "$WHICH" = all ] || [ "$WHICH" = 3 ]; then
+  unset CGR26_ACCEL
+  echo "== Module 3: acc_best, acc_worst, acc_complex and the timing study (output/module3/module3.log)"
+  python3 scenes/tools/module3_study.py || FAILED=$((FAILED + 1))
+  echo "== Module 3: student test suite (studentTests/runAllTests.log)"
+  python3 studentTests/runAllTests.py | sed -n '/==== summary ====/,$p'
+  echo "== Module 3: checks (output/module3/validation.log)"
+  V3=$(python3 scenes/tools/validate_module3.py); V3RC=$?
+  echo "$V3" | grep -E "^(PASS|FAIL|==)"
+  [ $V3RC -eq 0 ] || FAILED=$((FAILED + 1))
+  echo "== Module 3: figures (output/figures/module3/)"
+  python3 scenes/tools/make_figures_m3.py > /dev/null || FAILED=$((FAILED + 1))
 fi
 echo
 if [ $FAILED -eq 0 ]; then echo "all renders finished; images and logs are in output/, figures in output/figures/"; else echo "$FAILED render(s) failed or missing"; fi

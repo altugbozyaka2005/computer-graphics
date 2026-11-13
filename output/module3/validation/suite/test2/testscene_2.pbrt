@@ -1,0 +1,430 @@
+# testscene_2: Clockwork: Scale/Rotate petals, ConcatTransform, Transform, mirror Scale, CoordSysTransform
+# Category: camera. Petals from a sphere under non-uniform Scale and Rotate, a star placed by ConcatTransform, a pennant and its mirror image (Scale -1 1 1), a spiral staircase built by accumulating Rotate + Translate with its top named by CoordinateSystem and reused by CoordSysTransform, and a ring of cubes in a frame set by an absolute Transform. Checks the whole transform stack.
+# Reference: testsuite_ref_2.pfm, rendered by pbrt-v4 from testscene_2_pbrt.pbrt (same scene; only Integrator, Sampler and Film differ).
+LookAt 0 0 -6  0 0 0  0 1 0
+Camera "perspective" "float fov" [ 45 ]
+Film "rgb" "integer xresolution" [ 384 ] "integer yresolution" [ 288 ] "string filename" [ "testsuite_my_2.png" ]
+Sampler "stratified" "integer xsamples" [ 8 ] "integer ysamples" [ 8 ] "bool jitter" true
+PixelFilter "box"
+Integrator "distributed" "integer maxdepth" [ 1 ]
+
+WorldBegin
+AttributeBegin
+Translate -1.75 0.75 0.5
+AttributeBegin
+Rotate 0 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 36 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 72 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 108 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 144 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 180 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 216 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 252 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 288 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 0.82 0.509 1.131 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Rotate 324 0 0 1
+Scale 1 0.24 0.24
+Translate 1 0 0
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.55 ]
+AttributeEnd
+AttributeBegin
+Translate 0 0 -0.2
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.24 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+ConcatTransform [ 0.9063 0 -0.4226 0 0 1 0 0 0.4226 0 0.9063 0 1.75 1.15 0.3 1 ]
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0 0 0  0 0.85 0  -0.2116 0.2912 0  -0.8084 0.2627 0  -0.3424 -0.1112 0  -0.4996 -0.6877 0  0 -0.36 0  0.4996 -0.6877 0  0.3424 -0.1112 0  0.8084 0.2627 0  0.2116 0.2912 0 ]
+    "integer indices" [ 0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 0 6 7 0 7 8 0 8 9 0 9 10 0 10 1 ]
+AttributeEnd
+AttributeBegin
+Translate -2.55 -2.15 0.2
+Rotate -8 0 0 1
+AreaLightSource "diffuse" "rgb L" [ 0.4602 0.6984 0.3143 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.03 0 -0.03  -0.03 0 0.03  -0.03 1.1 0.03  -0.03 1.1 -0.03  0.03 0 0.03  0.03 0 -0.03  0.03 1.1 -0.03  0.03 1.1 0.03  0.03 0 0.03  -0.03 0 0.03  -0.03 0 -0.03  0.03 0 -0.03  0.03 1.1 -0.03  -0.03 1.1 -0.03  -0.03 1.1 0.03  0.03 1.1 0.03  0.03 0 -0.03  -0.03 0 -0.03  -0.03 1.1 -0.03  0.03 1.1 -0.03  -0.03 0 0.03  0.03 0 0.03  0.03 1.1 0.03  -0.03 1.1 0.03 ]
+    "point2 uv" [ 0 0  1.1 0  1.1 0.06  0 0.06  0 0  1.1 0  1.1 0.06  0 0.06  0 0  0.06 0  0.06 0.06  0 0.06  0 0  0.06 0  0.06 0.06  0 0.06  0 0  1.1 0  1.1 0.06  0 0.06  0 0  1.1 0  1.1 0.06  0 0.06 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+Shape "trianglemesh" "point3 P" [ 0.03 1.1 0  0.03 0.72 0  0.62 0.98 0.1 ]
+    "integer indices" [ 0 1 2 ]
+AttributeEnd
+AttributeBegin
+Translate -1.05 -2.15 0.2
+Scale -1 1 1
+Rotate -8 0 0 1
+AreaLightSource "diffuse" "rgb L" [ 0.4602 0.6984 0.3143 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.03 0 -0.03  -0.03 0 0.03  -0.03 1.1 0.03  -0.03 1.1 -0.03  0.03 0 0.03  0.03 0 -0.03  0.03 1.1 -0.03  0.03 1.1 0.03  0.03 0 0.03  -0.03 0 0.03  -0.03 0 -0.03  0.03 0 -0.03  0.03 1.1 -0.03  -0.03 1.1 -0.03  -0.03 1.1 0.03  0.03 1.1 0.03  0.03 0 -0.03  -0.03 0 -0.03  -0.03 1.1 -0.03  0.03 1.1 -0.03  -0.03 0 0.03  0.03 0 0.03  0.03 1.1 0.03  -0.03 1.1 0.03 ]
+    "point2 uv" [ 0 0  1.1 0  1.1 0.06  0 0.06  0 0  1.1 0  1.1 0.06  0 0.06  0 0  0.06 0  0.06 0.06  0 0.06  0 0  0.06 0  0.06 0.06  0 0.06  0 0  1.1 0  1.1 0.06  0 0.06  0 0  1.1 0  1.1 0.06  0 0.06 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+Shape "trianglemesh" "point3 P" [ 0.03 1.1 0  0.03 0.72 0  0.62 0.98 0.1 ]
+    "integer indices" [ 0 1 2 ]
+AttributeEnd
+AttributeBegin
+Translate -0.1 -2.35 1.0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.05 0 -0.05  -0.05 0 0.05  -0.05 2 0.05  -0.05 2 -0.05  0.05 0 0.05  0.05 0 -0.05  0.05 2 -0.05  0.05 2 0.05  0.05 0 0.05  -0.05 0 0.05  -0.05 0 -0.05  0.05 0 -0.05  0.05 2 -0.05  -0.05 2 -0.05  -0.05 2 0.05  0.05 2 0.05  0.05 0 -0.05  -0.05 0 -0.05  -0.05 2 -0.05  0.05 2 -0.05  -0.05 0 0.05  0.05 0 0.05  0.05 2 0.05  -0.05 2 0.05 ]
+    "point2 uv" [ 0 0  2 0  2 0.1  0 0.1  0 0  2 0  2 0.1  0 0.1  0 0  0.1 0  0.1 0.1  0 0.1  0 0  0.1 0  0.1 0.1  0 0.1  0 0  2 0  2 0.1  0 0.1  0 0  2 0  2 0.1  0 0.1 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Rotate 24 0 1 0
+Translate 0 0.125 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.5401 0.6337 0.7201 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ 0.06 0 -0.07  0.06 0 0.07  0.06 0.035 0.07  0.06 0.035 -0.07  0.62 0 0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.62 0.035 0.07  0.62 0 0.07  0.06 0 0.07  0.06 0 -0.07  0.62 0 -0.07  0.62 0.035 -0.07  0.06 0.035 -0.07  0.06 0.035 0.07  0.62 0.035 0.07  0.62 0 -0.07  0.06 0 -0.07  0.06 0.035 -0.07  0.62 0.035 -0.07  0.06 0 0.07  0.62 0 0.07  0.62 0.035 0.07  0.06 0.035 0.07 ]
+    "point2 uv" [ 0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.14 0  0.14 0.035  0 0.035  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.14  0 0.14  0 0  0.56 0  0.56 0.035  0 0.035  0 0  0.56 0  0.56 0.035  0 0.035 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+Translate 0.34 0.12 0
+CoordinateSystem "stairtop"
+AttributeEnd
+AttributeBegin
+CoordSysTransform "stairtop"
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.09 ]
+AttributeEnd
+AttributeBegin
+Transform [ 1.1 0 0 0 0 0.9063 -0.4226 0 0 0.4226 0.9063 0 1.95 -1.45 0.4 1 ]
+AttributeBegin
+Rotate 0 0 1 0
+Translate 1.0 0 0
+Rotate 0 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 30 0 1 0
+Translate 1.0 0 0
+Rotate 20 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 60 0 1 0
+Translate 1.0 0 0
+Rotate 40 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 90 0 1 0
+Translate 1.0 0 0
+Rotate 60 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 120 0 1 0
+Translate 1.0 0 0
+Rotate 80 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 150 0 1 0
+Translate 1.0 0 0
+Rotate 100 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 180 0 1 0
+Translate 1.0 0 0
+Rotate 120 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 210 0 1 0
+Translate 1.0 0 0
+Rotate 140 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 240 0 1 0
+Translate 1.0 0 0
+Rotate 160 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 270 0 1 0
+Translate 1.0 0 0
+Rotate 180 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 300 0 1 0
+Translate 1.0 0 0
+Rotate 200 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeBegin
+Rotate 330 0 1 0
+Translate 1.0 0 0
+Rotate 220 1 1 0
+AttributeBegin
+AreaLightSource "diffuse" "rgb L" [ 0.9407 0.5588 0.2822 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "trianglemesh" "point3 P" [ -0.11 -0.11 -0.11  -0.11 -0.11 0.11  -0.11 0.11 0.11  -0.11 0.11 -0.11  0.11 -0.11 0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  0.11 0.11 0.11  0.11 -0.11 0.11  -0.11 -0.11 0.11  -0.11 -0.11 -0.11  0.11 -0.11 -0.11  0.11 0.11 -0.11  -0.11 0.11 -0.11  -0.11 0.11 0.11  0.11 0.11 0.11  0.11 -0.11 -0.11  -0.11 -0.11 -0.11  -0.11 0.11 -0.11  0.11 0.11 -0.11  -0.11 -0.11 0.11  0.11 -0.11 0.11  0.11 0.11 0.11  -0.11 0.11 0.11 ]
+    "point2 uv" [ 0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22  0 0  0.22 0  0.22 0.22  0 0.22 ]
+    "integer indices" [ 0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23 ]
+AttributeEnd
+AttributeEnd
+AttributeEnd

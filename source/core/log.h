@@ -66,11 +66,12 @@ struct RayStats {
     static constexpr int kDepths = 65;  // depths 0..64 (maxdepth is at most 64)
     uint64_t cameraRays = 0, shadowRays = 0, secondaryRays = 0;
     uint64_t primTests = 0;
+    uint64_t boxTests = 0;  // ray-bounding box tests (BVH nodes or per-object boxes)
     uint64_t nanSamples = 0;
     uint64_t depthRays[kDepths] = {};  // rays traced at each depth of the ray tree (0 = camera rays)
     void add(const RayStats& o) {
         cameraRays += o.cameraRays; shadowRays += o.shadowRays; secondaryRays += o.secondaryRays;
-        primTests += o.primTests; nanSamples += o.nanSamples;
+        primTests += o.primTests; boxTests += o.boxTests; nanSamples += o.nanSamples;
         for (int i = 0; i < kDepths; ++i) depthRays[i] += o.depthRays[i];
     }
 };

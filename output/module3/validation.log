@@ -1,0 +1,27 @@
+==== Module 3 validation ====
+PASS  BVH gives byte-identical images to brute force on all 31 scenes in scenes/ (31 identical)
+PASS  BVH result independent of the split method and leaf size
+      acc_best: sah, middle, equal, maxnodeprims 1/4/32 all identical to brute force
+      acc_worst: sah, middle, equal, maxnodeprims 1/4/32 all identical to brute force
+      acc_complex: sah, middle, equal, maxnodeprims 1/4/32 all identical to brute force
+INFO  checkpoint per-object boxes ('objects') vs brute force:
+      DRT_creative: objects vs none: 37 of 19200 pixels differ, max |difference| 0.03695
+      WSRT_creative: objects vs none: 16 of 19200 pixels differ, max |difference| 0.208
+PASS  unchanged image tests pass
+      {1: True, 2: True, 3: True, 4: True, 5: True, 6: True, 7: True, 8: True, 9: True, 10: True, 11: True}
+PASS  each deliberately broken image test fails
+      test1   fov 45 -> 45.4 (framing off by ~1%)              -> FAIL (caught)
+      test2   one petal rotated by 2 degrees more              -> FAIL (caught)
+      test3   fov 30 -> 30.1                                   -> FAIL (caught)
+      test4   fov 60 applied to the longer axis (fov 60 -> 32.2) -> FAIL (caught)
+      test5   camera 0.03 units higher                         -> FAIL (caught)
+      test6   screen window 1% wider                           -> FAIL (caught)
+      test7   point light 5% brighter                          -> FAIL (caught)
+      test8   area light 5% brighter                           -> FAIL (caught)
+      test9   maxdepth 3 -> 2 (one indirect bounce fewer)      -> FAIL (caught)
+      test10  floor uv mirrored in u                           -> FAIL (caught)
+      test11  Phong exponent 40 -> 44                          -> FAIL (caught)
+PASS  error tests fail for a crashing renderer and for one that reports nothing
+      crashing renderer: 0 of 16 passed
+      silent renderer:   0 of 16 passed
+== 5 of 5 checks passed

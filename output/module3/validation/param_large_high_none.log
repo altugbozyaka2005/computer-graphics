@@ -1,0 +1,43 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:49
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_large_high.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out param_large_high_none --accel none --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_large_high.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_room.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 24 triangles, 72 vertices
+[INFO] trianglemesh: 60 triangles, 180 vertices
+[INFO] trianglemesh: 384 triangles, 363 vertices, normals, uvs
+[INFO] override: accel = none
+[INFO] accelerator: none: every ray is tested against all 481 primitives
+[ERROR] --spp 2 is not a square (stratified sampler); using 1
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 6, branchingfactor 4, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 62.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 1 spp (stratified 1x1 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 481 primitives (480 triangles, 0 planes), 1 point/spot/distant lights, 0 area lights, 10 objects, 7 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.01476, max luminance 1.25082, scale 1.00000, white point 1.25082 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_large_high_none.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_large_high_none.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0008
+accel build (s):     0.0000
+render (s):          3.3610
+tonemap+write (s):   0.0032
+total (s):           3.3654
+camera rays:         10800
+secondary rays:      14710700
+shadow rays:         1251479
+ray-primitive tests: 7683002899
+ray-box tests:       0
+tests per ray:       481.00 primitive, 0.00 box
+rays by depth:       0:10800 1:43178 2:172674 3:690523 4:2761392 5:11042933
+Mrays/s:             4.752
+---- result ----
+OK: errors: 1, warnings: 0

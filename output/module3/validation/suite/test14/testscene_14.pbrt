@@ -1,0 +1,32 @@
+# testscene_14: Phong specular lobes vs the analytic value: RGB lights, three Phong spheres on a Phong plane
+# Category: shading. Three white Phong spheres (exponents 60, 200, 12) on a Phong plane (exponent 20) under a red, a green and a blue point light (normalised modified Phong: kd/pi + ks (n+2)/(2 pi) cos^n alpha). pbrt-v4 has no Phong BRDF, so the reference is the closed form with hard shadows, box-filtered over each pixel. Pixels at the highlight peaks and in the coloured shadows.
+# Reference: testsuite_ref_14.pfm, analytic (see test.json).
+LookAt 0 3 -5.2  0.15 0.4 0.9  0 1 0
+Camera "perspective" "float fov" [ 40 ]
+Film "rgb" "integer xresolution" [ 320 ] "integer yresolution" [ 240 ] "string filename" [ "testsuite_my_14.png" ]
+Sampler "stratified" "integer xsamples" [ 16 ] "integer ysamples" [ 16 ] "bool jitter" true
+PixelFilter "box"
+Integrator "distributed" "integer maxdepth" [ 1 ]
+
+WorldBegin
+LightSource "point" "point3 from" [ -3 4.2 -1.2 ] "rgb I" [ 16 0 0 ]
+LightSource "point" "point3 from" [ 0.2 4.8 -2.6 ] "rgb I" [ 0 16 0 ]
+LightSource "point" "point3 from" [ 3 4.2 -1 ] "rgb I" [ 0 0 16 ]
+Material "phong" "rgb Kd" [ 0.3 0.3 0.32 ] "rgb Ks" [ 0.25 0.25 0.25 ] "float exponent" [ 20 ]
+Shape "trianglemesh" "point3 P" [ -40 0 -40  40 0 -40  40 0 40  -40 0 40 ]
+    "integer indices" [ 0 1 2 0 2 3 ]
+AttributeBegin
+Material "phong" "rgb Kd" [ 0.45 0.45 0.45 ] "rgb Ks" [ 0.5 0.5 0.5 ] "float exponent" [ 60 ]
+Translate -1.25 0.75 1
+Shape "sphere" "float radius" [ 0.75 ]
+AttributeEnd
+AttributeBegin
+Material "phong" "rgb Kd" [ 0.25 0.25 0.25 ] "rgb Ks" [ 0.7 0.7 0.7 ] "float exponent" [ 200 ]
+Translate 0.75 0.5 0.15
+Shape "sphere" "float radius" [ 0.5 ]
+AttributeEnd
+AttributeBegin
+Material "phong" "rgb Kd" [ 0.6 0.6 0.6 ] "rgb Ks" [ 0.2 0.2 0.2 ] "float exponent" [ 12 ]
+Translate 1.65 0.38 1.7
+Shape "sphere" "float radius" [ 0.38 ]
+AttributeEnd

@@ -1,0 +1,60 @@
+# CGR26_renderer log for testscene_1.pbrt (exit status 0)
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 00:03:41
+[INFO] command: output/CGR26_renderer studentTests/test1/testscene_1.pbrt --quiet --outdir output/module3/tests_tmp --out example_1
+[INFO] scene: studentTests/test1/testscene_1.pbrt
+[INFO] hardware threads: 15
+[INFO] area light: 1 shape(s), area 6.514407, two-sided
+[WARNING] studentTests/test1/testscene_1.pbrt:24:1: annulus/partial disk area light is sampled as a full disk
+[INFO] area light: 1 shape(s), area 2.965663, two-sided
+[INFO] area light: 1 shape(s), area 0.321699, two-sided
+[WARNING] studentTests/test1/testscene_1.pbrt:38:1: partial sphere area light is sampled as a full sphere
+[INFO] area light: 1 shape(s), area 3.235840, two-sided
+[INFO] trianglemesh: 20 triangles, 12 vertices
+[INFO] area light: 20 shape(s), area 4.426816, two-sided
+[INFO] area light: 1 shape(s), area 0.785398, two-sided
+[INFO] area light: 1 shape(s), area 0.608212, two-sided
+[INFO] trianglemesh: 1 triangles, 3 vertices
+[INFO] area light: 1 shape(s), area 0.379402, two-sided
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.921494, two-sided
+[INFO] area light: 1 shape(s), area 0.027641, two-sided
+[INFO] area light: 1 shape(s), area 0.023235, two-sided
+[INFO] area light: 1 shape(s), area 0.018918, two-sided
+[INFO] area light: 1 shape(s), area 0.029804, two-sided
+[INFO] area light: 1 shape(s), area 0.036373, two-sided
+[INFO] area light: 1 shape(s), area 0.029559, two-sided
+[INFO] area light: 1 shape(s), area 0.032813, two-sided
+[INFO] area light: 1 shape(s), area 0.022167, two-sided
+[INFO] area light: 1 shape(s), area 0.030419, two-sided
+[INFO] area light: 1 shape(s), area 0.030542, two-sided
+[INFO] area light: 1 shape(s), area 0.034636, two-sided
+[INFO] area light: 1 shape(s), area 0.025787, two-sided
+[INFO] area light: 1 shape(s), area 0.036779, two-sided
+[INFO] area light: 1 shape(s), area 0.009712, two-sided
+[INFO] area light: 1 shape(s), area 0.021434, two-sided
+[INFO] area light: 1 shape(s), area 0.012076, two-sided
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 45 primitives, 87 nodes, 44 leaves, depth 9, largest leaf 2, mean prims/leaf 1.02, SAH cost 3.67
+[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 45.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 384x288, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 45 primitives (23 triangles, 0 planes), 0 point/spot/distant lights, 25 area lights, 25 objects, 25 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00001, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
+[INFO] wrote output/module3/tests_tmp/example_1.png (display), output/module3/tests_tmp/example_1.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0003
+accel build (s):     0.0000
+render (s):          2.4873
+tonemap+write (s):   0.0061
+total (s):           2.4944
+camera rays:         7077888
+secondary rays:      0
+shadow rays:         151718662
+ray-primitive tests: 458265703
+ray-box tests:       3000733033
+tests per ray:       2.89 primitive, 18.90 box
+rays by depth:       0:7077888
+Mrays/s:             63.842
+---- result ----
+OK: errors: 0, warnings: 2

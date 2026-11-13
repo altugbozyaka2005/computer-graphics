@@ -1,0 +1,144 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:33
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/DRT_creative.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out DRT_creative_objects --accel objects --res 120x160 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/DRT_creative.pbrt
+[INFO] hardware threads: 15
+[INFO] area light: 1 shape(s), area 28.274334
+[INFO] Include 'include/poolhall_materials_drt.pbrt'
+[INFO] loaded texture 'textures/felt.ppm' (512x512)
+[INFO] loaded texture 'textures/railblack.ppm' (256x256)
+[INFO] loaded texture 'textures/wood.ppm' (256x256)
+[INFO] loaded texture 'textures/metal.ppm' (256x256)
+[INFO] loaded texture 'textures/label.ppm' (128x96)
+[INFO] loaded texture 'textures/ball_1.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_11.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_13.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_15.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_3.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_5.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_7.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_8.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_9.ppm' (768x384)
+[INFO] loaded texture 'textures/ball_cue.ppm' (768x384)
+[INFO] Include 'include/poolhall_spots_drt.pbrt'
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 1 shape(s), area 8.042477
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 2 shape(s), area 13.200000
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 2 shape(s), area 13.200000
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 2 shape(s), area 13.200000
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 2 shape(s), area 13.200000
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] area light with samples 0: visible-only emitter (seen directly and in mirrors/glass, does not light the scene)
+[INFO] area light: 2 shape(s), area 13.200000
+[INFO] Include 'include/poolhall_geometry.pbrt'
+[INFO] loaded texture 'textures/grater_alpha.ppm' (512x512)
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] objmesh 'meshes/glass.obj': 8064 triangles, 4493 vertices, normals, uvs
+[INFO] objmesh 'meshes/water.obj': 256 triangles, 388 vertices, normals, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] objmesh 'meshes/cap.obj': 432 triangles, 1296 vertices, normals, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] objmesh 'meshes/grater.obj': 48 triangles, 96 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_leather.obj': 160 triangles, 164 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_ferrule.obj': 64 triangles, 66 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_shaft.obj': 64 triangles, 66 vertices, normals, uvs
+[INFO] objmesh 'meshes/cue_butt.obj': 160 triangles, 164 vertices, normals, uvs
+[INFO] override: accel = objects
+[INFO] accelerator: objects: one bounding box per Shape directive (85 boxes); 1 infinite plane(s) tested separately
+[INFO] override: spp = 2
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 12, transparent (filtered) shadows, min path weight 0.0010, caustic paths off, branchingfactor 1, lightsamples 8 (uniform)
+[INFO] camera: perspective, fov 46.20, lensradius 0.2000, focaldistance 23.400
+[INFO] film: 120x160, 2 spp (independent, 2 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 9824 primitives (9804 triangles, 1 planes), 1 point/spot/distant lights, 14 area lights, 85 objects, 37 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.01649, max luminance 327.74861, scale 1.80000, white point 4.00000
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/DRT_creative_objects.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/DRT_creative_objects.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.1161
+accel build (s):     0.0001
+render (s):          0.7088
+tonemap+write (s):   0.0011
+total (s):           0.8266
+camera rays:         38400
+secondary rays:      135834
+shadow rays:         1039376
+ray-primitive tests: 827698108
+ray-box tests:       101047388
+tests per ray:       682.01 primitive, 83.26 box
+rays by depth:       0:38400 1:40915 2:33455 3:18013 4:9223 5:6936 6:6107 7:5450 8:4907 9:4009 10:3083 11:2404 12:1332
+Mrays/s:             1.712
+---- result ----
+OK: errors: 0, warnings: 0

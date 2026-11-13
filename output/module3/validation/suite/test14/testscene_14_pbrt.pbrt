@@ -1,0 +1,16 @@
+# testscene_14: Missing texture file
+# Category: error. Deliberate error: missing texture file. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['does_not_exist', 'texture']).
+# pbrt-v4 version (gives pbrt-v4's own message in testsuite_ref_14.log).
+LookAt 0 3 -8  0 1 0  0 1 0
+Camera "perspective" "float fov" [ 45 ]
+Film "rgb" "integer xresolution" [ 64 ] "integer yresolution" [ 48 ] "string filename" [ "testsuite_ref_14.png" ]
+Sampler "independent" "integer pixelsamples" [ 4 ]
+Integrator "path" "integer maxdepth" [ 2 ]
+WorldBegin
+LightSource "point" "point3 from" [ 2 5 -3 ] "rgb I" [ 30 30 30 ]
+Material "diffuse" "rgb reflectance" [ 0.5 0.5 0.5 ]
+Shape "trianglemesh" "point3 P" [ -20 0 -20  20 0 -20  20 0 20  -20 0 20 ]
+    "integer indices" [ 0 1 2 0 2 3 ]
+Texture "t" "spectrum" "imagemap" "string filename" [ "does_not_exist.ppm" ]
+Material "diffuse" "texture reflectance" "t"
+Shape "sphere" "float radius" [ 1 ]

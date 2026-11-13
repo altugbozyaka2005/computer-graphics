@@ -1,0 +1,65 @@
+# testscene_5: Off-centre screen window on a perspective camera (shifted lens)
+# Category: camera. As test 3 with 'screenwindow' [-1.1 1.9 -0.45 1.55] on a perspective camera: the view is shifted up and to the right like a shift lens. Checks that the screen window is mapped onto the raster exactly.
+# Reference: testsuite_ref_5.pfm, rendered by pbrt-v4 from testscene_5_pbrt.pbrt (same scene; only Integrator, Sampler and Film differ).
+LookAt 0 0 0  0 0 1  0 1 0
+Camera "perspective" "float fov" [ 40 ] "float screenwindow" [ -1.1 1.9 -0.45 1.55 ]
+Film "rgb" "integer xresolution" [ 240 ] "integer yresolution" [ 160 ] "string filename" [ "testsuite_my_5.png" ]
+Sampler "stratified" "integer xsamples" [ 8 ] "integer ysamples" [ 8 ] "bool jitter" true
+PixelFilter "box"
+Integrator "distributed" "integer maxdepth" [ 1 ]
+
+WorldBegin
+AttributeBegin
+Translate -3.4577 5.2048 10
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 1.4559 5.2048 10
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 6.3695 5.2048 10
+AreaLightSource "diffuse" "rgb L" [ 1.0624 0.4781 0.7235 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate -3.4577 2.0018 10
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 1.4559 2.0018 10
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 6.3695 2.0018 10
+AreaLightSource "diffuse" "rgb L" [ 0.7501 0.6098 0.3375 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate -3.4577 -1.2011 10
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 1.4559 -1.2011 10
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd
+AttributeBegin
+Translate 6.3695 -1.2011 10
+AreaLightSource "diffuse" "rgb L" [ 0.3338 0.6928 0.7417 ] "bool twosided" true
+Material "diffuse" "rgb reflectance" [ 0 0 0 ]
+Shape "sphere" "float radius" [ 0.12 ]
+AttributeEnd

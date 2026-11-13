@@ -1,6 +1,7 @@
 // CGR26_renderer: physically based renderer for the CGR 2026 coursework.
 // Usage: CGR26_renderer <scene.pbrt> [options]   (see --help)
 #include <cstdio>
+#include <cstdlib>
 #include <ctime>
 #include <exception>
 #include <iostream>
@@ -36,6 +37,12 @@ const char* kUsage =
     "  --res WxH             film resolution\n"
     "  --pixelbounds X0,X1,Y0,Y1  render only these pixels (end exclusive), as pbrt --pixelbounds\n"
     "  --cropwindow X0,X1,Y0,Y1   render only this part of the image (fractions in [0,1])\n"
+    "  --accel A             bvh | objects | none (ray-primitive acceleration; none = brute force);\n"
+    "                        default: the scene's Accelerator, or the CGR26_ACCEL environment variable\n"
+    "  --splitmethod S       BVH split: sah | middle | equal\n"
+    "  --maxnodeprims N      BVH: largest number of primitives in a leaf\n"
+    "  --costmap             also write <name>_cost.pfm: per pixel, ray-box tests (r), ray-primitive\n"
+    "                        tests (g) and rays (b) per camera ray\n"
     "  --ppm                 also write an 8-bit PPM\n"
     "  --quiet               no progress output\n";
 
@@ -71,8 +78,8 @@ std::string fmt(double v, int prec = 3) {
 }
 
 struct CliOverrides {
-    long spp = -1, maxDepth = -1, lightSamples = -1, bf = -1, xres = -1, yres = -1;
-    std::string integrator, sampler, lightSampling;
+    long spp = -1, maxDepth = -1, lightSamples = -1, bf = -1, xres = -1, yres = -1, maxNodePrims = -1;
+    std::string integrator, sampler, lightSampling, accel, splitMethod;
     bool noJitter = false;
     std::vector<double> pixelBounds, cropWindow;
 };
@@ -131,6 +138,9 @@ int run(int argc, char** argv) {
             else if (a == "--sampler") ov.sampler = need(i);
             else if (a == "--nojitter") ov.noJitter = true;
             else if (a == "--lightsampling") ov.lightSampling = need(i);
+            else if (a == "--accel") ov.accel = need(i);
+            else if (a == "--splitmethod") ov.splitMethod = need(i);
+            else if (a == "--maxnodeprims") num(&ov.maxNodePrims, 1);
             else if (a == "--pixelbounds" || a == "--cropwindow") {
                 std::string v = need(i);
                 std::vector<double>& q = a == "--pixelbounds" ? ov.pixelBounds : ov.cropWindow;
@@ -146,6 +156,7 @@ int run(int argc, char** argv) {
                 ov.xres = w;
                 ov.yres = h;
             } else if (a == "--ppm") opt.writePPM = true;
+            else if (a == "--costmap") opt.costMap = true;
             else if (a == "--quiet") opt.quiet = true;
             else if (!a.empty() && a[0] == '-') throw std::runtime_error("unknown option '" + a + "'");
             else if (scenePath.empty()) scenePath = a;
@@ -189,7 +200,51 @@ int run(int argc, char** argv) {
         return 1;
     }
 
+    // ------------------------------------------------------------ acceleration structure
+    // CGR26_ACCEL (environment) sets the accelerator for every scene of a script run, e.g. "objects"
+    // to reproduce the Module 1/2 checkpoint renders; --accel takes precedence over it.
+    if (ov.accel.empty()) {
+        if (const char* env = std::getenv("CGR26_ACCEL")) {
+            ov.accel = env;
+            LOG().info(std::string("CGR26_ACCEL=") + env);
+        }
+    }
+    if (!ov.accel.empty()) {
+        if (ov.accel == "bvh") scene.accel.type = AccelType::BVH;
+        else if (ov.accel == "objects") scene.accel.type = AccelType::Objects;
+        else if (ov.accel == "none") scene.accel.type = AccelType::None;
+        else LOG().error("--accel must be bvh, objects or none; ignored");
+        if (ov.accel == "bvh" || ov.accel == "objects" || ov.accel == "none") LOG().info("override: accel = " + ov.accel);
+    }
+    if (!ov.splitMethod.empty()) {
+        if (parseSplitMethod(ov.splitMethod, &scene.accel.split)) LOG().info("override: splitmethod = " + ov.splitMethod);
+        else LOG().error("--splitmethod must be sah, middle or equal; ignored");
+    }
+    if (ov.maxNodePrims > 0) {
+        scene.accel.maxNodePrims = (int)std::min(ov.maxNodePrims, 255L);
+        LOG().info("override: maxnodeprims = " + std::to_string(scene.accel.maxNodePrims));
+    }
+    Timer tAccel;
     scene.prepare();
+    double accelSec = tAccel.seconds();
+    {
+        const AccelSettings& ac = scene.accel;
+        std::string d = std::string("accelerator: ") + accelName(ac.type);
+        if (ac.type == AccelType::BVH) {
+            const BVHBuildStats& b = scene.bvh.stats();
+            d += std::string(" (splitmethod ") + splitMethodName(ac.split) + ", maxnodeprims " + std::to_string(ac.maxNodePrims) +
+                 "): " + std::to_string(scene.shapes.size()) + " primitives, " + std::to_string(b.nodes) + " nodes, " +
+                 std::to_string(b.leaves) + " leaves, depth " + std::to_string(b.maxDepth) + ", largest leaf " +
+                 std::to_string(b.maxLeafPrims) + ", mean prims/leaf " +
+                 fmt(b.leaves ? (double)scene.shapes.size() / b.leaves : 0, 2) + ", SAH cost " + fmt(b.sahCost, 2);
+        } else if (ac.type == AccelType::Objects) {
+            d += ": one bounding box per Shape directive (" + std::to_string(scene.objects.size()) + " boxes)";
+        } else {
+            d += ": every ray is tested against all " + std::to_string(scene.shapes.size()) + " primitives";
+        }
+        if (!scene.unbounded.empty()) d += "; " + std::to_string(scene.unbounded.size()) + " infinite plane(s) tested separately";
+        LOG().info(d);
+    }
 
     // ------------------------------------------------------------ overrides & defaults
     if (!ov.integrator.empty()) {
@@ -311,6 +366,7 @@ int run(int argc, char** argv) {
     if (!wok) LOG().error("could not write " + base + ".png");
     if (!writePFM(base + ".pfm", rr.hdr)) LOG().error("could not write " + base + ".pfm");
     if (opt.writePPM && !writePPM(base + ".ppm", ldr)) LOG().error("could not write " + base + ".ppm");
+    if (opt.costMap && !writePFM(base + "_cost.pfm", rr.cost)) LOG().error("could not write " + base + "_cost.pfm");
     double outSec = tOut.seconds();
     if (scene.film.tonemap.op == "reinhard")
         LOG().info("Reinhard: mode " + scene.film.tonemap.mode + ", log-average luminance " + fmt(tmr.logAverageLum, 5) +
@@ -324,6 +380,7 @@ int run(int argc, char** argv) {
     uint64_t rays = s.cameraRays + s.shadowRays + s.secondaryRays;
     LOG().raw("---- profile ----");
     LOG().raw("parse+load (s):      " + fmt(parseSec, 4));
+    LOG().raw("accel build (s):     " + fmt(accelSec, 4));
     LOG().raw("render (s):          " + fmt(rr.seconds, 4));
     LOG().raw("tonemap+write (s):   " + fmt(outSec, 4));
     LOG().raw("total (s):           " + fmt(total.seconds(), 4));
@@ -331,6 +388,8 @@ int run(int argc, char** argv) {
     LOG().raw("secondary rays:      " + std::to_string(s.secondaryRays));
     LOG().raw("shadow rays:         " + std::to_string(s.shadowRays));
     LOG().raw("ray-primitive tests: " + std::to_string(s.primTests));
+    LOG().raw("ray-box tests:       " + std::to_string(s.boxTests));
+    if (rays) LOG().raw("tests per ray:       " + fmt((double)s.primTests / rays, 2) + " primitive, " + fmt((double)s.boxTests / rays, 2) + " box");
     std::string perDepth;
     for (int d = 0; d < RayStats::kDepths; ++d)
         if (s.depthRays[d]) perDepth += (perDepth.empty() ? "" : " ") + std::to_string(d) + ":" + std::to_string(s.depthRays[d]);

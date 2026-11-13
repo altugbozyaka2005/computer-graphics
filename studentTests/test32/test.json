@@ -1,0 +1,14 @@
+{
+ "name": "Unknown integrator (warpdrive)",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (unknown): unknown integrator (warpdrive). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['warpdrive', 'integrator']).",
+ "test": 32,
+ "scene": "testscene_32.pbrt",
+ "group": "unknown",
+ "keywords": [
+  "warpdrive",
+  "integrator"
+ ],
+ "reference_log": "testsuite_ref_32.log"
+}

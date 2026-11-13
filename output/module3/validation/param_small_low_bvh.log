@@ -1,0 +1,50 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-11 15:32:56
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_small_low.pbrt --quiet --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation --out param_small_low_bvh --accel bvh --res 120x90 --spp 2
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/scenes/param_small_low.pbrt
+[INFO] hardware threads: 15
+[INFO] Include 'include/m2_chess.pbrt'
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 36 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] trianglemesh: 728 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 560 triangles, 580 vertices, normals, uvs
+[INFO] trianglemesh: 952 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 725 vertices, normals, uvs
+[INFO] trianglemesh: 896 triangles, 783 vertices, normals, uvs
+[INFO] override: accel = bvh
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 10712 primitives, 19619 nodes, 9810 leaves, depth 19, largest leaf 4, mean prims/leaf 1.09, SAH cost 7.00
+[ERROR] --spp 2 is not a square (stratified sampler); using 1
+[INFO] override: spp = 1
+[INFO] override: resolution
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 1 (uniform)
+[INFO] camera: perspective, fov 38.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 120x90, 1 spp (stratified 1x1 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 10712 primitives (10712 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 16 objects, 5 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.00248, max luminance 0.47570, scale 1.00000, white point 0.47570 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_small_low_bvh.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/param_small_low_bvh.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0125
+accel build (s):     0.0026
+render (s):          0.0010
+tonemap+write (s):   0.0007
+total (s):           0.0173
+camera rays:         10800
+secondary rays:      10457
+shadow rays:         19547
+ray-primitive tests: 92118
+ray-box tests:       1222129
+tests per ray:       2.26 primitive, 29.95 box
+rays by depth:       0:10800 1:10457
+Mrays/s:             39.109
+---- result ----
+OK: errors: 1, warnings: 0

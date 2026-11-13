@@ -1,0 +1,14 @@
+{
+ "name": "Clockwork: Scale/Rotate petals, ConcatTransform, Transform, mirror Scale, CoordSysTransform",
+ "category": "camera",
+ "metric": "coverage",
+ "description": "Petals from a sphere under non-uniform Scale and Rotate, a star placed by ConcatTransform, a pennant and its mirror image (Scale -1 1 1), a spiral staircase built by accumulating Rotate + Translate with its top named by CoordinateSystem and reused by CoordSysTransform, and a ring of cubes in a frame set by an absolute Transform. Checks the whole transform stack.",
+ "test": 2,
+ "scene": "testscene_2.pbrt",
+ "reference": "testsuite_ref_2.pfm",
+ "reference_log": "testsuite_ref_2.log",
+ "pbrt_scene": "testscene_2_pbrt.pbrt",
+ "max_mismatch": 0.0005,
+ "max_offset": 0.1,
+ "display_exposure": 1.0
+}
