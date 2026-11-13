@@ -1,5 +1,5 @@
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:17:38
+[INFO] date: 2026-11-13 00:57:32
 [INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt
 [INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test2/testscene_2.pbrt
 [INFO] hardware threads: 15
@@ -97,15 +97,15 @@
 [INFO] film: 384x288, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
 [INFO] scene: 384 primitives (372 triangles, 0 planes), 0 point/spot/distant lights, 45 area lights, 45 objects, 43 materials
 [INFO] rendering with 15 threads ...
-  rendering:   4%  (0.0s)  rendering:   9%  (0.0s)  rendering:  14%  (0.0s)  rendering:  19%  (0.2s)  rendering:  24%  (0.8s)  rendering:  29%  (1.3s)  rendering:  34%  (2.2s)  rendering:  38%  (2.9s)  rendering:  43%  (3.2s)  rendering:  48%  (3.6s)  rendering:  53%  (3.6s)  rendering:  58%  (3.9s)  rendering:  63%  (4.2s)  rendering:  68%  (4.5s)  rendering:  72%  (4.9s)  rendering:  77%  (5.4s)  rendering:  82%  (5.6s)  rendering:  87%  (6.0s)  rendering:  92%  (6.3s)  rendering:  97%  (6.4s)  rendering: 100%  (7.5s)
+  rendering:   4%  (0.0s)  rendering:   9%  (0.0s)  rendering:  14%  (0.0s)  rendering:  19%  (0.2s)  rendering:  24%  (0.8s)  rendering:  29%  (1.2s)  rendering:  34%  (1.9s)  rendering:  38%  (2.6s)  rendering:  43%  (3.1s)  rendering:  48%  (3.5s)  rendering:  53%  (3.6s)  rendering:  58%  (3.9s)  rendering:  63%  (4.5s)  rendering:  68%  (4.8s)  rendering:  72%  (5.3s)  rendering:  77%  (5.7s)  rendering:  82%  (5.9s)  rendering:  87%  (6.3s)  rendering:  92%  (6.6s)  rendering:  97%  (6.6s)  rendering: 100%  (7.6s)
 [INFO] Reinhard: mode luminance, log-average luminance 0.00001, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
 [INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_2.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_2.pfm (linear HDR)
 ---- profile ----
-parse+load (s):      0.0011
+parse+load (s):      0.0010
 accel build (s):     0.0001
-render (s):          7.5226
-tonemap+write (s):   0.0059
-total (s):           7.5302
+render (s):          7.5884
+tonemap+write (s):   0.0042
+total (s):           7.5942
 camera rays:         7077888
 secondary rays:      0
 shadow rays:         372501084
@@ -113,7 +113,7 @@ ray-primitive tests: 1599327168
 ray-box tests:       10828857069
 tests per ray:       4.21 primitive, 28.53 box
 rays by depth:       0:7077888
-Mrays/s:             50.458
+Mrays/s:             50.021
 ---- result ----
 OK: errors: 0, warnings: 10
 log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_2.log

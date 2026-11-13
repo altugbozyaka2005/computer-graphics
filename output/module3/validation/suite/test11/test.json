@@ -1,61 +1,16 @@
 {
- "name": "Chess endgame: Phong diffuse under a rectangular and a spherical area light (soft shadows)",
- "category": "shading",
- "metric": "pixels",
- "description": "Chess pieces (smooth meshes of revolution) on a two-tone board, lit by a one-sided 1.4 x 1.0 emissive rectangle above the left and a glowing sphere on the right, maxdepth 1. Pixels in umbrae, penumbrae and fully lit squares test the area-light estimators and their sampling density.",
+ "name": "Unterminated parameter list (missing ])",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (syntax): unterminated parameter list (missing ]). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['syntax', 'bracket', 'unterminated', 'expected']).",
  "test": 11,
  "scene": "testscene_11.pbrt",
- "reference": "testsuite_ref_11.pfm",
- "reference_log": "testsuite_ref_11.log",
- "pbrt_scene": "testscene_11_pbrt.pbrt",
- "pixels": [
-  {
-   "label": "white king, shoulder",
-   "x": 120,
-   "y": 102
-  },
-  {
-   "label": "black king, side facing the lamp",
-   "x": 234,
-   "y": 100
-  },
-  {
-   "label": "ivory square, lit",
-   "x": 45,
-   "y": 192
-  },
-  {
-   "label": "walnut square, lit",
-   "x": 81,
-   "y": 194
-  },
-  {
-   "label": "board, umbra behind the white king",
-   "x": 163,
-   "y": 129
-  },
-  {
-   "label": "board, penumbra",
-   "x": 154,
-   "y": 117
-  },
-  {
-   "label": "board, lamp-lit, rook shadow edge",
-   "x": 166,
-   "y": 105
-  },
-  {
-   "label": "rook top",
-   "x": 192,
-   "y": 79
-  },
-  {
-   "label": "table cloth",
-   "x": 14,
-   "y": 125
-  }
+ "group": "syntax",
+ "keywords": [
+  "syntax",
+  "bracket",
+  "unterminated",
+  "expected"
  ],
- "window": 1,
- "max_rel_error": 0.04,
- "display_exposure": 3.3389
+ "reference_log": "testsuite_ref_11.log"
 }

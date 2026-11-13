@@ -1,107 +1,35 @@
 # CGR26_renderer log for testscene_6.pbrt (exit status 0)
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:04:01
+[INFO] date: 2026-11-13 00:56:13
 [INFO] command: output/CGR26_renderer studentTests/test6/testscene_6.pbrt --quiet --outdir output/module3/tests_tmp --out example_6
 [INFO] scene: studentTests/test6/testscene_6.pbrt
 [INFO] hardware threads: 15
-[WARNING] studentTests/test6/testscene_6.pbrt:18:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:26:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:34:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:42:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:50:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:58:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:66:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:74:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:82:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:90:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:98:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:106:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:114:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:122:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:130:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:138:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:146:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[WARNING] studentTests/test6/testscene_6.pbrt:154:1: annulus/partial disk area light is sampled as a full disk
-[INFO] area light: 1 shape(s), area 1.640226, two-sided
-[INFO] area light: 1 shape(s), area 32.169909, two-sided
-[INFO] area light: 1 shape(s), area 0.031416, two-sided
-[INFO] area light: 1 shape(s), area 0.033979, two-sided
-[INFO] area light: 1 shape(s), area 0.036644, two-sided
-[INFO] area light: 1 shape(s), area 0.039408, two-sided
-[INFO] area light: 1 shape(s), area 0.042273, two-sided
-[INFO] area light: 1 shape(s), area 0.045239, two-sided
-[INFO] area light: 1 shape(s), area 0.048305, two-sided
-[INFO] area light: 1 shape(s), area 0.051472, two-sided
-[INFO] area light: 1 shape(s), area 0.054739, two-sided
-[INFO] area light: 1 shape(s), area 0.058107, two-sided
-[INFO] area light: 1 shape(s), area 0.061575, two-sided
-[INFO] area light: 1 shape(s), area 0.065144, two-sided
-[INFO] area light: 1 shape(s), area 0.068813, two-sided
-[INFO] area light: 1 shape(s), area 0.072583, two-sided
-[INFO] area light: 1 shape(s), area 0.076454, two-sided
-[INFO] area light: 1 shape(s), area 0.080425, two-sided
-[INFO] area light: 1 shape(s), area 0.084496, two-sided
-[INFO] area light: 1 shape(s), area 0.088668, two-sided
-[INFO] area light: 1 shape(s), area 0.092941, two-sided
-[INFO] area light: 1 shape(s), area 0.097314, two-sided
-[INFO] area light: 1 shape(s), area 0.101788, two-sided
-[INFO] area light: 1 shape(s), area 0.106362, two-sided
-[INFO] area light: 1 shape(s), area 0.111036, two-sided
-[INFO] area light: 1 shape(s), area 0.115812, two-sided
-[INFO] area light: 1 shape(s), area 0.120687, two-sided
-[INFO] area light: 1 shape(s), area 0.125664, two-sided
-[INFO] area light: 1 shape(s), area 0.130741, two-sided
-[INFO] area light: 1 shape(s), area 0.135918, two-sided
-[INFO] area light: 1 shape(s), area 0.141196, two-sided
-[INFO] area light: 1 shape(s), area 0.146574, two-sided
-[INFO] area light: 1 shape(s), area 0.152053, two-sided
-[INFO] area light: 1 shape(s), area 0.157633, two-sided
-[INFO] area light: 1 shape(s), area 0.163313, two-sided
-[INFO] area light: 1 shape(s), area 0.169093, two-sided
-[INFO] area light: 1 shape(s), area 0.174974, two-sided
-[INFO] area light: 1 shape(s), area 0.180956, two-sided
-[INFO] area light: 1 shape(s), area 0.187038, two-sided
-[INFO] area light: 1 shape(s), area 0.193221, two-sided
-[INFO] area light: 1 shape(s), area 0.199504, two-sided
-[INFO] area light: 1 shape(s), area 0.205887, two-sided
-[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 59 primitives, 117 nodes, 59 leaves, depth 9, largest leaf 1, mean prims/leaf 1.00, SAH cost 2.05
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 912 triangles, 960 vertices, normals
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 946 primitives, 1807 nodes, 904 leaves, depth 14, largest leaf 3, mean prims/leaf 1.05, SAH cost 2.97
 [INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
-[INFO] camera: perspective, fov 70.00, lensradius 0.0000, focaldistance 1000000.000
-[INFO] film: 384x288, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
-[INFO] scene: 59 primitives (0 triangles, 0 planes), 0 point/spot/distant lights, 59 area lights, 59 objects, 59 materials
+[INFO] camera: perspective, fov 38.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 320x240, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 946 primitives (940 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 11 objects, 11 materials
 [INFO] rendering with 15 threads ...
-[INFO] Reinhard: mode luminance, log-average luminance 0.00875, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
+[INFO] Reinhard: mode luminance, log-average luminance 0.06843, max luminance 0.44156, scale 1.00000, white point 0.44156 (auto = max)
 [INFO] wrote output/module3/tests_tmp/example_6.png (display), output/module3/tests_tmp/example_6.pfm (linear HDR)
 ---- profile ----
-parse+load (s):      0.0005
-accel build (s):     0.0000
-render (s):          18.2720
-tonemap+write (s):   0.0064
-total (s):           18.2798
-camera rays:         7077888
+parse+load (s):      0.0016
+accel build (s):     0.0002
+render (s):          0.0621
+tonemap+write (s):   0.0043
+total (s):           0.0688
+camera rays:         4915200
 secondary rays:      0
-shadow rays:         449786595
-ray-primitive tests: 1760163106
-ray-box tests:       11026326437
-tests per ray:       3.85 primitive, 24.13 box
-rays by depth:       0:7077888
-Mrays/s:             25.004
+shadow rays:         6400896
+ray-primitive tests: 15440746
+ray-box tests:       122735164
+tests per ray:       1.36 primitive, 10.85 box
+rays by depth:       0:4915200
+Mrays/s:             182.254
 ---- result ----
-OK: errors: 0, warnings: 18
+OK: errors: 0, warnings: 0

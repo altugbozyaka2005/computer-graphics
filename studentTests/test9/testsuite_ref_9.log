@@ -1,6 +1,11 @@
-# pbrt-v4 console output for testscene_9_pbrt.pbrt (exit status 0)
-pbrt version 4 (built Oct 11 2026 at 02:18:28)
-Copyright (c)1998-2021 Matt Pharr, Wenzel Jakob, and Greg Humphreys.
-The source code to pbrt (but *not* the book contents) is covered by the Apache 2.0 License.
-See the file LICENSE.txt for the conditions of the license.
-
+# Analytic reference (scenes/tools/make_module3_tests.py, phong_analytic): normalised
+# modified Phong kd/pi + ks (n+2)/(2 pi) cos^n(alpha), point lights with hard shadows,
+# direct light only, box filter: 4x4 samples per pixel, 32x32 at the test pixels.
+# plane y = 0: {'kd': (0.3, 0.3, 0.32), 'ks': (0.25, 0.25, 0.25), 'n': 20.0}
+# sphere centre (-1.25, 0.75, 1.0) radius 0.75: {'kd': (0.45, 0.45, 0.45), 'ks': (0.5, 0.5, 0.5), 'n': 60.0}
+# sphere centre (0.75, 0.5, 0.15) radius 0.5: {'kd': (0.25, 0.25, 0.25), 'ks': (0.7, 0.7, 0.7), 'n': 200.0}
+# sphere centre (1.65, 0.38, 1.7) radius 0.38: {'kd': (0.6, 0.6, 0.6), 'ks': (0.2, 0.2, 0.2), 'n': 12.0}
+# point light at (-3.0, 4.2, -1.2), I = (16.0, 0.0, 0.0)
+# point light at (0.2, 4.8, -2.6), I = (0.0, 16.0, 0.0)
+# point light at (3.0, 4.2, -1.0), I = (0.0, 0.0, 16.0)
+# pbrt-v4 has no Phong BRDF, so no pbrt-v4 render exists for this test.

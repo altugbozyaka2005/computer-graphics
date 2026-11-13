@@ -1,14 +1,13 @@
 {
- "name": "Unknown parameter type (flot)",
+ "name": "Negative sphere radius",
  "category": "error",
  "metric": "error",
- "description": "Deliberate error (syntax): unknown parameter type (flot). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['flot', 'type']).",
+ "description": "Deliberate error (range): negative sphere radius. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['radius']).",
  "test": 19,
  "scene": "testscene_19.pbrt",
- "group": "syntax",
+ "group": "range",
  "keywords": [
-  "flot",
-  "type"
+  "radius"
  ],
  "reference_log": "testsuite_ref_19.log"
 }

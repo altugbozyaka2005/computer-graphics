@@ -1,14 +1,14 @@
 {
- "name": "Misspelt directive (Shapee)",
+ "name": "Unknown material type (plasticky)",
  "category": "error",
  "metric": "error",
- "description": "Deliberate error (syntax): misspelt directive (Shapee). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['shapee', 'directive']).",
+ "description": "Deliberate error (unknown): unknown material type (plasticky). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['plasticky', 'material']).",
  "test": 15,
  "scene": "testscene_15.pbrt",
- "group": "syntax",
+ "group": "unknown",
  "keywords": [
-  "shapee",
-  "directive"
+  "plasticky",
+  "material"
  ],
  "reference_log": "testsuite_ref_15.log"
 }

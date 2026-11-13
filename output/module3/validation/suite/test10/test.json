@@ -1,61 +1,14 @@
 {
- "name": "Still life: Phong diffuse under a point light and a spotlight (direct lighting)",
- "category": "shading",
- "metric": "pixels",
- "description": "Fruit bowl (clipped sphere, seen inside and out), fruit, a smooth-shaded vase (mesh with per-vertex normals) and books, lit by a warm point light and a cool spotlight (cone 22, falloff 8 degrees), maxdepth 1. Isolates the diffuse BRDF, cosine, 1/d^2, shadows, the spotlight cone and its smooth falloff.",
+ "name": "Misspelt directive (Shapee)",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (syntax): misspelt directive (Shapee). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['shapee', 'directive']).",
  "test": 10,
  "scene": "testscene_10.pbrt",
- "reference": "testsuite_ref_10.pfm",
- "reference_log": "testsuite_ref_10.log",
- "pbrt_scene": "testscene_10_pbrt.pbrt",
- "pixels": [
-  {
-   "label": "orange, lit side",
-   "x": 85,
-   "y": 114
-  },
-  {
-   "label": "bowl outside",
-   "x": 107,
-   "y": 151
-  },
-  {
-   "label": "bowl inside, far wall",
-   "x": 142,
-   "y": 104
-  },
-  {
-   "label": "vase, in the spotlight",
-   "x": 195,
-   "y": 112
-  },
-  {
-   "label": "vase, beyond the spotlight cone",
-   "x": 238,
-   "y": 91
-  },
-  {
-   "label": "table, spotlight falloff band",
-   "x": 269,
-   "y": 162
-  },
-  {
-   "label": "table, bowl shadow",
-   "x": 159,
-   "y": 124
-  },
-  {
-   "label": "book cover",
-   "x": 208,
-   "y": 175
-  },
-  {
-   "label": "wall",
-   "x": 49,
-   "y": 3
-  }
+ "group": "syntax",
+ "keywords": [
+  "shapee",
+  "directive"
  ],
- "window": 1,
- "max_rel_error": 0.03,
- "display_exposure": 1.9654
+ "reference_log": "testsuite_ref_10.log"
 }

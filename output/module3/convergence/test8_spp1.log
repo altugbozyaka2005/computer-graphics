@@ -1,0 +1,45 @@
+==== CGR26_renderer log ====
+[INFO] date: 2026-11-13 01:01:12
+[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test8/testscene_8.pbrt --quiet --spp 1 --outdir /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/convergence --out test8_spp1
+[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test8/testscene_8.pbrt
+[INFO] hardware threads: 15
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] area light: 2 shape(s), area 0.800000
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
+[INFO] trianglemesh: 2 triangles, 4 vertices
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 79 primitives, 79 nodes, 40 leaves, depth 10, largest leaf 2, mean prims/leaf 1.98, SAH cost 8.80
+[INFO] override: spp = 1
+[INFO] integrator: distributed, maxdepth 3, branchingfactor 1, lightsamples 4 (uniform)
+[INFO] camera: perspective, fov 58.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 256x192, 1 spp (stratified 1x1 (jittered)), tonemap reinhard (luminance)
+[INFO] scene: 79 primitives (78 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 15 objects, 12 materials
+[INFO] rendering with 15 threads ...
+[INFO] Reinhard: mode luminance, log-average luminance 0.06626, max luminance 17.11668, scale 1.00000, white point 17.11668 (auto = max)
+[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/convergence/test8_spp1.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/convergence/test8_spp1.pfm (linear HDR)
+---- profile ----
+parse+load (s):      0.0004
+accel build (s):     0.0000
+render (s):          0.0067
+tonemap+write (s):   0.0030
+total (s):           0.0106
+camera rays:         49152
+secondary rays:      98304
+shadow rays:         434301
+ray-primitive tests: 372593
+ray-box tests:       8649314
+tests per ray:       0.64 primitive, 14.87 box
+rays by depth:       0:49152 1:49152 2:49152
+Mrays/s:             86.894
+---- result ----
+OK: errors: 0, warnings: 0

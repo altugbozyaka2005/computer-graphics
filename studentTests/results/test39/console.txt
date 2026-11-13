@@ -1,33 +1,0 @@
-==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:21:16
-[INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test39/testscene_39.pbrt
-[INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test39/testscene_39.pbrt
-[INFO] hardware threads: 15
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test39/testscene_39.pbrt:25:1: Translate expects 3 numeric arguments but got 2; directive ignored
-[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 5 primitives, 5 nodes, 3 leaves, depth 2, largest leaf 3, mean prims/leaf 1.67, SAH cost 3.84
-[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 16 (uniform)
-[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
-[INFO] film: 96x72, 8 spp (independent, 8 spp (uniform random)), tonemap reinhard (luminance)
-[INFO] scene: 5 primitives (2 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 4 objects, 3 materials
-[INFO] rendering with 15 threads ...
-  rendering:   3%  (0.0s)  rendering:   6%  (0.0s)  rendering:  10%  (0.0s)  rendering:  13%  (0.0s)  rendering:  16%  (0.0s)  rendering:  20%  (0.0s)  rendering:  23%  (0.0s)  rendering:  26%  (0.0s)  rendering:  30%  (0.0s)  rendering:  33%  (0.0s)  rendering:  36%  (0.0s)  rendering:  40%  (0.0s)  rendering:  43%  (0.0s)  rendering:  46%  (0.0s)  rendering:  50%  (0.0s)  rendering:  53%  (0.0s)  rendering:  56%  (0.0s)  rendering:  60%  (0.0s)  rendering:  63%  (0.0s)  rendering:  66%  (0.0s)  rendering:  70%  (0.0s)  rendering:  73%  (0.0s)  rendering:  76%  (0.0s)  rendering:  80%  (0.0s)  rendering:  83%  (0.0s)  rendering:  86%  (0.0s)  rendering:  90%  (0.0s)  rendering:  93%  (0.0s)  rendering:  96%  (0.0s)  rendering: 100%  (0.0s)
-[INFO] Reinhard: mode luminance, log-average luminance 0.00699, max luminance 0.24277, scale 1.00000, white point 0.24277 (auto = max)
-[INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_39.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_39.pfm (linear HDR)
----- profile ----
-parse+load (s):      0.0003
-accel build (s):     0.0000
-render (s):          0.0016
-tonemap+write (s):   0.0005
-total (s):           0.0029
-camera rays:         55296
-secondary rays:      41773
-shadow rays:         88073
-ray-primitive tests: 512986
-ray-box tests:       877379
-tests per ray:       2.77 primitive, 4.74 box
-rays by depth:       0:55296 1:41773
-Mrays/s:             112.963
----- result ----
-OK: errors: 1, warnings: 0
-log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_39.log

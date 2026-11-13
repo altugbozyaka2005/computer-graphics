@@ -1,16 +1,14 @@
 {
- "name": "Unterminated parameter list (missing ])",
+ "name": "Undefined named material",
  "category": "error",
  "metric": "error",
- "description": "Deliberate error (syntax): unterminated parameter list (missing ]). The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['syntax', 'bracket', 'unterminated', 'expected']).",
+ "description": "Deliberate error (unknown): undefined named material. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['undefined_mat', 'named']).",
  "test": 16,
  "scene": "testscene_16.pbrt",
- "group": "syntax",
+ "group": "unknown",
  "keywords": [
-  "syntax",
-  "bracket",
-  "unterminated",
-  "expected"
+  "undefined_mat",
+  "named"
  ],
  "reference_log": "testsuite_ref_16.log"
 }

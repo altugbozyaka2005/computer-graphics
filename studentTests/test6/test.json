@@ -1,14 +1,61 @@
 {
- "name": "Tunnel of rings (fov 70): framing at the image border and depth",
- "category": "camera",
- "metric": "coverage",
- "description": "Eighteen thin annuli receding from 1.3 to 60 units along a winding axis, a spiral of beads and a sphere at 75 units, seen with fov 70. The nearest rings are cut by the image border, so the field of view and the projection are compared pixel by pixel along every ring edge.",
+ "name": "Still life: Phong diffuse under a point light and a spotlight (direct lighting)",
+ "category": "shading",
+ "metric": "pixels",
+ "description": "Fruit bowl (clipped sphere, seen inside and out), fruit, a smooth-shaded vase (mesh with per-vertex normals) and books, lit by a warm point light and a cool spotlight (cone 22, falloff 8 degrees), maxdepth 1. Isolates the diffuse BRDF, cosine, 1/d^2, shadows, the spotlight cone and its smooth falloff.",
  "test": 6,
  "scene": "testscene_6.pbrt",
  "reference": "testsuite_ref_6.pfm",
  "reference_log": "testsuite_ref_6.log",
  "pbrt_scene": "testscene_6_pbrt.pbrt",
- "max_mismatch": 0.0005,
- "max_offset": 0.1,
- "display_exposure": 1.0
+ "pixels": [
+  {
+   "label": "orange, lit side",
+   "x": 85,
+   "y": 114
+  },
+  {
+   "label": "bowl outside",
+   "x": 107,
+   "y": 151
+  },
+  {
+   "label": "bowl inside, far wall",
+   "x": 142,
+   "y": 104
+  },
+  {
+   "label": "vase, in the spotlight",
+   "x": 195,
+   "y": 112
+  },
+  {
+   "label": "vase, beyond the spotlight cone",
+   "x": 238,
+   "y": 91
+  },
+  {
+   "label": "table, spotlight falloff band",
+   "x": 269,
+   "y": 162
+  },
+  {
+   "label": "table, bowl shadow",
+   "x": 159,
+   "y": 124
+  },
+  {
+   "label": "book cover",
+   "x": 208,
+   "y": 175
+  },
+  {
+   "label": "wall",
+   "x": 38,
+   "y": 46
+  }
+ ],
+ "window": 1,
+ "max_rel_error": 0.03,
+ "display_exposure": 1.9654
 }

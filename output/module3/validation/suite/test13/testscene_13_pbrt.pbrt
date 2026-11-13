@@ -1,39 +1,25 @@
-# testscene_13: Textures: checkerboards (mesh uv, sphere uv) and a PFM image map with scale
-# Category: shading. Checkerboard reflectance on a floor with per-vertex uv and on a rotated sphere with pbrt's (phi, theta) parametrisation, and an abstract painting (PFM imagemap, 'float scale' 0.9) on the wall, under a distant and a point light. Pixels at check and colour-block centres test uv conventions, image orientation (pbrt flips t) and textured shading.
-# Reference: testsuite_ref_13.pfm, rendered by pbrt-v4 from testscene_13_pbrt.pbrt (same scene; only Integrator, Sampler and Film differ).
-# pbrt-v4 version of testscene_13.pbrt, used to render the reference image.
-LookAt -0.6 2.6 -7.5  -0.7 1.4 2  0 1 0
-Camera "perspective" "float fov" [ 42 ]
-Film "rgb" "integer xresolution" [ 320 ] "integer yresolution" [ 240 ] "string filename" [ "testsuite_ref_13.pfm" ]
-Sampler "stratified" "integer xsamples" [ 64 ] "integer ysamples" [ 64 ] "bool jitter" true
-PixelFilter "box"
-Integrator "path" "integer maxdepth" [ 1 ]
-
+# testscene_13: Missing Include file
+# Category: error (structure). Deliberate error (structure): missing Include file. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['missing_include', 'include']).
+# pbrt-v4 version (gives pbrt-v4's own message in testsuite_ref_13.log).
+LookAt 0 2.4 -6  0 0.7 0  0 1 0
+Camera "perspective" "float fov" [ 40 ]
+Film "rgb" "integer xresolution" [ 96 ] "integer yresolution" [ 72 ] "string filename" [ "testsuite_ref_13.png" ]
+Sampler "independent" "integer pixelsamples" [ 8 ]
+Integrator "path" "integer maxdepth" [ 2 ]
 WorldBegin
-LightSource "distant" "point3 from" [ -2 5 -3 ] "point3 to" [ 0 0 0 ] "rgb L" [ 2.6 2.6 2.6 ]
-LightSource "point" "point3 from" [ 2.5 3.5 -2 ] "rgb I" [ 7 7 7 ]
-Texture "checks" "spectrum" "checkerboard" "float uscale" [ 8 ] "float vscale" [ 8 ]
-    "rgb tex1" [ 0.8 0.75 0.6 ] "rgb tex2" [ 0.15 0.2 0.3 ]
-Texture "checks2" "spectrum" "checkerboard" "float uscale" [ 8 ] "float vscale" [ 4 ]
-    "rgb tex1" [ 0.75 0.2 0.15 ] "rgb tex2" [ 0.9 0.85 0.7 ]
-Texture "art" "spectrum" "imagemap" "string filename" [ "painting.pfm" ] "float scale" [ 0.9 ]
-Material "diffuse" "texture reflectance" "checks"
-Shape "trianglemesh" "point3 P" [ -10 0 -10  10 0 -10  10 0 10  -10 0 10 ]
-    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]
-AttributeBegin
+LightSource "point" "point3 from" [ -2 5 -3 ] "rgb I" [ 30 28 24 ]
+LightSource "distant" "point3 from" [ 3 4 -2 ] "point3 to" [ 0 0 0 ] "rgb L" [ 0.4 0.45 0.6 ]
 Material "diffuse" "rgb reflectance" [ 0.55 0.5 0.45 ]
-Shape "trianglemesh" "point3 P" [ -10 0 5.52  10 0 5.52  10 8 5.52  -10 8 5.52 ]
+Shape "trianglemesh" "point3 P" [ -20 0 -20  20 0 -20  20 0 20  -20 0 20 ]
     "integer indices" [ 0 1 2 0 2 3 ]
+AttributeBegin
+Material "diffuse" "rgb reflectance" [ 0.7 0.25 0.15 ]
+Translate -1.1 0.7 0.3
+Shape "sphere" "float radius" [ 0.7 ]
 AttributeEnd
 AttributeBegin
-Material "diffuse" "texture reflectance" "art"
-Shape "trianglemesh" "point3 P" [ -4.4 1 5.5  -0.8 1 5.5  -0.8 3.4 5.5  -4.4 3.4 5.5 ]
-    "point2 uv" [ 0 0  1 0  1 1  0 1 ]
-    "integer indices" [ 0 1 2 0 2 3 ]
+Material "diffuse" "rgb reflectance" [ 0.15 0.4 0.65 ]
+Translate 0.9 0.5 -0.2
+Shape "sphere" "float radius" [ 0.5 ]
 AttributeEnd
-AttributeBegin
-Material "diffuse" "texture reflectance" "checks2"
-Translate 1.1 1.2 0
-Rotate -90 1 0 0
-Shape "sphere" "float radius" [ 1.2 ]
-AttributeEnd
+Include "missing_include.pbrt"

@@ -1,6 +1,6 @@
 # CGR26_renderer log for testscene_3.pbrt (exit status 0)
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:03:54
+[INFO] date: 2026-11-13 00:45:53
 [INFO] command: output/CGR26_renderer studentTests/test3/testscene_3.pbrt --quiet --outdir output/module3/tests_tmp --out example_3
 [INFO] scene: studentTests/test3/testscene_3.pbrt
 [INFO] hardware threads: 15
@@ -22,11 +22,11 @@
 [INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.62004, scale 1.00000, white point 0.62004 (auto = max)
 [INFO] wrote output/module3/tests_tmp/example_3.png (display), output/module3/tests_tmp/example_3.pfm (linear HDR)
 ---- profile ----
-parse+load (s):      0.0001
+parse+load (s):      0.0002
 accel build (s):     0.0000
-render (s):          0.0177
-tonemap+write (s):   0.0016
-total (s):           0.0200
+render (s):          0.0156
+tonemap+write (s):   0.0011
+total (s):           0.0173
 camera rays:         1843200
 secondary rays:      0
 shadow rays:         642447
@@ -34,6 +34,6 @@ ray-primitive tests: 1298750
 ray-box tests:       13706264
 tests per ray:       0.52 primitive, 5.51 box
 rays by depth:       0:1843200
-Mrays/s:             140.365
+Mrays/s:             159.253
 ---- result ----
 OK: errors: 0, warnings: 0

@@ -1,16 +1,14 @@
 {
- "name": "Unterminated string",
+ "name": "Missing texture file",
  "category": "error",
  "metric": "error",
- "description": "Deliberate error (syntax): unterminated string. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['string', 'quote', 'unterminated', 'syntax']).",
+ "description": "Deliberate error (files): missing texture file. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['does_not_exist', 'texture']).",
  "test": 17,
  "scene": "testscene_17.pbrt",
- "group": "syntax",
+ "group": "files",
  "keywords": [
-  "string",
-  "quote",
-  "unterminated",
-  "syntax"
+  "does_not_exist",
+  "texture"
  ],
  "reference_log": "testsuite_ref_17.log"
 }

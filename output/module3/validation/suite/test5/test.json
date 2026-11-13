@@ -1,79 +1,14 @@
 {
- "name": "Off-centre screen window on a perspective camera (shifted lens)",
+ "name": "Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, distant and near spheres",
  "category": "camera",
- "metric": "centroids",
- "description": "As test 3 with 'screenwindow' [-1.1 1.9 -0.45 1.55] on a perspective camera: the view is shifted up and to the right like a shift lens. Checks that the screen window is mapped onto the raster exactly.",
+ "metric": "coverage",
+ "description": "Lamp posts, railings and cables only 0.02 units thick receding to 60 units, lanterns at 80 units, a moon at 90 and spheres close to the lens at the image border, seen with fov 100. Checks precision of thin and distant hits and wide-angle framing.",
  "test": 5,
  "scene": "testscene_5.pbrt",
  "reference": "testsuite_ref_5.pfm",
  "reference_log": "testsuite_ref_5.log",
  "pbrt_scene": "testscene_5_pbrt.pbrt",
- "markers": [
-  {
-   "label": "(0.05,0.06)",
-   "x": 11.991,
-   "y": 9.584,
-   "analytic_x": 12.0,
-   "analytic_y": 9.6
-  },
-  {
-   "label": "(0.50,0.06)",
-   "x": 120.004,
-   "y": 9.587,
-   "analytic_x": 120.0,
-   "analytic_y": 9.6
-  },
-  {
-   "label": "(0.95,0.06)",
-   "x": 228.021,
-   "y": 9.585,
-   "analytic_x": 228.0,
-   "analytic_y": 9.6
-  },
-  {
-   "label": "(0.05,0.50)",
-   "x": 11.989,
-   "y": 79.995,
-   "analytic_x": 12.0,
-   "analytic_y": 80.0
-  },
-  {
-   "label": "(0.50,0.50)",
-   "x": 120.005,
-   "y": 79.994,
-   "analytic_x": 120.0,
-   "analytic_y": 80.0
-  },
-  {
-   "label": "(0.95,0.50)",
-   "x": 228.02,
-   "y": 79.995,
-   "analytic_x": 228.0,
-   "analytic_y": 80.0
-  },
-  {
-   "label": "(0.05,0.94)",
-   "x": 11.991,
-   "y": 150.401,
-   "analytic_x": 12.0,
-   "analytic_y": 150.4
-  },
-  {
-   "label": "(0.50,0.94)",
-   "x": 120.005,
-   "y": 150.402,
-   "analytic_x": 120.0,
-   "analytic_y": 150.4
-  },
-  {
-   "label": "(0.95,0.94)",
-   "x": 228.021,
-   "y": 150.401,
-   "analytic_x": 228.0,
-   "analytic_y": 150.4
-  }
- ],
- "radius": 7,
- "max_centroid_error": 0.2,
+ "max_mismatch": 0.0008,
+ "max_offset": 0.15,
  "display_exposure": 1.0
 }

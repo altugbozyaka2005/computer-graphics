@@ -1,5 +1,5 @@
-# testscene_18: Non-numeric value for a float parameter
-# Category: error (syntax). Deliberate error (syntax): non-numeric value for a float parameter. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['radius', 'numeric', 'float', 'big']).
+# testscene_18: Malformed transform: Translate with two numbers
+# Category: error (transform). Deliberate error (transform): malformed transform: Translate with two numbers. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['translate']).
 # pbrt-v4 version (gives pbrt-v4's own message in testsuite_ref_18.log).
 LookAt 0 2.4 -6  0 0.7 0  0 1 0
 Camera "perspective" "float fov" [ 40 ]
@@ -22,4 +22,7 @@ Material "diffuse" "rgb reflectance" [ 0.15 0.4 0.65 ]
 Translate 0.9 0.5 -0.2
 Shape "sphere" "float radius" [ 0.5 ]
 AttributeEnd
-Shape "sphere" "float radius" [ "big" ]
+AttributeBegin
+Translate 0 1
+Shape "sphere" "float radius" [ 0.3 ]
+AttributeEnd

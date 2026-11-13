@@ -74,6 +74,7 @@ if [ "$WHICH" = all ] || [ "$WHICH" = 3 ]; then
   [ $V3RC -eq 0 ] || FAILED=$((FAILED + 1))
   echo "== Module 3: figures (output/figures/module3/)"
   python3 scenes/tools/make_figures_m3.py > /dev/null || FAILED=$((FAILED + 1))
+  python3 scenes/tools/make_report_figures_m3.py > /dev/null || FAILED=$((FAILED + 1))
 fi
 echo
 if [ $FAILED -eq 0 ]; then echo "all renders finished; images and logs are in output/, figures in output/figures/"; else echo "$FAILED render(s) failed or missing"; fi

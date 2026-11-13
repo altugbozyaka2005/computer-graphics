@@ -1,16 +1,13 @@
 {
- "name": "Non-numeric value for a float parameter",
+ "name": "Malformed transform: Translate with two numbers",
  "category": "error",
  "metric": "error",
- "description": "Deliberate error (syntax): non-numeric value for a float parameter. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['radius', 'numeric', 'float', 'big']).",
+ "description": "Deliberate error (transform): malformed transform: Translate with two numbers. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['translate']).",
  "test": 18,
  "scene": "testscene_18.pbrt",
- "group": "syntax",
+ "group": "transform",
  "keywords": [
-  "radius",
-  "numeric",
-  "float",
-  "big"
+  "translate"
  ],
  "reference_log": "testsuite_ref_18.log"
 }

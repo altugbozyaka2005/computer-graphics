@@ -1,14 +1,66 @@
 {
- "name": "Orthographic camera with a screen window: isometric town",
- "category": "camera",
- "metric": "coverage",
- "description": "Orthographic projection with 'screenwindow' [-3.4 3.4 -2.0 2.675] from an oblique LookAt: houses (boxes with triangle-mesh roofs), a domed tower (clipped sphere), a fountain (annulus) and trees on a black plinth that hides what is behind it. Checks parallel projection and screen-window mapping.",
+ "name": "Gallery: Phong diffuse interreflection in a closed room (maxdepth 3)",
+ "category": "shading",
+ "metric": "pixels",
+ "description": "Closed room with a teal and a terracotta wall, a ceiling light panel, a sculpture on a plinth, a column, a bench and paintings, maxdepth 3 (direct light plus two diffuse bounces). The ceiling and the underside of the sphere are lit only indirectly and the walls bleed colour, so the pixels test indirect light and the meaning of maxdepth.",
  "test": 8,
  "scene": "testscene_8.pbrt",
  "reference": "testsuite_ref_8.pfm",
  "reference_log": "testsuite_ref_8.log",
  "pbrt_scene": "testscene_8_pbrt.pbrt",
- "max_mismatch": 0.0005,
- "max_offset": 0.1,
- "display_exposure": 1.0
+ "pixels": [
+  {
+   "label": "ceiling, beside the light (indirect only)",
+   "x": 80,
+   "y": 39
+  },
+  {
+   "label": "back wall",
+   "x": 133,
+   "y": 107
+  },
+  {
+   "label": "teal wall",
+   "x": 11,
+   "y": 95
+  },
+  {
+   "label": "terracotta wall",
+   "x": 214,
+   "y": 76
+  },
+  {
+   "label": "floor near the teal wall (colour bleeding)",
+   "x": 16,
+   "y": 170
+  },
+  {
+   "label": "floor near the terracotta wall (colour bleeding)",
+   "x": 204,
+   "y": 145
+  },
+  {
+   "label": "sculpture top",
+   "x": 125,
+   "y": 74
+  },
+  {
+   "label": "sculpture underside (indirect only)",
+   "x": 131,
+   "y": 101
+  },
+  {
+   "label": "plinth front",
+   "x": 120,
+   "y": 126
+  },
+  {
+   "label": "yellow painting",
+   "x": 113,
+   "y": 84
+  }
+ ],
+ "window": 1,
+ "max_rel_error": 0.05,
+ "display_exposure": 4.3867
 }

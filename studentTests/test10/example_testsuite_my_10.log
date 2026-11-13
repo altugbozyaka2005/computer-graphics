@@ -1,35 +1,32 @@
 # CGR26_renderer log for testscene_10.pbrt (exit status 0)
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:14:20
+[INFO] date: 2026-11-13 00:59:50
 [INFO] command: output/CGR26_renderer studentTests/test10/testscene_10.pbrt --quiet --outdir output/module3/tests_tmp --out example_10
 [INFO] scene: studentTests/test10/testscene_10.pbrt
 [INFO] hardware threads: 15
 [INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 912 triangles, 960 vertices, normals
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 946 primitives, 1807 nodes, 904 leaves, depth 14, largest leaf 3, mean prims/leaf 1.05, SAH cost 2.97
-[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
-[INFO] camera: perspective, fov 38.00, lensradius 0.0000, focaldistance 1000000.000
-[INFO] film: 320x240, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
-[INFO] scene: 946 primitives (940 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 11 objects, 11 materials
+[ERROR] studentTests/test10/testscene_10.pbrt:24:1: unknown directive 'Shapee'; skipping to the next directive
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 4 primitives, 5 nodes, 3 leaves, depth 2, largest leaf 2, mean prims/leaf 1.33, SAH cost 2.86
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 96x72, 8 spp (independent, 8 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 4 primitives (2 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 3 objects, 3 materials
 [INFO] rendering with 15 threads ...
-[INFO] Reinhard: mode luminance, log-average luminance 0.06843, max luminance 0.44156, scale 1.00000, white point 0.44156 (auto = max)
+[INFO] Reinhard: mode luminance, log-average luminance 0.00699, max luminance 0.24277, scale 1.00000, white point 0.24277 (auto = max)
 [INFO] wrote output/module3/tests_tmp/example_10.png (display), output/module3/tests_tmp/example_10.pfm (linear HDR)
 ---- profile ----
 parse+load (s):      0.0011
-accel build (s):     0.0002
-render (s):          0.0644
-tonemap+write (s):   0.0044
-total (s):           0.0705
-camera rays:         4915200
-secondary rays:      0
-shadow rays:         6400896
-ray-primitive tests: 15440746
-ray-box tests:       122735164
-tests per ray:       1.36 primitive, 10.85 box
-rays by depth:       0:4915200
-Mrays/s:             175.644
+accel build (s):     0.0001
+render (s):          0.0011
+tonemap+write (s):   0.0005
+total (s):           0.0032
+camera rays:         55296
+secondary rays:      41773
+shadow rays:         87541
+ray-primitive tests: 121690
+ray-box tests:       874759
+tests per ray:       0.66 primitive, 4.74 box
+rays by depth:       0:55296 1:41773
+Mrays/s:             162.658
 ---- result ----
-OK: errors: 0, warnings: 0
+OK: errors: 1, warnings: 0

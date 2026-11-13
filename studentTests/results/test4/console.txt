@@ -1,5 +1,5 @@
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:19:47
+[INFO] date: 2026-11-13 01:00:04
 [INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test4/testscene_4.pbrt
 [INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test4/testscene_4.pbrt
 [INFO] hardware threads: 15
@@ -24,9 +24,9 @@
 ---- profile ----
 parse+load (s):      0.0003
 accel build (s):     0.0000
-render (s):          0.0239
-tonemap+write (s):   0.0014
-total (s):           0.0261
+render (s):          0.0226
+tonemap+write (s):   0.0011
+total (s):           0.0246
 camera rays:         1843200
 secondary rays:      0
 shadow rays:         987422
@@ -34,7 +34,7 @@ ray-primitive tests: 1995106
 ray-box tests:       17844274
 tests per ray:       0.70 primitive, 6.30 box
 rays by depth:       0:1843200
-Mrays/s:             118.622
+Mrays/s:             125.318
 ---- result ----
 OK: errors: 0, warnings: 0
 log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_4.log

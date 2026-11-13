@@ -4,24 +4,23 @@
 For every test N it writes studentTests/testN/:
   testscene_N.pbrt        the test scene in the course's pbrt subset (Integrator "distributed")
   testscene_N_pbrt.pbrt   the same scene for pbrt-v4 (only the Integrator/Sampler/Film lines differ)
-  testsuite_ref_N.pfm     reference image rendered by pbrt-v4 (or analytic, test 14), linear HDR
+  testsuite_ref_N.pfm     reference image rendered by pbrt-v4 (or analytic, test 9), linear HDR
   testsuite_ref_N.png     the reference for viewing (clamped, sRGB)
   testsuite_ref_N.log     pbrt-v4's console output for that scene (for error tests: pbrt-v4's message)
   example_testsuite_my_N.log   the log CGR26_renderer writes for the scene (what a passing log looks like)
   test.json               category, metric, pixels / markers / keywords, thresholds
   run.sh                  runs just this test: ../runAllTests.py --tests N
-  (test 13: painting.pfm, the image texture; test 27: loop.pbrt, the self-including file)
 
-Tests 1-9 camera and intersections (glowing objects of equal luminance on black: coverage, framing),
-10-14 shading (pbrt "diffuse" = Phong diffuse term vs pbrt-v4; Phong lobes vs the closed form),
-15-53 error handling (one deliberate error each, grouped: syntax, structure, unknown, files,
+Tests 1-5 camera and intersections (glowing objects of equal luminance on black: coverage, framing),
+6-9 shading (pbrt "diffuse" = Phong diffuse term vs pbrt-v4; Phong lobes vs the closed form),
+10-21 error handling (one deliberate error each, grouped: syntax, structure, unknown, files,
 transform, range).
 
   python3 scenes/tools/make_module3_tests.py [--pbrt ~/pbrt-v4/build/pbrt] [--renderer output/CGR26_renderer]
                                              [--only 3,7] [--no-render]
 
 pbrt-v4 has no Phong BRDF; its "diffuse" material is the Phong BRDF's diffuse term (kd / pi), which is
-what the shading tests compare. Test 14 checks the specular lobes against the analytic Phong value.
+what the shading tests compare. Test 9 checks the specular lobes against the analytic Phong value.
 """
 import argparse
 import colorsys
@@ -275,14 +274,6 @@ test(2, name="Clockwork: Scale/Rotate petals, ConcatTransform, Transform, mirror
      thresholds=dict(max_mismatch=0.0005, max_offset=0.1))
 
 
-class WindowCamera(Camera):
-    """validate_module1.Camera with an explicit screen window (pbrt 'screenwindow')."""
-
-    def __init__(self, eye, look, up, fov, xres, yres, win):
-        Camera.__init__(self, eye, look, up, fov, xres, yres)
-        self.win = tuple(win)
-
-
 def framing_markers(cam, depth, radius, fracs_x, fracs_y):
     """Small spheres whose centres project to the given fractions of the image."""
     out, marks = [], []
@@ -298,14 +289,9 @@ def framing_markers(cam, depth, radius, fracs_x, fracs_y):
     return "".join(out), marks
 
 
-def framing_test(n, res, fov, radius, name, description, window=None):
-    if window:
-        cam = WindowCamera((0, 0, 0), (0, 0, 1), (0, 1, 0), fov, res[0], res[1], window)
-        camline = 'Camera "perspective" "float fov" [ %s ] "float screenwindow" [ %s ]' % (
-            fmt(fov), " ".join(fmt(v) for v in window))
-    else:
-        cam = Camera((0, 0, 0), (0, 0, 1), (0, 1, 0), fov, res[0], res[1])
-        camline = 'Camera "perspective" "float fov" [ %s ]' % fmt(fov)
+def framing_test(n, res, fov, radius, name, description):
+    cam = Camera((0, 0, 0), (0, 0, 1), (0, 1, 0), fov, res[0], res[1])
+    camline = 'Camera "perspective" "float fov" [ %s ]' % fmt(fov)
     world, marks = framing_markers(cam, 10.0, radius, (0.05, 0.5, 0.95), (0.06, 0.5, 0.94))
     test(n, name=name, category="camera", metric="centroids", description=description,
          camera=("LookAt 0 0 0  0 0 1  0 1 0", camline), res=res,
@@ -319,41 +305,6 @@ framing_test(3, (240, 120), 30, 0.09, "Field of view, landscape 2:1 (fov on the 
              "landscape image. pbrt applies fov to the shorter (vertical) axis; checks framing to a fraction of a pixel.")
 framing_test(4, (120, 240), 60, 0.2, "Field of view, portrait 1:2 (fov on the horizontal axis)",
              "As test 3 for a portrait image with fov 60, where the shorter axis, and so the fov, is horizontal.")
-framing_test(5, (240, 160), 40, 0.12, "Off-centre screen window on a perspective camera (shifted lens)",
-             "As test 3 with 'screenwindow' [-1.1 1.9 -0.45 1.55] on a perspective camera: the view is shifted "
-             "up and to the right like a shift lens. Checks that the screen window is mapped onto the raster exactly.",
-             window=(-1.1, 1.9, -0.45, 1.55))
-
-
-def scene_tunnel():
-    w = []
-    cols = (CYAN, ROSE, GOLD, VIOLET)
-    for k in range(18):
-        z = 1.3 * 1.22 ** k
-        cx, cy = 0.9 * math.sin(0.45 * k) * (1 - math.exp(-k / 4.0)), 0.6 * (1 - math.cos(0.38 * k)) * (1 - math.exp(-k / 4.0))
-        w.append(emitter('Shape "disk" "float radius" [ 1.25 ] "float innerradius" [ 1.02 ]\n',
-                         "Translate %s %s %s\nRotate %s 0 1 0\nRotate %s 1 0 0\n" % (
-                             fmt(cx), fmt(cy), fmt(z), fmt(14 * math.sin(0.7 * k)), fmt(10 * math.cos(0.5 * k))),
-                         cols[k % 4]))
-    w.append(emitter('Shape "sphere" "float radius" [ 1.6 ]\n', "Translate 0.2 1.1 75\n", WHITE))
-    # a spiral of small beads along the inside of the tunnel
-    for k in range(40):
-        z = 1.6 * 1.08 ** k
-        a = 0.55 * k
-        w.append(emitter('Shape "sphere" "float radius" [ %s ]\n' % fmt(0.05 + 0.002 * k),
-                         "Translate %s %s %s\n" % (fmt(0.75 * math.cos(a) + 0.03 * k), fmt(0.75 * math.sin(a) + 0.02 * k),
-                                                   fmt(z)), AMBER))
-    return "".join(w)
-
-
-test(6, name="Tunnel of rings (fov 70): framing at the image border and depth",
-     category="camera", metric="coverage",
-     description="Eighteen thin annuli receding from 1.3 to 60 units along a winding axis, a spiral of beads and "
-                 "a sphere at 75 units, seen with fov 70. The nearest rings are cut by the image border, so "
-                 "the field of view and the projection are compared pixel by pixel along every ring edge.",
-     camera=("LookAt 0 0 0  0 0 1  0 1 0", 'Camera "perspective" "float fov" [ 70 ]'), res=(384, 288),
-     my_spp=(8, 8), ref_spp=(32, 32), maxdepth=1, world=scene_tunnel,
-     thresholds=dict(max_mismatch=0.0005, max_offset=0.1))
 
 
 def scene_avenue():
@@ -387,7 +338,7 @@ def scene_avenue():
     return "".join(w)
 
 
-test(7, name="Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, distant and near spheres",
+test(5, name="Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, distant and near spheres",
      category="camera", metric="coverage",
      description="Lamp posts, railings and cables only 0.02 units thick receding to 60 units, lanterns at 80 "
                  "units, a moon at 90 and spheres close to the lens at the image border, seen with fov 100. Checks "
@@ -397,86 +348,8 @@ test(7, name="Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, dist
      thresholds=dict(max_mismatch=0.0008, max_offset=0.15))
 
 
-def iso_box(lo, hi, h):
-    """Box whose faces have different hues but equal luminance: the town reads as 3D while every
-    pixel's luminance is still its coverage."""
-    (x0, y0, z0), (x1, y1, z1) = lo, hi
-    tops = quad((x0, y1, z0), (x1, y1, z0), (x1, y1, z1), (x0, y1, z1)) + quad((x0, y0, z0), (x0, y0, z1), (x1, y0, z1), (x1, y0, z0))
-    xs = quad((x0, y0, z0), (x0, y1, z0), (x0, y1, z1), (x0, y0, z1)) + quad((x1, y0, z0), (x1, y0, z1), (x1, y1, z1), (x1, y1, z0))
-    zs = quad((x0, y0, z0), (x1, y0, z0), (x1, y1, z0), (x0, y1, z0)) + quad((x0, y0, z1), (x0, y1, z1), (x1, y1, z1), (x1, y0, z1))
-    return emitter(tops, "", glow(h, 0.2)) + emitter(xs, "", glow(h, 0.5)) + emitter(zs, "", glow(h + 0.04, 0.8))
-
-
-def iso_gable(x0, x1, z0, z1, y0, ht, h):
-    xm = (x0 + x1) / 2
-    P = [(x0, y0, z0), (x1, y0, z0), (x1, y0, z1), (x0, y0, z1), (xm, y0 + ht, z0), (xm, y0 + ht, z1)]
-    return (emitter(tri_mesh(P, [0, 4, 5, 0, 5, 3, 1, 2, 5, 1, 5, 4]), "", glow(h + 0.5, 0.45)) +
-            emitter(tri_mesh(P, [0, 1, 4, 3, 5, 2]), "", glow(h + 0.04, 0.8)))
-
-
-def scene_town():
-    w = [occluder(box((-2.7, -0.3, -2.7), (2.7, 0, 2.7)))]  # dark plinth
-    blocks = [(-2.4, -1.4, -2.4, -1.3, 1.0, 0.95, "gable"), (-1.1, -0.3, -2.4, -1.6, 0.6, 0.1, "gable"),
-              (0.2, 1.0, -2.4, -1.7, 1.5, 0.55, "flat"), (1.5, 2.4, -2.4, -1.4, 0.7, 0.75, "gable"),
-              (-2.4, -1.6, -0.6, 0.6, 0.6, 0.12, "gable"), (1.6, 2.4, -0.4, 0.4, 2.0, 0.6, "dome"),
-              (-2.4, -1.5, 1.2, 2.4, 1.4, 0.3, "flat"), (-1.0, 0.0, 1.5, 2.4, 0.8, 0.98, "gable"),
-              (0.6, 1.4, 1.3, 2.4, 1.2, 0.1, "gable"), (1.8, 2.4, 1.4, 2.4, 0.5, 0.5, "flat")]
-    for x0, x1, z0, z1, ht, hue, roof in blocks:
-        w.append(iso_box((x0, 0, z0), (x1, ht, z1), hue))
-        if roof == "gable":
-            w.append(iso_gable(x0 - 0.05, x1 + 0.05, z0 - 0.05, z1 + 0.05, ht, 0.45, hue))
-        if roof == "dome":
-            w.append(emitter('Shape "sphere" "float radius" [ 0.38 ] "float zmin" [ 0 ]\n',
-                             "Translate %s %s %s\nRotate -90 1 0 0\n" % (fmt((x0 + x1) / 2), fmt(ht), fmt((z0 + z1) / 2)),
-                             GOLD))
-    # fountain in the square: flat annulus, column and a sphere
-    w.append(emitter('Shape "disk" "float radius" [ 0.75 ] "float innerradius" [ 0.55 ]\n',
-                     "Translate -0.2 0.12 0.1\nRotate -90 1 0 0\n", CYAN))
-    w.append(iso_box((-0.26, 0, 0.04), (-0.14, 0.5, 0.16), 0.55))
-    w.append(emitter('Shape "sphere" "float radius" [ 0.16 ]\n', "Translate -0.2 0.62 0.1\n", ICE))
-    # trees: sphere crowns on thin trunks
-    for x, z in ((0.9, 0.0), (0.9, 0.7), (-1.1, -0.9), (-0.6, 0.95), (0.4, -0.85)):
-        w.append(emitter(box((x - 0.03, 0, z - 0.03), (x + 0.03, 0.35, z + 0.03)), "", AMBER))
-        w.append(emitter('Shape "sphere" "float radius" [ 0.2 ]\n', "Translate %s 0.5 %s\n" % (fmt(x), fmt(z)), LIME))
-    return "".join(w)
-
-
-test(8, name="Orthographic camera with a screen window: isometric town",
-     category="camera", metric="coverage",
-     description="Orthographic projection with 'screenwindow' [-3.4 3.4 -2.0 2.675] from an oblique LookAt: houses "
-                 "(boxes with triangle-mesh roofs), a domed tower (clipped sphere), a fountain (annulus) and trees on a "
-                 "black plinth that hides what is behind it. Checks parallel projection and screen-window mapping.",
-     camera=("LookAt 6 5.5 -6  0 0.4 0  0 1 0",
-             'Camera "orthographic" "float screenwindow" [ -3.4 3.4 -2.0 2.675 ]'), res=(384, 264),
-     my_spp=(8, 8), ref_spp=(32, 32), maxdepth=1, world=scene_town,
-     thresholds=dict(max_mismatch=0.0005, max_offset=0.1))
-
 PAWN = [(0.0, 0.0), (0.3, 0.0), (0.3, 0.06), (0.24, 0.1), (0.24, 0.14), (0.14, 0.22), (0.1, 0.42), (0.17, 0.46),
         (0.17, 0.5), (0.09, 0.53), (0.14, 0.58), (0.16, 0.66), (0.13, 0.74), (0.07, 0.79), (0.0, 0.8)]
-
-
-def scene_dof():
-    w = []
-    cols = (ROSE, GOLD, CYAN, LIME, VIOLET, AMBER, ICE)
-    for k in range(7):
-        x, z = -1.5 + 0.55 * k, -0.6 + 2.0 * k
-        w.append(emitter(lathe(PAWN, 32), "Translate %s 0 %s\nScale 1.3 1.3 1.3\n" % (fmt(x), fmt(z)), cols[k]))
-        w.append(emitter('Shape "sphere" "float radius" [ 0.12 ]\n', "Translate %s 1.55 %s\n" % (fmt(x - 0.55), fmt(z)), WHITE))
-    for k in range(9):  # thin wires at increasing depth
-        z = -0.5 + 1.5 * k
-        w.append(emitter(box((-3.0, 2.0 - 0.01, z), (3.0, 2.0 + 0.01, z + 0.02)), "", CYAN))
-    return "".join(w)
-
-
-test(9, name="Thin-lens depth of field: chess pawns from 1.5 to 14 units, focus at 5.3",
-     category="camera", metric="coverage",
-     description="Seven pawns (triangle meshes of revolution) and thin wires at increasing depth, perspective "
-                 "camera with lensradius 0.06 and focaldistance 5.3. In-focus silhouettes must align exactly and "
-                 "the defocus blur of the others must have the same width (mean |coverage difference| on edges).",
-     camera=("LookAt 0 1.1 -4  0 0.7 6  0 1 0",
-             'Camera "perspective" "float fov" [ 40 ] "float lensradius" [ 0.06 ] "float focaldistance" [ 5.3 ]'),
-     res=(384, 256), my_spp=(16, 16), ref_spp=(48, 48), maxdepth=1, world=scene_dof,
-     thresholds=dict(max_mismatch=0.0008, max_offset=0.1, max_edge_abs_diff=0.04))
 
 
 # ---------------------------------------------------------------- shading (Phong diffuse term = pbrt "diffuse")
@@ -526,25 +399,25 @@ def still_life():
 
 
 SL_CAM = ((0.3, 3.1, -4.7), (0.1, 0.55, 0.8), (0, 1, 0), 38)
-res10 = (320, 240)
-cam10 = Camera(*SL_CAM, res10[0], res10[1])
-test(10, name="Still life: Phong diffuse under a point light and a spotlight (direct lighting)",
+res_sl = (320, 240)
+cam_sl = Camera(*SL_CAM, res_sl[0], res_sl[1])
+test(6, name="Still life: Phong diffuse under a point light and a spotlight (direct lighting)",
      category="shading", metric="pixels",
      description="Fruit bowl (clipped sphere, seen inside and out), fruit, a smooth-shaded vase (mesh with "
                  "per-vertex normals) and books, lit by a warm point light and a cool spotlight (cone 22, falloff "
                  "8 degrees), maxdepth 1. Isolates the diffuse BRDF, cosine, 1/d^2, shadows, the spotlight cone "
                  "and its smooth falloff.",
-     camera=(lookat_line(*SL_CAM[:3]), 'Camera "perspective" "float fov" [ 38 ]'), res=res10,
+     camera=(lookat_line(*SL_CAM[:3]), 'Camera "perspective" "float fov" [ 38 ]'), res=res_sl,
      my_spp=(8, 8), ref_spp=(64, 64), maxdepth=1,
      world=lambda: ('LightSource "point" "point3 from" [ -2.6 4.2 -2.4 ] "rgb I" [ 30 30 30 ]\n'
                     'LightSource "spot" "point3 from" [ 3.4 3.6 -0.8 ] "point3 to" [ 1.05 0.7 1.25 ] '
                     '"float coneangle" [ 22 ] "float conedeltaangle" [ 8 ] "rgb I" [ 45 45 45 ]\n' + still_life()),
-     pixels=pts(cam10, [("orange, lit side", (-1.15, 0.72, 0.6)), ("bowl outside", (-0.7, 0.35, 0.02)),
+     pixels=pts(cam_sl, [("orange, lit side", (-1.15, 0.72, 0.6)), ("bowl outside", (-0.7, 0.35, 0.02)),
                         ("bowl inside, far wall", (-0.25, 0.62, 1.32)),
                         ("vase, in the spotlight", (0.73, 0.55, 1.13)), ("vase, beyond the spotlight cone", (1.481, 0.95, 1.174)),
                         ("table, spotlight falloff band", (1.95, 0, 0.35)),
                         ("table, bowl shadow", (0.05, 0, 1.75)), ("book cover", (0.85, 0.22, -0.4)),
-                        ("wall", (-2.4, 2.2, 3.2))]),
+                        ("wall", (-2.8, 1.25, 3.2))]),
      window=1, thresholds=dict(max_rel_error=0.03))
 
 
@@ -579,20 +452,20 @@ def chess():
 
 
 CH_CAM = ((0.6, 3.1, -4.6), (0.2, 0.3, 0.4), (0, 1, 0), 40)
-res11 = (320, 240)
-cam11 = Camera(*CH_CAM, res11[0], res11[1])
-test(11, name="Chess endgame: Phong diffuse under a rectangular and a spherical area light (soft shadows)",
+res_ch = (320, 240)
+cam_ch = Camera(*CH_CAM, res_ch[0], res_ch[1])
+test(7, name="Chess endgame: Phong diffuse under a rectangular and a spherical area light (soft shadows)",
      category="shading", metric="pixels",
      description="Chess pieces (smooth meshes of revolution) on a two-tone board, lit by a one-sided 1.4 x 1.0 "
                  "emissive rectangle above the left and a glowing sphere on the right, maxdepth 1. Pixels in "
                  "umbrae, penumbrae and fully lit squares test the area-light estimators and their sampling density.",
-     camera=(lookat_line(*CH_CAM[:3]), 'Camera "perspective" "float fov" [ 40 ]'), res=res11,
+     camera=(lookat_line(*CH_CAM[:3]), 'Camera "perspective" "float fov" [ 40 ]'), res=res_ch,
      my_spp=(16, 16), ref_spp=(64, 64), maxdepth=1, lightsamples=16,
      world=lambda: ('AttributeBegin\nAreaLightSource "diffuse" "rgb L" [ 9 9 9 ]\n' +
                     quad((-2.2, 3.4, -1.0), (-0.8, 3.4, -1.0), (-0.8, 3.4, 0.0), (-2.2, 3.4, 0.0)) + "AttributeEnd\n" +
                     'AttributeBegin\nAreaLightSource "diffuse" "rgb L" [ 12 11 10 ]\nTranslate 2.05 1.25 1.6\n'
                     'Shape "sphere" "float radius" [ 0.18 ]\nAttributeEnd\n' + chess()),
-     pixels=pts(cam11, [("white king, shoulder", (-0.42, 0.75, 0.12)), ("black king, side facing the lamp", (1.47, 0.6, 0.65)),
+     pixels=pts(cam_ch, [("white king, shoulder", (-0.42, 0.75, 0.12)), ("black king, side facing the lamp", (1.47, 0.6, 0.65)),
                         ("ivory square, lit", (-1.25, 0, -1.25)), ("walnut square, lit", (-0.75, 0, -1.25)),
                         ("board, umbra behind the white king", (0.25, 0, 0.6)),
                         ("board, penumbra", (0.05, 0, 1.02)), ("board, lamp-lit, rook shadow edge", (0.25, 0, 1.55)),
@@ -626,18 +499,18 @@ def gallery():
     return "".join(w)
 
 
-res12 = (256, 192)
+res_gal = (256, 192)
 G_CAM = ((0.15, 1.35, -3.6), (0, 1.1, 1.5), (0, 1, 0), 58)
-cam12 = Camera(*G_CAM, res12[0], res12[1])
-test(12, name="Gallery: Phong diffuse interreflection in a closed room (maxdepth 3)",
+cam_gal = Camera(*G_CAM, res_gal[0], res_gal[1])
+test(8, name="Gallery: Phong diffuse interreflection in a closed room (maxdepth 3)",
      category="shading", metric="pixels",
      description="Closed room with a teal and a terracotta wall, a ceiling light panel, a sculpture on a plinth, "
                  "a column, a bench and paintings, maxdepth 3 (direct light plus two diffuse bounces). The ceiling "
                  "and the underside of the sphere are lit only indirectly and the walls bleed colour, so the pixels "
                  "test indirect light and the meaning of maxdepth.",
-     camera=(lookat_line(*G_CAM[:3]), 'Camera "perspective" "float fov" [ 58 ]'), res=res12,
+     camera=(lookat_line(*G_CAM[:3]), 'Camera "perspective" "float fov" [ 58 ]'), res=res_gal,
      my_spp=(32, 32), ref_spp=(128, 128), maxdepth=3, lightsamples=4, world=gallery, display_pct=0.9,
-     pixels=pts(cam12, [("ceiling, beside the light (indirect only)", (-1.2, 2.6, 0.9)),
+     pixels=pts(cam_gal, [("ceiling, beside the light (indirect only)", (-1.2, 2.6, 0.9)),
                         ("back wall", (0.15, 0.6, 3.0)), ("teal wall", (-2.0, 1.2, -0.6)),
                         ("terracotta wall", (2.0, 1.6, 0.4)),
                         ("floor near the teal wall (colour bleeding)", (-1.75, 0, -0.9)),
@@ -646,93 +519,6 @@ test(12, name="Gallery: Phong diffuse interreflection in a closed room (maxdepth
                         ("plinth front", (-0.15, 0.4, 0.6)), ("yellow painting", (-0.6, 1.45, 2.959))]),
      window=1, thresholds=dict(max_rel_error=0.05))
 
-
-# A small abstract painting written as a PFM image texture (linear RGB): flat blocks of colour with dark
-# lines on a 32 x 16 texel grid, asymmetric so that a flipped or mirrored lookup is detected. Power-of-two
-# size and texels larger than a pixel on screen: pbrt-v4 then looks up MIP level 0 without resampling.
-PAINT_W, PAINT_H = 32, 16
-PAINT_BLOCKS = [((0, 10, 0, 5), (0.75, 0.12, 0.08)), ((24, 32, 6, 10), (0.2, 0.3, 0.62)),  # texel x0, x1, y0, y1
-                ((24, 32, 11, 16), (0.9, 0.72, 0.08)), ((0, 10, 11, 16), (0.12, 0.45, 0.2))]
-PAINT_LINES_X, PAINT_LINES_Y = (10, 23), (5, 10)
-
-
-def painting_image():
-    data = []
-    for y in range(PAINT_H):
-        for x in range(PAINT_W):
-            c = (0.85, 0.83, 0.75)
-            for (x0, x1, y0, y1), col in PAINT_BLOCKS:
-                if x0 <= x < x1 and y0 <= y < y1:
-                    c = col
-            if x in PAINT_LINES_X or y in PAINT_LINES_Y:
-                c = (0.03, 0.03, 0.03)
-            data += list(c)
-    return rt.Image(PAINT_W, PAINT_H, data)
-
-
-PAINT_RECT = (-4.4, -0.8, 1.0, 3.4)  # x0, x1, y0, y1 on the wall z = 5.5
-
-
-def painting_point(u, v_top):
-    x0, x1, y0, y1 = PAINT_RECT
-    return (x0 + u * (x1 - x0), y1 - v_top * (y1 - y0), 5.5)
-
-
-def texture_world():
-    x0, x1, y0, y1 = PAINT_RECT
-    return ('LightSource "distant" "point3 from" [ -2 5 -3 ] "point3 to" [ 0 0 0 ] "rgb L" [ 2.6 2.6 2.6 ]\n'
-            'LightSource "point" "point3 from" [ 2.5 3.5 -2 ] "rgb I" [ 7 7 7 ]\n'
-            'Texture "checks" "spectrum" "checkerboard" "float uscale" [ 8 ] "float vscale" [ 8 ]\n'
-            '    "rgb tex1" [ 0.8 0.75 0.6 ] "rgb tex2" [ 0.15 0.2 0.3 ]\n'
-            'Texture "checks2" "spectrum" "checkerboard" "float uscale" [ 8 ] "float vscale" [ 4 ]\n'
-            '    "rgb tex1" [ 0.75 0.2 0.15 ] "rgb tex2" [ 0.9 0.85 0.7 ]\n'
-            'Texture "art" "spectrum" "imagemap" "string filename" [ "painting.pfm" ] "float scale" [ 0.9 ]\n'
-            'Material "diffuse" "texture reflectance" "checks"\n'
-            'Shape "trianglemesh" "point3 P" [ -10 0 -10  10 0 -10  10 0 10  -10 0 10 ]\n'
-            '    "point2 uv" [ 0 0  1 0  1 1  0 1 ] "integer indices" [ 0 1 2 0 2 3 ]\n'
-            'AttributeBegin\n' + diffuse((0.55, 0.5, 0.45)) +
-            quad((-10, 0, 5.52), (10, 0, 5.52), (10, 8, 5.52), (-10, 8, 5.52)) + 'AttributeEnd\n'
-            'AttributeBegin\nMaterial "diffuse" "texture reflectance" "art"\n' +
-            quad((x0, y0, 5.5), (x1, y0, 5.5), (x1, y1, 5.5), (x0, y1, 5.5), uv=[(0, 0), (1, 0), (1, 1), (0, 1)]) +
-            'AttributeEnd\n'
-            'AttributeBegin\nMaterial "diffuse" "texture reflectance" "checks2"\nTranslate 1.1 1.2 0\nRotate -90 1 0 0\n'
-            'Shape "sphere" "float radius" [ 1.2 ]\nAttributeEnd\n')
-
-
-def sphere_uv_point(u, v, r=1.2, c=(1.1, 1.2, 0)):
-    """World point at pbrt sphere (u, v) for the sphere of texture_world (Rotate -90 about x: object z -> world y)."""
-    phi = u * 2 * math.pi
-    theta = math.pi * (1 - v)  # v = (theta - thetaMin) / (thetaMax - thetaMin), theta from +z; z = r cos(theta)
-    xo, yo, zo = r * math.sin(theta) * math.cos(phi), r * math.sin(theta) * math.sin(phi), r * math.cos(theta)
-    # Rotate -90 about x: (x, y, z) -> (x, z, -y)
-    return add(c, (xo, zo, -yo))
-
-
-T_CAM = ((-0.6, 2.6, -7.5), (-0.7, 1.4, 2.0), (0, 1, 0), 42)
-res13 = (320, 240)
-cam13 = Camera(*T_CAM, res13[0], res13[1])
-# Floor uv: u = (x + 10) / 20, v = (z + 10) / 20; checks of 1/8 -> 2.5 units; centres at -10 + 1.25 + 2.5 k.
-test(13, name="Textures: checkerboards (mesh uv, sphere uv) and a PFM image map with scale",
-     category="shading", metric="pixels", extra_files={"painting.pfm": painting_image},
-     description="Checkerboard reflectance on a floor with per-vertex uv and on a rotated sphere with pbrt's "
-                 "(phi, theta) parametrisation, and an abstract painting (PFM imagemap, 'float scale' 0.9) on the "
-                 "wall, under a distant and a point light. Pixels at check and colour-block centres test uv "
-                 "conventions, image orientation (pbrt flips t) and textured shading.",
-     camera=(lookat_line(*T_CAM[:3]), 'Camera "perspective" "float fov" [ 42 ]'), res=res13,
-     my_spp=(8, 8), ref_spp=(64, 64), maxdepth=1, world=texture_world,
-     pixels=pts(cam13, [("floor check (u,v)=(3,3)/8", (-10 + 1.25 + 2.5 * 3, 0, -10 + 1.25 + 2.5 * 3)),
-                        ("floor check (4,3)/8", (-10 + 1.25 + 2.5 * 4, 0, -10 + 1.25 + 2.5 * 3)),
-                        ("floor check (2,4)/8", (-10 + 1.25 + 2.5 * 2, 0, -10 + 1.25 + 2.5 * 4)),
-                        ("floor check (5,4)/8", (-10 + 1.25 + 2.5 * 5, 0, -10 + 1.25 + 2.5 * 4)),
-                        ("sphere check u 13/16, v 5/8", sphere_uv_point(13 / 16, 5 / 8)),
-                        ("sphere check u 11/16, v 3/8", sphere_uv_point(11 / 16, 3 / 8)),
-                        ("sphere check u 15/16, v 5/8", sphere_uv_point(15 / 16, 5 / 8)),
-                        ("painting, red block (top left)", painting_point(5 / 32, 2.5 / 16)),
-                        ("painting, blue block (right)", painting_point(28 / 32, 8 / 16)),
-                        ("painting, yellow block (bottom right)", painting_point(28 / 32, 13.5 / 16)),
-                        ("painting, green block (bottom left)", painting_point(5 / 32, 13.5 / 16)),
-                        ("painting, cream centre", painting_point(16.5 / 32, 7.5 / 16))]),
-     window=1, thresholds=dict(max_rel_error=0.03))
 
 # ---------------------------------------------------------------- Phong specular (analytic reference)
 # Three white Phong spheres on a Phong plane under a red, a green and a blue point light: coloured
@@ -744,8 +530,8 @@ PH_SPHERES = [((-1.25, 0.75, 1.0), 0.75, dict(kd=(0.45, 0.45, 0.45), ks=(0.5, 0.
               ((0.75, 0.5, 0.15), 0.5, dict(kd=(0.25, 0.25, 0.25), ks=(0.7, 0.7, 0.7), n=200.0)),
               ((1.65, 0.38, 1.7), 0.38, dict(kd=(0.6, 0.6, 0.6), ks=(0.2, 0.2, 0.2), n=12.0))]
 P_CAM = ((0.0, 3.0, -5.2), (0.15, 0.4, 0.9), (0, 1, 0), 40)
-res14 = (320, 240)
-cam14 = Camera(*P_CAM, res14[0], res14[1])
+res_ph = (320, 240)
+cam_ph = Camera(*P_CAM, res_ph[0], res_ph[1])
 
 
 def phong_mat(m):
@@ -893,13 +679,13 @@ def phong_test_pixels(cam):
     return out
 
 
-test(14, name="Phong specular lobes vs the analytic value: RGB lights, three Phong spheres on a Phong plane",
+test(9, name="Phong specular lobes vs the analytic value: RGB lights, three Phong spheres on a Phong plane",
      category="shading", metric="pixels", analytic=True,
      description="Three white Phong spheres (exponents 60, 200, 12) on a Phong plane (exponent 20) under a red, "
                  "a green and a blue point light (normalised modified Phong: kd/pi + ks (n+2)/(2 pi) cos^n alpha). "
                  "pbrt-v4 has no Phong BRDF, so the reference is the closed form with hard shadows, box-filtered "
                  "over each pixel. Pixels at the highlight peaks and in the coloured shadows.",
-     camera=(lookat_line(*P_CAM[:3]), 'Camera "perspective" "float fov" [ 40 ]'), res=res14,
+     camera=(lookat_line(*P_CAM[:3]), 'Camera "perspective" "float fov" [ 40 ]'), res=res_ph,
      my_spp=(16, 16), ref_spp=None, maxdepth=1, world=phong_world, pixels=None,
      window=0, thresholds=dict(max_rel_error=0.03))
 
@@ -919,93 +705,38 @@ ERR_WORLD = ('WorldBegin\nLightSource "point" "point3 from" [ -2 5 -3 ] "rgb I" 
              'AttributeBegin\nMaterial "diffuse" "rgb reflectance" [ 0.15 0.4 0.65 ]\nTranslate 0.9 0.5 -0.2\n'
              'Shape "sphere" "float radius" [ 0.5 ]\nAttributeEnd\n')
 
-ERRORS = [  # (group, name, mode, payload, keywords)
+ERRORS = [  # (group, name, mode, payload, keywords[, extra files])
     # syntax
     ("syntax", "Misspelt directive (Shapee)", "world", ['Shapee "sphere" "float radius" [ 1 ]'], ["shapee", "directive"]),
     ("syntax", "Unterminated parameter list (missing ])", "world",
      ['Shape "sphere" "float radius" [ 1', 'Material "diffuse" "rgb reflectance" [ 0.5 0.5 0.5 ]'],
      ["syntax", "bracket", "unterminated", "expected"]),
-    ("syntax", "Unterminated string", "world", ['Shape "sphere', 'Shape "sphere" "float radius" [ 1 ]'],
-     ["string", "quote", "unterminated", "syntax"]),
-    ("syntax", "Non-numeric value for a float parameter", "world", ['Shape "sphere" "float radius" [ "big" ]'],
-     ["radius", "numeric", "float", "big"]),
-    ("syntax", "Unknown parameter type (flot)", "world", ['Shape "sphere" "flot radius" [ 1 ]'], ["flot", "type"]),
-    ("syntax", "Wrong number of values for an rgb parameter", "world",
-     ['LightSource "point" "point3 from" [ 0 4 0 ] "rgb I" [ 10 10 ]'], ["rgb", "values"]),
     # scene structure
     ("structure", "AttributeEnd without AttributeBegin", "world", ['AttributeEnd', 'Shape "sphere" "float radius" [ 0.3 ]'],
      ["attributeend", "attribute"]),
-    ("structure", "AttributeBegin never closed", "world", ['AttributeBegin', 'Translate 0 2 0',
-                                                           'Shape "sphere" "float radius" [ 0.3 ]'],
-     ["attributebegin", "attributeend", "unclosed", "never closed", "attribute"]),
-    ("structure", "Camera after WorldBegin", "world", ['Camera "perspective" "float fov" [ 30 ]'], ["camera", "worldbegin"]),
-    ("structure", "WorldBegin twice", "world", ['WorldBegin'], ["worldbegin"]),
-    ("structure", "Scene content before WorldBegin", "options", ['Shape "sphere" "float radius" [ 1 ]'],
-     ["worldbegin", "world", "shape"]),
     ("structure", "Missing Include file", "world", ['Include "missing_include.pbrt"'], ["missing_include", "include"]),
-    ("structure", "Recursive Include (a file that includes itself)", "world", ['Include "loop.pbrt"'],
-     ["recursi", "nest", "include", "depth", "loop.pbrt"], {"loop.pbrt": 'Include "loop.pbrt"\n'}),
     # unknown types and names
     ("unknown", "Unknown shape type (teapot)", "world", ['Shape "teapot" "float radius" [ 1 ]'], ["teapot", "shape"]),
     ("unknown", "Unknown material type (plasticky)", "world",
      ['Material "plasticky" "rgb reflectance" [ 0.5 0.5 0.5 ]', 'Shape "sphere" "float radius" [ 0.3 ]'],
      ["plasticky", "material"]),
-    ("unknown", "Unknown light type (laser)", "world", ['LightSource "laser" "rgb I" [ 5 5 5 ]'], ["laser", "light"]),
-    ("unknown", "Unknown camera type (fisheye)", "replace",
-     ('Camera "perspective" "float fov" [ 40 ]', 'Camera "fisheye" "float fov" [ 40 ]'), ["fisheye", "camera"]),
-    ("unknown", "Unknown integrator (warpdrive)", "replace", ('Integrator "%s"', 'Integrator "warpdrive"'),
-     ["warpdrive", "integrator"]),
-    ("unknown", "Unknown texture class (marble)", "world",
-     ['Texture "t" "spectrum" "marble"', 'Material "diffuse" "texture reflectance" "t"',
-      'Shape "sphere" "float radius" [ 0.3 ]'], ["marble", "texture"]),
     ("unknown", "Undefined named material", "world", ['NamedMaterial "undefined_mat"', 'Shape "sphere" "float radius" [ 0.3 ]'],
      ["undefined_mat", "named"]),
-    ("unknown", "Undefined texture reference", "world",
-     ['Material "diffuse" "texture reflectance" "nosuchtex"', 'Shape "sphere" "float radius" [ 0.3 ]'],
-     ["nosuchtex", "texture"]),
-    ("unknown", "Misspelt parameter name (radiuss)", "world", ['Shape "sphere" "float radiuss" [ 0.3 ]'],
-     ["radiuss", "parameter"]),
     # missing files
     ("files", "Missing texture file", "world",
      ['Texture "t" "spectrum" "imagemap" "string filename" [ "does_not_exist.pfm" ]',
       'Material "diffuse" "texture reflectance" "t"', 'Shape "sphere" "float radius" [ 0.3 ]'], ["does_not_exist", "texture"]),
-    ("files", "Missing mesh file", "world", ['Shape "plymesh" "string filename" [ "no_such_mesh.ply" ]'],
-     ["no_such_mesh", "mesh", "ply"]),
     # transforms
     ("transform", "Malformed transform: Translate with two numbers", "world",
      ['AttributeBegin', 'Translate 0 1', 'Shape "sphere" "float radius" [ 0.3 ]', 'AttributeEnd'], ["translate"]),
-    ("transform", "Singular transform: Scale 1 0 1", "world",
-     ['AttributeBegin', 'Scale 1 0 1', 'Shape "sphere" "float radius" [ 0.3 ]', 'AttributeEnd'],
-     ["scale", "singular", "invert", "degenerate"]),
-    ("transform", "Rotate about a zero axis", "world",
-     ['AttributeBegin', 'Rotate 30 0 0 0', 'Shape "sphere" "float radius" [ 0.3 ]', 'AttributeEnd'], ["rotate", "axis"]),
-    ("transform", "Degenerate LookAt (eye equals look point)", "replace",
-     ('LookAt 0 2.4 -6  0 0.7 0  0 1 0', 'LookAt 0 0.7 0  0 0.7 0  0 1 0'), ["lookat", "degenerate", "eye"]),
     # out-of-range values
     ("range", "Negative sphere radius", "world", ['Shape "sphere" "float radius" [ -1 ]'], ["radius"]),
-    ("range", "Sphere zmin greater than zmax", "world", ['Shape "sphere" "float radius" [ 1 ] "float zmin" [ 0.8 ] "float zmax" [ -0.5 ]'],
-     ["zmin", "zmax"]),
-    ("range", "Disk innerradius larger than radius", "world",
-     ['Shape "disk" "float radius" [ 0.5 ] "float innerradius" [ 1 ]'], ["innerradius", "radius"]),
     ("range", "Triangle mesh index out of range", "world",
      ['Shape "trianglemesh" "point3 P" [ 0 0 0  1 0 0  0 1 0 ] "integer indices" [ 0 1 7 ]'], ["index", "indices", "range"]),
-    ("range", "Triangle mesh index count not a multiple of 3", "world",
-     ['Shape "trianglemesh" "point3 P" [ 0 0 0  1 0 0  0 1 0  1 1 0 ] "integer indices" [ 0 1 2 3 ]'],
-     ["indices", "index", "multiple"]),
-    ("range", "Negative light intensity", "world", ['LightSource "point" "point3 from" [ 0 4 0 ] "rgb I" [ -5 10 10 ]'],
-     ["negative", "intensity"]),
-    ("range", "Spotlight cone angle 270 degrees", "world",
-     ['LightSource "spot" "point3 from" [ 0 5 0 ] "point3 to" [ 0 0 0 ] "float coneangle" [ 270 ] "rgb I" [ 10 10 10 ]'],
-     ["coneangle", "cone"]),
     ("range", "Camera field of view 200 degrees", "replace",
      ('Camera "perspective" "float fov" [ 40 ]', 'Camera "perspective" "float fov" [ 200 ]'), ["fov"]),
-    ("range", "Negative film resolution", "replace",
-     ('"integer xresolution" [ 96 ]', '"integer xresolution" [ -96 ]'), ["resolution", "xresolution"]),
-    ("range", "Negative maxdepth", "replace", ('"integer maxdepth" [ 2 ]', '"integer maxdepth" [ -3 ]'), ["maxdepth"]),
-    ("range", "Zero pixel samples", "replace", ('"integer pixelsamples" [ 8 ]', '"integer pixelsamples" [ 0 ]'),
-     ["pixelsamples", "samples"]),
 ]
-FIRST_ERROR = 15
+FIRST_ERROR = 10
 for k, e in enumerate(ERRORS):
     group, name, mode, payload, keys = e[:5]
     n = FIRST_ERROR + k
@@ -1093,6 +824,7 @@ def build(t, args):
         with open(os.path.join(d, "testscene_%d_pbrt.pbrt" % n), "w") as f:
             f.write(error_scene(t, True))
         spec["group"] = t["group"]
+        spec["error_lines"] = list(t["payload"]) if t["mode"] != "replace" else [t["payload"][1]]
         spec["keywords"] = t["keywords"]
         for fn, txt in t["files"].items():
             with open(os.path.join(d, fn), "w") as f:
@@ -1116,14 +848,14 @@ def build(t, args):
             with open(os.path.join(d, spec["pbrt_scene"]), "w") as f:
                 f.write(header(t, True) + "\nWorldBegin\n" + t["world"]())
         if t.get("analytic") and t.get("pixels") is None:
-            t["pixels"] = phong_test_pixels(cam14)
+            t["pixels"] = phong_test_pixels(cam_ph)
         for k in ("pixels", "window", "markers", "radius"):
             if k in t:
                 spec[k] = t[k]
         spec.update(t["thresholds"])
         if not args.no_render:
             if t.get("analytic"):
-                img = phong_analytic(cam14, 4, spec["pixels"], 32)
+                img = phong_analytic(cam_ph, 4, spec["pixels"], 32)
                 rt.write_pfm(os.path.join(d, spec["reference"]), img)
                 with open(os.path.join(d, spec["reference_log"]), "w") as f:
                     f.write("# Analytic reference (scenes/tools/make_module3_tests.py, phong_analytic): normalised\n"

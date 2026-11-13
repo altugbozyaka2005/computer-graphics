@@ -1,5 +1,5 @@
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:17:47
+[INFO] date: 2026-11-13 00:57:40
 [INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test4/testscene_4.pbrt
 [INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/suite/test4/testscene_4.pbrt
 [INFO] hardware threads: 15
@@ -22,11 +22,11 @@
 [INFO] Reinhard: mode luminance, log-average luminance 0.00000, max luminance 0.61997, scale 1.00000, white point 0.61997 (auto = max)
 [INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_4.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_4.pfm (linear HDR)
 ---- profile ----
-parse+load (s):      0.0002
+parse+load (s):      0.0001
 accel build (s):     0.0000
-render (s):          0.0332
-tonemap+write (s):   0.0018
-total (s):           0.0356
+render (s):          0.0329
+tonemap+write (s):   0.0012
+total (s):           0.0347
 camera rays:         1843200
 secondary rays:      0
 shadow rays:         215883
@@ -34,7 +34,7 @@ ray-primitive tests: 436370
 ray-box tests:       10904308
 tests per ray:       0.21 primitive, 5.30 box
 rays by depth:       0:1843200
-Mrays/s:             62.075
+Mrays/s:             62.569
 ---- result ----
 OK: errors: 0, warnings: 0
 log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_4.log

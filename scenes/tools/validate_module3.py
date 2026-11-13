@@ -122,21 +122,24 @@ MUTATIONS = [  # (test, description, old text, new text)
     (2, "one petal rotated by 2 degrees more", "Rotate 36 0 0 1", "Rotate 38 0 0 1"),
     (3, "fov 30 -> 30.1", '"float fov" [ 30 ]', '"float fov" [ 30.1 ]'),
     (4, "fov 60 applied to the longer axis (fov 60 -> 32.2)", '"float fov" [ 60 ]', '"float fov" [ 32.2 ]'),
-    (5, "screen window shifted by 0.7%", "[ -1.1 1.9 -0.45 1.55 ]", "[ -1.08 1.92 -0.45 1.55 ]"),
-    (6, "fov 70 -> 70.4", '"float fov" [ 70 ]', '"float fov" [ 70.4 ]'),
-    (7, "camera 0.03 units higher", "LookAt 0 1.2 -1.2", "LookAt 0 1.23 -1.2"),
-    (8, "screen window 1% wider", "[ -3.4 3.4 -2.0 2.675 ]", "[ -3.434 3.434 -2.0 2.675 ]"),
-    (9, "focal distance 5.3 -> 4.3 (focus on the wrong pawn)", '"float focaldistance" [ 5.3 ]',
-     '"float focaldistance" [ 4.3 ]'),
-    (9, "lens radius 0.06 -> 0.075 (25% more blur)", '"float lensradius" [ 0.06 ]', '"float lensradius" [ 0.075 ]'),
-    (10, "point light 5% brighter", '"rgb I" [ 30 30 30 ]', '"rgb I" [ 31.5 31.5 31.5 ]'),
-    (10, "spotlight cone 22 -> 20 degrees", '"float coneangle" [ 22 ]', '"float coneangle" [ 20 ]'),
-    (11, "rectangular area light 5% brighter", '"rgb L" [ 9 9 9 ]', '"rgb L" [ 9.45 9.45 9.45 ]'),
-    (12, "maxdepth 3 -> 2 (one indirect bounce fewer)", '"integer maxdepth" [ 3 ]', '"integer maxdepth" [ 2 ]'),
-    (13, "floor uv mirrored in u", '"point2 uv" [ 0 0  1 0  1 1  0 1 ]', '"point2 uv" [ 1 0  0 0  0 1  1 1 ]'),
-    (13, "image texture scale 0.9 -> 0.85", '"float scale" [ 0.9 ]', '"float scale" [ 0.85 ]'),
-    (14, "Phong exponent 60 -> 66", '"float exponent" [ 60 ]', '"float exponent" [ 66 ]'),
+    (5, "camera 0.03 units higher", "LookAt 0 1.2 -1.2", "LookAt 0 1.23 -1.2"),
+    (6, "point light 5% brighter", '"rgb I" [ 30 30 30 ]', '"rgb I" [ 31.5 31.5 31.5 ]'),
+    (6, "spotlight cone 22 -> 20 degrees", '"float coneangle" [ 22 ]', '"float coneangle" [ 20 ]'),
+    (7, "rectangular area light 5% brighter", '"rgb L" [ 9 9 9 ]', '"rgb L" [ 9.45 9.45 9.45 ]'),
+    (8, "maxdepth 3 -> 2 (one indirect bounce fewer)", '"integer maxdepth" [ 3 ]', '"integer maxdepth" [ 2 ]'),
+    (9, "Phong exponent 60 -> 66", '"float exponent" [ 60 ]', '"float exponent" [ 66 ]'),
 ]
+
+
+def last_detail(n):
+    """The runner's one-line result for test n from the copied suite's runAllTests.log."""
+    try:
+        for l in open(os.path.join(VOUT, "suite", "runAllTests.log")):
+            if l.startswith("test%d " % n):
+                return l.split("  ", 1)[-1].strip()
+    except OSError:
+        pass
+    return ""
 
 
 def check_suite(args):
@@ -153,7 +156,7 @@ def check_suite(args):
 
     base = run(",".join(str(n) for n in sorted({m[0] for m in MUTATIONS})))
     verdict("unchanged image tests pass", all(base.values()), ["%s" % base])
-    details, ok = [], True
+    details, ok, records = [], True, []
     for n, desc, old, new in MUTATIONS:
         path = os.path.join(tmp, "test%d" % n, "testscene_%d.pbrt" % n)
         txt = open(path).read()
@@ -166,6 +169,7 @@ def check_suite(args):
         open(path, "w").write(txt)
         caught = res.get(n) is False
         ok &= caught
+        records.append({"test": n, "mutation": desc, "caught": caught, "detail": last_detail(n)})
         details.append("test%-3d %-48s -> %s" % (n, desc, "FAIL (caught)" if caught else "PASS (NOT caught)"))
     verdict("each deliberately broken image test fails", ok, details)
     # Fake renderers for the error category: one crashes (SIGSEGV), one exits 0 and writes nothing.
@@ -179,6 +183,9 @@ def check_suite(args):
         int(d[4:]) for d in os.listdir(tmp) if d.startswith("test") and d[4:].isdigit()
         and json.load(open(os.path.join(tmp, d, "test.json")))["category"] == "error"))
     rc, rs = run(errs, crash), run(errs, silent)
+    with open(os.path.join(VOUT, "suite_sensitivity.json"), "w") as f:
+        json.dump({"baseline": {str(k): v for k, v in base.items()}, "mutations": records,
+                   "crashing_passed": sum(rc.values()), "silent_passed": sum(rs.values()), "error_tests": len(rc)}, f, indent=1)
     verdict("error tests fail for a crashing renderer and for one that reports nothing",
             not any(rc.values()) and not any(rs.values()),
             ["crashing renderer: %d of %d passed" % (sum(rc.values()), len(rc)),

@@ -177,7 +177,9 @@ def marker_overlay(img, scale, pts, numbers=True):
             mf.badge(img, cx + r + 10, cy - r - 10, 9, k)
 
 
-def testsuite_figures():
+def testsuite_figures(per_test=False):
+    """The overview of all image tests (and, with per_test, simple per-test figures; the annotated
+    per-test figures are written by make_report_figures_m3.py)."""
     res = os.path.join(ST, "results")
     tiles = []
     for d in sorted((x for x in os.listdir(ST) if x.startswith("test") and x[4:].isdigit()), key=lambda s: int(s[4:])):
@@ -236,7 +238,8 @@ def testsuite_figures():
             for k, s in enumerate(keys):
                 mf.draw_text(key, 8 + (k % 2) * fig[0] // 2, 6 + (k // 2) * mf.line_height(15), s, 15, (30, 30, 30))
             fig = m2.vstack([fig, key], gap=0)
-        save(fig, "testsuite_%d.png" % n)
+        if per_test:
+            save(fig, "testsuite_%d.png" % n)
         th = 150
         sm = [mf.resize_box(i, int(round(th * i[0] / i[1])), th) for i in (ref, mine)]
         tiles.append(m2.captioned(m2.vstack(sm, gap=4), "test %d" % n))

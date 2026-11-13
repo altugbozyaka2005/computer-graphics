@@ -22,9 +22,9 @@ Categories and pass criteria (thresholds are in each test.json):
   camera   coverage: the object silhouettes, as per-pixel coverage (pixel value / object value);
                      fails if more than `max_mismatch` of the pixels are on the wrong side of the
                      edge (ignoring pixels the reference shows as partly covered) or if the mean
-                     signed edge offset exceeds `max_offset` pixels, or (when given, for the
-                     depth-of-field test) if the mean |coverage difference| on edge pixels exceeds
-                     `max_edge_abs_diff` (blur of the wrong width). A difference image is written.
+                     signed edge offset exceeds `max_offset` pixels, or (optional) if the mean
+                     |coverage difference| on edge pixels exceeds `max_edge_abs_diff` (e.g. defocus
+                     blur of the wrong width). A difference image is written.
            centroids: the centroids of small markers near the image border; fails if any moves by
                      more than `max_centroid_error` pixels (checks the field of view / framing).
   shading  pixels:   (2w+1)^2-pixel means at listed pixels; error = max over channels of

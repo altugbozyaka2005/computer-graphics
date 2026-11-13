@@ -1,47 +1,20 @@
 ==== runAllTests ====
-date:     2026-11-13 00:19:29
+date:     2026-11-13 00:58:00
 renderer: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation/silent.sh
 outdir:   /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/module3/validation
-test15  error  FAIL  Misspelt directive (Shapee)                                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['shapee', 'directive']
-test16  error  FAIL  Unterminated parameter list (missing ])                       0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['syntax', 'bracket', 'unterminated', 'expected']
-test17  error  FAIL  Unterminated string                                           0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['string', 'quote', 'unterminated', 'syntax']
-test18  error  FAIL  Non-numeric value for a float parameter                       0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['radius', 'numeric', 'float', 'big']
-test19  error  FAIL  Unknown parameter type (flot)                                 0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['flot', 'type']
-test20  error  FAIL  Wrong number of values for an rgb parameter                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['rgb', 'values']
-test21  error  FAIL  AttributeEnd without AttributeBegin                           0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['attributeend', 'attribute']
-test22  error  FAIL  AttributeBegin never closed                                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['attributebegin', 'attributeend', 'unclosed', 'never closed', 'attribute']
-test23  error  FAIL  Camera after WorldBegin                                       0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['camera', 'worldbegin']
-test24  error  FAIL  WorldBegin twice                                              0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['worldbegin']
-test25  error  FAIL  Scene content before WorldBegin                               0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['worldbegin', 'world', 'shape']
-test26  error  FAIL  Missing Include file                                          0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['missing_include', 'include']
-test27  error  FAIL  Recursive Include (a file that includes itself)               0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['recursi', 'nest', 'include', 'depth', 'loop.pbrt']
-test28  error  FAIL  Unknown shape type (teapot)                                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['teapot', 'shape']
-test29  error  FAIL  Unknown material type (plasticky)                             0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['plasticky', 'material']
-test30  error  FAIL  Unknown light type (laser)                                    0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['laser', 'light']
-test31  error  FAIL  Unknown camera type (fisheye)                                 0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['fisheye', 'camera']
-test32  error  FAIL  Unknown integrator (warpdrive)                                0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['warpdrive', 'integrator']
-test33  error  FAIL  Unknown texture class (marble)                                0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['marble', 'texture']
-test34  error  FAIL  Undefined named material                                      0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['undefined_mat', 'named']
-test35  error  FAIL  Undefined texture reference                                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['nosuchtex', 'texture']
-test36  error  FAIL  Misspelt parameter name (radiuss)                             0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['radiuss', 'parameter']
-test37  error  FAIL  Missing texture file                                          0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['does_not_exist', 'texture']
-test38  error  FAIL  Missing mesh file                                             0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['no_such_mesh', 'mesh', 'ply']
-test39  error  FAIL  Malformed transform: Translate with two numbers               0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['translate']
-test40  error  FAIL  Singular transform: Scale 1 0 1                               0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['scale', 'singular', 'invert', 'degenerate']
-test41  error  FAIL  Rotate about a zero axis                                      0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['rotate', 'axis']
-test42  error  FAIL  Degenerate LookAt (eye equals look point)                     0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['lookat', 'degenerate', 'eye']
-test43  error  FAIL  Negative sphere radius                                        0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['radius']
-test44  error  FAIL  Sphere zmin greater than zmax                                 0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['zmin', 'zmax']
-test45  error  FAIL  Disk innerradius larger than radius                           0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['innerradius', 'radius']
-test46  error  FAIL  Triangle mesh index out of range                              0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['index', 'indices', 'range']
-test47  error  FAIL  Triangle mesh index count not a multiple of 3                 0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['indices', 'index', 'multiple']
-test48  error  FAIL  Negative light intensity                                      0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['negative', 'intensity']
-test49  error  FAIL  Spotlight cone angle 270 degrees                              0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['coneangle', 'cone']
-test50  error  FAIL  Camera field of view 200 degrees                              0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['fov']
-test51  error  FAIL  Negative film resolution                                      0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['resolution', 'xresolution']
-test52  error  FAIL  Negative maxdepth                                             0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['maxdepth']
-test53  error  FAIL  Zero pixel samples                                            0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['pixelsamples', 'samples']
+test10  error  FAIL  Misspelt directive (Shapee)                                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['shapee', 'directive']
+test11  error  FAIL  Unterminated parameter list (missing ])                       0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['syntax', 'bracket', 'unterminated', 'expected']
+test12  error  FAIL  AttributeEnd without AttributeBegin                           0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['attributeend', 'attribute']
+test13  error  FAIL  Missing Include file                                          0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['missing_include', 'include']
+test14  error  FAIL  Unknown shape type (teapot)                                   0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['teapot', 'shape']
+test15  error  FAIL  Unknown material type (plasticky)                             0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['plasticky', 'material']
+test16  error  FAIL  Undefined named material                                      0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['undefined_mat', 'named']
+test17  error  FAIL  Missing texture file                                          0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['does_not_exist', 'texture']
+test18  error  FAIL  Malformed transform: Translate with two numbers               0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['translate']
+test19  error  FAIL  Negative sphere radius                                        0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['radius']
+test20  error  FAIL  Triangle mesh index out of range                              0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['index', 'indices', 'range']
+test21  error  FAIL  Camera field of view 200 degrees                              0.0s  exit 0, no log file (console used); no error/warning mentioning any of ['fov']
 
 ==== summary ====
-error    0/39 passed (0%); by kind: syntax 0/6, structure 0/7, unknown 0/9, files 0/2, transform 0/4, range 0/11
-total    0/39 passed
+error    0/12 passed (0%); by kind: syntax 0/2, structure 0/2, unknown 0/3, files 0/1, transform 0/1, range 0/3
+total    0/12 passed

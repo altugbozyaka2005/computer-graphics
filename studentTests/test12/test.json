@@ -1,66 +1,18 @@
 {
- "name": "Gallery: Phong diffuse interreflection in a closed room (maxdepth 3)",
- "category": "shading",
- "metric": "pixels",
- "description": "Closed room with a teal and a terracotta wall, a ceiling light panel, a sculpture on a plinth, a column, a bench and paintings, maxdepth 3 (direct light plus two diffuse bounces). The ceiling and the underside of the sphere are lit only indirectly and the walls bleed colour, so the pixels test indirect light and the meaning of maxdepth.",
+ "name": "AttributeEnd without AttributeBegin",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (structure): attributeEnd without AttributeBegin. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['attributeend', 'attribute']).",
  "test": 12,
  "scene": "testscene_12.pbrt",
- "reference": "testsuite_ref_12.pfm",
- "reference_log": "testsuite_ref_12.log",
- "pbrt_scene": "testscene_12_pbrt.pbrt",
- "pixels": [
-  {
-   "label": "ceiling, beside the light (indirect only)",
-   "x": 80,
-   "y": 39
-  },
-  {
-   "label": "back wall",
-   "x": 133,
-   "y": 107
-  },
-  {
-   "label": "teal wall",
-   "x": 11,
-   "y": 95
-  },
-  {
-   "label": "terracotta wall",
-   "x": 214,
-   "y": 76
-  },
-  {
-   "label": "floor near the teal wall (colour bleeding)",
-   "x": 16,
-   "y": 170
-  },
-  {
-   "label": "floor near the terracotta wall (colour bleeding)",
-   "x": 204,
-   "y": 145
-  },
-  {
-   "label": "sculpture top",
-   "x": 125,
-   "y": 74
-  },
-  {
-   "label": "sculpture underside (indirect only)",
-   "x": 131,
-   "y": 101
-  },
-  {
-   "label": "plinth front",
-   "x": 120,
-   "y": 126
-  },
-  {
-   "label": "yellow painting",
-   "x": 113,
-   "y": 84
-  }
+ "group": "structure",
+ "error_lines": [
+  "AttributeEnd",
+  "Shape \"sphere\" \"float radius\" [ 0.3 ]"
  ],
- "window": 1,
- "max_rel_error": 0.05,
- "display_exposure": 4.3867
+ "keywords": [
+  "attributeend",
+  "attribute"
+ ],
+ "reference_log": "testsuite_ref_12.log"
 }

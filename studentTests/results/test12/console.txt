@@ -1,46 +1,33 @@
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:21:09
+[INFO] date: 2026-11-13 01:00:23
 [INFO] command: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/CGR26_renderer /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test12/testscene_12.pbrt
 [INFO] scene: /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test12/testscene_12.pbrt
 [INFO] hardware threads: 15
 [INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] area light: 2 shape(s), area 0.800000
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 12 triangles, 24 vertices, uvs
-[INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 79 primitives, 79 nodes, 40 leaves, depth 10, largest leaf 2, mean prims/leaf 1.98, SAH cost 8.80
-[INFO] integrator: distributed, maxdepth 3, branchingfactor 1, lightsamples 4 (uniform)
-[INFO] camera: perspective, fov 58.00, lensradius 0.0000, focaldistance 1000000.000
-[INFO] film: 256x192, 1024 spp (stratified 32x32 (jittered)), tonemap reinhard (luminance)
-[INFO] scene: 79 primitives (78 triangles, 0 planes), 0 point/spot/distant lights, 1 area lights, 15 objects, 12 materials
+[ERROR] /Users/altugbozyaka/Desktop/CODING/graphics_module2/studentTests/test12/testscene_12.pbrt:24:1: AttributeEnd without matching AttributeBegin; ignored
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 5 primitives, 5 nodes, 3 leaves, depth 2, largest leaf 3, mean prims/leaf 1.67, SAH cost 3.84
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 96x72, 8 spp (independent, 8 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 5 primitives (2 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 4 objects, 3 materials
 [INFO] rendering with 15 threads ...
-  rendering:   4%  (0.3s)  rendering:   9%  (0.6s)  rendering:  14%  (0.7s)  rendering:  18%  (1.0s)  rendering:  23%  (1.0s)  rendering:  28%  (1.5s)  rendering:  32%  (1.9s)  rendering:  37%  (2.0s)  rendering:  42%  (2.3s)  rendering:  46%  (2.5s)  rendering:  51%  (2.9s)  rendering:  56%  (3.2s)  rendering:  60%  (3.5s)  rendering:  65%  (3.8s)  rendering:  70%  (4.1s)  rendering:  75%  (4.3s)  rendering:  79%  (4.6s)  rendering:  84%  (4.8s)  rendering:  89%  (5.0s)  rendering:  93%  (5.4s)  rendering:  98%  (5.5s)  rendering: 100%  (5.6s)
-[INFO] Reinhard: mode luminance, log-average luminance 0.10049, max luminance 16.08545, scale 1.00000, white point 16.08545 (auto = max)
+  rendering:   3%  (0.0s)  rendering:  10%  (0.0s)  rendering:  13%  (0.0s)  rendering:   6%  (0.0s)  rendering:  16%  (0.0s)  rendering:  20%  (0.0s)  rendering:  23%  (0.0s)  rendering:  26%  (0.0s)  rendering:  30%  (0.0s)  rendering:  33%  (0.0s)  rendering:  36%  (0.0s)  rendering:  40%  (0.0s)  rendering:  43%  (0.0s)  rendering:  46%  (0.0s)  rendering:  50%  (0.0s)  rendering:  53%  (0.0s)  rendering:  56%  (0.0s)  rendering:  60%  (0.0s)  rendering:  63%  (0.0s)  rendering:  66%  (0.0s)  rendering:  70%  (0.0s)  rendering:  73%  (0.0s)  rendering:  76%  (0.0s)  rendering:  80%  (0.0s)  rendering:  83%  (0.0s)  rendering:  86%  (0.0s)  rendering:  90%  (0.0s)  rendering:  93%  (0.0s)  rendering:  96%  (0.0s)  rendering: 100%  (0.0s)
+[INFO] Reinhard: mode luminance, log-average luminance 0.00699, max luminance 0.24277, scale 1.00000, white point 0.24277 (auto = max)
 [INFO] wrote /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_12.png (display), /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_12.pfm (linear HDR)
 ---- profile ----
-parse+load (s):      0.0004
+parse+load (s):      0.0003
 accel build (s):     0.0000
-render (s):          5.5822
-tonemap+write (s):   0.0039
-total (s):           5.5871
-camera rays:         50331648
-secondary rays:      100663296
-shadow rays:         444955265
-ray-primitive tests: 380761340
-ray-box tests:       8857117580
-tests per ray:       0.64 primitive, 14.86 box
-rays by depth:       0:50331648 1:50331648 2:50331648
-Mrays/s:             106.759
+render (s):          0.0012
+tonemap+write (s):   0.0005
+total (s):           0.0023
+camera rays:         55296
+secondary rays:      41773
+shadow rays:         88073
+ray-primitive tests: 512986
+ray-box tests:       877379
+tests per ray:       2.77 primitive, 4.74 box
+rays by depth:       0:55296 1:41773
+Mrays/s:             152.385
 ---- result ----
-OK: errors: 0, warnings: 0
+OK: errors: 1, warnings: 0
 log: /Users/altugbozyaka/Desktop/CODING/graphics_module2/output/testsuite_my_12.log

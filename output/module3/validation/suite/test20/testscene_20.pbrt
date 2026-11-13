@@ -1,5 +1,5 @@
-# testscene_20: Wrong number of values for an rgb parameter
-# Category: error (syntax). Deliberate error (syntax): wrong number of values for an rgb parameter. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['rgb', 'values']).
+# testscene_20: Triangle mesh index out of range
+# Category: error (range). Deliberate error (range): triangle mesh index out of range. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['index', 'indices', 'range']).
 LookAt 0 2.4 -6  0 0.7 0  0 1 0
 Camera "perspective" "float fov" [ 40 ]
 Film "rgb" "integer xresolution" [ 96 ] "integer yresolution" [ 72 ] "string filename" [ "testsuite_my_20.png" ]
@@ -21,4 +21,4 @@ Material "diffuse" "rgb reflectance" [ 0.15 0.4 0.65 ]
 Translate 0.9 0.5 -0.2
 Shape "sphere" "float radius" [ 0.5 ]
 AttributeEnd
-LightSource "point" "point3 from" [ 0 4 0 ] "rgb I" [ 10 10 ]
+Shape "trianglemesh" "point3 P" [ 0 0 0  1 0 0  0 1 0 ] "integer indices" [ 0 1 7 ]

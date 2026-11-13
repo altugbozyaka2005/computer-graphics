@@ -1,14 +1,16 @@
 {
- "name": "AttributeEnd without AttributeBegin",
+ "name": "Camera field of view 200 degrees",
  "category": "error",
  "metric": "error",
- "description": "Deliberate error (structure): attributeEnd without AttributeBegin. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['attributeend', 'attribute']).",
+ "description": "Deliberate error (range): camera field of view 200 degrees. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['fov']).",
  "test": 21,
  "scene": "testscene_21.pbrt",
- "group": "structure",
+ "group": "range",
+ "error_lines": [
+  "Camera \"perspective\" \"float fov\" [ 200 ]"
+ ],
  "keywords": [
-  "attributeend",
-  "attribute"
+  "fov"
  ],
  "reference_log": "testsuite_ref_21.log"
 }

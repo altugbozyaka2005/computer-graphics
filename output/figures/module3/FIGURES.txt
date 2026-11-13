@@ -1,0 +1,25 @@
+Module 3 report figures (scenes/tools/make_figures_m3.py, make_report_figures_m3.py)
+
+acc_timing.png                   Render time and intersection tests per ray for the three acceleration scenes and two Module 1 scenes, brute force vs per-object boxes vs BVH, with speed-ups (from acc_main.csv).
+acc_split.png                    BVH split methods compared on the three acceleration scenes: render time relative to SAH, SAH cost, tests per ray, and the full numbers (from acc_split.csv).
+acc_bvh_table.png                Table of the acceleration study: scene sizes, BVH statistics, times and speed-ups.
+testsuite_1.png                  Test 1 (Orrery: sphere, clipped sphere, annulus, raised disk, triangles, icosahedron, tiny spheres): reference, mine and difference, plus an 8-9x zoom on the busiest edges.
+testsuite_2.png                  Test 2 (Clockwork: Scale/Rotate petals, ConcatTransform, Transform, mirror Scale, CoordSysTransform): reference, mine and difference, plus an 8-9x zoom on the busiest edges.
+testsuite_3.png                  Test 3 (Field of view, landscape 2:1 (fov on the shorter axis)): reference, mine and difference, plus each marker enlarged with both centroids.
+testsuite_4.png                  Test 4 (Field of view, portrait 1:2 (fov on the horizontal axis)): reference, mine and difference, plus each marker enlarged with both centroids.
+testsuite_5.png                  Test 5 (Wide angle (fov 100): lamp-lit avenue to z = 60, thin cables, distant and near spheres): reference, mine and difference, plus an 8-9x zoom on the busiest edges.
+testsuite_6.png                  Test 6 (Still life: Phong diffuse under a point light and a spotlight (direct lighting)): reference, mine and difference, with the labelled pixels and a table of their values and errors.
+testsuite_7.png                  Test 7 (Chess endgame: Phong diffuse under a rectangular and a spherical area light (soft shadows)): reference, mine and difference, with the labelled pixels and a table of their values and errors.
+testsuite_8.png                  Test 8 (Gallery: Phong diffuse interreflection in a closed room (maxdepth 3)): reference, mine and difference, with the labelled pixels and a table of their values and errors.
+testsuite_9.png                  Test 9 (Phong specular lobes vs the analytic value: RGB lights, three Phong spheres on a Phong plane): reference, mine and difference, with the labelled pixels and a table of their values and errors.
+testsuite_table.png              All tests by category with pass criteria, measured errors and results (the tabulation asked for in 2.3.2).
+testsuite_shading_errors.png     Relative error at every labelled pixel of the shading tests, against each test's threshold.
+testsuite_convergence.png        Shading error against samples per pixel (Monte Carlo noise as a source of discrepancy), from output/module3/testsuite_convergence.csv.
+testsuite_tonemap.png            Tone mapping as a source of discrepancy: error when the tone-mapped PNG is compared instead of the linear PFM, with the three images side by side.
+testsuite_errors.png             Error-handling scenes: the deliberate error, CGR26_renderer's log line, pbrt-v4's message for the same scene, exit status and result, with the success rate per group.
+testsuite_sensitivity.png        Deliberately broken scenes and fake renderers: every change is caught, so a pass is meaningful.
+acc_overview.png                 Final acceleration renders with BVH and per-object-box cost maps.
+acc_scaling_time.png             Render time against primitive count, brute force vs BVH (log-log).
+acc_scaling_tests.png            Intersection tests per ray against primitive count (log-log).
+acc_leaf.png                     Render time against BVH leaf size (maxnodeprims).
+testsuite_overview.png           All image tests, reference above mine.

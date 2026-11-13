@@ -1,76 +1,17 @@
 {
- "name": "Textures: checkerboards (mesh uv, sphere uv) and a PFM image map with scale",
- "category": "shading",
- "metric": "pixels",
- "description": "Checkerboard reflectance on a floor with per-vertex uv and on a rotated sphere with pbrt's (phi, theta) parametrisation, and an abstract painting (PFM imagemap, 'float scale' 0.9) on the wall, under a distant and a point light. Pixels at check and colour-block centres test uv conventions, image orientation (pbrt flips t) and textured shading.",
+ "name": "Missing Include file",
+ "category": "error",
+ "metric": "error",
+ "description": "Deliberate error (structure): missing Include file. The renderer must not crash or hang, and must report the problem (a log line mentioning one of ['missing_include', 'include']).",
  "test": 13,
  "scene": "testscene_13.pbrt",
- "reference": "testsuite_ref_13.pfm",
- "reference_log": "testsuite_ref_13.log",
- "pbrt_scene": "testscene_13_pbrt.pbrt",
- "pixels": [
-  {
-   "label": "floor check (u,v)=(3,3)/8",
-   "x": 132,
-   "y": 205
-  },
-  {
-   "label": "floor check (4,3)/8",
-   "x": 252,
-   "y": 206
-  },
-  {
-   "label": "floor check (2,4)/8",
-   "x": 54,
-   "y": 171
-  },
-  {
-   "label": "floor check (5,4)/8",
-   "x": 314,
-   "y": 171
-  },
-  {
-   "label": "sphere check u 13/16, v 5/8",
-   "x": 240,
-   "y": 115
-  },
-  {
-   "label": "sphere check u 11/16, v 3/8",
-   "x": 209,
-   "y": 148
-  },
-  {
-   "label": "sphere check u 15/16, v 5/8",
-   "x": 270,
-   "y": 117
-  },
-  {
-   "label": "painting, red block (top left)",
-   "x": 84,
-   "y": 70
-  },
-  {
-   "label": "painting, blue block (right)",
-   "x": 147,
-   "y": 90
-  },
-  {
-   "label": "painting, yellow block (bottom right)",
-   "x": 147,
-   "y": 110
-  },
-  {
-   "label": "painting, green block (bottom left)",
-   "x": 85,
-   "y": 110
-  },
-  {
-   "label": "painting, cream centre",
-   "x": 116,
-   "y": 88
-  }
+ "group": "structure",
+ "error_lines": [
+  "Include \"missing_include.pbrt\""
  ],
- "window": 1,
- "max_rel_error": 0.03,
- "display_exposure": 1.0326
+ "keywords": [
+  "missing_include",
+  "include"
+ ],
+ "reference_log": "testsuite_ref_13.log"
 }

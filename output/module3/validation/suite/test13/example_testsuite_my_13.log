@@ -1,34 +1,32 @@
 # CGR26_renderer log for testscene_13.pbrt (exit status 0)
 ==== CGR26_renderer log ====
-[INFO] date: 2026-11-13 00:09:36
+[INFO] date: 2026-11-13 00:49:18
 [INFO] command: output/CGR26_renderer studentTests/test13/testscene_13.pbrt --quiet --outdir output/module3/tests_tmp --out example_13
 [INFO] scene: studentTests/test13/testscene_13.pbrt
 [INFO] hardware threads: 15
-[INFO] loaded texture 'painting.pfm' (32x16)
-[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
 [INFO] trianglemesh: 2 triangles, 4 vertices
-[INFO] trianglemesh: 2 triangles, 4 vertices, uvs
-[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 7 primitives, 7 nodes, 4 leaves, depth 2, largest leaf 2, mean prims/leaf 1.75, SAH cost 2.56
-[INFO] integrator: distributed, maxdepth 1, branchingfactor 1, lightsamples 16 (uniform)
-[INFO] camera: perspective, fov 42.00, lensradius 0.0000, focaldistance 1000000.000
-[INFO] film: 320x240, 64 spp (stratified 8x8 (jittered)), tonemap reinhard (luminance)
-[INFO] scene: 7 primitives (6 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 4 objects, 4 materials
+[ERROR] studentTests/test13/testscene_13.pbrt:24:1: Include: cannot open file 'missing_include.pbrt'; ignored
+[INFO] accelerator: bvh (splitmethod sah, maxnodeprims 4): 4 primitives, 5 nodes, 3 leaves, depth 2, largest leaf 2, mean prims/leaf 1.33, SAH cost 2.86
+[INFO] integrator: distributed, maxdepth 2, branchingfactor 1, lightsamples 16 (uniform)
+[INFO] camera: perspective, fov 40.00, lensradius 0.0000, focaldistance 1000000.000
+[INFO] film: 96x72, 8 spp (independent, 8 spp (uniform random)), tonemap reinhard (luminance)
+[INFO] scene: 4 primitives (2 triangles, 0 planes), 2 point/spot/distant lights, 0 area lights, 3 objects, 3 materials
 [INFO] rendering with 15 threads ...
-[INFO] Reinhard: mode luminance, log-average luminance 0.18562, max luminance 0.94932, scale 1.00000, white point 0.94932 (auto = max)
+[INFO] Reinhard: mode luminance, log-average luminance 0.00699, max luminance 0.24277, scale 1.00000, white point 0.24277 (auto = max)
 [INFO] wrote output/module3/tests_tmp/example_13.png (display), output/module3/tests_tmp/example_13.pfm (linear HDR)
 ---- profile ----
-parse+load (s):      0.0002
+parse+load (s):      0.0001
 accel build (s):     0.0000
-render (s):          0.0592
-tonemap+write (s):   0.0065
-total (s):           0.0665
-camera rays:         4915200
-secondary rays:      0
-shadow rays:         9579827
-ray-primitive tests: 12711946
-ray-box tests:       76537740
-tests per ray:       0.88 primitive, 5.28 box
-rays by depth:       0:4915200
-Mrays/s:             244.716
+render (s):          0.0012
+tonemap+write (s):   0.0006
+total (s):           0.0023
+camera rays:         55296
+secondary rays:      41773
+shadow rays:         87541
+ray-primitive tests: 121690
+ray-box tests:       874759
+tests per ray:       0.66 primitive, 4.74 box
+rays by depth:       0:55296 1:41773
+Mrays/s:             159.818
 ---- result ----
-OK: errors: 0, warnings: 0
+OK: errors: 1, warnings: 0
